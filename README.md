@@ -12,7 +12,21 @@
 ![License](https://img.shields.io/badge/License-GPL--3.0--or--later-9C27B0?style=for-the-badge)
 [![CI](https://github.com/ahansardar/BharatScan/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ahansardar/BharatScan/actions/workflows/ci.yml)
 
-BharatScan is an Android document scanning app Made In India built with Jetpack Compose, CameraX, and on-device ML for segmentation and OCR. This repo includes the Android app plus supporting JVM modules for image processing and evaluation.
+BharatScan is a Made in India Android document scanning app built with Jetpack Compose, CameraX, and on-device ML for segmentation and OCR. This repo includes the Android app plus supporting JVM modules for image processing and evaluation.
+
+**Table of Contents**
+1. Features
+2. Tech Stack
+3. Modules
+4. Requirements
+5. Quick Start
+6. Model Download
+7. Build Configuration
+8. Permissions
+9. Intents
+10. Testing
+11. Contributing
+12. License
 
 ## Features
 - Camera-based document capture and scanning workflow.
@@ -23,13 +37,6 @@ BharatScan is an Android document scanning app Made In India built with Jetpack 
 - Export formats and quality controls (see settings and export screens in the app).
 - External intent support for `org.bharatscan.app.action.SCAN_TO_PDF` and PDF `VIEW/EDIT` intents.
 
-## Project Structure
-- `app` Android application module (Compose UI, CameraX, PDF, OCR, settings, export).
-- `imageprocessing` JVM library with OpenCV-backed image utilities and transforms.
-- `evaluation` JVM module for evaluation workflows built on `imageprocessing`.
-- `gradle` Version catalog and Gradle plugin configuration.
-- `metadata` Play/metadata assets (if used for releases).
-
 ## Tech Stack
 - Kotlin 2.3.10 and Java 11 bytecode.
 - Android Gradle Plugin 8.13.2.
@@ -38,13 +45,19 @@ BharatScan is an Android document scanning app Made In India built with Jetpack 
 - LiteRT (TFLite runtime) for on-device segmentation.
 - OpenCV (JVM bindings) in `imageprocessing`.
 
+## Modules
+- `app` Android application module (Compose UI, CameraX, PDF, OCR, settings, export).
+- `imageprocessing` JVM library with OpenCV-backed image utilities and transforms.
+- `evaluation` JVM module for evaluation workflows built on `imageprocessing`.
+- `metadata` Play/metadata assets (if used for releases).
+
 ## Requirements
 - JDK 11.
 - Android Studio (recommended) or command-line Gradle.
 - Android SDK with API 36 installed.
 - Network access during first build to download the segmentation model.
 
-## Build And Run
+## Quick Start
 The project uses the Gradle wrapper.
 
 ```bash
@@ -62,8 +75,8 @@ Windows PowerShell:
 .\gradlew.bat :app:installDebug
 ```
 
-## Model Download (Automatic)
-The app depends on a segmentation model that is downloaded during `preBuild`.
+## Model Download
+The segmentation model is downloaded during `preBuild`.
 
 - Task: `downloadTFLiteModel` in `app/download-tflite.gradle.kts`.
 - Model name: `fairscan-segmentation-model.tflite`.
@@ -71,21 +84,11 @@ The app depends on a segmentation model that is downloaded during `preBuild`.
 
 If you are building offline, run once with network access or pre-seed the model file into `app/build/downloads/`.
 
-## Build Configuration Details
+## Build Configuration
 - `minSdk`: 26
 - `targetSdk`: 36
 - `compileSdk`: 36
-- ABI splits are enabled for APKs and output file names follow:
-  `BharatScan-<versionName>-<abi>.apk`.
-
-## Signing
-Release signing is enabled when these Gradle properties are present:
-- `RELEASE_STORE_FILE`
-- `RELEASE_STORE_PASSWORD`
-- `RELEASE_KEY_ALIAS`
-- `RELEASE_KEY_PASSWORD`
-
-Without these, the release build type will still be configured but unsigned.
+- ABI splits are enabled for APKs. Output names follow `BharatScan-<versionName>-<abi>.apk`.
 
 ## Permissions
 The app uses:
@@ -98,19 +101,6 @@ MainActivity handles:
 - Custom action: `org.bharatscan.app.action.SCAN_TO_PDF`.
 - PDF view/edit intents for `application/pdf` with `file` and `content` schemes.
 
-## Modules In Detail
-`app`
-- UI: Compose screens in `app/src/main/java/org/bharatscan/app/ui`.
-- Camera and scanning flow.
-- Export pipeline (PDF generation, OCR, watermarking).
-- PDF viewer and search.
-
-`imageprocessing`
-- OpenCV-backed utilities (geometry, contours, JPEG encode, transforms).
-
-`evaluation`
-- Evaluation utilities and experiments based on `imageprocessing`.
-
 ## Testing
 Unit and instrumentation tests are configured in the `app` module.
 
@@ -119,7 +109,8 @@ Unit and instrumentation tests are configured in the `app` module.
 ./gradlew :app:connectedAndroidTest
 ```
 
-
-
 ## Contributing
-Issues and PRs are welcome. Please keep changes small and focused, and include test updates where appropriate.
+Issues and PRs are welcome. Please keep changes small and focused, and include test updates where appropriate. See `CONTRIBUTING.md` for details.
+
+## License
+This project is licensed under the GNU General Public License, version 3 or later (GPL-3.0-or-later). See `LICENSE_HEADER` and `app/src/main/res/raw/gpl3.txt`.
