@@ -1,0 +1,15 @@
+*.iml
+.gradle
+/.gradle-user
+/.android
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+*.tflite
+studio_results_*.csv
+success.mp3

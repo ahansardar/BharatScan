@@ -1,0 +1,2 @@
+- Sharper document borders: more accurate borders with less background included, while keeping the full document content.
+- Better auto-detection of color vs. grayscale

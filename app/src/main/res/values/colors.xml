@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="deep_navy_blue">#0D1B2A</color>
+    <color name="vibrant_saffron">#F59E0B</color>
+    <color name="clean_white">#FFFFFF</color>
+
+    <!-- Secondary Colors -->
+    <color name="ashoka_chakra_blue">#0D47A1</color>
+    <color name="fresh_green">#43A047</color>
+    <color name="soft_gray">#E5E5E5</color>
+
+    <!-- Accent / Glow Colors -->
+    <color name="golden_glow">#FFD54F</color>
+
+    <!-- Tricolor Particles -->
+    <color name="particle_saffron">#F59E0B</color>
+    <color name="particle_white">#FFFFFF</color>
+    <color name="particle_green">#43A047</color>
+
+    <!-- Brand Colors for Theme -->
+    <color name="colorPrimary">#0D1B2A</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#F59E0B</color>
+</resources>

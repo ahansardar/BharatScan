@@ -1,0 +1,3 @@
+- Fix crash when BharatScan is used via external apps
+- Add translation: Turkish
+

@@ -1,0 +1,718 @@
+<resources>
+    <string name="about">পরিচিতি</string>
+    <string name="add_page">পৃষ্ঠা যোগ করুন</string>
+    <string name="app_name">ভারত স্ক্যান</string>
+    <string name="app_tagline">আপনার নথি, ডিজিটালভাবে</string>
+    <string name="about_tagline">আপনার নিজস্ব বুদ্ধিমান ডকুমেন্ট স্ক্যানার</string>
+    <string name="your_digital_locker">আপনার ডিজিটাল লকার</string>
+    <string name="secure_document_archival">নিরাপদ নথি সংরক্ষণ</string>
+    <string name="scan_now">এখনই স্ক্যান করুন</string>
+    <string name="quick_folders">দ্রুত ফিল্টার</string>
+    <string name="view_all">সব দেখুন</string>
+    <string name="all">সব</string>
+    <string name="recent_scans">সাম্প্রতিক স্ক্যান</string>
+    <string name="recently_added">সাম্প্রতিক যোগ</string>
+    <string name="verified">যাচাই করা</string>
+    <string name="secure_private_title">নিরাপদ ও ব্যক্তিগত</string>
+    <string name="secure_private_body">আপনার স্পষ্ট অনুমতি ছাড়া নথি এই ডিভাইসের বাইরে যাবে না। ডিফল্টভাবে লোকাল এনক্রিপশন।</string>
+    <string name="creator_title">নির্মাতা</string>
+    <string name="creator_name">অহন সরদার</string>
+    <string name="creator_email">ahansardarvis@gmail.com</string>
+    <string name="creator_linked_profile">Linked প্রোফাইল</string>
+    <string name="creator_linked_label">linkedin.com/in/ahansardar</string>
+    <string name="creator_linked_url">https://linkedin.com/in/ahansardar</string>
+    <string name="creator_github_profile">GitHub প্রোফাইল</string>
+    <string name="creator_github_label">github.com/ahansardar</string>
+    <string name="creator_github_url">https://github.com/ahansardar</string>
+    <string name="report_errors_title">ত্রুটি রিপোর্ট করবেন কীভাবে</string>
+    <string name="report_errors_body">সংক্ষিপ্ত বিবরণ ও স্ক্রিনশট সহ সাপোর্ট ইমেলে পাঠান।</string>
+    <string name="save_logs">লগ সংরক্ষণ</string>
+    <string name="loading_bharatscan">ভারত স্ক্যান লোড হচ্ছে...</string>
+    <string name="securing_documents">আপনার নথি সুরক্ষিত করা হচ্ছে</string>
+    <string name="about_version_display">v1.0.0</string>
+    <string name="pending">মুলতুবি</string>
+    <string name="aadhaar">আধার</string>
+    <string name="pan_card">প্যান কার্ড</string>
+    <string name="id_proofs">পরিচয়পত্র</string>
+    <string name="education">শিক্ষা</string>
+    <string name="education_subtitle">ডিগ্রি ও সার্টিফিকেট</string>
+    <string name="other">অন্যান্য</string>
+    <string name="search_documents">ডকুমেন্ট খুঁজুন</string>
+    <string name="search_within_documents">ডকুমেন্টের ভিতরে খুঁজুন...</string>
+    <string name="scanning_text">টেক্সট স্ক্যান হচ্ছে...</string>
+    <string name="export_settings">এক্সপোর্ট সেটিংস</string>
+    <string name="include_watermark">ওয়াটারমার্ক যোগ করুন</string>
+    <string name="include_watermark_desc">এক্সপোর্ট করা ডকুমেন্টে ওয়াটারমার্ক দিন।</string>
+    <string name="custom_watermark">কাস্টম ওয়াটারমার্ক</string>
+    <string name="password_protection">পাসওয়ার্ড সুরক্ষা</string>
+    <string name="password_protection_desc">এই PDF খুলতে পাসওয়ার্ড লাগবে।</string>
+    <string name="password_label">পাসওয়ার্ড</string>
+    <string name="password_strength">শক্তি: %1$s</string>
+    <string name="password_strength_weak">দুর্বল</string>
+    <string name="password_strength_medium">মাঝারি</string>
+    <string name="password_strength_strong">শক্তিশালী</string>
+    <string name="password_required">একটি শক্তিশালী পাসওয়ার্ড দিন।</string>
+    <string name="pdf_password_title">পাসওয়ার্ড প্রয়োজন</string>
+    <string name="pdf_password_message">এই PDF সুরক্ষিত। খুলতে পাসওয়ার্ড লিখুন।</string>
+    <string name="pdf_password_incorrect">ভুল পাসওয়ার্ড। আবার চেষ্টা করুন।</string>
+    <string name="pdf_password_opening">খোলা হচ্ছে…</string>
+    <string name="pdf_password_failed">এই PDF খোলা যায়নি।</string>
+    <string name="select_file_format">ফাইল ফরম্যাট নির্বাচন করুন</string>
+    <string name="export_quality">এক্সপোর্ট কোয়ালিটি</string>
+    <string name="quality_high">উচ্চ (300 DPI)</string>
+    <string name="quality_standard">স্ট্যান্ডার্ড</string>
+    <string name="quality_low">লো</string>
+    <string name="export_portal">এক্সপোর্ট পোর্টাল</string>
+    <string name="finalize_document">ডকুমেন্ট ফাইনাল করুন</string>
+    <string name="export_success_title_saved">ডকুমেন্ট সফলভাবে সংরক্ষিত!</string>
+    <string name="export_success_title_shared">ডকুমেন্ট সফলভাবে শেয়ার হয়েছে!</string>
+    <string name="export_success_available_in">এখন উপলব্ধ আপনার</string>
+    <string name="export_success_view_document">ডকুমেন্ট দেখুন</string>
+    <string name="export_success_go_home">হোমে যান</string>
+    <string name="export_success_size">সাইজ</string>
+    <string name="export_success_format">ফরম্যাট</string>
+    <string name="export_success_security">নিরাপত্তা</string>
+    <string name="export_success_encrypted">এনক্রিপ্টেড</string>
+    <string name="export_success_format_pdf">PDF</string>
+    <string name="export_success_format_jpeg">JPEG</string>
+    <string name="made_with_love_india">ভালোবাসা দিয়ে তৈরি</string>
+    <string name="export_success_shared_message">সফলভাবে শেয়ার হয়েছে।</string>
+    <string name="no_recent_scans">এখনও কোনো সাম্প্রতিক স্ক্যান নেই</string>
+    <string name="no_results">মিল খুঁজে পাওয়া যায়নি</string>
+    <string name="clear_filter">ফিল্টার সরান</string>
+    <string name="save_category_title">ক্যাটাগরিতে সংরক্ষণ</string>
+    <string name="save_category_prompt">এই ডকুমেন্টের জন্য একটি ক্যাটাগরি বাছুন।</string>
+    <string name="custom_category_hint">ক্যাটাগরির নাম লিখুন</string>
+    <string name="search_title">ডকুমেন্ট খোঁজ</string>
+    <string name="filters_title">ফিল্টার</string>
+    <string name="good_morning">সুপ্রভাত</string>
+    <string name="good_afternoon">শুভ অপরাহ্ন</string>
+    <string name="good_evening">শুভ সন্ধ্যা</string>
+    <string name="good_night">শুভ রাত্রি</string>    <string-array name="greeting_variants">
+        <item>ডকুমেন্ট স্ক্যান করুন</item>
+        <item>স্ক্যানিং শুরু করুন</item>
+        <item>নতুন স্ক্যান তৈরি করুন</item>
+        <item>পেজ যোগ করুন</item>
+        <item>ডকুমেন্ট সংরক্ষণ করুন</item>
+        <item>ডিজিটাল কপি তৈরি করুন</item>
+        <item>স্ক্যান করে PDF বানান</item>
+        <item>ডকুমেন্ট গুছান</item>
+        <item>ফাইল নিরাপদ রাখুন</item>
+        <item>স্ক্যান করে শেয়ার করুন</item>
+        <item>স্ক্যান প্রস্তুত</item>
+        <item>ক্যামেরা প্রস্তুত</item>
+        <item>ডকুমেন্ট প্রস্তুত রাখুন</item>
+        <item>স্ক্যানের জন্য প্রস্তুত</item>
+        <item>পরের পেজ যোগ করুন</item>
+        <item>কাগজপত্র ডিজিটাল করুন</item>
+        <item>আজ স্ক্যান শেষ করুন</item>
+        <item>নিরাপদ ব্যাকআপ তৈরি করুন</item>
+        <item>স্ক্যান শেষ করে সংরক্ষণ করুন</item>
+        <item>দ্রুত স্ক্যান দিয়ে শুরু করুন</item>
+        <item>আজ ডকুমেন্ট স্ক্যান করুন</item>
+        <item>আজ স্ক্যানিং শুরু করুন</item>
+        <item>আজ নতুন স্ক্যান তৈরি করুন</item>
+        <item>আজ পেজ যোগ করুন</item>
+        <item>আজ ডকুমেন্ট সংরক্ষণ করুন</item>
+        <item>আজ ডিজিটাল কপি তৈরি করুন</item>
+        <item>আজ স্ক্যান করে PDF বানান</item>
+        <item>আজ ডকুমেন্ট গুছান</item>
+        <item>আজ ফাইল নিরাপদ রাখুন</item>
+        <item>আজ স্ক্যান করে শেয়ার করুন</item>
+        <item>আজ স্ক্যান প্রস্তুত</item>
+        <item>আজ ক্যামেরা প্রস্তুত</item>
+        <item>আজ ডকুমেন্ট প্রস্তুত রাখুন</item>
+        <item>আজ স্ক্যানের জন্য প্রস্তুত</item>
+        <item>আজ পরের পেজ যোগ করুন</item>
+        <item>আজ কাগজপত্র ডিজিটাল করুন</item>
+        <item>আজ আজ স্ক্যান শেষ করুন</item>
+        <item>আজ নিরাপদ ব্যাকআপ তৈরি করুন</item>
+        <item>আজ স্ক্যান শেষ করে সংরক্ষণ করুন</item>
+        <item>আজ দ্রুত স্ক্যান দিয়ে শুরু করুন</item>
+        <item>এখন ডকুমেন্ট স্ক্যান করুন</item>
+        <item>এখন স্ক্যানিং শুরু করুন</item>
+        <item>এখন নতুন স্ক্যান তৈরি করুন</item>
+        <item>এখন পেজ যোগ করুন</item>
+        <item>এখন ডকুমেন্ট সংরক্ষণ করুন</item>
+        <item>এখন ডিজিটাল কপি তৈরি করুন</item>
+        <item>এখন স্ক্যান করে PDF বানান</item>
+        <item>এখন ডকুমেন্ট গুছান</item>
+        <item>এখন ফাইল নিরাপদ রাখুন</item>
+        <item>এখন স্ক্যান করে শেয়ার করুন</item>
+        <item>এখন স্ক্যান প্রস্তুত</item>
+        <item>এখন ক্যামেরা প্রস্তুত</item>
+        <item>এখন ডকুমেন্ট প্রস্তুত রাখুন</item>
+        <item>এখন স্ক্যানের জন্য প্রস্তুত</item>
+        <item>এখন পরের পেজ যোগ করুন</item>
+        <item>এখন কাগজপত্র ডিজিটাল করুন</item>
+        <item>এখন আজ স্ক্যান শেষ করুন</item>
+        <item>এখন নিরাপদ ব্যাকআপ তৈরি করুন</item>
+        <item>এখন স্ক্যান শেষ করে সংরক্ষণ করুন</item>
+        <item>এখন দ্রুত স্ক্যান দিয়ে শুরু করুন</item>
+        <item>চলুন ডকুমেন্ট স্ক্যান করুন</item>
+        <item>চলুন স্ক্যানিং শুরু করুন</item>
+        <item>চলুন নতুন স্ক্যান তৈরি করুন</item>
+        <item>চলুন পেজ যোগ করুন</item>
+        <item>চলুন ডকুমেন্ট সংরক্ষণ করুন</item>
+        <item>চলুন ডিজিটাল কপি তৈরি করুন</item>
+        <item>চলুন স্ক্যান করে PDF বানান</item>
+        <item>চলুন ডকুমেন্ট গুছান</item>
+        <item>চলুন ফাইল নিরাপদ রাখুন</item>
+        <item>চলুন স্ক্যান করে শেয়ার করুন</item>
+        <item>চলুন স্ক্যান প্রস্তুত</item>
+        <item>চলুন ক্যামেরা প্রস্তুত</item>
+        <item>চলুন ডকুমেন্ট প্রস্তুত রাখুন</item>
+        <item>চলুন স্ক্যানের জন্য প্রস্তুত</item>
+        <item>চলুন পরের পেজ যোগ করুন</item>
+        <item>চলুন কাগজপত্র ডিজিটাল করুন</item>
+        <item>চলুন আজ স্ক্যান শেষ করুন</item>
+        <item>চলুন নিরাপদ ব্যাকআপ তৈরি করুন</item>
+        <item>চলুন স্ক্যান শেষ করে সংরক্ষণ করুন</item>
+        <item>চলুন দ্রুত স্ক্যান দিয়ে শুরু করুন</item>
+        <item>তৎক্ষণাৎ ডকুমেন্ট স্ক্যান করুন</item>
+        <item>তৎক্ষণাৎ স্ক্যানিং শুরু করুন</item>
+        <item>তৎক্ষণাৎ নতুন স্ক্যান তৈরি করুন</item>
+        <item>তৎক্ষণাৎ পেজ যোগ করুন</item>
+        <item>তৎক্ষণাৎ ডকুমেন্ট সংরক্ষণ করুন</item>
+        <item>তৎক্ষণাৎ ডিজিটাল কপি তৈরি করুন</item>
+        <item>তৎক্ষণাৎ স্ক্যান করে PDF বানান</item>
+        <item>তৎক্ষণাৎ ডকুমেন্ট গুছান</item>
+        <item>তৎক্ষণাৎ ফাইল নিরাপদ রাখুন</item>
+        <item>তৎক্ষণাৎ স্ক্যান করে শেয়ার করুন</item>
+        <item>তৎক্ষণাৎ স্ক্যান প্রস্তুত</item>
+        <item>তৎক্ষণাৎ ক্যামেরা প্রস্তুত</item>
+        <item>তৎক্ষণাৎ ডকুমেন্ট প্রস্তুত রাখুন</item>
+        <item>তৎক্ষণাৎ স্ক্যানের জন্য প্রস্তুত</item>
+        <item>তৎক্ষণাৎ পরের পেজ যোগ করুন</item>
+        <item>তৎক্ষণাৎ কাগজপত্র ডিজিটাল করুন</item>
+        <item>তৎক্ষণাৎ আজ স্ক্যান শেষ করুন</item>
+        <item>তৎক্ষণাৎ নিরাপদ ব্যাকআপ তৈরি করুন</item>
+        <item>তৎক্ষণাৎ স্ক্যান শেষ করে সংরক্ষণ করুন</item>
+        <item>তৎক্ষণাৎ দ্রুত স্ক্যান দিয়ে শুরু করুন</item>
+        <item>শুরু করি ডকুমেন্ট স্ক্যান করুন</item>
+        <item>শুরু করি স্ক্যানিং শুরু করুন</item>
+        <item>শুরু করি নতুন স্ক্যান তৈরি করুন</item>
+        <item>শুরু করি পেজ যোগ করুন</item>
+        <item>শুরু করি ডকুমেন্ট সংরক্ষণ করুন</item>
+        <item>শুরু করি ডিজিটাল কপি তৈরি করুন</item>
+        <item>শুরু করি স্ক্যান করে PDF বানান</item>
+        <item>শুরু করি ডকুমেন্ট গুছান</item>
+        <item>শুরু করি ফাইল নিরাপদ রাখুন</item>
+        <item>শুরু করি স্ক্যান করে শেয়ার করুন</item>
+        <item>শুরু করি স্ক্যান প্রস্তুত</item>
+        <item>শুরু করি ক্যামেরা প্রস্তুত</item>
+        <item>শুরু করি ডকুমেন্ট প্রস্তুত রাখুন</item>
+        <item>শুরু করি স্ক্যানের জন্য প্রস্তুত</item>
+        <item>শুরু করি পরের পেজ যোগ করুন</item>
+        <item>শুরু করি কাগজপত্র ডিজিটাল করুন</item>
+        <item>শুরু করি আজ স্ক্যান শেষ করুন</item>
+        <item>শুরু করি নিরাপদ ব্যাকআপ তৈরি করুন</item>
+        <item>শুরু করি স্ক্যান শেষ করে সংরক্ষণ করুন</item>
+        <item>শুরু করি দ্রুত স্ক্যান দিয়ে শুরু করুন</item>
+        <item>এখানে ডকুমেন্ট স্ক্যান করুন</item>
+        <item>এখানে স্ক্যানিং শুরু করুন</item>
+        <item>এখানে নতুন স্ক্যান তৈরি করুন</item>
+        <item>এখানে পেজ যোগ করুন</item>
+        <item>এখানে ডকুমেন্ট সংরক্ষণ করুন</item>
+        <item>এখানে ডিজিটাল কপি তৈরি করুন</item>
+        <item>এখানে স্ক্যান করে PDF বানান</item>
+        <item>এখানে ডকুমেন্ট গুছান</item>
+        <item>এখানে ফাইল নিরাপদ রাখুন</item>
+        <item>এখানে স্ক্যান করে শেয়ার করুন</item>
+        <item>এখানে স্ক্যান প্রস্তুত</item>
+        <item>এখানে ক্যামেরা প্রস্তুত</item>
+        <item>এখানে ডকুমেন্ট প্রস্তুত রাখুন</item>
+        <item>এখানে স্ক্যানের জন্য প্রস্তুত</item>
+        <item>এখানে পরের পেজ যোগ করুন</item>
+        <item>এখানে কাগজপত্র ডিজিটাল করুন</item>
+        <item>এখানে আজ স্ক্যান শেষ করুন</item>
+        <item>এখানে নিরাপদ ব্যাকআপ তৈরি করুন</item>
+        <item>এখানে স্ক্যান শেষ করে সংরক্ষণ করুন</item>
+        <item>এখানে দ্রুত স্ক্যান দিয়ে শুরু করুন</item>
+        <item>আজই ডকুমেন্ট স্ক্যান করুন</item>
+        <item>আজই স্ক্যানিং শুরু করুন</item>
+        <item>আজই নতুন স্ক্যান তৈরি করুন</item>
+        <item>আজই পেজ যোগ করুন</item>
+        <item>আজই ডকুমেন্ট সংরক্ষণ করুন</item>
+        <item>আজই ডিজিটাল কপি তৈরি করুন</item>
+        <item>আজই স্ক্যান করে PDF বানান</item>
+        <item>আজই ডকুমেন্ট গুছান</item>
+        <item>আজই ফাইল নিরাপদ রাখুন</item>
+        <item>আজই স্ক্যান করে শেয়ার করুন</item>
+        <item>আজই স্ক্যান প্রস্তুত</item>
+        <item>আজই ক্যামেরা প্রস্তুত</item>
+        <item>আজই ডকুমেন্ট প্রস্তুত রাখুন</item>
+        <item>আজই স্ক্যানের জন্য প্রস্তুত</item>
+        <item>আজই পরের পেজ যোগ করুন</item>
+        <item>আজই কাগজপত্র ডিজিটাল করুন</item>
+        <item>আজই আজ স্ক্যান শেষ করুন</item>
+        <item>আজই নিরাপদ ব্যাকআপ তৈরি করুন</item>
+        <item>আজই স্ক্যান শেষ করে সংরক্ষণ করুন</item>
+        <item>আজই দ্রুত স্ক্যান দিয়ে শুরু করুন</item>
+        <item>আবার ডকুমেন্ট স্ক্যান করুন</item>
+        <item>আবার স্ক্যানিং শুরু করুন</item>
+        <item>আবার নতুন স্ক্যান তৈরি করুন</item>
+        <item>আবার পেজ যোগ করুন</item>
+        <item>আবার ডকুমেন্ট সংরক্ষণ করুন</item>
+        <item>আবার ডিজিটাল কপি তৈরি করুন</item>
+        <item>আবার স্ক্যান করে PDF বানান</item>
+        <item>আবার ডকুমেন্ট গুছান</item>
+        <item>আবার ফাইল নিরাপদ রাখুন</item>
+        <item>আবার স্ক্যান করে শেয়ার করুন</item>
+        <item>আবার স্ক্যান প্রস্তুত</item>
+        <item>আবার ক্যামেরা প্রস্তুত</item>
+        <item>আবার ডকুমেন্ট প্রস্তুত রাখুন</item>
+        <item>আবার স্ক্যানের জন্য প্রস্তুত</item>
+        <item>আবার পরের পেজ যোগ করুন</item>
+        <item>আবার কাগজপত্র ডিজিটাল করুন</item>
+        <item>আবার আজ স্ক্যান শেষ করুন</item>
+        <item>আবার নিরাপদ ব্যাকআপ তৈরি করুন</item>
+        <item>আবার স্ক্যান শেষ করে সংরক্ষণ করুন</item>
+        <item>আবার দ্রুত স্ক্যান দিয়ে শুরু করুন</item>
+        <item>শুরু করুন ডকুমেন্ট স্ক্যান করুন</item>
+        <item>শুরু করুন স্ক্যানিং শুরু করুন</item>
+        <item>শুরু করুন নতুন স্ক্যান তৈরি করুন</item>
+        <item>শুরু করুন পেজ যোগ করুন</item>
+        <item>শুরু করুন ডকুমেন্ট সংরক্ষণ করুন</item>
+        <item>শুরু করুন ডিজিটাল কপি তৈরি করুন</item>
+        <item>শুরু করুন স্ক্যান করে PDF বানান</item>
+        <item>শুরু করুন ডকুমেন্ট গুছান</item>
+        <item>শুরু করুন ফাইল নিরাপদ রাখুন</item>
+        <item>শুরু করুন স্ক্যান করে শেয়ার করুন</item>
+        <item>শুরু করুন স্ক্যান প্রস্তুত</item>
+        <item>শুরু করুন ক্যামেরা প্রস্তুত</item>
+        <item>শুরু করুন ডকুমেন্ট প্রস্তুত রাখুন</item>
+        <item>শুরু করুন স্ক্যানের জন্য প্রস্তুত</item>
+        <item>শুরু করুন পরের পেজ যোগ করুন</item>
+        <item>শুরু করুন কাগজপত্র ডিজিটাল করুন</item>
+        <item>শুরু করুন আজ স্ক্যান শেষ করুন</item>
+        <item>শুরু করুন নিরাপদ ব্যাকআপ তৈরি করুন</item>
+        <item>শুরু করুন স্ক্যান শেষ করে সংরক্ষণ করুন</item>
+        <item>শুরু করুন দ্রুত স্ক্যান দিয়ে শুরু করুন</item>
+        <item>আপনার ডকুমেন্ট স্ক্যান করুন</item>
+        <item>আপনার স্ক্যানিং শুরু করুন</item>
+        <item>আপনার নতুন স্ক্যান তৈরি করুন</item>
+        <item>আপনার পেজ যোগ করুন</item>
+        <item>আপনার ডকুমেন্ট সংরক্ষণ করুন</item>
+        <item>আপনার ডিজিটাল কপি তৈরি করুন</item>
+        <item>আপনার স্ক্যান করে PDF বানান</item>
+        <item>আপনার ডকুমেন্ট গুছান</item>
+        <item>আপনার ফাইল নিরাপদ রাখুন</item>
+        <item>আপনার স্ক্যান করে শেয়ার করুন</item>
+        <item>আপনার স্ক্যান প্রস্তুত</item>
+        <item>আপনার ক্যামেরা প্রস্তুত</item>
+        <item>আপনার ডকুমেন্ট প্রস্তুত রাখুন</item>
+        <item>আপনার স্ক্যানের জন্য প্রস্তুত</item>
+        <item>আপনার পরের পেজ যোগ করুন</item>
+        <item>আপনার কাগজপত্র ডিজিটাল করুন</item>
+        <item>আপনার আজ স্ক্যান শেষ করুন</item>
+        <item>আপনার নিরাপদ ব্যাকআপ তৈরি করুন</item>
+        <item>আপনার স্ক্যান শেষ করে সংরক্ষণ করুন</item>
+        <item>আপনার দ্রুত স্ক্যান দিয়ে শুরু করুন</item>
+        <item>আরেকটি ডকুমেন্ট স্ক্যান করুন</item>
+        <item>আরেকটি স্ক্যানিং শুরু করুন</item>
+        <item>আরেকটি নতুন স্ক্যান তৈরি করুন</item>
+        <item>আরেকটি পেজ যোগ করুন</item>
+        <item>আরেকটি ডকুমেন্ট সংরক্ষণ করুন</item>
+        <item>আরেকটি ডিজিটাল কপি তৈরি করুন</item>
+        <item>আরেকটি স্ক্যান করে PDF বানান</item>
+        <item>আরেকটি ডকুমেন্ট গুছান</item>
+        <item>আরেকটি ফাইল নিরাপদ রাখুন</item>
+        <item>আরেকটি স্ক্যান করে শেয়ার করুন</item>
+        <item>আরেকটি স্ক্যান প্রস্তুত</item>
+        <item>আরেকটি ক্যামেরা প্রস্তুত</item>
+        <item>আরেকটি ডকুমেন্ট প্রস্তুত রাখুন</item>
+        <item>আরেকটি স্ক্যানের জন্য প্রস্তুত</item>
+        <item>আরেকটি পরের পেজ যোগ করুন</item>
+        <item>আরেকটি কাগজপত্র ডিজিটাল করুন</item>
+        <item>আরেকটি আজ স্ক্যান শেষ করুন</item>
+        <item>আরেকটি নিরাপদ ব্যাকআপ তৈরি করুন</item>
+        <item>আরেকটি স্ক্যান শেষ করে সংরক্ষণ করুন</item>
+        <item>আরেকটি দ্রুত স্ক্যান দিয়ে শুরু করুন</item>
+        <item>সোজা ডকুমেন্ট স্ক্যান করুন</item>
+        <item>সোজা স্ক্যানিং শুরু করুন</item>
+        <item>সোজা নতুন স্ক্যান তৈরি করুন</item>
+        <item>সোজা পেজ যোগ করুন</item>
+        <item>সোজা ডকুমেন্ট সংরক্ষণ করুন</item>
+        <item>সোজা ডিজিটাল কপি তৈরি করুন</item>
+        <item>সোজা স্ক্যান করে PDF বানান</item>
+        <item>সোজা ডকুমেন্ট গুছান</item>
+        <item>সোজা ফাইল নিরাপদ রাখুন</item>
+        <item>সোজা স্ক্যান করে শেয়ার করুন</item>
+        <item>সোজা স্ক্যান প্রস্তুত</item>
+        <item>সোজা ক্যামেরা প্রস্তুত</item>
+        <item>সোজা ডকুমেন্ট প্রস্তুত রাখুন</item>
+        <item>সোজা স্ক্যানের জন্য প্রস্তুত</item>
+        <item>সোজা পরের পেজ যোগ করুন</item>
+        <item>সোজা কাগজপত্র ডিজিটাল করুন</item>
+        <item>সোজা আজ স্ক্যান শেষ করুন</item>
+        <item>সোজা নিরাপদ ব্যাকআপ তৈরি করুন</item>
+        <item>সোজা স্ক্যান শেষ করে সংরক্ষণ করুন</item>
+        <item>সোজা দ্রুত স্ক্যান দিয়ে শুরু করুন</item>
+        <item>বিল স্ক্যান করুন</item>
+        <item>রসিদ স্ক্যান করুন</item>
+        <item>নোট স্ক্যান করুন</item>
+        <item>ফর্ম স্ক্যান করুন</item>
+        <item>চিঠি স্ক্যান করুন</item>
+        <item>চুক্তি স্ক্যান করুন</item>
+        <item>সার্টিফিকেট স্ক্যান করুন</item>
+        <item>কাগজপত্র স্ক্যান করুন</item>
+        <item>ওয়ার্কশিট স্ক্যান করুন</item>
+        <item>প্রজেক্ট নোট স্ক্যান করুন</item>
+        <item>ইনভয়েস স্ক্যান করুন</item>
+        <item>রিপোর্ট স্ক্যান করুন</item>
+        <item>পড়ার নোট স্ক্যান করুন</item>
+        <item>হাতের লেখা পেজ স্ক্যান করুন</item>
+        <item>মিটিং নোট স্ক্যান করুন</item>
+        <item>রেকর্ড স্ক্যান করুন</item>
+        <item>খসড়া স্ক্যান করুন</item>
+        <item>ক্লাস নোট স্ক্যান করুন</item>
+        <item>খরচের তালিকা স্ক্যান করুন</item>
+        <item>সারসংক্ষেপ স্ক্যান করুন</item>
+        <item>বিল নিরাপদ রাখুন</item>
+        <item>রসিদ নিরাপদ রাখুন</item>
+        <item>নোট নিরাপদ রাখুন</item>
+        <item>ফর্ম নিরাপদ রাখুন</item>
+        <item>চিঠি নিরাপদ রাখুন</item>
+        <item>চুক্তি নিরাপদ রাখুন</item>
+        <item>সার্টিফিকেট নিরাপদ রাখুন</item>
+        <item>কাগজপত্র নিরাপদ রাখুন</item>
+        <item>ওয়ার্কশিট নিরাপদ রাখুন</item>
+        <item>প্রজেক্ট নোট নিরাপদ রাখুন</item>
+        <item>ইনভয়েস নিরাপদ রাখুন</item>
+        <item>রিপোর্ট নিরাপদ রাখুন</item>
+        <item>পড়ার নোট নিরাপদ রাখুন</item>
+        <item>হাতের লেখা পেজ নিরাপদ রাখুন</item>
+        <item>মিটিং নোট নিরাপদ রাখুন</item>
+        <item>রেকর্ড নিরাপদ রাখুন</item>
+        <item>খসড়া নিরাপদ রাখুন</item>
+        <item>ক্লাস নোট নিরাপদ রাখুন</item>
+        <item>খরচের তালিকা নিরাপদ রাখুন</item>
+        <item>সারসংক্ষেপ নিরাপদ রাখুন</item>
+        <item>বিল ডিজিটাল করুন</item>
+        <item>রসিদ ডিজিটাল করুন</item>
+        <item>নোট ডিজিটাল করুন</item>
+        <item>ফর্ম ডিজিটাল করুন</item>
+        <item>চিঠি ডিজিটাল করুন</item>
+        <item>চুক্তি ডিজিটাল করুন</item>
+        <item>সার্টিফিকেট ডিজিটাল করুন</item>
+        <item>ওয়ার্কশিট ডিজিটাল করুন</item>
+        <item>প্রজেক্ট নোট ডিজিটাল করুন</item>
+        <item>ইনভয়েস ডিজিটাল করুন</item>
+        <item>রিপোর্ট ডিজিটাল করুন</item>
+        <item>পড়ার নোট ডিজিটাল করুন</item>
+        <item>হাতের লেখা পেজ ডিজিটাল করুন</item>
+        <item>মিটিং নোট ডিজিটাল করুন</item>
+        <item>রেকর্ড ডিজিটাল করুন</item>
+        <item>খসড়া ডিজিটাল করুন</item>
+        <item>ক্লাস নোট ডিজিটাল করুন</item>
+        <item>খরচের তালিকা ডিজিটাল করুন</item>
+        <item>সারসংক্ষেপ ডিজিটাল করুন</item>
+        <item>আজ বিল স্ক্যান করুন</item>
+        <item>আজ রসিদ স্ক্যান করুন</item>
+        <item>আজ নোট স্ক্যান করুন</item>
+        <item>আজ ফর্ম স্ক্যান করুন</item>
+        <item>আজ চিঠি স্ক্যান করুন</item>
+        <item>আজ চুক্তি স্ক্যান করুন</item>
+        <item>আজ সার্টিফিকেট স্ক্যান করুন</item>
+        <item>আজ কাগজপত্র স্ক্যান করুন</item>
+        <item>আজ ওয়ার্কশিট স্ক্যান করুন</item>
+        <item>আজ প্রজেক্ট নোট স্ক্যান করুন</item>
+        <item>আজ ইনভয়েস স্ক্যান করুন</item>
+        <item>আজ রিপোর্ট স্ক্যান করুন</item>
+        <item>আজ পড়ার নোট স্ক্যান করুন</item>
+        <item>আজ হাতের লেখা পেজ স্ক্যান করুন</item>
+        <item>আজ মিটিং নোট স্ক্যান করুন</item>
+        <item>আজ রেকর্ড স্ক্যান করুন</item>
+        <item>আজ খসড়া স্ক্যান করুন</item>
+        <item>আজ ক্লাস নোট স্ক্যান করুন</item>
+        <item>আজ খরচের তালিকা স্ক্যান করুন</item>
+        <item>আজ সারসংক্ষেপ স্ক্যান করুন</item>
+        <item>আপনার বিল গুছিয়ে রাখুন</item>
+        <item>আপনার রসিদ গুছিয়ে রাখুন</item>
+        <item>আপনার নোট গুছিয়ে রাখুন</item>
+        <item>আপনার ফর্ম গুছিয়ে রাখুন</item>
+        <item>আপনার চিঠি গুছিয়ে রাখুন</item>
+        <item>আপনার চুক্তি গুছিয়ে রাখুন</item>
+        <item>আপনার সার্টিফিকেট গুছিয়ে রাখুন</item>
+        <item>আপনার কাগজপত্র গুছিয়ে রাখুন</item>
+        <item>আপনার ওয়ার্কশিট গুছিয়ে রাখুন</item>
+        <item>আপনার প্রজেক্ট নোট গুছিয়ে রাখুন</item>
+        <item>আপনার ইনভয়েস গুছিয়ে রাখুন</item>
+        <item>আপনার রিপোর্ট গুছিয়ে রাখুন</item>
+        <item>আপনার পড়ার নোট গুছিয়ে রাখুন</item>
+        <item>আপনার হাতের লেখা পেজ গুছিয়ে রাখুন</item>
+        <item>আপনার মিটিং নোট গুছিয়ে রাখুন</item>
+        <item>আপনার রেকর্ড গুছিয়ে রাখুন</item>
+        <item>আপনার খসড়া গুছিয়ে রাখুন</item>
+        <item>আপনার ক্লাস নোট গুছিয়ে রাখুন</item>
+        <item>আপনার খরচের তালিকা গুছিয়ে রাখুন</item>
+        <item>আপনার সারসংক্ষেপ গুছিয়ে রাখুন</item>
+        <item>দ্রুত বিল স্ক্যান করুন</item>
+        <item>দ্রুত রসিদ স্ক্যান করুন</item>
+        <item>দ্রুত নোট স্ক্যান করুন</item>
+        <item>দ্রুত ফর্ম স্ক্যান করুন</item>
+        <item>দ্রুত চিঠি স্ক্যান করুন</item>
+        <item>দ্রুত চুক্তি স্ক্যান করুন</item>
+        <item>দ্রুত সার্টিফিকেট স্ক্যান করুন</item>
+        <item>দ্রুত কাগজপত্র স্ক্যান করুন</item>
+        <item>দ্রুত ওয়ার্কশিট স্ক্যান করুন</item>
+        <item>দ্রুত প্রজেক্ট নোট স্ক্যান করুন</item>
+        <item>দ্রুত ইনভয়েস স্ক্যান করুন</item>
+        <item>দ্রুত রিপোর্ট স্ক্যান করুন</item>
+        <item>দ্রুত পড়ার নোট স্ক্যান করুন</item>
+        <item>দ্রুত হাতের লেখা পেজ স্ক্যান করুন</item>
+        <item>দ্রুত মিটিং নোট স্ক্যান করুন</item>
+        <item>দ্রুত রেকর্ড স্ক্যান করুন</item>
+        <item>দ্রুত খসড়া স্ক্যান করুন</item>
+        <item>দ্রুত ক্লাস নোট স্ক্যান করুন</item>
+        <item>দ্রুত খরচের তালিকা স্ক্যান করুন</item>
+        <item>দ্রুত সারসংক্ষেপ স্ক্যান করুন</item>
+        <item>নিরাপদ বিল স্ক্যান করুন</item>
+        <item>নিরাপদ রসিদ স্ক্যান করুন</item>
+        <item>নিরাপদ নোট স্ক্যান করুন</item>
+        <item>নিরাপদ ফর্ম স্ক্যান করুন</item>
+        <item>নিরাপদ চিঠি স্ক্যান করুন</item>
+        <item>নিরাপদ চুক্তি স্ক্যান করুন</item>
+        <item>নিরাপদ সার্টিফিকেট স্ক্যান করুন</item>
+        <item>নিরাপদ কাগজপত্র স্ক্যান করুন</item>
+        <item>নিরাপদ ওয়ার্কশিট স্ক্যান করুন</item>
+        <item>নিরাপদ প্রজেক্ট নোট স্ক্যান করুন</item>
+        <item>নিরাপদ ইনভয়েস স্ক্যান করুন</item>
+        <item>নিরাপদ রিপোর্ট স্ক্যান করুন</item>
+        <item>নিরাপদ পড়ার নোট স্ক্যান করুন</item>
+        <item>নিরাপদ হাতের লেখা পেজ স্ক্যান করুন</item>
+        <item>নিরাপদ মিটিং নোট স্ক্যান করুন</item>
+        <item>নিরাপদ রেকর্ড স্ক্যান করুন</item>
+        <item>নিরাপদ খসড়া স্ক্যান করুন</item>
+        <item>নিরাপদ ক্লাস নোট স্ক্যান করুন</item>
+        <item>নিরাপদ খরচের তালিকা স্ক্যান করুন</item>
+        <item>নিরাপদ সারসংক্ষেপ স্ক্যান করুন</item>
+        <item>পরিষ্কার বিল স্ক্যান করুন</item>
+        <item>পরিষ্কার রসিদ স্ক্যান করুন</item>
+        <item>পরিষ্কার নোট স্ক্যান করুন</item>
+        <item>পরিষ্কার ফর্ম স্ক্যান করুন</item>
+        <item>পরিষ্কার চিঠি স্ক্যান করুন</item>
+        <item>পরিষ্কার চুক্তি স্ক্যান করুন</item>
+        <item>পরিষ্কার সার্টিফিকেট স্ক্যান করুন</item>
+        <item>পরিষ্কার কাগজপত্র স্ক্যান করুন</item>
+        <item>পরিষ্কার ওয়ার্কশিট স্ক্যান করুন</item>
+        <item>পরিষ্কার প্রজেক্ট নোট স্ক্যান করুন</item>
+        <item>পরিষ্কার ইনভয়েস স্ক্যান করুন</item>
+        <item>পরিষ্কার রিপোর্ট স্ক্যান করুন</item>
+        <item>পরিষ্কার পড়ার নোট স্ক্যান করুন</item>
+        <item>পরিষ্কার হাতের লেখা পেজ স্ক্যান করুন</item>
+        <item>পরিষ্কার মিটিং নোট স্ক্যান করুন</item>
+        <item>পরিষ্কার রেকর্ড স্ক্যান করুন</item>
+        <item>পরিষ্কার খসড়া স্ক্যান করুন</item>
+        <item>পরিষ্কার ক্লাস নোট স্ক্যান করুন</item>
+        <item>পরিষ্কার খরচের তালিকা স্ক্যান করুন</item>
+        <item>পরিষ্কার সারসংক্ষেপ স্ক্যান করুন</item>
+        <item>সহজ বিল স্ক্যান করুন</item>
+        <item>সহজ রসিদ স্ক্যান করুন</item>
+        <item>সহজ নোট স্ক্যান করুন</item>
+        <item>সহজ ফর্ম স্ক্যান করুন</item>
+        <item>সহজ চিঠি স্ক্যান করুন</item>
+        <item>সহজ চুক্তি স্ক্যান করুন</item>
+        <item>সহজ সার্টিফিকেট স্ক্যান করুন</item>
+        <item>সহজ কাগজপত্র স্ক্যান করুন</item>
+        <item>সহজ ওয়ার্কশিট স্ক্যান করুন</item>
+        <item>সহজ প্রজেক্ট নোট স্ক্যান করুন</item>
+        <item>সহজ ইনভয়েস স্ক্যান করুন</item>
+        <item>সহজ রিপোর্ট স্ক্যান করুন</item>
+        <item>সহজ পড়ার নোট স্ক্যান করুন</item>
+        <item>সহজ হাতের লেখা পেজ স্ক্যান করুন</item>
+        <item>সহজ মিটিং নোট স্ক্যান করুন</item>
+        <item>সহজ রেকর্ড স্ক্যান করুন</item>
+        <item>সহজ খসড়া স্ক্যান করুন</item>
+        <item>সহজ ক্লাস নোট স্ক্যান করুন</item>
+        <item>সহজ খরচের তালিকা স্ক্যান করুন</item>
+        <item>সহজ সারসংক্ষেপ স্ক্যান করুন</item>
+        <item>স্মার্ট বিল স্ক্যান করুন</item>
+        <item>স্মার্ট রসিদ স্ক্যান করুন</item>
+        <item>স্মার্ট নোট স্ক্যান করুন</item>
+        <item>স্মার্ট ফর্ম স্ক্যান করুন</item>
+        <item>স্মার্ট চিঠি স্ক্যান করুন</item>
+        <item>স্মার্ট চুক্তি স্ক্যান করুন</item>
+        <item>স্মার্ট সার্টিফিকেট স্ক্যান করুন</item>
+        <item>স্মার্ট কাগজপত্র স্ক্যান করুন</item>
+        <item>স্মার্ট ওয়ার্কশিট স্ক্যান করুন</item>
+        <item>স্মার্ট প্রজেক্ট নোট স্ক্যান করুন</item>
+        <item>স্মার্ট ইনভয়েস স্ক্যান করুন</item>
+        <item>স্মার্ট রিপোর্ট স্ক্যান করুন</item>
+        <item>স্মার্ট পড়ার নোট স্ক্যান করুন</item>
+        <item>স্মার্ট হাতের লেখা পেজ স্ক্যান করুন</item>
+        <item>স্মার্ট মিটিং নোট স্ক্যান করুন</item>
+        <item>স্মার্ট রেকর্ড স্ক্যান করুন</item>
+        <item>স্মার্ট খসড়া স্ক্যান করুন</item>
+        <item>স্মার্ট ক্লাস নোট স্ক্যান করুন</item>
+        <item>স্মার্ট খরচের তালিকা স্ক্যান করুন</item>
+        <item>স্মার্ট সারসংক্ষেপ স্ক্যান করুন</item>
+        <item>ভালো বিল স্ক্যান করুন</item>
+        <item>ভালো রসিদ স্ক্যান করুন</item>
+        <item>ভালো নোট স্ক্যান করুন</item>
+        <item>ভালো ফর্ম স্ক্যান করুন</item>
+        <item>ভালো চিঠি স্ক্যান করুন</item>
+        <item>ভালো চুক্তি স্ক্যান করুন</item>
+        <item>ভালো সার্টিফিকেট স্ক্যান করুন</item>
+        <item>ভালো কাগজপত্র স্ক্যান করুন</item>
+        <item>ভালো ওয়ার্কশিট স্ক্যান করুন</item>
+        <item>ভালো প্রজেক্ট নোট স্ক্যান করুন</item>
+        <item>ভালো ইনভয়েস স্ক্যান করুন</item>
+        <item>ভালো রিপোর্ট স্ক্যান করুন</item>
+        <item>ভালো পড়ার নোট স্ক্যান করুন</item>
+        <item>ভালো হাতের লেখা পেজ স্ক্যান করুন</item>
+        <item>ভালো মিটিং নোট স্ক্যান করুন</item>
+        <item>ভালো রেকর্ড স্ক্যান করুন</item>
+        <item>ভালো খসড়া স্ক্যান করুন</item>
+        <item>ভালো ক্লাস নোট স্ক্যান করুন</item>
+        <item>ভালো খরচের তালিকা স্ক্যান করুন</item>
+        <item>ভালো সারসংক্ষেপ স্ক্যান করুন</item>
+        <item>ঝটপট বিল স্ক্যান করুন</item>
+        <item>ঝটপট রসিদ স্ক্যান করুন</item>
+        <item>ঝটপট নোট স্ক্যান করুন</item>
+        <item>ঝটপট ফর্ম স্ক্যান করুন</item>
+        <item>ঝটপট চিঠি স্ক্যান করুন</item>
+        <item>ঝটপট চুক্তি স্ক্যান করুন</item>
+        <item>ঝটপট সার্টিফিকেট স্ক্যান করুন</item>
+        <item>ঝটপট কাগজপত্র স্ক্যান করুন</item>
+        <item>ঝটপট ওয়ার্কশিট স্ক্যান করুন</item>
+        <item>ঝটপট প্রজেক্ট নোট স্ক্যান করুন</item>
+        <item>ঝটপট ইনভয়েস স্ক্যান করুন</item>
+        <item>ঝটপট রিপোর্ট স্ক্যান করুন</item>
+        <item>ঝটপট পড়ার নোট স্ক্যান করুন</item>
+        <item>ঝটপট হাতের লেখা পেজ স্ক্যান করুন</item>
+        <item>ঝটপট মিটিং নোট স্ক্যান করুন</item>
+        <item>ঝটপট রেকর্ড স্ক্যান করুন</item>
+        <item>ঝটপট খসড়া স্ক্যান করুন</item>
+        <item>ঝটপট ক্লাস নোট স্ক্যান করুন</item>
+        <item>ঝটপট খরচের তালিকা স্ক্যান করুন</item>
+        <item>ঝটপট সারসংক্ষেপ স্ক্যান করুন</item>
+        <item>গোছানো বিল স্ক্যান করুন</item>
+        <item>গোছানো রসিদ স্ক্যান করুন</item>
+        <item>গোছানো নোট স্ক্যান করুন</item>
+        <item>গোছানো ফর্ম স্ক্যান করুন</item>
+        <item>গোছানো চিঠি স্ক্যান করুন</item>
+        <item>গোছানো চুক্তি স্ক্যান করুন</item>
+    </string-array>
+    <string name="digitizing_bharat">ডিজিটাইজিং ডকুমেন্টস</string>
+    <string name="scan_mode_document">ডকুমেন্ট</string>
+    <string name="scan_mode_id_card">আইডি কার্ড</string>
+    <string name="scan_mode_book">বই</string>
+    <string name="home_title">হোম</string>
+    <string name="documents">ডকুমেন্টস</string>
+    <string name="document">ডকুমেন্ট</string>
+    <string name="back">পেছনে</string>
+    <string name="camera_permission_denied">ক্যামেরা অনুমতি দেওয়া হয়নি</string>
+    <string name="camera_permission_rationale">ডকুমেন্ট স্ক্যান করতে ক্যামেরা অনুমতি দরকার। ধরা ছবি শুধু এই ডিভাইসে থাকবে এবং বর্তমান ডকুমেন্ট বন্ধ করলে মুছে যাবে।</string>
+    <string name="cancel">বাতিল</string>
+    <string name="change_directory">ফোল্ডার পরিবর্তন</string>
+    <string name="clear_text">টেক্সট মুছুন</string>
+    <string name="clear">মুছুন</string>
+    <string name="contact">যোগাযোগ</string>
+    <string name="copied_logs">লগ ক্লিপবোর্ডে কপি হয়েছে</string>
+    <string name="copy_logs">লগ কপি করুন</string>
+    <string name="creating_export">এক্সপোর্ট প্রস্তুত হচ্ছে...</string>
+    <string name="delete_page">পৃষ্ঠা মুছুন</string>
+    <string name="delete_document">মুছুন</string>
+    <string name="delete_document_title">ডকুমেন্ট মুছুন</string>
+    <string name="delete_document_warning">আপনি কি এই ডকুমেন্টটি মুছতে চান?</string>
+    <string name="edit">এডিট</string>
+    <string name="delete_page_warning">আপনি কি এই পৃষ্ঠাটি মুছতে চান?</string>
+    <string name="developer">ডেভেলপার</string>
+    <string name="discard_scan">স্ক্যান বাতিল করুন</string>
+    <string name="download_dirname">ডাউনলোডস</string>
+    <string name="end_scan">স্ক্যান শেষ করুন</string>
+    <string name="error">ত্রুটি: %1$s</string>
+    <string name="error_context_folder">এক্সপোর্ট ফোল্ডার: %1$s</string>
+    <string name="error_context_provider">প্রোভাইডার: %1$s</string>
+    <string name="error_export_dir_permission_lost">নির্বাচিত এক্সপোর্ট ফোল্ডারে আর প্রবেশ করা যাচ্ছে না। অন্য ফোল্ডার বাছুন।</string>
+    <string name="error_file_picker_launch" translatable="false">Failed to launch system file picker on this device</string>
+    <string name="error_file_picker_result" translatable="false">Failed to set export directory</string>
+    <string name="error_no_app">এই ফাইল খুলতে কোনো অ্যাপ পাওয়া যায়নি</string>
+    <string name="error_no_document">কোনো ডকুমেন্ট পাওয়া যায়নি</string>
+    <string name="error_save">ফাইল সংরক্ষণ ব্যর্থ</string>
+    <string name="export">এক্সপোর্ট</string>
+    <string name="export_as">%1$s হিসেবে এক্সপোর্ট</string>
+    <string name="export_directory">এক্সপোর্ট ফোল্ডার</string>
+    <string name="export_folder_permission_lost">ফোল্ডার অ্যাক্সেস হারিয়েছে</string>
+    <string name="export_format">এক্সপোর্ট ফরম্যাট</string>
+    <string name="export_quality_low">লো</string>
+    <string name="export_quality_balanced">ব্যালান্সড</string>
+    <string name="export_quality_high">হাই</string>
+    <string name="file_size">ফাইল সাইজ: %1$s</string>
+    <string name="file_size_total">মোট সাইজ: %1$s</string>
+    <string name="filename">ফাইল নাম</string>
+    <string name="grant_permission">অনুমতি দিন</string>
+    <string name="last_saved_pdf_files">এই ডিভাইসে সাম্প্রতিক সংরক্ষিত PDF:</string>
+    <string name="libraries">লাইব্রেরি</string>
+    <string name="libraries_open_source">ওপেন-সোর্স লাইব্রেরি</string>
+    <string name="license">লাইসেন্স</string>
+    <string name="licensed_under">এই অ্যাপটি GNU General Public License v3.0 অনুযায়ী লাইসেন্সপ্রাপ্ত।</string>
+    <string name="menu">মেনু</string>
+    <string name="new_document_warning">বর্তমান স্ক্যান হারিয়ে যাবে। আপনি কি চালিয়ে যেতে চান?</string>
+    <string name="open">খুলুন</string>
+    <string name="open_file">ফাইল খুলুন</string>
+    <string name="reset_to_default">ডিফল্টে রিসেট</string>
+    <string name="resume">চালিয়ে যান</string>
+    <string name="rotate_left">বামে ঘোরান</string>
+    <string name="rotate_right">ডানে ঘোরান</string>
+    <string name="save">সংরক্ষণ</string>
+    <string name="scan_button">নতুন স্ক্যান</string>
+    <string name="scanner">স্ক্যানার</string>
+    <string name="scan_in_progress">স্ক্যান চলছে</string>
+    <string name="security">নিরাপত্তা</string>
+    <string name="security_description">স্ক্যান করা ফাইল খুলতে বায়োমেট্রিক বা ডিভাইস পাসকোড লাগবে।</string>
+    <string name="security_unlock_title">ফাইল আনলক</string>
+    <string name="security_unlock_subtitle">চালিয়ে যেতে বায়োমেট্রিক বা ডিভাইস পাসকোড ব্যবহার করুন।</string>
+    <string name="security_unavailable">ডিভাইস নিরাপত্তা নেই। যাচাই ছাড়া ফাইল খুলছে।</string>
+    <string name="security_status">নিরাপত্তা স্ট্যাটাস</string>
+    <string name="security_encrypted">256-বিট এনক্রিপ্টেড</string>
+    <string name="language_title">ভাষা</string>
+    <string name="language_english_current">ইংরেজি</string>
+    <string name="language_match_device">ডিভাইস অনুযায়ী</string>
+    <string name="language_hindi">হিন্দি</string>
+    <string name="language_bangla">বাংলা</string>
+    <string name="settings">সেটিংস</string>
+    <string name="share">শেয়ার</string>
+    <string name="share_document">ডকুমেন্ট শেয়ার</string>
+    <string name="storage_permission_denied">ফাইল সংরক্ষণ করা যায়নি: অনুমতি দেওয়া হয়নি</string>
+    <string name="support">সাপোর্ট</string>
+    <string name="scanned_unknown">সাম্প্রতিক স্ক্যান</string>
+    <string name="sign">সই</string>
+    <string name="signature_title">স্বাক্ষর</string>
+    <string name="signature_pencil">পেন্সিল</string>
+    <string name="signature_pen">পেন</string>
+    <string name="signature_marker">মার্কার</string>
+    <string name="signature_size">স্ট্রোক সাইজ</string>
+    <string name="signature_empty">প্রথমে স্বাক্ষর দিন</string>
+    <string name="signature_place">স্বাক্ষর বসান</string>
+    <string name="signature_place_on_page">পৃষ্ঠায় স্বাক্ষর বসান</string>
+    <string name="signature_apply">প্রয়োগ</string>
+    <string name="signature_applied">স্বাক্ষর প্রয়োগ হয়েছে</string>
+    <string name="signature_failed">স্বাক্ষর প্রয়োগ করা যায়নি</string>
+    <string name="print_pdf">PDF প্রিন্ট করুন</string>
+    <string name="page_of">পৃষ্ঠা %1$d / %2$d</string>
+    <string name="crop_page">পৃষ্ঠা ক্রপ</string>
+    <string name="crop_failed">এই পৃষ্ঠা ক্রপ করা যায়নি</string>
+    <string name="support_last_image">শেষ ক্যাপচার ইমেজে সমস্যা রিপোর্ট করুন</string>
+    <string name="turn_off_torch">টর্চ বন্ধ</string>
+    <string name="turn_on_torch">টর্চ চালু</string>
+    <string name="unknown_size">অজানা সাইজ</string>
+    <string name="version">ভার্সন</string>
+    <string name="view_full_list">সম্পূর্ণ তালিকা দেখুন</string>
+    <string name="view_the_full_license">পূর্ণ লাইসেন্স দেখুন</string>
+    <string name="yes">হ্যাঁ</string>
+    <plurals name="files_saved_to">
+        <item quantity="one">%2$s %3$s এ সংরক্ষিত</item>
+        <item quantity="other">%1$d ফাইল %3$s এ সংরক্ষিত</item>
+    </plurals>
+    <plurals name="page_count">
+        <item quantity="one">%d পৃষ্ঠা</item>
+        <item quantity="other">%d পৃষ্ঠা</item>
+    </plurals>
+    <plurals name="document_count">
+        <item quantity="one">%d ডকুমেন্ট</item>
+        <item quantity="other">%d ডকুমেন্ট</item>
+    </plurals>
+</resources>

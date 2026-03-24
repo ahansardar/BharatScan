@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    <!-- Simplified Ashoka Chakra for watermark -->
+    <path
+        android:pathData="M100,20C55.8,20 20,55.8 20,100C20,144.2 55.8,180 100,180C144.2,180 180,144.2 180,100C180,55.8 144.2,20 100,20ZM100,172C60.2,172 28,139.8 28,100C28,60.2 60.2,28 100,28C139.8,28 172,60.2 172,100C172,139.8 139.8,172 100,172Z"
+        android:fillColor="#0D47A1"
+        android:alpha="0.02" />
+    <path
+        android:pathData="M100,95C97.2,95 95,97.2 95,100C95,102.8 97.2,105 100,105C102.8,105 105,102.8 105,100C105,97.2 102.8,95 100,95Z"
+        android:fillColor="#0D47A1"
+        android:alpha="0.03" />
+    <!-- 24 spokes -->
+    <path
+        android:pathData="M100,100L100,28 M100,100L118.63,30.45 M100,100L136,37.65 M100,100L150.91,49.09 M100,100L162.35,64 M100,100L169.55,81.37 M100,100L172,100 M100,100L169.55,118.63 M100,100L162.35,136 M100,100L150.91,150.91 M100,100L136,162.35 M100,100L118.63,169.55 M100,100L100,172 M100,100L81.37,169.55 M100,100L64,162.35 M100,100L49.09,150.91 M100,100L37.65,136 M100,100L30.45,118.63 M100,100L28,100 M100,100L30.45,81.37 M100,100L37.65,64 M100,100L49.09,49.09 M100,100L64,37.65 M100,100L81.37,30.45"
+        android:strokeColor="#0D47A1"
+        android:strokeWidth="1.0"
+        android:strokeLineCap="round"
+        android:alpha="0.03" />
+</vector>

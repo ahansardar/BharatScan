@@ -1,0 +1,54 @@
+/*
+ * Copyright 2025-2026 Ahan Sardar
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option)
+ * any later version.
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+package org.bharatscan.app.domain
+
+import org.bharatscan.imageprocessing.Quad
+
+data class PageMetadata(
+    val normalizedQuad: Quad,
+    val baseRotation: Rotation,
+    val isColored: Boolean,
+)
+
+data class ScanPage(
+    val id: String,
+    val manualRotation: Rotation,
+    val metadata: PageMetadata?,
+)
+
+data class PageViewKey(
+    val pageId: String,
+    val rotation: Rotation,
+) {
+    val saveKey: String get() = "$pageId-${rotation.degrees}"
+}
+
+enum class Rotation(val degrees: Int) {
+    R0(0),
+    R90(90),
+    R180(180),
+    R270(270);
+
+    fun add(other: Rotation): Rotation =
+        fromDegrees((degrees + other.degrees) % 360)
+
+    companion object {
+        fun fromDegrees(deg: Int): Rotation =
+            entries.first { it.degrees == ((deg % 360 + 360) % 360) }
+    }
+}
+
+
+

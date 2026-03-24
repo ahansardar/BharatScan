@@ -1,0 +1,1 @@
+Improved automatic document detection
