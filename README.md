@@ -22,7 +22,11 @@
 </p>
 
 <p align="center">
-  <a href="#features">Features</a> | <a href="#screenshots">Screenshots</a> | <a href="#quick-start">Quick Start</a> | <a href="#tech-stack">Tech Stack</a> | <a href="#license">License</a>
+  <a href="#features">Features</a> | <a href="#feature-highlights">Feature Highlights</a> | <a href="#screenshots">Screenshots</a> | <a href="#quick-start">Quick Start</a> | <a href="#tech-stack">Tech Stack</a> | <a href="#license">License</a>
+</p>
+
+<p align="center">
+  <b>Scan. Enhance. Export.</b>
 </p>
 
 BharatScan is a Made in India Android document scanning app built with Jetpack Compose, CameraX, and on-device ML for segmentation and OCR. This repo includes the Android app plus supporting JVM modules for image processing and evaluation.
@@ -36,22 +40,27 @@ BharatScan is a Made in India Android document scanning app built with Jetpack C
 - Export formats and quality controls (see settings and export screens in the app).
 - External intent support for `org.bharatscan.app.action.SCAN_TO_PDF` and PDF `VIEW/EDIT` intents.
 
+## Feature Highlights
+<table>
+  <tr>
+    <td><img width="260" alt="Feature highlights" src="docs/feature-highlights.gif" /></td>
+    <td>
+      <b>Auto Crop + Clean Edges</b><br>
+      Segmentation-driven boundary detection for crisp, readable scans.<br><br>
+      <b>OCR PDF Export</b><br>
+      Create searchable PDFs with an optional text layer powered by ML Kit.<br><br>
+      <b>Fast Share and Save</b><br>
+      Export in multiple formats with quality controls and watermark options.
+    </td>
+  </tr>
+</table>
+
 ## Screenshots
 <table>
   <tr>
-    <td><b>Home</b><br><img width="240" alt="Home" src="https://github.com/user-attachments/assets/7a3d56dc-05c1-49d9-8fd7-7c3e60c5e30c" /></td>
-    <td><b>Document</b><br><img width="240" alt="Document" src="https://github.com/user-attachments/assets/69188702-6476-496b-aef9-ad413b35507c" /></td>
-    <td><b>Camera</b><br><img width="240" alt="Camera" src="https://github.com/user-attachments/assets/3d0d4437-e5c3-4059-8f54-664bf708c015" /></td>
-  </tr>
-  <tr>
-    <td><b>Export</b><br><img width="240" alt="Export" src="https://github.com/user-attachments/assets/9370243a-0e64-4e0e-b199-7c0172d7b5ef" /></td>
-    <td><b>Success</b><br><img width="240" alt="Success" src="https://github.com/user-attachments/assets/1ff35846-f014-402c-95c1-bb41914ba1d7" /></td>
-    <td><b>PDF Viewer</b><br><img width="240" alt="PDF Viewer" src="https://github.com/user-attachments/assets/1ba7e027-b8bf-4616-8b26-fea7aab166a0" /></td>
-  </tr>
-  <tr>
-    <td><b>Settings</b><br><img width="240" alt="Settings" src="https://github.com/user-attachments/assets/f2a799de-9f76-4915-8ede-0bc7f89e7532" /></td>
-    <td><b>Settings Detail</b><br><img width="240" alt="Settings Detail" src="https://github.com/user-attachments/assets/1afc1070-8681-444b-8f8e-ddd5332b62f3" /></td>
-    <td></td>
+    <td><b>Scan Flow</b><br><img width="240" alt="Scan Flow" src="metadata/en-US/images/phoneScreenshots/1.jpg" /></td>
+    <td><b>Enhance</b><br><img width="240" alt="Enhance" src="metadata/en-US/images/phoneScreenshots/2.jpg" /></td>
+    <td><b>Export</b><br><img width="240" alt="Export" src="metadata/en-US/images/phoneScreenshots/3.jpg" /></td>
   </tr>
 </table>
 

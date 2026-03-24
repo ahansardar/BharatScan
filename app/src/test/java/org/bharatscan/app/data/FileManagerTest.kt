@@ -15,6 +15,7 @@
 package org.bharatscan.app.data
 
 import org.assertj.core.api.Assertions.assertThat
+import org.bharatscan.app.domain.OcrPage
 import org.junit.Test
 import java.io.File
 import java.io.OutputStream
@@ -24,7 +25,7 @@ class FileManagerTest {
 
     val pdfDir: File = createTempDirectory().toFile()
     val externalDir: File = createTempDirectory().toFile()
-    val dummyPdfWriter = PdfWriter { _,_ -> 42 }
+    val dummyPdfWriter = PdfWriter { _, _, _, _, _ -> 42 }
 
     @Test
     fun copyToExternalDir() {
@@ -70,7 +71,13 @@ class FileManagerTest {
     @Test
     fun generatePdf() {
         val fakePdfWriter = object : PdfWriter {
-            override fun writePdfFromJpegs(jpegs: Sequence<ByteArray>, outputStream: OutputStream): Int {
+            override fun writePdfFromJpegs(
+                jpegs: Sequence<ByteArray>,
+                ocrPages: List<OcrPage>?,
+                watermarkText: String?,
+                password: String?,
+                outputStream: OutputStream
+            ): Int {
                 val list = jpegs.toList()
                 list.forEach { bytes -> outputStream.write(bytes) }
                 return list.size
