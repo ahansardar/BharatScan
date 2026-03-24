@@ -1,2 +1,0 @@
-- Added new translations: Italian, Russian, Chinese, Portuguese (Brazil), and Spanish — thanks to community contributors!
-- Minor visual improvement: monochrome icon for Material You.

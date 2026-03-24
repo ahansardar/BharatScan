@@ -1,4 +1,0 @@
-Improved camera screen experience:
-- More stable document detection
-- Tap-to-focus
-- Torch stays enabled between scans

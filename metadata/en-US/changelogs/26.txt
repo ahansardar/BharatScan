@@ -1,2 +1,0 @@
-- New: you can reorder pages by long-pressing on a thumbnail and dragging it.
-- Improved performance when browsing multi-page documents.

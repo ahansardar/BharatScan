@@ -1,1 +1,0 @@
-Improved automatic processing of grayscale documents

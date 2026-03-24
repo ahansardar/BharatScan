@@ -1,1 +1,0 @@
-Improved brightness handling for color documents.

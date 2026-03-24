@@ -1,2 +1,0 @@
-New experimental feature: allow other apps to use BharatScan to scan documents and generate PDFs.
-

@@ -1,3 +1,0 @@
-New export options:
-– Choose the destination folder for saved files
-– Select your preferred format: PDF or JPEG
