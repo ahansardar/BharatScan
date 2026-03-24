@@ -22,14 +22,27 @@
 </p>
 
 <p align="center">
-  <a href="#features">Features</a> | <a href="#feature-highlights">Feature Highlights</a> | <a href="#screenshots">Screenshots</a> | <a href="#quick-start">Quick Start</a> | <a href="#tech-stack">Tech Stack</a> | <a href="#license">License</a>
-</p>
-
-<p align="center">
   <b>Scan. Enhance. Export.</b>
 </p>
 
-BharatScan is a Made in India Android document scanning app built with Jetpack Compose, CameraX, and on-device ML for segmentation and OCR. This repo includes the Android app plus supporting JVM modules for image processing and evaluation.
+BharatScan is an Android document scanning app built with Jetpack Compose, CameraX, and on-device ML for segmentation and OCR. This repo includes the Android app plus supporting JVM modules for image processing and evaluation.
+
+**Table of Contents**
+1. Features
+2. Feature Highlights
+3. Screenshots
+4. Tech Stack
+5. Project Structure
+6. Requirements
+7. Quick Start
+8. Model Download
+9. Build Configuration
+10. Signing
+11. Permissions
+12. Intents
+13. Testing
+14. Contributing
+15. License
 
 ## Features
 - Camera-based document capture and scanning workflow.
