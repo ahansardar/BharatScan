@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img width="1536" height="1024" alt="madeindia" src="https://github.com/user-attachments/assets/07f24fdd-fb4f-48e0-8951-8be6293bd40d" />
+  <img width="720" alt="madeindia" src="https://github.com/user-attachments/assets/07f24fdd-fb4f-48e0-8951-8be6293bd40d" />
 </p>
 
 <p align="center">
