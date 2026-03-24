@@ -23,6 +23,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.runBlocking
 import org.bharatscan.app.ui.screens.camera.extractDocumentFromBitmap
+import org.bharatscan.imageprocessing.ImageSize
 import org.bharatscan.imageprocessing.detectDocumentQuad
 import org.bharatscan.imageprocessing.scaledTo
 import org.junit.Assert.assertEquals
@@ -51,11 +52,15 @@ class DocumentDetectionTest {
             var outputBitmap: Bitmap? = null
 
             val segmentationResult = runBlocking {
-                segmentationService.runSegmentationAndReturn(bitmap, 0)
+                segmentationService.runSegmentationAndReturn(bitmap)
             }
             if (segmentationResult != null) {
                 val mask = segmentationResult.segmentation
-                val quad = detectDocumentQuad(mask, false)
+                val quad = detectDocumentQuad(
+                    mask,
+                    ImageSize(bitmap.width, bitmap.height),
+                    false
+                )
                 if (quad != null) {
                     val resizedQuad =
                         quad.scaledTo(mask.width, mask.height, bitmap.width, bitmap.height)
