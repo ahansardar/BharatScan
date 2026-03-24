@@ -1,6 +1,18 @@
-# BharatScan (FairScan)
+# BharatScan
 
-BharatScan is an Android document scanning app built with Jetpack Compose, CameraX, and on-device ML for segmentation and OCR. This repo includes the Android app plus supporting JVM modules for image processing and evaluation.
+![App](https://img.shields.io/badge/App-BharatScan-0B3D91?style=for-the-badge)
+![Made in India](https://img.shields.io/badge/Made%20in-India-FF9933?style=for-the-badge)
+![Android](https://img.shields.io/badge/Android-26%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![Kotlin](https://img.shields.io/badge/Kotlin-2.3.10-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)
+![Compose](https://img.shields.io/badge/Jetpack%20Compose-2026.03.00-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)
+![Gradle](https://img.shields.io/badge/Gradle-8.13.2-02303A?style=for-the-badge&logo=gradle&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-4.12.0-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
+![ML Kit](https://img.shields.io/badge/ML%20Kit-Text%20Recognition-34A853?style=for-the-badge&logo=google&logoColor=white)
+![PDF](https://img.shields.io/badge/PDF-PDFBox%20Android-EE3E3E?style=for-the-badge)
+![License](https://img.shields.io/badge/License-GPL--3.0--or--later-9C27B0?style=for-the-badge)
+[![CI](https://github.com/ahansardar/BharatScan/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ahansardar/BharatScan/actions/workflows/ci.yml)
+
+BharatScan is an Android document scanning app Made In India built with Jetpack Compose, CameraX, and on-device ML for segmentation and OCR. This repo includes the Android app plus supporting JVM modules for image processing and evaluation.
 
 ## Features
 - Camera-based document capture and scanning workflow.
