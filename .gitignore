@@ -13,3 +13,6 @@ local.properties
 *.tflite
 studio_results_*.csv
 success.mp3
+app/release/
+image.png
+madeindia.png
