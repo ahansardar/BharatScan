@@ -3,7 +3,10 @@
 <p align="center">
   <img width="562" height="70" alt="BharatScan" src="https://github.com/user-attachments/assets/9f121c4e-72ae-4e87-8e55-c7d391a5bbe7" />
 </p>
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/a7e99a21-9aa4-4c13-a187-c4082f05c976" />
+
+<p align="center">
+  <img width="1536" height="1024" alt="madeindia" src="https://github.com/user-attachments/assets/07f24fdd-fb4f-48e0-8951-8be6293bd40d" />
+</p>
 
 <p align="center">
   <img alt="App" src="https://img.shields.io/badge/App-BharatScan-0B3D91?style=for-the-badge" />
