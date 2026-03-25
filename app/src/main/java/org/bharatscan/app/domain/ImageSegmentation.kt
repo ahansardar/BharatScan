@@ -17,7 +17,10 @@ package org.bharatscan.app.domain
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Bitmap.createBitmap
+import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.ColorSpace
+import android.os.Build
 import android.os.SystemClock
 import android.util.Log
 import kotlinx.coroutines.sync.Mutex
@@ -27,13 +30,8 @@ import org.bharatscan.imageprocessing.ImageSize
 import org.bharatscan.imageprocessing.Mask
 import org.opencv.core.CvType
 import org.opencv.core.Mat
-import org.tensorflow.lite.DataType
 import org.tensorflow.lite.Interpreter
 import org.tensorflow.lite.support.common.FileUtil
-import org.tensorflow.lite.support.common.ops.NormalizeOp
-import org.tensorflow.lite.support.image.ImageProcessor
-import org.tensorflow.lite.support.image.TensorImage
-import org.tensorflow.lite.support.image.ops.ResizeOp
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
@@ -64,20 +62,53 @@ class ImageSegmentationService(private val context: Context, private val logger:
     private fun runSegmentation(interpreter: Interpreter, bitmap: Bitmap): SegmentationResult {
         val startTime = SystemClock.uptimeMillis()
 
-        val (_, h, w, _) = interpreter.getOutputTensor(0).shape()
-        val imageProcessor =
-            ImageProcessor
-                .Builder()
-                .add(ResizeOp(h, w, ResizeOp.ResizeMethod.BILINEAR))
-                .add(NormalizeOp(127.5f, 127.5f)) // TODO check if it's correct
-                .build()
-        val tensorImage = TensorImage(DataType.FLOAT32)
-        tensorImage.load(bitmap)
-        val processedImage = imageProcessor.process(tensorImage)
-        val segmentResult = segment(interpreter, processedImage)
+        val inputShape = interpreter.getInputTensor(0).shape()
+        val h = inputShape[1]
+        val w = inputShape[2]
+
+        val safeBitmap = ensureModelCompatibleBitmap(bitmap)
+        val scaledBitmap = if (safeBitmap.width != w || safeBitmap.height != h) {
+            Bitmap.createScaledBitmap(safeBitmap, w, h, true)
+        } else {
+            safeBitmap
+        }
+        val inputBuffer = bitmapToNormalizedBuffer(scaledBitmap)
+        if (scaledBitmap !== safeBitmap) {
+            scaledBitmap.recycle()
+        }
+        if (safeBitmap !== bitmap) {
+            safeBitmap.recycle()
+        }
+        val segmentResult = segment(interpreter, inputBuffer)
 
         val inferenceTime = SystemClock.uptimeMillis() - startTime
         return SegmentationResult(segmentResult, inferenceTime)
+    }
+
+    private fun ensureModelCompatibleBitmap(source: Bitmap): Bitmap {
+        val needsConfig = source.config != Bitmap.Config.ARGB_8888
+        val needsColorSpace =
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
+                source.colorSpace != ColorSpace.get(ColorSpace.Named.SRGB)
+
+        if (!needsConfig && !needsColorSpace) {
+            return source
+        }
+
+        val target = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Bitmap.createBitmap(
+                source.width,
+                source.height,
+                Bitmap.Config.ARGB_8888,
+                source.hasAlpha(),
+                ColorSpace.get(ColorSpace.Named.SRGB)
+            )
+        } else {
+            Bitmap.createBitmap(source.width, source.height, Bitmap.Config.ARGB_8888)
+        }
+        val canvas = Canvas(target)
+        canvas.drawBitmap(source, 0f, 0f, null)
+        return target
     }
 
     suspend fun runSegmentationAndReturn(bitmap: Bitmap): SegmentationResult? {
@@ -85,16 +116,31 @@ class ImageSegmentationService(private val context: Context, private val logger:
             return null
         }
         return inferenceLock.withLock {
-            runSegmentation(interpreter!!, bitmap)
+            try {
+                runSegmentation(interpreter!!, bitmap)
+            } catch (e: Exception) {
+                val colorSpaceName =
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        bitmap.colorSpace?.name ?: "unknown"
+                    } else {
+                        "n/a"
+                    }
+                logger.e(
+                    TAG,
+                    "Segmentation failed (config=${bitmap.config}, colorSpace=$colorSpaceName)",
+                    e
+                )
+                null
+            }
         }
     }
 
-    private fun segment(interpreter: Interpreter, tensorImage: TensorImage): Segmentation {
+    private fun segment(interpreter: Interpreter, inputBuffer: ByteBuffer): Segmentation {
         val (_, h, w, _) = interpreter.getOutputTensor(0).shape()
         val outputBuffer = ByteBuffer.allocateDirect(4 * h * w)
         outputBuffer.order(ByteOrder.nativeOrder())
         outputBuffer.rewind()
-        interpreter.run(tensorImage.tensorBuffer.buffer, outputBuffer)
+        interpreter.run(inputBuffer, outputBuffer)
         outputBuffer.rewind()
         return Segmentation(outputToArray(outputBuffer, w, h), w, h)
     }
@@ -107,6 +153,25 @@ class ImageSegmentationService(private val context: Context, private val logger:
             maskFloats[i] = maskFloats[i].coerceIn(0f, 1f)
         }
         return maskFloats
+    }
+
+    private fun bitmapToNormalizedBuffer(bitmap: Bitmap): ByteBuffer {
+        val width = bitmap.width
+        val height = bitmap.height
+        val buffer = ByteBuffer.allocateDirect(4 * width * height * 3)
+        buffer.order(ByteOrder.nativeOrder())
+        val pixels = IntArray(width * height)
+        bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
+        for (pixel in pixels) {
+            val r = (pixel shr 16) and 0xFF
+            val g = (pixel shr 8) and 0xFF
+            val b = pixel and 0xFF
+            buffer.putFloat((r - 127.5f) / 127.5f)
+            buffer.putFloat((g - 127.5f) / 127.5f)
+            buffer.putFloat((b - 127.5f) / 127.5f)
+        }
+        buffer.rewind()
+        return buffer
     }
 
     data class Segmentation(

@@ -101,36 +101,40 @@ class CameraViewModel(appContainer: AppContainer): ViewModel() {
         }
 
         viewModelScope.launch {
-            val rotationDegrees = imageProxy.imageInfo.rotationDegrees
-            val result = withContext(Dispatchers.IO) {
-                imageSegmentationService.runSegmentationAndReturn(imageProxy.toBitmap())
-            }
-
-            result?.let {
-                val segmentation = result.segmentation
-                val maskSize = segmentation.maskSize()
-                val originalSize = ImageSize(imageProxy.width, imageProxy.height)
-                val rawQuad = withContext(Dispatchers.Default) {
-                    detectDocumentQuad(segmentation, originalSize, isLiveAnalysis = true)
-                        ?.rotate90(rotationDegrees / 90, maskSize)
+            try {
+                val rotationDegrees = imageProxy.imageInfo.rotationDegrees
+                val result = withContext(Dispatchers.IO) {
+                    imageSegmentationService.runSegmentationAndReturn(imageProxy.toBitmap())
                 }
-                val binaryMaskProvider = { ->
-                    var binaryMask: Bitmap = segmentation.toBinaryMask()
-                    if (rotationDegrees != 0) {
-                        binaryMask = rotateBitmap(binaryMask, rotationDegrees.toFloat())
+
+                result?.let {
+                    val segmentation = result.segmentation
+                    val maskSize = segmentation.maskSize()
+                    val originalSize = ImageSize(imageProxy.width, imageProxy.height)
+                    val rawQuad = withContext(Dispatchers.Default) {
+                        detectDocumentQuad(segmentation, originalSize, isLiveAnalysis = true)
+                            ?.rotate90(rotationDegrees / 90, maskSize)
                     }
-                    binaryMask
+                    val binaryMaskProvider = { ->
+                        var binaryMask: Bitmap = segmentation.toBinaryMask()
+                        if (rotationDegrees != 0) {
+                            binaryMask = rotateBitmap(binaryMask, rotationDegrees.toFloat())
+                        }
+                        binaryMask
+                    }
+                    val stableQuad = quadStabilizer.update(rawQuad)
+                    _liveAnalysisState.value = LiveAnalysisState(
+                        inferenceTime = result.inferenceTime,
+                        binaryMaskProvider = binaryMaskProvider,
+                        maskSize = maskSize,
+                        stableQuad = stableQuad,
+                    )
                 }
-                val stableQuad = quadStabilizer.update(rawQuad)
-                _liveAnalysisState.value = LiveAnalysisState(
-                    inferenceTime = result.inferenceTime,
-                    binaryMaskProvider = binaryMaskProvider,
-                    maskSize = maskSize,
-                    stableQuad = stableQuad,
-                )
+            } catch (e: Exception) {
+                logger.e("Camera", "Live analysis failed", e)
+            } finally {
+                imageProxy.close()
             }
-
-            imageProxy.close()
         }
     }
 
@@ -140,11 +144,12 @@ class CameraViewModel(appContainer: AppContainer): ViewModel() {
                 try {
                     val source = imageProxy.toBitmap()
                     val page = processCapturedImage(source, imageProxy.imageInfo.rotationDegrees)
-                    imageProxy.close()
                     onCaptureProcessed(page)
-                } catch (e: RuntimeException) {
+                } catch (e: Exception) {
                     logger.e("Camera", "Failed to process captured image", e)
                     onCaptureProcessed(null)
+                } finally {
+                    imageProxy.close()
                 }
             }
         } else {

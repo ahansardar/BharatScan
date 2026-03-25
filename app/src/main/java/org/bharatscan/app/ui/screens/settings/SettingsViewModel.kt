@@ -33,6 +33,7 @@ data class SettingsUiState(
     val exportQuality: ExportQuality = ExportQuality.BALANCED,
     val requireAuth: Boolean = false,
     val languageOption: LanguageOption = LanguageOption.MATCH_DEVICE,
+    val checkUpdatesAtStartup: Boolean = true,
 )
 
 class SettingsViewModel(container: AppContainer) : ViewModel() {
@@ -46,6 +47,7 @@ class SettingsViewModel(container: AppContainer) : ViewModel() {
     private data class BaseFormat(val dirs: BaseDirs, val format: ExportFormat)
     private data class BaseQuality(val base: BaseFormat, val quality: ExportQuality)
     private data class BaseSecurity(val base: BaseQuality, val requireAuth: Boolean)
+    private data class BaseUpdates(val base: BaseSecurity, val checkUpdates: Boolean)
 
     val uiState = combine(repo.exportDirUri, dirName) { uri, name ->
         BaseDirs(uri, name)
@@ -55,14 +57,17 @@ class SettingsViewModel(container: AppContainer) : ViewModel() {
         BaseQuality(base, quality)
     }.combine(repo.requireAuth) { base, requireAuth ->
         BaseSecurity(base, requireAuth)
+    }.combine(repo.checkUpdatesAtStartup) { base, checkUpdates ->
+        BaseUpdates(base, checkUpdates)
     }.combine(repo.appLanguageTag) { base, languageTag ->
         SettingsUiState(
-            exportDirUri = base.base.base.dirs.uri,
-            exportDirName = base.base.base.dirs.name,
-            exportFormat = base.base.base.format,
-            exportQuality = base.base.quality,
-            requireAuth = base.requireAuth,
+            exportDirUri = base.base.base.base.dirs.uri,
+            exportDirName = base.base.base.base.dirs.name,
+            exportFormat = base.base.base.base.format,
+            exportQuality = base.base.base.quality,
+            requireAuth = base.base.requireAuth,
             languageOption = LanguageOption.fromStoredTag(languageTag),
+            checkUpdatesAtStartup = base.checkUpdates,
         )
     }.stateIn(
         viewModelScope,
@@ -99,6 +104,12 @@ class SettingsViewModel(container: AppContainer) : ViewModel() {
         viewModelScope.launch {
             repo.setAppLanguage(option.storedTag())
             applyAppLanguage(option.tag)
+        }
+    }
+
+    fun setCheckUpdatesAtStartup(enabled: Boolean) {
+        viewModelScope.launch {
+            repo.setCheckUpdatesAtStartup(enabled)
         }
     }
 

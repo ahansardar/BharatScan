@@ -36,6 +36,7 @@ class SettingsRepository(private val context: Context) {
     private val REQUIRE_AUTH = booleanPreferencesKey("require_auth")
     private val CUSTOM_CATEGORIES = stringSetPreferencesKey("custom_categories")
     private val APP_LANGUAGE = stringPreferencesKey("app_language")
+    private val CHECK_UPDATES_STARTUP = booleanPreferencesKey("check_updates_startup")
 
     val exportDirUri: Flow<String?> =
         context.dataStore.data.map { prefs ->
@@ -73,6 +74,11 @@ class SettingsRepository(private val context: Context) {
     val appLanguageTag: Flow<String?> =
         context.dataStore.data.map { prefs ->
             prefs[APP_LANGUAGE] ?: "system"
+        }
+
+    val checkUpdatesAtStartup: Flow<Boolean> =
+        context.dataStore.data.map { prefs ->
+            prefs[CHECK_UPDATES_STARTUP] ?: true
         }
 
     val customCategories: Flow<List<String>> =
@@ -115,6 +121,12 @@ class SettingsRepository(private val context: Context) {
     suspend fun setAppLanguage(tag: String?) {
         context.dataStore.edit { prefs ->
             prefs[APP_LANGUAGE] = tag ?: "system"
+        }
+    }
+
+    suspend fun setCheckUpdatesAtStartup(enabled: Boolean) {
+        context.dataStore.edit { prefs ->
+            prefs[CHECK_UPDATES_STARTUP] = enabled
         }
     }
 

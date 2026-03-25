@@ -1,0 +1,248 @@
+<resources>
+    <string name="about">ବିଷୟରେ</string>
+    <string name="add_page">ପୃଷ୍ଠା ଯୋଡନ୍ତୁ |</string>
+    <string name="app_name">BharatScan</string>
+    <string name="app_tagline">ତୁମର ଡକସ୍, ଡିଜିଟାଲ୍ ତିଆରି |</string>
+    <string name="about_tagline">ଆପଣଙ୍କର ନିଜର ବୁଦ୍ଧିମାନ ଡକ୍ୟୁମେଣ୍ଟ୍ ସ୍କାନର୍ |</string>
+    <string name="your_digital_locker">ତୁମର ଡକ୍ୟୁମେଣ୍ଟ୍ ଡିଜିଟାଇଜ୍ ହୋଇଛି |</string>
+    <string name="secure_document_archival">ସୁରକ୍ଷିତ ଡକ୍ୟୁମେଣ୍ଟ୍ ଅଭିଲେଖାଗାର |</string>
+    <string name="scan_now">ବର୍ତ୍ତମାନ ସ୍କାନ୍ କରନ୍ତୁ |</string>
+    <string name="quick_folders">ଦ୍ରୁତ ଫିଲ୍ଟର୍ |</string>
+    <string name="view_all">ସମସ୍ତ ଦେଖନ୍ତୁ |</string>
+    <string name="all">ସମସ୍ତ</string>
+    <string name="recent_scans">ସାମ୍ପ୍ରତିକ ସ୍କାନ୍ |</string>
+    <string name="recently_added">ସମ୍ପ୍ରତି ଯୋଡା ଯାଇଛି |</string>
+    <string name="verified">ଯାଞ୍ଚ ହୋଇଛି |</string>
+    <string name="secure_private_title">ସୁରକ୍ଷିତ ଏବଂ ବ୍ୟକ୍ତିଗତ |</string>
+    <string name="secure_private_body">ତୁମର ଡକ୍ୟୁମେଣ୍ଟ୍ ତୁମର ସ୍ପଷ୍ଟ ଅନୁମତି ବିନା କେବେବି ତୁମ ଡିଭାଇସ୍ ଛାଡିବ ନାହିଁ | ଡିଫଲ୍ଟ ଭାବରେ ସ୍ଥାନୀୟ ଏନକ୍ରିପସନ୍ |</string>
+    <string name="creator_title">ସୃଷ୍ଟିକର୍ତ୍ତା |</string>
+    <string name="creator_name">ଆହାନ୍ ସର୍ଦ୍ଦାର |</string>
+    <string name="creator_email">ahansardarvis@gmail.com</string>
+    <string name="creator_linked_profile">ଲିଙ୍କ୍ ପ୍ରୋଫାଇଲ୍ |</string>
+    <string name="creator_linked_label">linkedin.com/in/ahansardar</string>
+    <string name="creator_linked_url">https://linkedin.com/in/ahansardar</string>
+    <string name="creator_github_profile">GitHub ପ୍ରୋଫାଇଲ୍ |</string>
+    <string name="creator_github_label">github.com/ahansardar</string>
+    <string name="creator_github_url">https://github.com/ahansardar</string>
+    <string name="report_errors_title">ତ୍ରୁଟିଗୁଡିକ କିପରି ରିପୋର୍ଟ କରିବେ |</string>
+    <string name="report_errors_body">ସମର୍ଥନ ଇମେଲକୁ ସ୍କ୍ରିନସଟ ସହିତ ଏକ ସଂକ୍ଷିପ୍ତ ବର୍ଣ୍ଣନା ପଠାନ୍ତୁ |</string>
+    <string name="save_logs">ଲଗ୍ ସେଭ୍ କରନ୍ତୁ |</string>
+    <string name="loading_bharatscan">ଭାରତସ୍କାନ୍ ଲୋଡ୍ କରୁଛି ...</string>
+    <string name="securing_documents">ଆପଣଙ୍କର ଡକ୍ୟୁମେଣ୍ଟ୍ ସୁରକ୍ଷିତ କରିବା |</string>
+    <string name="about_version_display">v1.0.0</string>
+    <string name="pending">ବିଚାରାଧୀନ ଅଛି</string>
+    <string name="aadhaar">ଆଧାର</string>
+    <string name="pan_card">ପାନ୍ କାର୍ଡ |</string>
+    <string name="id_proofs">ID ପ୍ରମାଣ</string>
+    <string name="education">ଶିକ୍ଷା</string>
+    <string name="education_subtitle">ଡିଗ୍ରୀ ଏବଂ ସାର୍ଟିଫିକେଟ୍</string>
+    <string name="other">ଅନ୍ୟମାନେ |</string>
+    <string name="search_documents">ଡକ୍ୟୁମେଣ୍ଟ୍ ସନ୍ଧାନ କରନ୍ତୁ |</string>
+    <string name="search_within_documents">ଡକ୍ୟୁମେଣ୍ଟ୍ ଭିତରେ ଖୋଜ ...</string>
+    <string name="scanning_text">ପାଠ ପାଇଁ ସ୍କାନିଂ ...</string>
+    <string name="export_settings">ରପ୍ତାନି ସେଟିଂସମୂହ |</string>
+    <string name="include_watermark">ୱାଟର ମାର୍କ ଅନ୍ତର୍ଭୂକ୍ତ କରନ୍ତୁ |</string>
+    <string name="include_watermark_desc">ରପ୍ତାନି ହୋଇଥିବା ଡକ୍ୟୁମେଣ୍ଟରେ ଏକ ୱାଟର ମାର୍କ ପ୍ରୟୋଗ କରନ୍ତୁ |</string>
+    <string name="custom_watermark">କଷ୍ଟମ୍ ୱାଟର ମାର୍କ |</string>
+    <string name="password_protection">ପାସୱାର୍ଡ ସୁରକ୍ଷା</string>
+    <string name="password_protection_desc">ଏହି PDF ଖୋଲିବା ପାଇଁ ଏକ ପାସୱାର୍ଡ ଆବଶ୍ୟକ |</string>
+    <string name="password_label">ପାସୱାର୍ଡ</string>
+    <string name="password_strength">ଶକ୍ତି: %1$s</string>
+    <string name="password_strength_weak">ଦୁର୍ବଳ |</string>
+    <string name="password_strength_medium">ମଧ୍ୟମ</string>
+    <string name="password_strength_strong">ଶକ୍ତିଶାଳୀ |</string>
+    <string name="password_required">ଦୟାକରି ଏକ ଶକ୍ତିଶାଳୀ ପାସୱାର୍ଡ ପ୍ରବେଶ କରନ୍ତୁ |</string>
+    <string name="pdf_password_title">ପାସୱାର୍ଡ ଆବଶ୍ୟକ |</string>
+    <string name="pdf_password_message">ଏହି PDF ସୁରକ୍ଷିତ ଅଛି | ଏହାକୁ ଖୋଲିବା ପାଇଁ ପାସୱାର୍ଡ ପ୍ରବେଶ କରନ୍ତୁ |</string>
+    <string name="pdf_password_incorrect">ଭୁଲ ପାସୱାର୍ଡ | ଦୟାକରି ପୁନର୍ବାର ଚେଷ୍ଟା କରନ୍ତୁ |</string>
+    <string name="pdf_password_opening">ଖୋଲୁଛି…</string>
+    <string name="pdf_password_failed">ଏହି PDF ଖୋଲିବାକୁ ଅସମର୍ଥ |</string>
+    <string name="select_file_format">ଫାଇଲ୍ ଫର୍ମାଟ୍ ଚୟନ କରନ୍ତୁ |</string>
+    <string name="export_quality">ରପ୍ତାନି ଗୁଣବତ୍ତା |</string>
+    <string name="quality_high">ଉଚ୍ଚ (300 DPI)</string>
+    <string name="quality_standard">ମାନକ</string>
+    <string name="quality_low">ନିମ୍ନ</string>
+    <string name="export_portal">ରପ୍ତାନି ପୋର୍ଟାଲ୍ |</string>
+    <string name="finalize_document">ତୁମର ଡକ୍ୟୁମେଣ୍ଟ୍ ଚୂଡାନ୍ତ କର |</string>
+    <string name="export_success_title_saved">ଡକ୍ୟୁମେଣ୍ଟ୍ ସଫଳତାର ସହିତ ସଞ୍ଚୟ ହେଲା!</string>
+    <string name="export_success_title_shared">ଡକ୍ୟୁମେଣ୍ଟ୍ ସଫଳତାର ସହିତ ଅଂଶୀଦାର ହୋଇଛି!</string>
+    <string name="export_success_available_in">ବର୍ତ୍ତମାନ ଆପଣଙ୍କ ପାଖରେ ଉପଲବ୍ଧ |</string>
+    <string name="export_success_view_document">ଡକ୍ୟୁମେଣ୍ଟ୍ ଦେଖନ୍ତୁ |</string>
+    <string name="export_success_go_home">ଘରକୁ ଯାଅ |</string>
+    <string name="export_success_size">ଆକାର |</string>
+    <string name="export_success_format">ଫର୍ମାଟ୍ |</string>
+    <string name="export_success_security">ସୁରକ୍ଷା</string>
+    <string name="export_success_encrypted">ଏନକ୍ରିପ୍ଟ ହୋଇଛି |</string>
+    <string name="export_success_format_pdf">PDF</string>
+    <string name="export_success_format_jpeg">JPEG</string>
+    <string name="made_with_love_india">ଭାରତରେ ପ୍ରେମ ସହିତ ତିଆରି |</string>
+    <string name="export_success_shared_message">ସଫଳତାର ସହିତ ଅଂଶୀଦାର ହୋଇଛି |</string>
+    <string name="no_recent_scans">ବର୍ତ୍ତମାନ ପର୍ଯ୍ୟନ୍ତ କ No ଣସି ସ୍କାନ୍ ନାହିଁ |</string>
+    <string name="no_results">କ match ଣସି ମେଳକ ଦଲିଲ ନାହିଁ |</string>
+    <string name="clear_filter">ଫିଲ୍ଟର୍ ସଫା କରନ୍ତୁ |</string>
+    <string name="save_category_title">ବର୍ଗକୁ ସେଭ୍ କରନ୍ତୁ |</string>
+    <string name="save_category_prompt">ଏହି ଡକ୍ୟୁମେଣ୍ଟ୍ ପାଇଁ ଏକ ବର୍ଗ ବାଛନ୍ତୁ |</string>
+    <string name="custom_category_hint">ବର୍ଗ ନାମ ପ୍ରବେଶ କରନ୍ତୁ |</string>
+    <string name="search_title">ଡକ୍ୟୁମେଣ୍ଟ୍ ସନ୍ଧାନ କରନ୍ତୁ |</string>
+    <string name="filters_title">ଫିଲ୍ଟର୍ |</string>
+    <string name="good_morning">ଶୁଭ ସକାଳ</string>
+    <string name="good_afternoon">ଶୁଭ ଅପରାହ୍ନ |</string>
+    <string name="good_evening">ଶୁଭ ସନ୍ଧ୍ୟା |</string>
+    <string name="good_night">ଶୁଭ ରାତ୍ରି |</string>
+    <string-array name="greeting_variants">
+        <item>ସ୍କାନ୍ କରିବାକୁ ପ୍ରସ୍ତୁତ?</item>
+        <item>ଚାଲ ତୁମର ଡକ୍ୟୁମେଣ୍ଟ୍ ଡିଜିଟାଇଜ୍ କରିବା |</item>
+        <item>କିଛି ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ଡିଜିଟାଇଜ୍ କରନ୍ତୁ |</item>
+        <item>ତୁମର ସ୍କାନର୍ ପ୍ରସ୍ତୁତ |</item>
+        <item>ସୁରକ୍ଷିତ ଭାବରେ ସ୍କାନ୍ କରନ୍ତୁ ଏବଂ ଗଚ୍ଛିତ କରନ୍ତୁ |</item>
+        <item>ବର୍ତ୍ତମାନ ଆପଣଙ୍କର ID ପ୍ରମାଣ ସ୍କାନ୍ କରନ୍ତୁ |</item>
+        <item>ଆଜି ID ପ୍ରମାଣ ସ୍କାନ୍ କରନ୍ତୁ |</item>
+        <item>ଆପଣଙ୍କର ID ପ୍ରମାଣ ସୁରକ୍ଷିତ ରଖନ୍ତୁ |</item>
+        <item>ID ପ୍ରମାଣକୁ ସନ୍ଧାନଯୋଗ୍ୟ କର |</item>
+        <item>ID ପ୍ରମାଣକୁ ଏକ ପରିଷ୍କାର PDF ରେ ପରିଣତ କର |</item>
+        <item>ଉଚ୍ଚ ଗୁଣରେ ID ପ୍ରମାଣ ରପ୍ତାନି କରନ୍ତୁ |</item>
+        <item>ଗୋଟିଏ ଟ୍ୟାପରେ ID ପ୍ରମାଣ ଅଂଶୀଦାର କରନ୍ତୁ |</item>
+        <item>ID ପ୍ରୁଫ୍ ଅଫଲାଇନ୍ ଏବଂ ବ୍ୟକ୍ତିଗତ ସଂରକ୍ଷଣ କରନ୍ତୁ |</item>
+        <item>ଦ୍ରୁତ ସନ୍ଧାନ ପାଇଁ ID ପ୍ରମାଣ ପ୍ରସ୍ତୁତ ରଖନ୍ତୁ |</item>
+        <item>ଆପଣଙ୍କ ଫୋଲ୍ଡରରେ ID ପ୍ରମାଣକୁ ସଂଗଠିତ କରନ୍ତୁ |</item>
+        <item>ଶୀଘ୍ର ପ୍ରବେଶ ପାଇଁ ID ପ୍ରମାଣ ସ୍କାନ୍ କରନ୍ତୁ |</item>
+        <item>ତୀକ୍ଷ୍ଣ ସ୍ୱଚ୍ଛତା ସହିତ ID ପ୍ରମାଣକୁ କ୍ୟାପଚର୍ କରନ୍ତୁ |</item>
+        <item>ଆପଣଙ୍କର ରେକର୍ଡଗୁଡିକ ପାଇଁ ID ପ୍ରମାଣକୁ ଡିଜିଟାଇଜ୍ କରନ୍ତୁ |</item>
+        <item>ID ପ୍ରମାଣକୁ ତୁମର ଭାଲ୍ଟରେ ସେଭ୍ କର |</item>
+        <item>ଏହି ଉପକରଣରେ ID ପ୍ରମାଣକୁ ସୁରକ୍ଷିତ କରନ୍ତୁ |</item>
+        <item>ବର୍ତ୍ତମାନ ଆପଣଙ୍କର ID ପ୍ରମାଣକୁ ଡିଜିଟାଇଜ୍ କରନ୍ତୁ |</item>
+        <item>ଆଜି ID ପ୍ରମାଣକୁ ଡିଜିଟାଇଜ୍ କରନ୍ତୁ |</item>
+        <item>ବର୍ତ୍ତମାନ ଆପଣଙ୍କର ID ପ୍ରମାଣ ସୁରକ୍ଷିତ କରନ୍ତୁ |</item>
+        <item>ଆଜି ID ପ୍ରମାଣ ସୁରକ୍ଷିତ କରନ୍ତୁ |</item>
+        <item>ବର୍ତ୍ତମାନ ଆପଣଙ୍କର ID ପ୍ରମାଣ ସଂଗ୍ରହ କରନ୍ତୁ |</item>
+    </string-array>
+    <string name="digitizing_bharat">ଡିଜିଟାଇଜେସନ୍ ଡକ୍ୟୁମେଣ୍ଟ୍ |</string>
+    <string name="scan_mode_document">ଡକ୍ୟୁମେଣ୍ଟ୍</string>
+    <string name="scan_mode_id_card">ID କାର୍ଡ |</string>
+    <string name="scan_mode_book">ବୁକ୍</string>
+    <string name="home_title">ଘର</string>
+    <string name="documents">ଡକ୍ୟୁମେଣ୍ଟ୍ |</string>
+    <string name="document">ଡକ୍ୟୁମେଣ୍ଟ୍</string>
+    <string name="back">ପଛକୁ</string>
+    <string name="camera_permission_denied">କ୍ୟାମେରା ଅନୁମତି ମନା କରାଯାଇଥିଲା</string>
+    <string name="camera_permission_rationale">ଡକ୍ୟୁମେଣ୍ଟ୍ ସ୍କାନ୍ କରିବାକୁ ଆପ୍ କ୍ୟାମେରା ଆକ୍ସେସ୍ ଆବଶ୍ୟକ କରେ | କ୍ୟାପଚର ହୋଇଥିବା ପ୍ରତିଛବିଗୁଡ଼ିକ କେବଳ ଏହି ଡିଭାଇସରେ ଗଚ୍ଛିତ ହୋଇଛି ଏବଂ ଯେତେବେଳେ ଆପଣ ସାମ୍ପ୍ରତିକ ଡକ୍ୟୁମେଣ୍ଟ ବନ୍ଦ କରିବେ ସେତେବେଳେ ଡିଲିଟ ହୋଇଯିବ |</string>
+    <string name="cancel">ବାତିଲ୍ କରନ୍ତୁ |</string>
+    <string name="change_directory">ଫୋଲ୍ଡର ପରିବର୍ତ୍ତନ କରନ୍ତୁ |</string>
+    <string name="clear_text">ପାଠ ସଫା କରନ୍ତୁ |</string>
+    <string name="clear">ସଫା</string>
+    <string name="contact">ଯୋଗାଯୋଗ କରନ୍ତୁ |</string>
+    <string name="copied_logs">ଲଗ୍ କ୍ଲିପବୋର୍ଡରେ କପି ହୋଇଛି |</string>
+    <string name="copy_logs">ଲଗ୍ କପି କରନ୍ତୁ |</string>
+    <string name="creating_export">ରପ୍ତାନି ପ୍ରସ୍ତୁତ କରୁଛି ...</string>
+    <string name="delete_page">ପୃଷ୍ଠା ବିଲୋପ କରନ୍ତୁ |</string>
+    <string name="delete_document">ବିଲୋପ କରନ୍ତୁ |</string>
+    <string name="delete_document_title">ଡକ୍ୟୁମେଣ୍ଟ୍ ଡିଲିଟ୍ କରନ୍ତୁ |</string>
+    <string name="delete_document_warning">ଆପଣ ଏହି ଡକ୍ୟୁମେଣ୍ଟ୍ ଡିଲିଟ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
+    <string name="edit">ସଂପାଦନା କରନ୍ତୁ |</string>
+    <string name="delete_page_warning">ଆପଣ ଏହି ପୃଷ୍ଠା ବିଲୋପ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
+    <string name="developer">ବିକାଶକାରୀ</string>
+    <string name="discard_scan">ସ୍କାନ୍ ପରିତ୍ୟାଗ କରନ୍ତୁ |</string>
+    <string name="download_dirname">ଡାଉନଲୋଡ୍ |</string>
+    <string name="end_scan">ଶେଷ ସ୍କାନ୍ |</string>
+    <string name="error">ତ୍ରୁଟି: %1$s</string>
+    <string name="error_context_folder">ରପ୍ତାନି ଫୋଲ୍ଡର: %1$s</string>
+    <string name="error_context_provider">ପ୍ରଦାନକାରୀ: %1$s</string>
+    <string name="error_export_dir_permission_lost">ମନୋନୀତ ରପ୍ତାନି ଫୋଲ୍ଡର ଆଉ ଉପଲବ୍ଧ ନୁହେଁ | ଦୟାକରି ଅନ୍ୟ ଏକ ଫୋଲ୍ଡର ବାଛନ୍ତୁ |</string>
+    <string name="error_file_picker_launch" translatable="false">Failed to launch system file picker on this device</string>
+    <string name="error_file_picker_result" translatable="false">Failed to set export directory</string>
+    <string name="error_no_app">ଏହି ଫାଇଲ୍ ଖୋଲିବାକୁ କ app ଣସି ଆପ୍ ମିଳିଲା ନାହିଁ |</string>
+    <string name="error_no_document">କ document ଣସି ଡକ୍ୟୁମେଣ୍ଟ ଚିହ୍ନଟ ହୋଇନାହିଁ |</string>
+    <string name="error_save">ଫାଇଲ୍ ସେଭ୍ କରିବାରେ ବିଫଳ |</string>
+    <string name="export">ରପ୍ତାନି କରନ୍ତୁ |</string>
+    <string name="export_as">%1$s ଭାବରେ ରପ୍ତାନି କରନ୍ତୁ |</string>
+    <string name="export_directory">ଫୋଲ୍ଡର ରପ୍ତାନି କରନ୍ତୁ |</string>
+    <string name="export_folder_permission_lost">ଫୋଲ୍ଡର ପ୍ରବେଶ ହଜିଯାଇଛି |</string>
+    <string name="export_format">ରପ୍ତାନି ଫର୍ମାଟ୍ |</string>
+    <string name="export_quality_low">ନିମ୍ନ</string>
+    <string name="export_quality_balanced">ସନ୍ତୁଳିତ |</string>
+    <string name="export_quality_high">ଉଚ୍ଚ</string>
+    <string name="file_size">ଫାଇଲ୍ ଆକାର: %1$s</string>
+    <string name="file_size_total">ମୋଟ ଆକାର: %1$s</string>
+    <string name="filename">ଫାଇଲନାମ</string>
+    <string name="grant_permission">ଅନୁମତି ଦିଅନ୍ତୁ |</string>
+    <string name="last_saved_pdf_files">ଏହି ଡିଭାଇସରେ ସମ୍ପ୍ରତି PDF ଗୁଡିକ ସଞ୍ଚୟ ହୋଇଛି:</string>
+    <string name="libraries">ଲାଇବ୍ରେରୀଗୁଡ଼ିକ |</string>
+    <string name="libraries_open_source">ମୁକ୍ତ ଉତ୍ସ ଲାଇବ୍ରେରୀଗୁଡ଼ିକ |</string>
+    <string name="license">ଲାଇସେନ୍ସ</string>
+    <string name="licensed_under">ଏହି ଅନୁପ୍ରୟୋଗଟି GNU ଜେନେରାଲ୍ ପବ୍ଲିକ୍ ଲାଇସେନ୍ସ v3.0 ଅଧୀନରେ ଲାଇସେନ୍ସପ୍ରାପ୍ତ |</string>
+    <string name="menu">ମେନୁ</string>
+    <string name="new_document_warning">ସାମ୍ପ୍ରତିକ ସ୍କାନ୍ ହଜିଯିବ | ଆପଣ ଜାରି ରଖିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
+    <string name="open">ଖୋଲନ୍ତୁ |</string>
+    <string name="open_file">ଫାଇଲ୍ ଖୋଲନ୍ତୁ |</string>
+    <string name="reset_to_default">ଡିଫଲ୍ଟକୁ ପୁନ et ସେଟ୍ କରନ୍ତୁ |</string>
+    <string name="resume">ପୁନ ume କାର୍ଯ୍ୟ ଆରମ୍ଭ କରନ୍ତୁ |</string>
+    <string name="rotate_left">ବାମକୁ ଘୂର୍ଣ୍ଣନ କରନ୍ତୁ |</string>
+    <string name="rotate_right">ଡାହାଣକୁ ଘୂର୍ଣ୍ଣନ କରନ୍ତୁ |</string>
+    <string name="save">ସଞ୍ଚୟ କରନ୍ତୁ |</string>
+    <string name="scan_button">ନୂତନ ସ୍କାନ୍ |</string>
+    <string name="scanner">ସ୍କାନର୍</string>
+    <string name="scan_in_progress">ସ୍କାନ୍ ଚାଲିଛି |</string>
+    <string name="security">ସୁରକ୍ଷା</string>
+    <string name="security_description">ସ୍କାନ ହୋଇଥିବା ଫାଇଲଗୁଡ଼ିକୁ ଖୋଲିବା ପାଇଁ ବାୟୋମେଟ୍ରିକ୍ସ କିମ୍ବା ଡିଭାଇସ୍ ପାସକୋଡ୍ ଆବଶ୍ୟକ |</string>
+    <string name="security_unlock_title">ଫାଇଲଗୁଡ଼ିକୁ ଅନଲକ୍ କରନ୍ତୁ |</string>
+    <string name="security_unlock_subtitle">ଜାରି ରଖିବାକୁ ବାୟୋମେଟ୍ରିକ୍ସ କିମ୍ବା ଡିଭାଇସ୍ ପାସକୋଡ୍ ବ୍ୟବହାର କରନ୍ତୁ |</string>
+    <string name="security_unavailable">ଉପକରଣ ସୁରକ୍ଷା ଉପଲବ୍ଧ ନାହିଁ | ଯାଞ୍ଚ ବିନା ଫାଇଲ୍ ଖୋଲୁଛି |</string>
+    <string name="security_status">ସୁରକ୍ଷା ସ୍ଥିତି</string>
+    <string name="security_encrypted">256-ବିଟ୍ ଏନକ୍ରିପ୍ଟ ହୋଇଛି |</string>
+    <string name="language_title">ଭାଷା</string>
+    <string name="language_english_current">ଇଂରାଜୀ |</string>
+    <string name="language_match_device">ଉପକରଣ ସହିତ ମେଳ |</string>
+    <string name="language_hindi">ହିନ୍ଦୀ</string>
+    <string name="language_bangla">ବଙ୍ଗଳା</string>
+    <string name="language_telugu">ତେଲୁଗୁ</string>
+    <string name="language_marathi">ମରାଠୀ</string>
+    <string name="language_tamil">ତାମିଲ୍ |</string>
+    <string name="language_urdu">ଉର୍ଦ୍ଦୁ</string>
+    <string name="language_gujarati">ଗୁଜରାଟୀ</string>
+    <string name="language_kannada">କନ୍ନଡ |</string>
+    <string name="language_malayalam">ମାଲାୟାଲମ୍</string>
+    <string name="language_odia">ଓଡିଆ</string>
+    <string name="language_punjabi">ପଞ୍ଜାବୀ |</string>
+    <string name="settings">ସେଟିଂସମୂହ</string>
+    <string name="share">ଅଂଶୀଦାର କରନ୍ତୁ |</string>
+    <string name="share_document">ଡକ୍ୟୁମେଣ୍ଟ୍ ଅଂଶୀଦାର କରନ୍ତୁ |</string>
+    <string name="storage_permission_denied">ଫାଇଲ୍ ସଞ୍ଚୟ କରିପାରିବ ନାହିଁ: ଅନୁମତି ପ୍ରତ୍ୟାଖ୍ୟାନ ହେଲା |</string>
+    <string name="support">ସମର୍ଥନ</string>
+    <string name="scanned_unknown">ନିକଟରେ ସ୍କାନ୍ ହୋଇଛି |</string>
+    <string name="sign">ସାଇନ୍ କରନ୍ତୁ |</string>
+    <string name="signature_title">ଦସ୍ତଖତ</string>
+    <string name="signature_pencil">ପେନ୍ସିଲ୍ |</string>
+    <string name="signature_pen">କଲମ</string>
+    <string name="signature_marker">ମାର୍କର</string>
+    <string name="signature_size">ଷ୍ଟ୍ରୋକ ଆକାର |</string>
+    <string name="signature_empty">ଦୟାକରି ପ୍ରଥମେ ଏକ ଦସ୍ତଖତ ଯୋଡନ୍ତୁ |</string>
+    <string name="signature_place">ଦସ୍ତଖତ ରଖନ୍ତୁ |</string>
+    <string name="signature_place_on_page">ପୃଷ୍ଠାରେ ଦସ୍ତଖତ ରଖନ୍ତୁ |</string>
+    <string name="signature_apply">ପ୍ରୟୋଗ କରନ୍ତୁ |</string>
+    <string name="signature_applied">ଦସ୍ତଖତ ପ୍ରୟୋଗ |</string>
+    <string name="signature_failed">ଦସ୍ତଖତ ପ୍ରୟୋଗ କରିବାରେ ବିଫଳ |</string>
+    <string name="print_pdf">PDF ମୁଦ୍ରଣ କରନ୍ତୁ |</string>
+    <string name="page_of">ପୃଷ୍ଠା %1$d / %2$d</string>
+    <string name="crop_page">ଫସଲ ପୃଷ୍ଠା |</string>
+    <string name="crop_failed">ଏହି ପୃଷ୍ଠା କ୍ରପ୍ କରିବାକୁ ଅସମର୍ଥ |</string>
+    <string name="support_last_image">ଶେଷ ଧରାଯାଇଥିବା ପ୍ରତିଛବି ସହିତ ଏକ ସମସ୍ୟା ରିପୋର୍ଟ କରନ୍ତୁ |</string>
+    <string name="turn_off_torch">ମଶାଲ ବନ୍ଦ କର |</string>
+    <string name="turn_on_torch">ମଶାଲ ଟର୍ନ୍ ଅନ୍ କରନ୍ତୁ |</string>
+    <string name="unknown_size">ଅଜ୍ଞାତ ଆକାର |</string>
+    <string name="version">ସଂସ୍କରଣ</string>
+    <string name="view_full_list">ପୂର୍ଣ୍ଣ ତାଲିକା ଦେଖନ୍ତୁ |</string>
+    <string name="view_the_full_license">ସମ୍ପୂର୍ଣ୍ଣ ଲାଇସେନ୍ସ ଦେଖନ୍ତୁ |</string>
+    <string name="yes">ହଁ</string>
+    <plurals name="files_saved_to">
+        <item quantity="one">%2$s %3$s କୁ ସଞ୍ଚୟ ହୋଇଛି |</item>
+        <item quantity="other">%1$d ଫାଇଲଗୁଡିକ %3$s କୁ ସେଭ୍ ହୋଇଛି |</item>
+    </plurals>
+    <plurals name="page_count">
+        <item quantity="one">%d ପୃଷ୍ଠା |</item>
+        <item quantity="other">%d ପୃଷ୍ଠାଗୁଡ଼ିକ |</item>
+    </plurals>
+    <plurals name="document_count">
+        <item quantity="one">%d ଡକ୍ୟୁମେଣ୍ଟ୍ |</item>
+        <item quantity="other">%d ଡକ୍ୟୁମେଣ୍ଟ୍ |</item>
+    </plurals>
+</resources>

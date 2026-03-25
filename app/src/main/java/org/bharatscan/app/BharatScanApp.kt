@@ -55,6 +55,7 @@ class BharatScanApp : Application() {
 const val THUMBNAIL_SIZE_DP = 120
 
 class AppContainer(context: Context) {
+    val appContext: Context = context.applicationContext
     private val cacheDir = context.cacheDir
     val preparationDir = File(context.cacheDir, "pdfs")
     val fileManager = FileManager(

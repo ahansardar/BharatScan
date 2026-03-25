@@ -43,54 +43,30 @@ fun BrandTitle(
     } else {
         val style = MaterialTheme.typography.titleLarge
         val localizedName = stringResource(R.string.app_name)
-        val language = currentLocale.language
-        if (language == "hi" || language == "bn") {
-            val parts = localizedName.split(" ").filter { it.isNotBlank() }
-            val first = parts.getOrNull(0) ?: localizedName
-            val second = parts.getOrNull(1)
-            Row(
-                modifier = modifier.height(height),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = first,
-                    style = style,
-                    fontWeight = FontWeight.Black,
-                    fontStyle = FontStyle.Italic,
-                    color = Color.Black
-                )
-                if (!second.isNullOrBlank()) {
-                    Spacer(Modifier.width(6.dp))
-                    Text(
-                        text = second,
-                        style = style,
-                        fontWeight = FontWeight.SemiBold,
-                        fontStyle = FontStyle.Italic,
-                        color = BharatSaffron
-                    )
-                }
-            }
-            return
-        }
+        val parts = localizedName.split(Regex("\\s+")).filter { it.isNotBlank() }
+        val first = parts.getOrNull(0) ?: localizedName
+        val rest = if (parts.size > 1) parts.drop(1).joinToString(" ") else null
         Row(
             modifier = modifier.height(height),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Bharat",
+                text = first,
                 style = style,
                 fontWeight = FontWeight.Black,
                 fontStyle = FontStyle.Italic,
                 color = Color.Black
             )
-            Spacer(Modifier.width(4.dp))
-            Text(
-                text = "Scan",
-                style = style,
-                fontWeight = FontWeight.SemiBold,
-                fontStyle = FontStyle.Italic,
-                color = BharatSaffron
-            )
+            if (!rest.isNullOrBlank()) {
+                Spacer(Modifier.width(4.dp))
+                Text(
+                    text = rest,
+                    style = style,
+                    fontWeight = FontWeight.SemiBold,
+                    fontStyle = FontStyle.Italic,
+                    color = BharatSaffron
+                )
+            }
         }
     }
 }

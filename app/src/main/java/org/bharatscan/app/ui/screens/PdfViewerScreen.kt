@@ -117,10 +117,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.google.android.gms.tasks.Tasks
-import com.google.mlkit.vision.common.InputImage
-import com.google.mlkit.vision.text.TextRecognition
-import com.google.mlkit.vision.text.latin.TextRecognizerOptions
+import org.bharatscan.app.ocr.TextRecognitionHelper
 import com.tom_roush.pdfbox.pdmodel.PDDocument
 import com.tom_roush.pdfbox.pdmodel.PDPageContentStream
 import com.tom_roush.pdfbox.pdmodel.encryption.AccessPermission
@@ -758,7 +755,7 @@ private suspend fun buildOcrIndex(context: Context, source: PdfSource): Map<Int,
             pfd.close()
             return@withContext emptyMap()
         }
-        val recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
+        val engine = TextRecognitionHelper.createEngine(context)
         val index = mutableMapOf<Int, List<OcrLineBox>>()
         try {
             for (pageIndex in 0 until renderer.pageCount) {
@@ -773,21 +770,16 @@ private suspend fun buildOcrIndex(context: Context, source: PdfSource): Map<Int,
                 page.close()
 
                 val lines = try {
-                    val image = InputImage.fromBitmap(bitmap, 0)
-                    val result = Tasks.await(recognizer.process(image))
-                    result.textBlocks.flatMap { block ->
-                        block.lines.mapNotNull { line ->
-                            val box = line.boundingBox ?: return@mapNotNull null
-                            OcrLineBox(
-                                text = line.text,
-                                rect = RectF(
-                                    (box.left.toFloat() / bitmap.width).coerceIn(0f, 1f),
-                                    (box.top.toFloat() / bitmap.height).coerceIn(0f, 1f),
-                                    (box.right.toFloat() / bitmap.width).coerceIn(0f, 1f),
-                                    (box.bottom.toFloat() / bitmap.height).coerceIn(0f, 1f)
-                                )
+                    engine.recognize(bitmap).map { line ->
+                        OcrLineBox(
+                            text = line.text,
+                            rect = RectF(
+                                (line.bounds.left / bitmap.width).coerceIn(0f, 1f),
+                                (line.bounds.top / bitmap.height).coerceIn(0f, 1f),
+                                (line.bounds.right / bitmap.width).coerceIn(0f, 1f),
+                                (line.bounds.bottom / bitmap.height).coerceIn(0f, 1f)
                             )
-                        }
+                        )
                     }
                 } catch (_: Exception) {
                     emptyList()
@@ -797,7 +789,7 @@ private suspend fun buildOcrIndex(context: Context, source: PdfSource): Map<Int,
                 index[pageIndex] = lines
             }
         } finally {
-            recognizer.close()
+            engine.close()
             renderer.close()
             pfd.close()
         }

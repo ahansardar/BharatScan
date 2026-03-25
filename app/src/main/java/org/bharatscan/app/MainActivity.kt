@@ -4,6 +4,7 @@
 package org.bharatscan.app
 
 import android.Manifest
+import android.content.BroadcastReceiver
 import android.content.ClipData
 import android.content.Context
 import android.content.Intent
@@ -34,16 +35,30 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.toClipEntry
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -52,6 +67,7 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.first
 import org.bharatscan.app.data.FileLogger
 import org.bharatscan.app.data.ImageRepository
@@ -84,10 +100,15 @@ import org.bharatscan.app.ui.screens.settings.SettingsScreen
 import org.bharatscan.app.ui.screens.settings.SettingsViewModel
 import org.bharatscan.app.ui.screens.settings.SettingsRepository
 import org.bharatscan.app.ui.theme.BharatScanTheme
+import org.bharatscan.app.update.UpdateInfo
+import org.bharatscan.app.update.UpdateManager
+import org.bharatscan.app.update.UpdateDownloadStatus
+import org.bharatscan.app.update.UpdateUiState
 import org.opencv.android.OpenCVLoader
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
+    private var updateReceiver: BroadcastReceiver? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -95,6 +116,7 @@ class MainActivity : AppCompatActivity() {
         initLibraries()
 
         val appContainer = (application as BharatScanApp).appContainer
+        updateReceiver = UpdateManager.registerDownloadReceiver(this, appContainer.logger)
         val launchMode = resolveLaunchMode(intent)
 
         val sessionViewModel: SessionViewModel by viewModels {
@@ -141,10 +163,81 @@ class MainActivity : AppCompatActivity() {
             val document by viewModel.documentUiModel.collectAsStateWithLifecycle()
             val exportUiState by exportViewModel.uiState.collectAsStateWithLifecycle()
             val customCategories by exportViewModel.customCategories.collectAsStateWithLifecycle()
+            val settingsUiState by settingsViewModel.uiState.collectAsStateWithLifecycle()
             val cameraPermission = rememberCameraPermissionState()
             CollectCameraEvents(cameraViewModel, viewModel)
             CollectExportEvents(context, exportViewModel)
             CollectAboutEvents(context, aboutViewModel, imageRepository)
+
+            val updateScope = rememberCoroutineScope()
+            var updateChecking by remember { mutableStateOf(false) }
+            var updateMessage by remember { mutableStateOf<String?>(null) }
+            var updateInfo by remember { mutableStateOf<UpdateInfo?>(null) }
+            var downloadStatus by remember { mutableStateOf<UpdateDownloadStatus?>(null) }
+            var showUpdateDialog by remember { mutableStateOf(false) }
+
+            fun requestUpdateCheck(force: Boolean) {
+                if (updateChecking) return
+                updateChecking = true
+                if (force) {
+                    updateMessage = null
+                }
+                updateScope.launch {
+                    val info = withContext(Dispatchers.IO) {
+                        UpdateManager.checkForUpdate(context, appContainer.logger, force = force)
+                    }
+                    updateChecking = false
+                    if (info != null) {
+                        updateInfo = info
+                        showUpdateDialog = true
+                    } else if (force) {
+                        updateMessage = getString(R.string.latest_version)
+                    }
+                }
+            }
+
+            LaunchedEffect(Unit) {
+                while (true) {
+                    downloadStatus = withContext(Dispatchers.IO) {
+                        UpdateManager.getDownloadStatus(this@MainActivity)
+                    }
+                    delay(1000)
+                }
+            }
+
+            LaunchedEffect(settingsUiState.checkUpdatesAtStartup) {
+                if (!settingsUiState.checkUpdatesAtStartup) return@LaunchedEffect
+                if (updateChecking) return@LaunchedEffect
+                updateChecking = true
+                val info = withContext(Dispatchers.IO) {
+                    UpdateManager.checkForUpdate(context, appContainer.logger)
+                }
+                updateChecking = false
+                if (info != null) {
+                    updateInfo = info
+                    showUpdateDialog = true
+                }
+            }
+
+            val updateState = UpdateUiState(
+                isChecking = updateChecking,
+                statusMessage = updateMessage,
+                downloadStatus = downloadStatus,
+                updateInfo = updateInfo
+            )
+
+            if (showUpdateDialog && updateInfo != null) {
+                val info = updateInfo!!
+                UpdateDialog(
+                    updateInfo = info,
+                    onConfirm = {
+                        UpdateManager.downloadUpdate(context, info, appContainer.logger)
+                        showUpdateDialog = false
+                        updateMessage = getString(R.string.downloading_update)
+                    },
+                    onDismiss = { showUpdateDialog = false }
+                )
+            }
 
             BharatScanTheme {
                 val navigation = navigation(viewModel, launchMode)
@@ -189,7 +282,13 @@ class MainActivity : AppCompatActivity() {
                                 recentDocuments = recentDocs,
                                 customCategories = customCategories,
                                 onOpenPdf = { fileUri -> navigation.toPdfViewer(fileUri) },
-                                onDeleteDocument = { doc -> homeViewModel.deleteRecentDocument(doc) }
+                                onDeleteDocument = { doc -> homeViewModel.deleteRecentDocument(doc) },
+                                updateState = updateState,
+                                onCheckForUpdates = { requestUpdateCheck(true) },
+                                onInstallUpdate = { info ->
+                                    UpdateManager.downloadUpdate(this@MainActivity, info, appContainer.logger)
+                                    updateMessage = getString(R.string.downloading_update)
+                                }
                             )
                         }
                         is Screen.Main.Documents -> {
@@ -317,7 +416,16 @@ class MainActivity : AppCompatActivity() {
                             LibrariesScreen(onBack = navigation.back)
                         }
                         is Screen.Overlay.Settings -> {
-                            SettingsScreenWrapper(settingsViewModel, navigation, appContainer.logger)
+                            SettingsScreenWrapper(
+                                settingsViewModel,
+                                navigation,
+                                appContainer.logger,
+                                updateState = updateState,
+                                onCheckForUpdates = { requestUpdateCheck(true) },
+                                onCheckAtStartupChanged = { enabled ->
+                                    settingsViewModel.setCheckUpdatesAtStartup(enabled)
+                                }
+                            )
                         }
                     }
 
@@ -364,6 +472,9 @@ class MainActivity : AppCompatActivity() {
         settingsViewModel: SettingsViewModel,
         nav: Navigation,
         logger: FileLogger,
+        updateState: UpdateUiState,
+        onCheckForUpdates: () -> Unit,
+        onCheckAtStartupChanged: (Boolean) -> Unit,
     ) {
         val launcher = rememberLauncherForActivityResult(
             contract = ActivityResultContracts.OpenDocumentTree()
@@ -385,6 +496,7 @@ class MainActivity : AppCompatActivity() {
         LaunchedEffect(Unit) {
             settingsViewModel.refreshExportDirName()
         }
+
         SettingsScreen(
             settingsUiState,
             onChooseDirectoryClick = {
@@ -403,7 +515,147 @@ class MainActivity : AppCompatActivity() {
             onBack = nav.back,
             navigation = nav,
             onSecurityChanged = { enabled -> settingsViewModel.setRequireAuth(enabled) },
+            updateState = updateState,
+            onCheckForUpdates = onCheckForUpdates,
+            onCheckAtStartupChanged = onCheckAtStartupChanged,
         )
+    }
+
+    @Composable
+    private fun UpdateDialog(
+        updateInfo: UpdateInfo,
+        onConfirm: () -> Unit,
+        onDismiss: () -> Unit,
+    ) {
+        AlertDialog(
+            onDismissRequest = onDismiss,
+            title = { Text(stringResource(R.string.update_available_title)) },
+            text = {
+                Column(
+                    modifier = Modifier
+                        .heightIn(max = 240.dp)
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    Text(stringResource(R.string.update_available_message, updateInfo.versionName))
+                    val notes = updateInfo.releaseNotes?.trim().orEmpty()
+                    if (notes.isNotBlank()) {
+                        Spacer(Modifier.height(10.dp))
+                        Text(
+                            text = stringResource(R.string.update_release_notes_title),
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Spacer(Modifier.height(6.dp))
+                        ReleaseNotesContent(notes)
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = onConfirm) {
+                    Text(stringResource(R.string.update_install))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = onDismiss) {
+                    Text(stringResource(R.string.update_later))
+                }
+            }
+        )
+    }
+
+    private sealed class ReleaseNoteBlock {
+        data class Heading(val level: Int, val text: String) : ReleaseNoteBlock()
+        data class Bullet(val text: String) : ReleaseNoteBlock()
+        data class Paragraph(val text: String) : ReleaseNoteBlock()
+    }
+
+    private fun parseReleaseNotes(raw: String): List<ReleaseNoteBlock> {
+        val blocks = mutableListOf<ReleaseNoteBlock>()
+        val lines = raw.lines()
+        val paragraph = StringBuilder()
+
+        fun flushParagraph() {
+            if (paragraph.isNotBlank()) {
+                blocks += ReleaseNoteBlock.Paragraph(paragraph.toString().trim())
+                paragraph.setLength(0)
+            }
+        }
+
+        for (line in lines) {
+            val trimmed = line.trim()
+            if (trimmed.isBlank()) {
+                flushParagraph()
+                continue
+            }
+
+            val headingMatch = Regex("^(#{1,4})\\s+(.*)$").find(trimmed)
+            if (headingMatch != null) {
+                flushParagraph()
+                val level = headingMatch.groupValues[1].length
+                val text = headingMatch.groupValues[2].trim()
+                if (text.isNotBlank()) {
+                    blocks += ReleaseNoteBlock.Heading(level, text)
+                }
+                continue
+            }
+
+            val bullet = when {
+                trimmed.startsWith("- ") -> trimmed.removePrefix("- ").trim()
+                trimmed.startsWith("* ") -> trimmed.removePrefix("* ").trim()
+                trimmed.startsWith("• ") -> trimmed.removePrefix("• ").trim()
+                trimmed.matches(Regex("^\\d+\\.\\s+.*$")) ->
+                    trimmed.replaceFirst(Regex("^\\d+\\.\\s+"), "").trim()
+                else -> null
+            }
+            if (bullet != null) {
+                flushParagraph()
+                if (bullet.isNotBlank()) {
+                    blocks += ReleaseNoteBlock.Bullet(bullet)
+                }
+                continue
+            }
+
+            if (paragraph.isNotEmpty()) paragraph.append(' ')
+            paragraph.append(trimmed)
+        }
+
+        flushParagraph()
+        return blocks
+    }
+
+    @Composable
+    private fun ReleaseNotesContent(notes: String) {
+        val blocks = remember(notes) { parseReleaseNotes(notes) }
+        Column(verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(6.dp)) {
+            blocks.forEach { block ->
+                when (block) {
+                    is ReleaseNoteBlock.Heading -> {
+                        val style = when (block.level) {
+                            1 -> MaterialTheme.typography.titleMedium
+                            2 -> MaterialTheme.typography.titleSmall
+                            else -> MaterialTheme.typography.labelLarge
+                        }
+                        Text(
+                            text = block.text,
+                            style = style,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
+                    is ReleaseNoteBlock.Bullet -> {
+                        Text(
+                            text = "• ${block.text}",
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                    }
+                    is ReleaseNoteBlock.Paragraph -> {
+                        Text(
+                            text = block.text,
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                    }
+                }
+            }
+        }
     }
 
     @Composable
@@ -716,5 +968,11 @@ class MainActivity : AppCompatActivity() {
 
             prompt.authenticate(promptInfo)
         }
+    }
+
+    override fun onDestroy() {
+        UpdateManager.unregisterDownloadReceiver(this, updateReceiver)
+        updateReceiver = null
+        super.onDestroy()
     }
 }

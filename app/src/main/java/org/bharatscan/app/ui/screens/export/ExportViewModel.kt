@@ -28,10 +28,7 @@ import androidx.core.net.toUri
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.android.gms.tasks.Tasks
-import com.google.mlkit.vision.common.InputImage
-import com.google.mlkit.vision.text.TextRecognition
-import com.google.mlkit.vision.text.latin.TextRecognizerOptions
+import org.bharatscan.app.ocr.TextRecognitionHelper
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.Dispatchers
@@ -74,6 +71,7 @@ sealed interface ExportEvent {
 
 class ExportViewModel(container: AppContainer, val imageRepository: ImageRepository): ViewModel() {
 
+    private val appContext = container.appContext
     private val preparationDir = container.preparationDir
     private val fileManager = container.fileManager
     private val settingsRepository = container.settingsRepository
@@ -108,7 +106,7 @@ class ExportViewModel(container: AppContainer, val imageRepository: ImageReposit
 
     private suspend fun buildOcrPages(jpegs: List<ByteArray>): List<OcrPage> {
         return withContext(Dispatchers.Default) {
-            val recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
+            val engine = TextRecognitionHelper.createEngine(appContext)
             try {
                 jpegs.map { bytes ->
                     val options = BitmapFactory.Options().apply {
@@ -120,19 +118,14 @@ class ExportViewModel(container: AppContainer, val imageRepository: ImageReposit
                         return@map OcrPage(0, 0, emptyList())
                     }
                     val page = try {
-                        val image = InputImage.fromBitmap(bitmap, 0)
-                        val result = Tasks.await(recognizer.process(image))
-                        val lines = result.textBlocks.flatMap { block ->
-                            block.lines.mapNotNull { line ->
-                                val box = line.boundingBox ?: return@mapNotNull null
-                                OcrLine(
-                                    text = line.text,
-                                    left = box.left.toFloat(),
-                                    top = box.top.toFloat(),
-                                    right = box.right.toFloat(),
-                                    bottom = box.bottom.toFloat()
-                                )
-                            }
+                        val lines = engine.recognize(bitmap).map { line ->
+                            OcrLine(
+                                text = line.text,
+                                left = line.bounds.left,
+                                top = line.bounds.top,
+                                right = line.bounds.right,
+                                bottom = line.bounds.bottom
+                            )
                         }
                         OcrPage(bitmap.width, bitmap.height, lines)
                     } catch (_: Exception) {
@@ -143,7 +136,7 @@ class ExportViewModel(container: AppContainer, val imageRepository: ImageReposit
                     page
                 }
             } finally {
-                recognizer.close()
+                engine.close()
             }
         }
     }

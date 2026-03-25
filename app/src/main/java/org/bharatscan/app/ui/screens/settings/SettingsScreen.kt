@@ -20,14 +20,21 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -41,6 +48,7 @@ import org.bharatscan.app.ui.components.BrandTitle
 import org.bharatscan.app.ui.components.BackButton
 import org.bharatscan.app.ui.components.DigitalBharatBackground
 import org.bharatscan.app.ui.theme.*
+import org.bharatscan.app.update.UpdateUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -54,6 +62,9 @@ fun SettingsScreen(
     onBack: () -> Unit,
     navigation: Navigation,
     onSecurityChanged: (Boolean) -> Unit,
+    updateState: UpdateUiState,
+    onCheckForUpdates: () -> Unit,
+    onCheckAtStartupChanged: (Boolean) -> Unit,
 ) {
     BackHandler { onBack() }
     DigitalBharatBackground {
@@ -93,6 +104,9 @@ fun SettingsScreen(
                 onExportQualityChanged,
                 onLanguageChanged,
                 onSecurityChanged,
+                updateState,
+                onCheckForUpdates,
+                onCheckAtStartupChanged,
                 modifier = Modifier.padding(paddingValues))
         }
     }
@@ -107,8 +121,12 @@ private fun SettingsContent(
     onExportQualityChanged: (ExportQuality) -> Unit,
     onLanguageChanged: (LanguageOption) -> Unit,
     onSecurityChanged: (Boolean) -> Unit,
+    updateState: UpdateUiState,
+    onCheckForUpdates: () -> Unit,
+    onCheckAtStartupChanged: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    var showLanguageSheet by remember { mutableStateOf(false) }
     Column(
         modifier
             .fillMaxSize()
@@ -199,31 +217,10 @@ private fun SettingsContent(
                 modifier = Modifier.padding(bottom = 8.dp)
             )
 
-            LanguageOption.entries.forEach { option ->
-                Surface(
-                    onClick = { onLanguageChanged(option) },
-                    color = Color.Transparent,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(vertical = 8.dp)
-                    ) {
-                        RadioButton(
-                            selected = uiState.languageOption == option,
-                            onClick = { onLanguageChanged(option) },
-                            colors = RadioButtonDefaults.colors(selectedColor = MaterialTheme.colorScheme.secondary)
-                        )
-                        Spacer(Modifier.width(8.dp))
-                        Text(
-                            text = stringResource(option.labelRes),
-                            color = MaterialTheme.colorScheme.onSurface,
-                            style = MaterialTheme.typography.bodyLarge,
-                            fontWeight = if (uiState.languageOption == option) FontWeight.Bold else FontWeight.Medium
-                        )
-                    }
-                }
-            }
+            LanguageSelectorRow(
+                selectedLabel = stringResource(uiState.languageOption.labelRes),
+                onClick = { showLanguageSheet = true }
+            )
         }
 
         SettingsSectionCard {
@@ -254,6 +251,222 @@ private fun SettingsContent(
                         checkedTrackColor = BharatSaffron
                     )
                 )
+            }
+        }
+
+        SettingsSectionCard {
+            Text(
+                text = stringResource(R.string.update_title),
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.secondary,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = stringResource(R.string.update_check_startup),
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        text = stringResource(R.string.update_check_startup_desc),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = TextSecondary
+                    )
+                }
+                Switch(
+                    checked = uiState.checkUpdatesAtStartup,
+                    onCheckedChange = onCheckAtStartupChanged,
+                    colors = SwitchDefaults.colors(
+                        checkedThumbColor = BharatWhite,
+                        checkedTrackColor = BharatSaffron
+                    )
+                )
+            }
+
+            Spacer(Modifier.height(12.dp))
+
+            Button(
+                onClick = onCheckForUpdates,
+                enabled = !updateState.isChecking,
+                colors = ButtonDefaults.buttonColors(containerColor = BharatSaffron)
+            ) {
+                if (updateState.isChecking) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(18.dp),
+                        color = BharatWhite,
+                        strokeWidth = 2.dp
+                    )
+                    Spacer(Modifier.width(10.dp))
+                }
+                Text(
+                    text = stringResource(R.string.check_for_updates),
+                    color = BharatWhite,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+
+            updateState.statusMessage?.let { message ->
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    text = message,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = TextSecondary
+                )
+            }
+
+            updateState.downloadStatus?.let { status ->
+                Spacer(Modifier.height(10.dp))
+                when (status.status) {
+                    android.app.DownloadManager.STATUS_RUNNING,
+                    android.app.DownloadManager.STATUS_PENDING,
+                    android.app.DownloadManager.STATUS_PAUSED -> {
+                        val progress = status.progress
+                        if (progress != null) {
+                            LinearProgressIndicator(progress = progress)
+                            Spacer(Modifier.height(6.dp))
+                            Text(
+                                text = "${(progress * 100).toInt()}% downloaded",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = TextSecondary
+                            )
+                        } else {
+                            LinearProgressIndicator()
+                            Spacer(Modifier.height(6.dp))
+                            Text(
+                                text = stringResource(R.string.downloading_update),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = TextSecondary
+                            )
+                        }
+                    }
+                    android.app.DownloadManager.STATUS_FAILED -> {
+                        Text(
+                            text = stringResource(R.string.update_download_failed),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.error
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    if (showLanguageSheet) {
+        LanguagePickerSheet(
+            current = uiState.languageOption,
+            onDismiss = { showLanguageSheet = false },
+            onSelect = { option ->
+                onLanguageChanged(option)
+                showLanguageSheet = false
+            }
+        )
+    }
+}
+
+@Composable
+private fun LanguageSelectorRow(
+    selectedLabel: String,
+    onClick: () -> Unit,
+) {
+    Surface(
+        color = MaterialTheme.colorScheme.surfaceContainerHigh,
+        shape = RoundedCornerShape(14.dp),
+        tonalElevation = 2.dp,
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick() }
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = selectedLabel,
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.SemiBold,
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.weight(1f)
+            )
+            Icon(
+                imageVector = Icons.Default.KeyboardArrowDown,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary
+            )
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun LanguagePickerSheet(
+    current: LanguageOption,
+    onDismiss: () -> Unit,
+    onSelect: (LanguageOption) -> Unit,
+) {
+    ModalBottomSheet(
+        onDismissRequest = onDismiss,
+        containerColor = MaterialTheme.colorScheme.surface
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp, vertical = 12.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Text(
+                text = stringResource(R.string.language_title),
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary
+            )
+
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(max = 420.dp),
+                verticalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                items(LanguageOption.entries) { option ->
+                    Surface(
+                        onClick = { onSelect(option) },
+                        shape = RoundedCornerShape(12.dp),
+                        color = if (option == current)
+                            MaterialTheme.colorScheme.primary.copy(alpha = 0.08f)
+                        else
+                            MaterialTheme.colorScheme.surfaceContainerHigh
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 12.dp, vertical = 10.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = stringResource(option.labelRes),
+                                style = MaterialTheme.typography.bodyLarge,
+                                fontWeight = if (option == current) FontWeight.Bold else FontWeight.Medium,
+                                color = MaterialTheme.colorScheme.onSurface,
+                                modifier = Modifier.weight(1f)
+                            )
+                            if (option == current) {
+                                Icon(
+                                    imageVector = Icons.Default.Check,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.primary
+                                )
+                            }
+                        }
+                    }
+                }
             }
         }
     }

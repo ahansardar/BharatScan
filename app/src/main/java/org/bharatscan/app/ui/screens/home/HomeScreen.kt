@@ -55,6 +55,9 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.Fingerprint
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ElevatedCard
@@ -64,6 +67,7 @@ import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -129,6 +133,8 @@ import org.bharatscan.app.ui.theme.TertiaryContainer
 import org.bharatscan.app.ui.uriForFile
 import org.bharatscan.app.ui.model.DocumentCategory
 import org.bharatscan.app.ui.state.DocumentUiModel
+import org.bharatscan.app.update.UpdateInfo
+import org.bharatscan.app.update.UpdateUiState
 import java.io.File
 import java.time.LocalDate
 import java.time.LocalTime
@@ -173,6 +179,9 @@ fun HomeScreen(
     customCategories: List<String>,
     onOpenPdf: (Uri) -> Unit,
     onDeleteDocument: (RecentDocumentUiState) -> Unit,
+    updateState: UpdateUiState,
+    onCheckForUpdates: () -> Unit,
+    onInstallUpdate: (UpdateInfo) -> Unit,
 ) {
     val context = LocalContext.current
 
@@ -274,6 +283,16 @@ fun HomeScreen(
                 }
 
                 Spacer(Modifier.height(22.dp))
+
+                if (updateState.updateInfo != null) {
+                    UpdateHomeCard(
+                        updateState = updateState,
+                        onCheckForUpdates = onCheckForUpdates,
+                        onInstallUpdate = onInstallUpdate
+                    )
+
+                    Spacer(Modifier.height(20.dp))
+                }
 
                 QuickFoldersSection(
                     categories = categories,
@@ -1024,6 +1043,130 @@ private fun OngoingScanBanner(
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.error
                 )
+            }
+        }
+    }
+}
+
+@Composable
+private fun UpdateHomeCard(
+    updateState: UpdateUiState,
+    onCheckForUpdates: () -> Unit,
+    onInstallUpdate: (UpdateInfo) -> Unit,
+) {
+    val info = updateState.updateInfo
+    val isDownloading = updateState.downloadStatus?.status in listOf(
+        android.app.DownloadManager.STATUS_RUNNING,
+        android.app.DownloadManager.STATUS_PENDING,
+        android.app.DownloadManager.STATUS_PAUSED
+    )
+    Surface(
+        shape = RoundedCornerShape(22.dp),
+        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.97f),
+        shadowElevation = 8.dp,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Column(
+            modifier = Modifier.padding(18.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Text(
+                text = stringResource(R.string.update_title),
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary
+            )
+
+            when {
+                info != null -> {
+                    Text(
+                        text = stringResource(R.string.update_available_message, info.versionName),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = TextSecondary
+                    )
+                }
+                updateState.isChecking -> {
+                    Text(
+                        text = stringResource(R.string.checking_updates),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = TextSecondary
+                    )
+                }
+                !updateState.statusMessage.isNullOrBlank() -> {
+                    Text(
+                        text = updateState.statusMessage.orEmpty(),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = TextSecondary
+                    )
+                }
+                else -> {
+                    Text(
+                        text = stringResource(R.string.update_check_hint),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = TextSecondary
+                    )
+                }
+            }
+
+            updateState.downloadStatus?.let { status ->
+                when (status.status) {
+                    android.app.DownloadManager.STATUS_RUNNING,
+                    android.app.DownloadManager.STATUS_PENDING,
+                    android.app.DownloadManager.STATUS_PAUSED -> {
+                        val progress = status.progress
+                        if (progress != null) {
+                            LinearProgressIndicator(progress = progress)
+                            Text(
+                                text = "${(progress * 100).toInt()}% downloaded",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = TextSecondary
+                            )
+                        } else {
+                            LinearProgressIndicator()
+                        }
+                    }
+                    android.app.DownloadManager.STATUS_FAILED -> {
+                        Text(
+                            text = stringResource(R.string.update_download_failed),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.error
+                        )
+                    }
+                }
+            }
+
+            if (info != null) {
+                Button(
+                    onClick = { onInstallUpdate(info) },
+                    enabled = !isDownloading,
+                    colors = ButtonDefaults.buttonColors(containerColor = BharatSaffron)
+                ) {
+                    Text(
+                        text = stringResource(R.string.update_install),
+                        color = BharatWhite,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            } else {
+                Button(
+                    onClick = onCheckForUpdates,
+                    enabled = !updateState.isChecking,
+                    colors = ButtonDefaults.buttonColors(containerColor = BharatSaffron)
+                ) {
+                    if (updateState.isChecking) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(18.dp),
+                            color = BharatWhite,
+                            strokeWidth = 2.dp
+                        )
+                        Spacer(Modifier.width(10.dp))
+                    }
+                    Text(
+                        text = stringResource(R.string.check_for_updates),
+                        color = BharatWhite,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
             }
         }
     }

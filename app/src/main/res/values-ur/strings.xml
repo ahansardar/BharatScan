@@ -1,0 +1,248 @@
+<resources>
+    <string name="about">کے بارے میں</string>
+    <string name="add_page">صفحہ شامل کریں۔</string>
+    <string name="app_name">\????? ?????</string>
+    <string name="app_tagline">آپ کے دستاویزات، ڈیجیٹل بنایا گیا۔</string>
+    <string name="about_tagline">آپ کا اپنا ذہین دستاویز اسکینر</string>
+    <string name="your_digital_locker">آپ کی دستاویزات کو ڈیجیٹل کیا گیا ہے۔</string>
+    <string name="secure_document_archival">محفوظ دستاویز آرکائیو</string>
+    <string name="scan_now">ابھی اسکین کریں۔</string>
+    <string name="quick_folders">فوری فلٹرز</string>
+    <string name="view_all">تمام دیکھیں</string>
+    <string name="all">تمام</string>
+    <string name="recent_scans">حالیہ اسکینز</string>
+    <string name="recently_added">حال ہی میں شامل کیا گیا۔</string>
+    <string name="verified">تصدیق شدہ</string>
+    <string name="secure_private_title">محفوظ اور نجی</string>
+    <string name="secure_private_body">آپ کی دستاویزات آپ کی واضح اجازت کے بغیر آپ کے آلے کو کبھی نہیں چھوڑتی ہیں۔ مقامی خفیہ کاری بطور ڈیفالٹ۔</string>
+    <string name="creator_title">خالق</string>
+    <string name="creator_name">آہن سردار</string>
+    <string name="creator_email">ahansardarvis@gmail.com</string>
+    <string name="creator_linked_profile">لنک شدہ پروفائل</string>
+    <string name="creator_linked_label">linkedin.com/in/ahansardar</string>
+    <string name="creator_linked_url">https://linkedin.com/in/ahansardar</string>
+    <string name="creator_github_profile">GitHub پروفائل</string>
+    <string name="creator_github_label">github.com/ahansardar</string>
+    <string name="creator_github_url">https://github.com/ahansardar</string>
+    <string name="report_errors_title">غلطیوں کی اطلاع کیسے دیں۔</string>
+    <string name="report_errors_body">سپورٹ ای میل پر اسکرین شاٹ کے ساتھ ایک مختصر تفصیل بھیجیں۔</string>
+    <string name="save_logs">لاگ محفوظ کریں۔</string>
+    <string name="loading_bharatscan">بھارت اسکین لوڈ ہو رہا ہے...</string>
+    <string name="securing_documents">اپنے دستاویزات کو محفوظ بنانا</string>
+    <string name="about_version_display">v1.0.0</string>
+    <string name="pending">زیر التواء</string>
+    <string name="aadhaar">آدھار</string>
+    <string name="pan_card">پین کارڈ</string>
+    <string name="id_proofs">شناختی ثبوت</string>
+    <string name="education">تعلیم</string>
+    <string name="education_subtitle">ڈگریاں اور سرٹیفکیٹ</string>
+    <string name="other">دیگر</string>
+    <string name="search_documents">دستاویزات تلاش کریں۔</string>
+    <string name="search_within_documents">دستاویزات میں تلاش کریں...</string>
+    <string name="scanning_text">متن کے لیے اسکین کیا جا رہا ہے...</string>
+    <string name="export_settings">ترتیبات برآمد کریں۔</string>
+    <string name="include_watermark">واٹر مارک شامل کریں۔</string>
+    <string name="include_watermark_desc">برآمد شدہ دستاویز پر واٹر مارک لگائیں۔</string>
+    <string name="custom_watermark">حسب ضرورت واٹر مارک</string>
+    <string name="password_protection">پاس ورڈ کی حفاظت</string>
+    <string name="password_protection_desc">اس پی ڈی ایف کو کھولنے کے لیے پاس ورڈ درکار ہے۔</string>
+    <string name="password_label">پاس ورڈ</string>
+    <string name="password_strength">طاقت: %1$s</string>
+    <string name="password_strength_weak">کمزور</string>
+    <string name="password_strength_medium">درمیانہ</string>
+    <string name="password_strength_strong">مضبوط</string>
+    <string name="password_required">براہ کرم ایک مضبوط پاس ورڈ درج کریں۔</string>
+    <string name="pdf_password_title">پاس ورڈ درکار ہے۔</string>
+    <string name="pdf_password_message">یہ پی ڈی ایف محفوظ ہے۔ اسے کھولنے کے لیے پاس ورڈ درج کریں۔</string>
+    <string name="pdf_password_incorrect">غلط پاس ورڈ۔ براہ کرم دوبارہ کوشش کریں۔</string>
+    <string name="pdf_password_opening">کھل رہا ہے…</string>
+    <string name="pdf_password_failed">اس PDF کو کھولنے سے قاصر ہے۔</string>
+    <string name="select_file_format">فائل فارمیٹ کو منتخب کریں۔</string>
+    <string name="export_quality">برآمدی معیار</string>
+    <string name="quality_high">ہائی (300 DPI)</string>
+    <string name="quality_standard">معیاری</string>
+    <string name="quality_low">کم</string>
+    <string name="export_portal">ایکسپورٹ پورٹل</string>
+    <string name="finalize_document">اپنی دستاویز کو حتمی شکل دیں۔</string>
+    <string name="export_success_title_saved">دستاویز کامیابی کے ساتھ محفوظ ہو گئی!</string>
+    <string name="export_success_title_shared">دستاویز کا کامیابی کے ساتھ اشتراک کیا گیا!</string>
+    <string name="export_success_available_in">اب آپ میں دستیاب ہے۔</string>
+    <string name="export_success_view_document">دستاویز دیکھیں</string>
+    <string name="export_success_go_home">گھر جاؤ</string>
+    <string name="export_success_size">سائز</string>
+    <string name="export_success_format">فارمیٹ</string>
+    <string name="export_success_security">سیکورٹی</string>
+    <string name="export_success_encrypted">خفیہ کردہ</string>
+    <string name="export_success_format_pdf">PDF</string>
+    <string name="export_success_format_jpeg">جے پی ای جی</string>
+    <string name="made_with_love_india">بھارت میں محبت کے ساتھ بنایا گیا۔</string>
+    <string name="export_success_shared_message">کامیابی کے ساتھ اشتراک کیا گیا ہے۔</string>
+    <string name="no_recent_scans">ابھی تک کوئی حالیہ اسکین نہیں ہے۔</string>
+    <string name="no_results">کوئی مماثل دستاویزات نہیں ہیں۔</string>
+    <string name="clear_filter">فلٹر صاف کریں۔</string>
+    <string name="save_category_title">زمرہ میں محفوظ کریں۔</string>
+    <string name="save_category_prompt">اس دستاویز کے لیے ایک زمرہ منتخب کریں۔</string>
+    <string name="custom_category_hint">زمرہ کا نام درج کریں۔</string>
+    <string name="search_title">دستاویزات تلاش کریں۔</string>
+    <string name="filters_title">فلٹرز</string>
+    <string name="good_morning">صبح بخیر</string>
+    <string name="good_afternoon">صبح بخیر</string>
+    <string name="good_evening">شب بخیر</string>
+    <string name="good_night">شب بخیر</string>
+    <string name="digitizing_bharat">دستاویزات کو ڈیجیٹائز کرنا</string>
+    <string name="scan_mode_document">دستاویز</string>
+    <string name="scan_mode_id_card">شناختی کارڈ</string>
+    <string name="scan_mode_book">بک</string>
+    <string name="home_title">گھر</string>
+    <string name="documents">دستاویزات</string>
+    <string name="document">دستاویز</string>
+    <string name="back">پیچھے</string>
+    <string name="camera_permission_denied">کیمرے کی اجازت مسترد کر دی گئی۔</string>
+    <string name="camera_permission_rationale">ایپ کو دستاویزات کو اسکین کرنے کے لیے کیمرے تک رسائی درکار ہے۔ کیپچر کی گئی تصاویر صرف اس ڈیوائس پر محفوظ کی جاتی ہیں اور جب آپ موجودہ دستاویز کو بند کریں گے تو حذف ہو جائیں گی۔</string>
+    <string name="cancel">منسوخ کریں۔</string>
+    <string name="change_directory">فولڈر تبدیل کریں۔</string>
+    <string name="clear_text">متن صاف کریں۔</string>
+    <string name="clear">صاف</string>
+    <string name="contact">رابطہ کریں۔</string>
+    <string name="copied_logs">لاگز کلپ بورڈ پر کاپی ہو گئے۔</string>
+    <string name="copy_logs">لاگز کاپی کریں۔</string>
+    <string name="creating_export">برآمد کی تیاری کر رہا ہے...</string>
+    <string name="delete_page">صفحہ حذف کریں۔</string>
+    <string name="delete_document">حذف کریں۔</string>
+    <string name="delete_document_title">دستاویز کو حذف کریں۔</string>
+    <string name="delete_document_warning">کیا آپ اس دستاویز کو حذف کرنا چاہتے ہیں؟</string>
+    <string name="edit">ترمیم کریں۔</string>
+    <string name="delete_page_warning">کیا آپ اس صفحہ کو حذف کرنا چاہتے ہیں؟</string>
+    <string name="developer">ڈویلپر</string>
+    <string name="discard_scan">اسکین کو مسترد کریں۔</string>
+    <string name="download_dirname">ڈاؤن لوڈز</string>
+    <string name="end_scan">اسکین ختم کریں۔</string>
+    <string name="error">خرابی: %1$s</string>
+    <string name="error_context_folder">فولڈر برآمد کریں: %1$s</string>
+    <string name="error_context_provider">فراہم کنندہ: %1$s</string>
+    <string name="error_export_dir_permission_lost">منتخب برآمد فولڈر مزید قابل رسائی نہیں ہے۔ براہ کرم دوسرا فولڈر منتخب کریں۔</string>
+    <string name="error_file_picker_launch" translatable="false">Failed to launch system file picker on this device</string>
+    <string name="error_file_picker_result" translatable="false">Failed to set export directory</string>
+    <string name="error_no_app">اس فائل کو کھولنے کے لیے کوئی ایپ نہیں ملی</string>
+    <string name="error_no_document">کوئی دستاویز نہیں ملی</string>
+    <string name="error_save">فائل محفوظ کرنے میں ناکام</string>
+    <string name="export">برآمد کریں۔</string>
+    <string name="export_as">%1$s کے بطور برآمد کریں</string>
+    <string name="export_directory">فولڈر برآمد کریں۔</string>
+    <string name="export_folder_permission_lost">فولڈر تک رسائی ختم ہوگئی</string>
+    <string name="export_format">ایکسپورٹ فارمیٹ</string>
+    <string name="export_quality_low">کم</string>
+    <string name="export_quality_balanced">متوازن</string>
+    <string name="export_quality_high">اعلی</string>
+    <string name="file_size">فائل کا سائز: %1$s</string>
+    <string name="file_size_total">کل سائز: %1$s</string>
+    <string name="filename">فائل کا نام</string>
+    <string name="grant_permission">اجازت دیں۔</string>
+    <string name="last_saved_pdf_files">اس ڈیوائس پر محفوظ کردہ حالیہ PDFs:</string>
+    <string name="libraries">لائبریریاں</string>
+    <string name="libraries_open_source">اوپن سورس لائبریریاں</string>
+    <string name="license">لائسنس</string>
+    <string name="licensed_under">یہ درخواست GNU جنرل پبلک لائسنس v3.0 کے تحت لائسنس یافتہ ہے۔</string>
+    <string name="menu">مینو</string>
+    <string name="new_document_warning">موجودہ اسکین ضائع ہو جائے گا۔ کیا آپ جاری رکھنا چاہتے ہیں؟</string>
+    <string name="open">کھولیں۔</string>
+    <string name="open_file">فائل کھولیں۔</string>
+    <string name="reset_to_default">ڈیفالٹ پر ری سیٹ کریں۔</string>
+    <string name="resume">دوبارہ شروع کریں۔</string>
+    <string name="rotate_left">بائیں گھمائیں۔</string>
+    <string name="rotate_right">دائیں گھمائیں۔</string>
+    <string name="save">محفوظ کریں۔</string>
+    <string name="scan_button">نیا اسکین</string>
+    <string name="scanner">سکینر</string>
+    <string name="scan_in_progress">اسکین جاری ہے۔</string>
+    <string name="security">سیکورٹی</string>
+    <string name="security_description">اسکین شدہ فائلوں کو کھولنے کے لیے بائیو میٹرکس یا ڈیوائس کا پاس کوڈ درکار ہے۔</string>
+    <string name="security_unlock_title">فائلوں کو غیر مقفل کریں۔</string>
+    <string name="security_unlock_subtitle">جاری رکھنے کے لیے بائیو میٹرکس یا ڈیوائس پاس کوڈ استعمال کریں۔</string>
+    <string name="security_unavailable">ڈیوائس سیکیورٹی دستیاب نہیں ہے۔ بغیر تصدیق کے فائل کھولنا۔</string>
+    <string name="security_status">سیکیورٹی کی حیثیت</string>
+    <string name="security_encrypted">256 بٹ انکرپٹڈ</string>
+    <string name="language_title">زبان</string>
+    <string name="language_english_current">انگریزی</string>
+    <string name="language_match_device">ڈیوائس سے میچ کریں۔</string>
+    <string name="language_hindi">ہندی</string>
+    <string name="language_bangla">بنگلہ</string>
+    <string name="language_telugu">تیلگو</string>
+    <string name="language_marathi">مراٹھی</string>
+    <string name="language_tamil">تامل</string>
+    <string name="language_urdu">اردو</string>
+    <string name="language_gujarati">گجراتی</string>
+    <string name="language_kannada">کنڑ</string>
+    <string name="language_malayalam">ملیالم</string>
+    <string name="language_odia">اوڈیا</string>
+    <string name="language_punjabi">پنجابی</string>
+    <string name="settings">ترتیبات</string>
+    <string name="share">شیئر کریں۔</string>
+    <string name="share_document">دستاویز کا اشتراک کریں۔</string>
+    <string name="storage_permission_denied">فائل کو محفوظ نہیں کیا جا سکتا: اجازت مسترد کر دی گئی۔</string>
+    <string name="support">حمایت</string>
+    <string name="scanned_unknown">حال ہی میں اسکین کیا گیا۔</string>
+    <string name="sign">دستخط</string>
+    <string name="signature_title">دستخط</string>
+    <string name="signature_pencil">پنسل</string>
+    <string name="signature_pen">قلم</string>
+    <string name="signature_marker">مارکر</string>
+    <string name="signature_size">فالج کا سائز</string>
+    <string name="signature_empty">براہ کرم پہلے ایک دستخط شامل کریں۔</string>
+    <string name="signature_place">دستخط رکھیں</string>
+    <string name="signature_place_on_page">صفحہ پر دستخط رکھیں</string>
+    <string name="signature_apply">لگائیں</string>
+    <string name="signature_applied">دستخط لاگو</string>
+    <string name="signature_failed">دستخط لاگو کرنے میں ناکام</string>
+    <string name="print_pdf">پی ڈی ایف پرنٹ کریں۔</string>
+    <string name="page_of">صفحہ %1$d / %2$d</string>
+    <string name="crop_page">صفحہ تراشیں۔</string>
+    <string name="crop_failed">اس صفحہ کو تراشنے سے قاصر ہے۔</string>
+    <string name="support_last_image">آخری کیپچر کی گئی تصویر کے ساتھ مسئلہ کی اطلاع دیں۔</string>
+    <string name="turn_off_torch">ٹارچ بند کر دیں۔</string>
+    <string name="turn_on_torch">ٹارچ آن کریں۔</string>
+    <string name="unknown_size">نامعلوم سائز</string>
+    <string name="version">ورژن</string>
+    <string name="view_full_list">مکمل فہرست دیکھیں</string>
+    <string name="view_the_full_license">مکمل لائسنس دیکھیں</string>
+    <string name="yes">جی ہاں</string>
+    <plurals name="files_saved_to">
+        <item quantity="one">%2$s کو %3$s میں محفوظ کیا گیا</item>
+        <item quantity="other">%1$d فائلیں %3$s میں محفوظ کی گئیں</item>
+        </plurals>
+    <plurals name="page_count">
+        <item quantity="one">%d صفحہ</item>
+        <item quantity="other">%d صفحات</item>
+        </plurals>
+    <plurals name="document_count">
+        <item quantity="one">%d دستاویز</item>
+        <item quantity="other">%d دستاویزات</item>
+        </plurals>
+    <string-array name="greeting_variants">
+        <item>اسکین کرنے کے لیے تیار ہیں؟</item>
+        <item>آئیے آپ کی دستاویزات کو ڈیجیٹائز کریں۔</item>
+        <item>کسی اہم چیز کو ڈیجیٹائز کریں۔</item>
+        <item>آپ کا سکینر تیار ہے۔</item>
+        <item>اسکین کریں اور محفوظ طریقے سے اسٹور کریں۔</item>
+        <item>ابھی اپنا شناختی ثبوت اسکین کریں۔</item>
+        <item>آج ہی شناختی ثبوت اسکین کریں۔</item>
+        <item>اپنا شناختی ثبوت محفوظ رکھیں</item>
+        <item>شناختی ثبوت کو قابل تلاش بنائیں</item>
+        <item>شناختی ثبوت کو صاف پی ڈی ایف میں تبدیل کریں۔</item>
+        <item>اعلی معیار میں شناختی ثبوت برآمد کریں۔</item>
+        <item>ایک نل پر شناختی ثبوت شیئر کریں۔</item>
+        <item>شناختی ثبوت آف لائن اور پرائیویٹ اسٹور کریں۔</item>
+        <item>تیز تلاش کے لیے شناختی ثبوت تیار رکھیں</item>
+        <item>اپنے فولڈرز میں شناختی ثبوت کو منظم کریں۔</item>
+        <item>فوری رسائی کے لیے شناختی ثبوت کو اسکین کریں۔</item>
+        <item>واضح وضاحت کے ساتھ شناختی ثبوت حاصل کریں۔</item>
+        <item>اپنے ریکارڈ کے لیے شناختی ثبوت کو ڈیجیٹائز کریں۔</item>
+        <item>شناختی ثبوت کو اپنے والٹ میں محفوظ کریں۔</item>
+        <item>اس ڈیوائس پر شناختی ثبوت کی حفاظت کریں۔</item>
+        <item>اپنا شناختی ثبوت ابھی ڈیجیٹائز کریں۔</item>
+        <item>آج ہی آئی ڈی پروف کو ڈیجیٹائز کریں۔</item>
+        <item>ابھی اپنا شناختی ثبوت محفوظ کریں۔</item>
+        <item>آج ہی شناختی ثبوت محفوظ کر لیں۔</item>
+        <item>اپنا شناختی ثبوت ابھی محفوظ کریں۔</item>
+        </string-array>
+    </resources>

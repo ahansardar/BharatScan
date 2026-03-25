@@ -14,6 +14,7 @@
  */
 package org.bharatscan.app.platform
 
+import androidx.appcompat.app.AppCompatDelegate
 import com.tom_roush.pdfbox.pdmodel.PDDocument
 import com.tom_roush.pdfbox.pdmodel.PDPage
 import com.tom_roush.pdfbox.pdmodel.PDPageContentStream
@@ -33,6 +34,7 @@ import org.bharatscan.app.data.PdfWriter
 import org.bharatscan.app.domain.OcrPage
 import java.io.OutputStream
 import java.util.Calendar
+import java.util.Locale
 
 class AndroidPdfWriter : PdfWriter {
     override fun writePdfFromJpegs(
@@ -131,9 +133,62 @@ class AndroidPdfWriter : PdfWriter {
     }
 
     private fun loadOcrFont(document: PDDocument): PDFont? {
-        val candidates = listOf(
-            "/system/fonts/Roboto-Regular.ttf",
+        val language = resolveAppLanguage()
+        val scriptCandidates = when (language) {
+            "hi", "mr" -> listOf(
+                "/system/fonts/NotoSansDevanagari-Regular.ttf",
+                "/system/fonts/NotoSansDevanagariUI-Regular.ttf",
+                "/system/fonts/NotoSerifDevanagari-Regular.ttf"
+            )
+            "bn" -> listOf(
+                "/system/fonts/NotoSansBengali-Regular.ttf",
+                "/system/fonts/NotoSansBengaliUI-Regular.ttf",
+                "/system/fonts/NotoSerifBengali-Regular.ttf"
+            )
+            "te" -> listOf(
+                "/system/fonts/NotoSansTelugu-Regular.ttf",
+                "/system/fonts/NotoSansTeluguUI-Regular.ttf",
+                "/system/fonts/NotoSerifTelugu-Regular.ttf"
+            )
+            "ta" -> listOf(
+                "/system/fonts/NotoSansTamil-Regular.ttf",
+                "/system/fonts/NotoSansTamilUI-Regular.ttf",
+                "/system/fonts/NotoSerifTamil-Regular.ttf"
+            )
+            "ur" -> listOf(
+                "/system/fonts/NotoNaskhArabic-Regular.ttf",
+                "/system/fonts/NotoSansArabic-Regular.ttf"
+            )
+            "gu" -> listOf(
+                "/system/fonts/NotoSansGujarati-Regular.ttf",
+                "/system/fonts/NotoSansGujaratiUI-Regular.ttf",
+                "/system/fonts/NotoSerifGujarati-Regular.ttf"
+            )
+            "kn" -> listOf(
+                "/system/fonts/NotoSansKannada-Regular.ttf",
+                "/system/fonts/NotoSansKannadaUI-Regular.ttf",
+                "/system/fonts/NotoSerifKannada-Regular.ttf"
+            )
+            "ml" -> listOf(
+                "/system/fonts/NotoSansMalayalam-Regular.ttf",
+                "/system/fonts/NotoSansMalayalamUI-Regular.ttf",
+                "/system/fonts/NotoSerifMalayalam-Regular.ttf"
+            )
+            "or", "od" -> listOf(
+                "/system/fonts/NotoSansOriya-Regular.ttf",
+                "/system/fonts/NotoSansOriyaUI-Regular.ttf",
+                "/system/fonts/NotoSerifOriya-Regular.ttf"
+            )
+            "pa" -> listOf(
+                "/system/fonts/NotoSansGurmukhi-Regular.ttf",
+                "/system/fonts/NotoSansGurmukhiUI-Regular.ttf",
+                "/system/fonts/NotoSerifGurmukhi-Regular.ttf"
+            )
+            else -> emptyList()
+        }
+        val candidates = scriptCandidates + listOf(
             "/system/fonts/NotoSans-Regular.ttf",
+            "/system/fonts/Roboto-Regular.ttf",
             "/system/fonts/DroidSans.ttf"
         )
         for (path in candidates) {
@@ -151,6 +206,12 @@ class AndroidPdfWriter : PdfWriter {
         } catch (_: Exception) {
             null
         }
+    }
+
+    private fun resolveAppLanguage(): String {
+        val locales = AppCompatDelegate.getApplicationLocales()
+        val locale = if (!locales.isEmpty) locales[0] else Locale.getDefault()
+        return (locale?.language ?: Locale.getDefault().language).lowercase(Locale.ROOT)
     }
 }
 

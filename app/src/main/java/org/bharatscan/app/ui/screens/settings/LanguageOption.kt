@@ -11,7 +11,16 @@ enum class LanguageOption(
     ENGLISH("en", R.string.language_english_current),
     MATCH_DEVICE(null, R.string.language_match_device),
     HINDI("hi", R.string.language_hindi),
-    BENGALI("bn", R.string.language_bangla);
+    BENGALI("bn", R.string.language_bangla),
+    TELUGU("te", R.string.language_telugu),
+    MARATHI("mr", R.string.language_marathi),
+    TAMIL("ta", R.string.language_tamil),
+    URDU("ur", R.string.language_urdu),
+    GUJARATI("gu", R.string.language_gujarati),
+    KANNADA("kn", R.string.language_kannada),
+    MALAYALAM("ml", R.string.language_malayalam),
+    ODIA("or", R.string.language_odia),
+    PUNJABI("pa", R.string.language_punjabi);
 
     fun storedTag(): String = tag ?: SYSTEM_TAG
 
@@ -23,6 +32,15 @@ enum class LanguageOption(
                 "en" -> ENGLISH
                 "hi" -> HINDI
                 "bn" -> BENGALI
+                "te" -> TELUGU
+                "mr" -> MARATHI
+                "ta" -> TAMIL
+                "ur" -> URDU
+                "gu" -> GUJARATI
+                "kn" -> KANNADA
+                "ml" -> MALAYALAM
+                "or" -> ODIA
+                "pa" -> PUNJABI
                 else -> MATCH_DEVICE
             }
         }

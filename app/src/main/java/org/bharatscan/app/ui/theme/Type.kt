@@ -24,18 +24,54 @@ import androidx.compose.ui.unit.sp
 import org.bharatscan.app.R
 
 private val MontserratFont = GoogleFont("Montserrat")
+private val NotoSansDevanagari = GoogleFont("Noto Sans Devanagari")
+private val NotoSansBengali = GoogleFont("Noto Sans Bengali")
+private val NotoSansTelugu = GoogleFont("Noto Sans Telugu")
+private val NotoSansMarathi = GoogleFont("Noto Sans Devanagari")
+private val NotoSansTamil = GoogleFont("Noto Sans Tamil")
+private val NotoSansUrdu = GoogleFont("Noto Naskh Arabic")
+private val NotoSansGujarati = GoogleFont("Noto Sans Gujarati")
+private val NotoSansKannada = GoogleFont("Noto Sans Kannada")
+private val NotoSansMalayalam = GoogleFont("Noto Sans Malayalam")
+private val NotoSansOdia = GoogleFont("Noto Sans Oriya")
+private val NotoSansPunjabi = GoogleFont("Noto Sans Gurmukhi")
 private val GoogleFontProvider = GoogleFont.Provider(
     providerAuthority = "com.google.android.gms.fonts",
     providerPackage = "com.google.android.gms",
     certificates = R.array.com_google_android_gms_fonts_certs
 )
 
+private fun appFont(googleFont: GoogleFont, weight: FontWeight) =
+    Font(googleFont = googleFont, fontProvider = GoogleFontProvider, weight = weight)
+
 private val AppFontFamily = FontFamily(
-    Font(googleFont = MontserratFont, fontProvider = GoogleFontProvider, weight = FontWeight.Light),
-    Font(googleFont = MontserratFont, fontProvider = GoogleFontProvider, weight = FontWeight.Normal),
-    Font(googleFont = MontserratFont, fontProvider = GoogleFontProvider, weight = FontWeight.Medium),
-    Font(googleFont = MontserratFont, fontProvider = GoogleFontProvider, weight = FontWeight.SemiBold),
-    Font(googleFont = MontserratFont, fontProvider = GoogleFontProvider, weight = FontWeight.Bold)
+    appFont(MontserratFont, FontWeight.Light),
+    appFont(MontserratFont, FontWeight.Normal),
+    appFont(MontserratFont, FontWeight.Medium),
+    appFont(MontserratFont, FontWeight.SemiBold),
+    appFont(MontserratFont, FontWeight.Bold),
+    appFont(NotoSansDevanagari, FontWeight.Normal),
+    appFont(NotoSansDevanagari, FontWeight.Bold),
+    appFont(NotoSansBengali, FontWeight.Normal),
+    appFont(NotoSansBengali, FontWeight.Bold),
+    appFont(NotoSansTelugu, FontWeight.Normal),
+    appFont(NotoSansTelugu, FontWeight.Bold),
+    appFont(NotoSansMarathi, FontWeight.Normal),
+    appFont(NotoSansMarathi, FontWeight.Bold),
+    appFont(NotoSansTamil, FontWeight.Normal),
+    appFont(NotoSansTamil, FontWeight.Bold),
+    appFont(NotoSansUrdu, FontWeight.Normal),
+    appFont(NotoSansUrdu, FontWeight.Bold),
+    appFont(NotoSansGujarati, FontWeight.Normal),
+    appFont(NotoSansGujarati, FontWeight.Bold),
+    appFont(NotoSansKannada, FontWeight.Normal),
+    appFont(NotoSansKannada, FontWeight.Bold),
+    appFont(NotoSansMalayalam, FontWeight.Normal),
+    appFont(NotoSansMalayalam, FontWeight.Bold),
+    appFont(NotoSansOdia, FontWeight.Normal),
+    appFont(NotoSansOdia, FontWeight.Bold),
+    appFont(NotoSansPunjabi, FontWeight.Normal),
+    appFont(NotoSansPunjabi, FontWeight.Bold)
 )
 
 val Typography = Typography(

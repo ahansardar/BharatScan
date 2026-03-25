@@ -1,0 +1,248 @@
+<resources>
+    <string name="about">గురించి</string>
+    <string name="add_page">పేజీని జోడించండి</string>
+    <string name="app_name">భారత్ స్కాన్</string>
+    <string name="app_tagline">మీ డాక్స్, డిజిటల్ మేడ్</string>
+    <string name="about_tagline">మీ స్వంత ఇంటెలిజెంట్ డాక్యుమెంట్ స్కానర్</string>
+    <string name="your_digital_locker">మీ పత్రాలు డిజిటలైజ్ చేయబడ్డాయి</string>
+    <string name="secure_document_archival">సురక్షిత డాక్యుమెంట్ ఆర్కైవల్</string>
+    <string name="scan_now">ఇప్పుడు స్కాన్ చేయండి</string>
+    <string name="quick_folders">త్వరిత ఫిల్టర్లు</string>
+    <string name="view_all">అన్నీ చూడండి</string>
+    <string name="all">అన్నీ</string>
+    <string name="recent_scans">ఇటీవలి స్కాన్‌లు</string>
+    <string name="recently_added">ఇటీవల జోడించబడింది</string>
+    <string name="verified">ధృవీకరించబడింది</string>
+    <string name="secure_private_title">సురక్షితమైన &amp; ప్రైవేట్</string>
+    <string name="secure_private_body">మీ స్పష్టమైన అనుమతి లేకుండా మీ పత్రాలు మీ పరికరాన్ని ఎప్పటికీ వదిలివేయవు.డిఫాల్ట్‌గా స్థానిక ఎన్‌క్రిప్షన్.</string>
+    <string name="creator_title">సృష్టికర్త</string>
+    <string name="creator_name">అహన్ సర్దార్</string>
+    <string name="creator_email">ahansardarvis@gmail.com</string>
+    <string name="creator_linked_profile">లింక్డ్ఇన్ ప్రొఫైల్</string>
+    <string name="creator_linked_label">linkedin.com/in/ahansardar</string>
+    <string name="creator_linked_url">https://linkedin.com/in/ahansardar</string>
+    <string name="creator_github_profile">GitHub ప్రొఫైల్</string>
+    <string name="creator_github_label">github.com/ahansardar</string>
+    <string name="creator_github_url">https://github.com/ahansardar</string>
+    <string name="report_errors_title">లోపాలను ఎలా నివేదించాలి</string>
+    <string name="report_errors_body">మద్దతు ఇమెయిల్‌కు స్క్రీన్‌షాట్‌తో సంక్షిప్త వివరణను పంపండి.</string>
+    <string name="save_logs">లాగ్‌లను సేవ్ చేయండి</string>
+    <string name="loading_bharatscan">BharatScan లోడ్ అవుతోంది...</string>
+    <string name="securing_documents">మీ పత్రాలను భద్రపరచడం</string>
+    <string name="about_version_display">v1.0.0</string>
+    <string name="pending">పెండింగ్‌లో ఉంది</string>
+    <string name="aadhaar">ఆధార్</string>
+    <string name="pan_card">పాన్ కార్డ్</string>
+    <string name="id_proofs">ID రుజువులు</string>
+    <string name="education">విద్య</string>
+    <string name="education_subtitle">డిగ్రీలు మరియు సర్టిఫికెట్లు</string>
+    <string name="other">ఇతర</string>
+    <string name="search_documents">పత్రాలను శోధించండి</string>
+    <string name="search_within_documents">పత్రాలలో వెతకండి...</string>
+    <string name="scanning_text">వచనం కోసం స్కాన్ చేస్తోంది...</string>
+    <string name="export_settings">ఎగుమతి సెట్టింగులు</string>
+    <string name="include_watermark">వాటర్‌మార్క్‌ని చేర్చండి</string>
+    <string name="include_watermark_desc">ఎగుమతి చేసిన పత్రానికి వాటర్‌మార్క్‌ను వర్తింపజేయండి.</string>
+    <string name="custom_watermark">అనుకూల వాటర్‌మార్క్</string>
+    <string name="password_protection">పాస్వర్డ్ రక్షణ</string>
+    <string name="password_protection_desc">ఈ PDFని తెరవడానికి పాస్‌వర్డ్ అవసరం.</string>
+    <string name="password_label">పాస్వర్డ్</string>
+    <string name="password_strength">బలం: %1$s</string>
+    <string name="password_strength_weak">బలహీనమైనది</string>
+    <string name="password_strength_medium">మధ్యస్థం</string>
+    <string name="password_strength_strong">బలమైన</string>
+    <string name="password_required">దయచేసి బలమైన పాస్‌వర్డ్‌ను నమోదు చేయండి.</string>
+    <string name="pdf_password_title">పాస్‌వర్డ్ అవసరం</string>
+    <string name="pdf_password_message">ఈ PDF రక్షించబడింది.దీన్ని తెరవడానికి పాస్‌వర్డ్‌ను నమోదు చేయండి.</string>
+    <string name="pdf_password_incorrect">పాస్‌వర్డ్ తప్పు.దయచేసి మళ్లీ ప్రయత్నించండి.</string>
+    <string name="pdf_password_opening">తెరుస్తోంది...</string>
+    <string name="pdf_password_failed">ఈ PDFని తెరవడం సాధ్యం కాలేదు.</string>
+    <string name="select_file_format">ఫైల్ ఆకృతిని ఎంచుకోండి</string>
+    <string name="export_quality">ఎగుమతి నాణ్యత</string>
+    <string name="quality_high">అధిక (300 DPI)</string>
+    <string name="quality_standard">ప్రామాణికం</string>
+    <string name="quality_low">తక్కువ</string>
+    <string name="export_portal">ఎగుమతి పోర్టల్</string>
+    <string name="finalize_document">మీ పత్రాన్ని ఖరారు చేయండి</string>
+    <string name="export_success_title_saved">పత్రం విజయవంతంగా సేవ్ చేయబడింది!</string>
+    <string name="export_success_title_shared">పత్రం విజయవంతంగా భాగస్వామ్యం చేయబడింది!</string>
+    <string name="export_success_available_in">ఇప్పుడు మీలో అందుబాటులో ఉంది</string>
+    <string name="export_success_view_document">పత్రాన్ని వీక్షించండి</string>
+    <string name="export_success_go_home">ఇంటికి వెళ్ళు</string>
+    <string name="export_success_size">పరిమాణం</string>
+    <string name="export_success_format">ఫార్మాట్</string>
+    <string name="export_success_security">భద్రత</string>
+    <string name="export_success_encrypted">ఎన్‌క్రిప్ట్ చేయబడింది</string>
+    <string name="export_success_format_pdf">PDF</string>
+    <string name="export_success_format_jpeg">JPEG</string>
+    <string name="made_with_love_india">భారతదేశంలో ప్రేమతో తయారు చేయబడింది</string>
+    <string name="export_success_shared_message">విజయవంతంగా భాగస్వామ్యం చేయబడింది.</string>
+    <string name="no_recent_scans">ఇంకా ఇటీవలి స్కాన్‌లు లేవు</string>
+    <string name="no_results">సరిపోలే పత్రాలు లేవు</string>
+    <string name="clear_filter">ఫిల్టర్‌ని క్లియర్ చేయండి</string>
+    <string name="save_category_title">వర్గానికి సేవ్ చేయండి</string>
+    <string name="save_category_prompt">ఈ పత్రం కోసం వర్గాన్ని ఎంచుకోండి.</string>
+    <string name="custom_category_hint">వర్గం పేరును నమోదు చేయండి</string>
+    <string name="search_title">పత్రాలను శోధించండి</string>
+    <string name="filters_title">ఫిల్టర్లు</string>
+    <string name="good_morning">శుభోదయం</string>
+    <string name="good_afternoon">శుభ మధ్యాహ్నం</string>
+    <string name="good_evening">శుభ సాయంత్రం</string>
+    <string name="good_night">శుభరాత్రి</string>
+    <string name="digitizing_bharat">డిజిటైజింగ్ పత్రాలు</string>
+    <string name="scan_mode_document">పత్రం</string>
+    <string name="scan_mode_id_card">ID కార్డ్</string>
+    <string name="scan_mode_book">పుస్తకం</string>
+    <string name="home_title">హోమ్</string>
+    <string name="documents">పత్రాలు</string>
+    <string name="document">పత్రం</string>
+    <string name="back">వెనుకకు</string>
+    <string name="camera_permission_denied">కెమెరా అనుమతి నిరాకరించబడింది</string>
+    <string name="camera_permission_rationale">పత్రాలను స్కాన్ చేయడానికి యాప్‌కి కెమెరా యాక్సెస్ అవసరం.క్యాప్చర్ చేయబడిన చిత్రాలు ఈ పరికరంలో మాత్రమే నిల్వ చేయబడతాయి మరియు మీరు ప్రస్తుత పత్రాన్ని మూసివేసినప్పుడు తొలగించబడతాయి.</string>
+    <string name="cancel">రద్దు చేయి</string>
+    <string name="change_directory">ఫోల్డర్‌ని మార్చండి</string>
+    <string name="clear_text">వచనాన్ని క్లియర్ చేయండి</string>
+    <string name="clear">క్లియర్</string>
+    <string name="contact">సంప్రదించండి</string>
+    <string name="copied_logs">లాగ్‌లు క్లిప్‌బోర్డ్‌కి కాపీ చేయబడ్డాయి</string>
+    <string name="copy_logs">లాగ్‌లను కాపీ చేయండి</string>
+    <string name="creating_export">ఎగుమతిని సిద్ధం చేస్తోంది...</string>
+    <string name="delete_page">పేజీని తొలగించండి</string>
+    <string name="delete_document">తొలగించు</string>
+    <string name="delete_document_title">పత్రాన్ని తొలగించండి</string>
+    <string name="delete_document_warning">మీరు ఈ పత్రాన్ని తొలగించాలనుకుంటున్నారా?</string>
+    <string name="edit">సవరించు</string>
+    <string name="delete_page_warning">మీరు ఈ పేజీని తొలగించాలనుకుంటున్నారా?</string>
+    <string name="developer">డెవలపర్</string>
+    <string name="discard_scan">స్కాన్‌ని విస్మరించండి</string>
+    <string name="download_dirname">డౌన్‌లోడ్‌లు</string>
+    <string name="end_scan">ముగింపు స్కాన్</string>
+    <string name="error">లోపం: %1$s</string>
+    <string name="error_context_folder">ఎగుమతి ఫోల్డర్: %1$s</string>
+    <string name="error_context_provider">ప్రదాత: %1$s</string>
+    <string name="error_export_dir_permission_lost">ఎంచుకున్న ఎగుమతి ఫోల్డర్ ఇప్పుడు యాక్సెస్ చేయబడదు.దయచేసి మరొక ఫోల్డర్‌ని ఎంచుకోండి.</string>
+    <string name="error_file_picker_launch" translatable="false">Failed to launch system file picker on this device</string>
+    <string name="error_file_picker_result" translatable="false">Failed to set export directory</string>
+    <string name="error_no_app">ఈ ఫైల్‌ని తెరవడానికి యాప్ ఏదీ కనుగొనబడలేదు</string>
+    <string name="error_no_document">ఏ పత్రం కనుగొనబడలేదు</string>
+    <string name="error_save">ఫైల్‌ను సేవ్ చేయడంలో విఫలమైంది</string>
+    <string name="export">ఎగుమతి చేయండి</string>
+    <string name="export_as">%1$sగా ఎగుమతి చేయి</string>
+    <string name="export_directory">ఎగుమతి ఫోల్డర్</string>
+    <string name="export_folder_permission_lost">ఫోల్డర్ యాక్సెస్ కోల్పోయింది</string>
+    <string name="export_format">ఎగుమతి ఫార్మాట్</string>
+    <string name="export_quality_low">తక్కువ</string>
+    <string name="export_quality_balanced">సమతుల్యం</string>
+    <string name="export_quality_high">అధిక</string>
+    <string name="file_size">ఫైల్ పరిమాణం: %1$s</string>
+    <string name="file_size_total">మొత్తం పరిమాణం: %1$s</string>
+    <string name="filename">ఫైల్ పేరు</string>
+    <string name="grant_permission">అనుమతి ఇవ్వండి</string>
+    <string name="last_saved_pdf_files">ఈ పరికరంలో సేవ్ చేయబడిన ఇటీవలి PDFలు:</string>
+    <string name="libraries">గ్రంథాలయాలు</string>
+    <string name="libraries_open_source">ఓపెన్ సోర్స్ లైబ్రరీలు</string>
+    <string name="license">లైసెన్స్</string>
+    <string name="licensed_under">ఈ అప్లికేషన్ GNU జనరల్ పబ్లిక్ లైసెన్స్ v3.0 క్రింద లైసెన్స్ చేయబడింది.</string>
+    <string name="menu">మెనూ</string>
+    <string name="new_document_warning">ప్రస్తుత స్కాన్ పోతుంది.మీరు కొనసాగించాలనుకుంటున్నారా?</string>
+    <string name="open">తెరవండి</string>
+    <string name="open_file">ఫైల్‌ని తెరవండి</string>
+    <string name="reset_to_default">డిఫాల్ట్‌కి రీసెట్ చేయండి</string>
+    <string name="resume">పునఃప్రారంభించండి</string>
+    <string name="rotate_left">ఎడమవైపు తిప్పండి</string>
+    <string name="rotate_right">కుడివైపు తిప్పండి</string>
+    <string name="save">సేవ్ చేయండి</string>
+    <string name="scan_button">కొత్త స్కాన్</string>
+    <string name="scanner">స్కానర్</string>
+    <string name="scan_in_progress">స్కాన్ ప్రోగ్రెస్‌లో ఉంది</string>
+    <string name="security">భద్రత</string>
+    <string name="security_description">స్కాన్ చేసిన ఫైల్‌లను తెరవడానికి బయోమెట్రిక్స్ లేదా పరికర పాస్‌కోడ్ అవసరం.</string>
+    <string name="security_unlock_title">ఫైళ్లను అన్‌లాక్ చేయండి</string>
+    <string name="security_unlock_subtitle">కొనసాగించడానికి బయోమెట్రిక్స్ లేదా పరికర పాస్‌కోడ్‌ని ఉపయోగించండి.</string>
+    <string name="security_unavailable">పరికర భద్రత అందుబాటులో లేదు.ధృవీకరణ లేకుండా ఫైల్ తెరవబడుతోంది.</string>
+    <string name="security_status">భద్రతా స్థితి</string>
+    <string name="security_encrypted">256-బిట్ ఎన్‌క్రిప్టెడ్</string>
+    <string name="language_title">భాష</string>
+    <string name="language_english_current">ఇంగ్లీష్</string>
+    <string name="language_match_device">పరికరానికి సరిపోలండి</string>
+    <string name="language_hindi">హిందీ</string>
+    <string name="language_bangla">బంగ్లా</string>
+    <string name="language_telugu">తెలుగు</string>
+    <string name="language_marathi">మరాఠీ</string>
+    <string name="language_tamil">తమిళం</string>
+    <string name="language_urdu">ఉర్దూ</string>
+    <string name="language_gujarati">గుజరాతీ</string>
+    <string name="language_kannada">కన్నడ</string>
+    <string name="language_malayalam">మలయాళం</string>
+    <string name="language_odia">ఒడియా</string>
+    <string name="language_punjabi">పంజాబీ</string>
+    <string name="settings">సెట్టింగ్‌లు</string>
+    <string name="share">షేర్ చేయండి</string>
+    <string name="share_document">పత్రాన్ని భాగస్వామ్యం చేయండి</string>
+    <string name="storage_permission_denied">ఫైల్‌ను సేవ్ చేయడం సాధ్యపడదు: అనుమతి నిరాకరించబడింది</string>
+    <string name="support">మద్దతు</string>
+    <string name="scanned_unknown">ఇటీవల స్కాన్ చేయబడింది</string>
+    <string name="sign">సంతకం చేయండి</string>
+    <string name="signature_title">సంతకం</string>
+    <string name="signature_pencil">పెన్సిల్</string>
+    <string name="signature_pen">పేన</string>
+    <string name="signature_marker">మార్కర్</string>
+    <string name="signature_size">స్ట్రోక్ పరిమాణం</string>
+    <string name="signature_empty">దయచేసి ముందుగా సంతకాన్ని జోడించండి</string>
+    <string name="signature_place">సంతకం పెట్టండి</string>
+    <string name="signature_place_on_page">పేజీలో సంతకాన్ని ఉంచండి</string>
+    <string name="signature_apply">దరఖాస్తు చేసుకోండి</string>
+    <string name="signature_applied">సంతకం వర్తింపజేయబడింది</string>
+    <string name="signature_failed">సంతకాన్ని వర్తింపజేయడంలో విఫలమైంది</string>
+    <string name="print_pdf">PDFని ముద్రించండి</string>
+    <string name="page_of">పేజీ %1$d / %2$d</string>
+    <string name="crop_page">పేజీని కత్తిరించండి</string>
+    <string name="crop_failed">ఈ పేజీని కత్తిరించడం సాధ్యం కాలేదు</string>
+    <string name="support_last_image">చివరిగా సంగ్రహించిన చిత్రంతో సమస్యను నివేదించండి</string>
+    <string name="turn_off_torch">టార్చ్ ఆఫ్ చేయండి</string>
+    <string name="turn_on_torch">టార్చ్ ఆన్ చేయండి</string>
+    <string name="unknown_size">తెలియని పరిమాణం</string>
+    <string name="version">వెర్షన్</string>
+    <string name="view_full_list">పూర్తి జాబితాను వీక్షించండి</string>
+    <string name="view_the_full_license">పూర్తి లైసెన్స్‌ని వీక్షించండి</string>
+    <string name="yes">అవును</string>
+    <plurals name="files_saved_to">
+        <item quantity="one">%2$s %3$sకి సేవ్ చేయబడింది</item>
+        <item quantity="other">%1$d ఫైల్‌లు %3$sకి సేవ్ చేయబడ్డాయి</item>
+    </plurals>
+    <plurals name="page_count">
+        <item quantity="one">%d పేజీ</item>
+        <item quantity="other">%d పేజీలు</item>
+    </plurals>
+    <plurals name="document_count">
+        <item quantity="one">%d పత్రం</item>
+        <item quantity="other">%d పత్రాలు</item>
+    </plurals>
+    <string-array name="greeting_variants">
+        <item>స్కాన్ చేయడానికి సిద్ధంగా ఉన్నారా?</item>
+        <item>మీ పత్రాలను డిజిటలైజ్ చేద్దాం</item>
+        <item>ముఖ్యమైనదాన్ని డిజిటలైజ్ చేయండి</item>
+        <item>మీ స్కానర్ సిద్ధంగా ఉంది</item>
+        <item>స్కాన్ చేసి సురక్షితంగా నిల్వ చేయండి</item>
+        <item>ఇప్పుడు మీ ID రుజువును స్కాన్ చేయండి</item>
+        <item>ఈరోజు ID రుజువును స్కాన్ చేయండి</item>
+        <item>మీ ID రుజువును సురక్షితంగా ఉంచండి</item>
+        <item>ID రుజువును శోధించగలిగేలా చేయండి</item>
+        <item>ID రుజువును క్లీన్ PDFగా మార్చండి</item>
+        <item>ID రుజువును అధిక నాణ్యతతో ఎగుమతి చేయండి</item>
+        <item>ఒకే ట్యాప్‌లో ID రుజువును షేర్ చేయండి</item>
+        <item>ID రుజువును ఆఫ్‌లైన్‌లో మరియు ప్రైవేట్‌గా నిల్వ చేయండి</item>
+        <item>వేగవంతమైన శోధన కోసం ID రుజువును సిద్ధంగా ఉంచండి</item>
+        <item>మీ ఫోల్డర్‌లలో ID రుజువును నిర్వహించండి</item>
+        <item>శీఘ్ర ప్రాప్యత కోసం ID రుజువును స్కాన్ చేయండి</item>
+        <item>ID రుజువును పదునైన స్పష్టతతో సంగ్రహించండి</item>
+        <item>మీ రికార్డుల కోసం ID రుజువును డిజిటలైజ్ చేయండి</item>
+        <item>ID రుజువును మీ ఖజానాలో సేవ్ చేయండి</item>
+        <item>ఈ పరికరంలో ID రుజువును రక్షించండి</item>
+        <item>మీ ID రుజువును ఇప్పుడు డిజిటలైజ్ చేయండి</item>
+        <item>ఈరోజే ID రుజువును డిజిటలైజ్ చేయండి</item>
+        <item>ఇప్పుడు మీ ID రుజువును సురక్షితంగా ఉంచండి</item>
+        <item>ఈరోజే ID రుజువును భద్రపరచండి</item>
+        <item>ఇప్పుడు మీ ID రుజువును ఆర్కైవ్ చేయండి</item>
+    </string-array>
+</resources>

@@ -1,0 +1,248 @@
+<resources>
+    <string name="about">बद्दल</string>
+    <string name="add_page">पृष्ठ जोडा</string>
+    <string name="app_name">भारतस्कॅन</string>
+    <string name="app_tagline">तुमचे डॉक्स, डिजिटल केले</string>
+    <string name="about_tagline">तुमचा स्वतःचा हुशार दस्तऐवज स्कॅनर</string>
+    <string name="your_digital_locker">तुमची कागदपत्रေ डिजीटल केली</string>
+    <string name="secure_document_archival">सुरक्षित दस्तऐवज संग्रहण</string>
+    <string name="scan_now">आता स्कॅन करा</string>
+    <string name="quick_folders">द्रुत फिल्टर</string>
+    <string name="view_all">सर्व पहा</string>
+    <string name="all">सर्व</string>
+    <string name="recent_scans">अलीकडील स्कॅन</string>
+    <string name="recently_added">अलीकडे जोडले</string>
+    <string name="verified">सत्यापित</string>
+    <string name="secure_private_title">सुरक्षित आणि खाजगी</string>
+    <string name="secure_private_body">तुमचे दस्तऐवज तुमच्या स्पष्ट परवानगीशिवाय तुमचे डिव्हाइस कधीही सोडत नाहीत. डीफॉल्टनुसार स्थानिक एन्क्रिप्शन.</string>
+    <string name="creator_title">निर्माता</string>
+    <string name="creator_name">अहान सरदार</string>
+    <string name="creator_email">ahansardarvis@gmail.com</string>
+    <string name="creator_linked_profile">लिंक केलेले प्रोफाइल</string>
+    <string name="creator_linked_label">linkedin.com/in/ahansardar</string>
+    <string name="creator_linked_url">https://linkedin.com/in/ahansardar</string>
+    <string name="creator_github_profile">GitHub प्रोफाइल</string>
+    <string name="creator_github_label">github.com/ahansardar</string>
+    <string name="creator_github_url">https://github.com/ahansardar</string>
+    <string name="report_errors_title">त्रुटींची तक्रार कशी करावी</string>
+    <string name="report_errors_body">समर्थन ईमेलवर स्क्रीनशॉटसह संक्षिप्त वर्णन पाठवा.</string>
+    <string name="save_logs">नोंदी जतन करा</string>
+    <string name="loading_bharatscan">भारतस्कॅन लोड करत आहे...</string>
+    <string name="securing_documents">तुमची कागदपत्रे सुरक्षित करणे</string>
+    <string name="about_version_display">v1.0.0</string>
+    <string name="pending">प्रलंबित</string>
+    <string name="aadhaar">आधार</string>
+    <string name="pan_card">पॅन कार्ड</string>
+    <string name="id_proofs">आयडी पुरावे</string>
+    <string name="education">शिक्षण</string>
+    <string name="education_subtitle">पदवी आणि प्रमाणपत्रे</string>
+    <string name="other">इतर</string>
+    <string name="search_documents">कागదपत्रे शोधा</string>
+    <string name="search_within_documents">कागదपत्रांमध्ये शोधा...</string>
+    <string name="scanning_text">मजकूरासाठी स्कॅन करत आहे...</string>
+    <string name="export_settings">सेटिंग्ज निर्यात करा</string>
+    <string name="include_watermark">वॉटरमार्क समाविष्ट करा</string>
+    <string name="include_watermark_desc">निर्यात केलेल्या दस्तऐवजावर वॉटरमार्क लागू करा.</string>
+    <string name="custom_watermark">सानुकूल वॉटरमार्क</string>
+    <string name="password_protection">पासवर्ड संरक्षण</string>
+    <string name="password_protection_desc">ही PDF उघडण्यासाठी पासवर्ड आवश्यक आहे.</string>
+    <string name="password_label">पासवर्ड</string>
+    <string name="password_strength">सामर्थ्य: %1$s</string>
+    <string name="password_strength_weak">कमकुवत</string>
+    <string name="password_strength_medium">मध्यम</string>
+    <string name="password_strength_strong">मजबूत</string>
+    <string name="password_required">कृपया एक मजबूत पासवर्ड प्रविष्ट करा.</string>
+    <string name="pdf_password_title">पासवर्ड आवश्यक आहे</string>
+    <string name="pdf_password_message">ही PDF संरक्षित आहे. ते उघडण्यासाठी पासवर्ड एंटर करा.</string>
+    <string name="pdf_password_incorrect">चुकीचा पासवर्ड. कृपया पुन्हा प्रयत्न करा.</string>
+    <string name="pdf_password_opening">उघडत आहे…</string>
+    <string name="pdf_password_failed">ही PDF उघडण्यात अक्षम.</string>
+    <string name="select_file_format">फाइल स्वरूप निवडा</string>
+    <string name="export_quality">निर्यात गुणवत्ता</string>
+    <string name="quality_high">उच्च (300 DPI)</string>
+    <string name="quality_standard">मानक</string>
+    <string name="quality_low">कमी</string>
+    <string name="export_portal">पोर्टल निर्यात करा</string>
+    <string name="finalize_document">तुमचे दस्तऐवज अंतिम करा</string>
+    <string name="export_success_title_saved">दस्तऐवज यशस्वीरित्या जतन केले!</string>
+    <string name="export_success_title_shared">दस्तऐवज यशस्वीरित्या सामायिक केले!</string>
+    <string name="export_success_available_in">आता तुमच्या मध्ये उपलब्ध आहे</string>
+    <string name="export_success_view_document">दस्तऐवज पहा</string>
+    <string name="export_success_go_home">घरी जा</string>
+    <string name="export_success_size">आकार</string>
+    <string name="export_success_format">स्वरूप</string>
+    <string name="export_success_security">सुरक्षा</string>
+    <string name="export_success_encrypted">एनक्रिप्टेड</string>
+    <string name="export_success_format_pdf">PDF</string>
+    <string name="export_success_format_jpeg">JPEG</string>
+    <string name="made_with_love_india">भारतात प्रेमाने बनवले</string>
+    <string name="export_success_shared_message">यशस्वीरित्या शेअर केले आहे.</string>
+    <string name="no_recent_scans">अद्याप कोणतेही अलीकडील स्कॅन नाहीत</string>
+    <string name="no_results">कोणतेही जुळणारे दस्तऐवज नाहीत</string>
+    <string name="clear_filter">फिल्टर साफ करा</string>
+    <string name="save_category_title">श्रेणीमध्ये जतन करा</string>
+    <string name="save_category_prompt">या दस्तऐवजासाठी श्रेणी निवडा.</string>
+    <string name="custom_category_hint">श्रेणीचे नाव प्रविष्ट करा</string>
+    <string name="search_title">दस्तऐवज शोधा</string>
+    <string name="filters_title">फिल्टर</string>
+    <string name="good_morning">शुभ सकाळ</string>
+    <string name="good_afternoon">शुभ दुपार</string>
+    <string name="good_evening">शुभ संध्याकाळ</string>
+    <string name="good_night">शुभ रात्री</string>
+    <string name="digitizing_bharat">दस्तऐवजांचे डिजिटाइझिंग</string>
+    <string name="scan_mode_document">दस्तऐवज</string>
+    <string name="scan_mode_id_card">ओळखपत्र</string>
+    <string name="scan_mode_book">पुस्तक</string>
+    <string name="home_title">घर</string>
+    <string name="documents">कागదपत्रे</string>
+    <string name="document">दस्तऐवज</string>
+    <string name="back">मागे</string>
+    <string name="camera_permission_denied">कॅमेरा परवानगी नाकारली</string>
+    <string name="camera_permission_rationale">दस्तऐवज स्कॅन करण्यासाठी ॲपला कॅमेरा प्रवेश आवश्यक आहे. कॅप्चر केलेल्या प्रतिमा केवळ या डिव्हाइसवर संग्रहित केल्या जातात आणि आपण वर्तमान दस्तऐवज बंद केल्यावर हटविले जातील.</string>
+    <string name="cancel">रद्द करा</string>
+    <string name="change_directory">फोल्डर बदला</string>
+    <string name="clear_text">मजकूर साफ करा</string>
+    <string name="clear">साफ</string>
+    <string name="contact">संपर्क करा</string>
+    <string name="copied_logs">लॉग क्लिपबोर्डवर कॉपी केले</string>
+    <string name="copy_logs">नोंदी कॉपी करा</string>
+    <string name="creating_export">निर्यात तयार करत आहे...</string>
+    <string name="delete_page">पृष्ठ हटवा</string>
+    <string name="delete_document">हटवा</string>
+    <string name="delete_document_title">दस्तऐवज हटवा</string>
+    <string name="delete_document_warning">तुम्हाला हा दस्तऐवज हटवायचा आहे का?</string>
+    <string name="edit">संपादित करा</string>
+    <string name="delete_page_warning">तुम्हाला हे पान हटवायचे आहे का?</string>
+    <string name="developer">विकसक</string>
+    <string name="discard_scan">स्कॅन टाकून द्या</string>
+    <string name="download_dirname">डाउनलोड</string>
+    <string name="end_scan">स्कॅन समाप्त करा</string>
+    <string name="error">त्रुटी: %1$s</string>
+    <string name="error_context_folder">फोल्डर निर्यात करा: %1$s</string>
+    <string name="error_context_provider">प्रदाता: %1$s</string>
+    <string name="error_export_dir_permission_lost">निवडलेले निर्यात फोल्डर यापुढे प्रवेशयोग्य नाही. कृपया दुसरे फोल्डर निवडा.</string>
+    <string name="error_file_picker_launch" translatable="false">Failed to launch system file picker on this device</string>
+    <string name="error_file_picker_result" translatable="false">Failed to set export directory</string>
+    <string name="error_no_app">ही फाइल उघडण्यासाठी कोणतेही ॲप आढळले नाही</string>
+    <string name="error_no_document">कोणताही दस्तऐवज आढळला नाही</string>
+    <string name="error_save">फाइल सेव्ह करण्यात अयशस्वी</string>
+    <string name="export">निर्यात करा</string>
+    <string name="export_as">%1$s म्हणून निर्यात करा</string>
+    <string name="export_directory">फोल्डर निर्यात करा</string>
+    <string name="export_folder_permission_lost">फोल्डर प्रवेश गमावला</string>
+    <string name="export_format">निर्यात स्वरूप</string>
+    <string name="export_quality_low">कमी</string>
+    <string name="export_quality_balanced">समतोल</string>
+    <string name="export_quality_high">उच्च</string>
+    <string name="file_size">फाइल आकार: %1$s</string>
+    <string name="file_size_total">एकूण आकार: %1$s</string>
+    <string name="filename">फाइलनाव</string>
+    <string name="grant_permission">परवानगी द्या</string>
+    <string name="last_saved_pdf_files">या डिव्हाइसवर अलीकडील पीडीएफ जतन केले:</string>
+    <string name="libraries">लायब्ररी</string>
+    <string name="libraries_open_source">मुक्त-स्रोत लायब्ररी</string>
+    <string name="license">परवाना</string>
+    <string name="licensed_under">हा अनुप्रयोग GNU जनरल पब्लिक लायسन्स v3.0 अंतर्गत परवानाकृत आहे.</string>
+    <string name="menu">मेनू</string>
+    <string name="new_document_warning">वर्तमान स्कॅन गमावले जाईल. तुम्हाला सुरू ठेवायचे आहे का?</string>
+    <string name="open">उघडा</string>
+    <string name="open_file">फाइल उघडा</string>
+    <string name="reset_to_default">डीफॉल्टवर रीसेट करा</string>
+    <string name="resume">पुन्हा सुरू करा</string>
+    <string name="rotate_left">डावीकडे फिरवा</string>
+    <string name="rotate_right">उजवीकडे फिरवा</string>
+    <string name="save">जतन करा</string>
+    <string name="scan_button">नवीन स्कॅन</string>
+    <string name="scanner">स्कॅनर</string>
+    <string name="scan_in_progress">स्कॅन प्रगतीपथावर आहे</string>
+    <string name="security">सुरक्षा</string>
+    <string name="security_description">स्कॅन केलेल्या फायली उघडण्यासाठी बायोमेट्रिक्स किंवा डिव्हाइस पासकोड आवश्यक आहे.</string>
+    <string name="security_unlock_title">फाइल्स अनलॉक करा</string>
+    <string name="security_unlock_subtitle">सुरू ठेवण्यासाठी बायोमेट्रिक्स किंवा डिव्हाइस पासकोड वापरा.</string>
+    <string name="security_unavailable">डिव्हाइस सुरक्षा अनुपलब्ध. सत्यापनाशिवाय फाइल उघडत आहे.</string>
+    <string name="security_status">सुरक्षा स्थिती</string>
+    <string name="security_encrypted">256-बिट एनक्रिप्टेड</string>
+    <string name="language_title">भाषा</string>
+    <string name="language_english_current">इंग्रजी</string>
+    <string name="language_match_device">डिव्हाइसशी जुळवा</string>
+    <string name="language_hindi">हिंदी</string>
+    <string name="language_bangla">बांगला</string>
+    <string name="language_telugu">తేలుగు</string>
+    <string name="language_marathi">मराठी</string>
+    <string name="language_tamil">तमिळ</string>
+    <string name="language_urdu">उर्दू</string>
+    <string name="language_gujarati">गुजराती</string>
+    <string name="language_kannada">कन्नड</string>
+    <string name="language_malayalam">मल्याळम</string>
+    <string name="language_odia">ओडिया</string>
+    <string name="language_punjabi">पंजाबी</string>
+    <string name="settings">सेटिंग्ज</string>
+    <string name="share">शेअर करा</string>
+    <string name="share_document">दस्तऐवज साమాयिक करा</string>
+    <string name="storage_permission_denied">फाइल जतन करू शकत नाही: परवानगी नाकारली गेली</string>
+    <string name="support">सपोर्ट</string>
+    <string name="scanned_unknown">नुकतेच स्कॅन केले</string>
+    <string name="sign">सही करा</string>
+    <string name="signature_title">स्वाक्षरी</string>
+    <string name="signature_pencil">पेन्सिल</string>
+    <string name="signature_pen">पेन</string>
+    <string name="signature_marker">मार्कर</string>
+    <string name="signature_size">स्ट्रोक आकार</string>
+    <string name="signature_empty">कृपया प्रथम स्वाक्षरी जोडा</string>
+    <string name="signature_place">स्वाक्षरी ठेवा</string>
+    <string name="signature_place_on_page">पानावर सही ठेवा</string>
+    <string name="signature_apply">अर्ज करा</string>
+    <string name="signature_applied">स्वाक्षरी लागू केली</string>
+    <string name="signature_failed">स्वाक्षरी लागू करण्यात अयशस्वी</string>
+    <string name="print_pdf">PDF प्रिंट करा</string>
+    <string name="page_of">पृष्ठ %1$d / %2$d</string>
+    <string name="crop_page">क्रॉप पृष्ठ</string>
+    <string name="crop_failed">हे पृष्ठ क्रॉप करण्यात अक्षम</string>
+    <string name="support_last_image">शेवटच्या कॅप्चर केलेल्या प्रतिमेसह समस्या नोंदवा</string>
+    <string name="turn_off_torch">टॉर्च बंद करा</string>
+    <string name="turn_on_torch">टॉर्च चालू करा</string>
+    <string name="unknown_size">अज्ञात आकार</string>
+    <string name="version">आवृत्ती</string>
+    <string name="view_full_list">संपूर्ण यादी पहा</string>
+    <string name="view_the_full_license">संपूर्ण परवाना पहा</string>
+    <string name="yes">होय</string>
+    <plurals name="files_saved_to">
+        <item quantity="one">%2$s %3$s वर जतन केले</item>
+        <item quantity="other">%1$d फायली %3$s मध्ये जतन केल्या</item>
+        </plurals>
+    <plurals name="page_count">
+        <item quantity="one">%d पृष्ठ</item>
+        <item quantity="other">%d पृष्ठे</item>
+        </plurals>
+    <plurals name="document_count">
+        <item quantity="one">%d दस्तऐवज</item>
+        <item quantity="other">%d दस्तऐवज</item>
+        </plurals>
+    <string-array name="greeting_variants">
+        <item>स्कॅन करण्यास तयार आहात?</item>
+        <item>तुमची कागदपत्रे डिजीटल करूया</item>
+        <item>काहीतरी महत्वाचे डिजिटल करा</item>
+        <item>तुमचे स्कॅनर तयार आहे</item>
+        <item>स्कॅन करा आणि सुरक्षितपणे साठवा</item>
+        <item>आता तुमचा आयडी प्रूफ स्कॅन करा</item>
+        <item>आजच ओळखपत्र स्कॅन करा</item>
+        <item>तुमचा ओळखपत्र सुरक्षित ठेवा</item>
+        <item>ओळखपत्र शोधण्यायोग्य बनवा</item>
+        <item>आयडी प्रूफ स्वच्छ पीडीएफमध्ये बदला</item>
+        <item>आयडी प्रूफ उच्च गुणवत्तेत निर्यात करा</item>
+        <item>एకా टॅपमध्ये आयडी प्रूफ शेअर करा</item>
+        <item>आयडी पुरावा ऑफलाइन आणि खाजगी संग्रहित करा</item>
+        <item>जलद शोधासाठी ओळखपत्र तयार ठेवा</item>
+        <item>तुमच्या फोल्डरमध्ये आयडी प्रूफ व्यवस्थित करा</item>
+        <item>द्रुत प्रवेशासाठी आयडी प्रूफ स्कॅन करा</item>
+        <item>स्पष्ट स्पष्टतेसह आयडी प्रूफ कॅप्चर करा</item>
+        <item>तुमच्या रेकॉर्डसाठी आयडी प्रूफ डिजीटल करा</item>
+        <item>आयडी प्रूफ तुमच्या तिजोरीत जतन करा</item>
+        <item>या डिव्हाइसवर आयडी प्रूफ संरक्षित करा</item>
+        <item>तुमचा आयडी प्रूफ आत्ताच डिजीटल करा</item>
+        <item>आजच आयडी प्रूफ डिजीटल करा</item>
+        <item>तुमचा आयडी प्रूफ आता सुरक्षित करा</item>
+        <item>आजच ओळखपत्र सुरक्षित करा</item>
+        <item>तुमचा आयडी पुरावा आता संग्रहित करा</item>
+        </string-array>
+    </resources>
