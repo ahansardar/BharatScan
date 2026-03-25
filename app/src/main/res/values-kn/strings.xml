@@ -1,9 +1,11 @@
-<resources>
+﻿<resources>
     <string name="about">ಬಗ್ಗೆ</string>
     <string name="add_page">ಪುಟವನ್ನು ಸೇರಿಸಿ</string>
     <string name="app_name">ಭಾರತ್ ಸ್ಕ್ಯಾನ್</string>
-    <string name="app_tagline">ನಿಮ್ಮ ಡಾಕ್ಸ್, ಡಿಜಿಟಲ್ ಮಾಡಲಾಗಿದೆ</string>
-    <string name="about_tagline">ನಿಮ್ಮ ಸ್ವಂತ ಬುದ್ಧಿವಂತ ಡಾಕ್ಯುಮೆಂಟ್ ಸ್ಕ್ಯಾನರ್</string>
+    <string name="app_name_brand">ಭಾರತ್</string>
+    <string name="app_name_scan">ಸ್ಕ್ಯಾನ್</string>
+    <string name="app_tagline">ಭಾರತದ ಸ್ವಂತ ಬುದ್ಧಿವಂತ ಡಾಕ್ಯುಮೆಂಟ್ ಸ್ಕ್ಯಾನರ್</string>
+    <string name="about_tagline">ಭಾರತದ ಸ್ವಂತ ಬುದ್ಧಿವಂತ ಡಾಕ್ಯುಮೆಂಟ್ ಸ್ಕ್ಯಾನರ್</string>
     <string name="your_digital_locker">ನಿಮ್ಮ ದಾಖಲೆಗಳನ್ನು ಡಿಜಿಟೈಸ್ ಮಾಡಲಾಗಿದೆ</string>
     <string name="secure_document_archival">ಸುರಕ್ಷಿತ ಡಾಕ್ಯುಮೆಂಟ್ ಆರ್ಕೈವಲ್</string>
     <string name="scan_now">ಈಗ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
@@ -27,7 +29,7 @@
     <string name="report_errors_title">ದೋಷಗಳನ್ನು ಹೇಗೆ ವರದಿ ಮಾಡುವುದು</string>
     <string name="report_errors_body">ಬೆಂಬಲ ಇಮೇಲ್‌ಗೆ ಸ್ಕ್ರೀನ್‌ಶಾಟ್‌ನೊಂದಿಗೆ ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆಯನ್ನು ಕಳುಹಿಸಿ.</string>
     <string name="save_logs">ದಾಖಲೆಗಳನ್ನು ಉಳಿಸಿ</string>
-    <string name="loading_bharatscan">BharatScan ಲೋಡ್ ಆಗುತ್ತಿದೆ...</string>
+    <string name="loading_bharatscan">%1$s ಲೋಡ್ ಆಗುತ್ತಿದೆ...</string>
     <string name="securing_documents">ನಿಮ್ಮ ದಾಖಲೆಗಳನ್ನು ಸುರಕ್ಷಿತಗೊಳಿಸುವುದು</string>
     <string name="about_version_display">v1.0.0</string>
     <string name="pending">ಬಾಕಿಯಿದೆ</string>
@@ -245,4 +247,33 @@
         <item quantity="one">%d ಡಾಕ್ಯುಮೆಂಟ್</item>
         <item quantity="other">%d ದಾಖಲೆಗಳು</item>
         </plurals>
+    <string name="update_title">ಅಪ್‌ಡೇಟ್ಸ್</string>
+    <string name="update_check_startup">ಆರಂಭದಲ್ಲಿ ಪರಿಶೀಲಿಸಿ</string>
+    <string name="update_check_startup_desc">ಆ್ಯಪ್ ತೆರೆದಾಗ ಅಪ್‌ಡೇಟ್ಸ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪರಿಶೀಲಿಸಿ.</string>
+    <string name="check_for_updates">ಅಪ್‌ಡೇಟ್ಸ್ ಪರಿಶೀಲಿಸಿ</string>
+    <string name="checking_updates">ಅಪ್‌ಡೇಟ್ಸ್ ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ…</string>
+    <string name="update_check_hint">ಹೊಸ ತಿದ್ದುಪಡಿಗಳು ಮತ್ತು ವೈಶಿಷ್ಟ್ಯಗಳೊಂದಿಗೆ ಅಪ್‌ಡೇಟ್ ಆಗಿರಿ.</string>
+    <string name="downloading_update">ಅಪ್‌ಡೇಟ್ ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ…</string>
+    <string name="update_download_failed">ಅಪ್‌ಡೇಟ್ ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <string name="update_available_title">ಅಪ್‌ಡೇಟ್ ಲಭ್ಯವಿದೆ</string>
+    <string name="update_available_message">ಆವೃತ್ತಿ %1$s ಲಭ್ಯವಿದೆ.</string>
+    <string name="update_install">ಅಪ್‌ಡೇಟ್ ಮಾಡಿ</string>
+    <string name="update_later">ನಂತರ</string>
+    <string name="update_release_notes_title">ರಿಲೀಸ್ ನೋಟ್ಸ್</string>
 </resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

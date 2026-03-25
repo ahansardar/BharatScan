@@ -1,9 +1,11 @@
-<resources>
+﻿<resources>
     <string name="about">परिचय</string>
     <string name="add_page">पेज जोड़ें</string>
     <string name="app_name">भारत स्कैन</string>
-    <string name="app_tagline">आपके दस्तावेज़, डिजिटल रूप में</string>
-    <string name="about_tagline">आपका अपना बुद्धिमान दस्तावेज़ स्कैनर</string>
+    <string name="app_name_brand">भारत</string>
+    <string name="app_name_scan">स्कैन</string>
+    <string name="app_tagline">भारत का अपना बुद्धिमान दस्तावेज़ स्कैनर</string>
+    <string name="about_tagline">भारत का अपना बुद्धिमान दस्तावेज़ स्कैनर</string>
     <string name="your_digital_locker">आपके दस्तावेज़ों का डिजिटलीकरण</string>
     <string name="secure_document_archival">सुरक्षित दस्तावेज़ संग्रहण</string>
     <string name="scan_now">स्कैन करें</string>
@@ -27,7 +29,7 @@
     <string name="report_errors_title">त्रुटियाँ कैसे रिपोर्ट करें</string>
     <string name="report_errors_body">संक्षिप्त विवरण और स्क्रीनशॉट सपोर्ट ईमेल पर भेजें।</string>
     <string name="save_logs">लॉग सहेजें</string>
-    <string name="loading_bharatscan">भारत स्कैन लोड हो रहा है...</string>
+    <string name="loading_bharatscan">%1$s लोड हो रहा है...</string>
     <string name="securing_documents">आपके दस्तावेज़ सुरक्षित किए जा रहे हैं</string>
     <string name="about_version_display">v1.0.0</string>
     <string name="pending">लंबित</string>
@@ -245,4 +247,33 @@
         <item quantity="one">%d दस्तावेज़</item>
         <item quantity="other">%d दस्तावेज़</item>
     </plurals>
+    <string name="update_title">अपडेट</string>
+    <string name="update_check_startup">शुरुआत में जांचें</string>
+    <string name="update_check_startup_desc">ऐप खुलते ही अपडेट अपने आप जांचें।</string>
+    <string name="check_for_updates">अपडेट जांचें</string>
+    <string name="checking_updates">अपडेट जांचे जा रहे हैं…</string>
+    <string name="update_check_hint">नवीनतम सुधारों और सुविधाओं के साथ अपडेट रहें।</string>
+    <string name="downloading_update">अपडेट डाउनलोड हो रहा है…</string>
+    <string name="update_download_failed">अपडेट डाउनलोड विफल रहा। कृपया फिर से कोशिश करें।</string>
+    <string name="update_available_title">अपडेट उपलब्ध है</string>
+    <string name="update_available_message">संस्करण %1$s उपलब्ध है।</string>
+    <string name="update_install">अपडेट करें</string>
+    <string name="update_later">बाद में</string>
+    <string name="update_release_notes_title">रिलीज़ नोट्स</string>
 </resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

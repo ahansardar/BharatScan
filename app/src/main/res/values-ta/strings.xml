@@ -1,9 +1,11 @@
-<resources>
+﻿<resources>
     <string name="about">பற்றி</string>
     <string name="add_page">பக்கத்தைச் சேர்</string>
-    <string name="app_name">பாரத்ஸ்கான்</string>
-    <string name="app_tagline">உங்கள் ஆவணம், டிஜிட்டல் செய்யப்பட்டது</string>
-    <string name="about_tagline">உங்கள் சொந்த அறிவார்ந்த ஆவண ஸ்கேனர்</string>
+    <string name="app_name">பாரத் ஸ்கான்</string>
+    <string name="app_name_brand">பாரத்</string>
+    <string name="app_name_scan">ஸ்கான்</string>
+    <string name="app_tagline">இந்தியாவின் சொந்த புத்திசாலி ஆவண ஸ்கேனர்</string>
+    <string name="about_tagline">இந்தியாவின் சொந்த புத்திசாலி ஆவண ஸ்கேனர்</string>
     <string name="your_digital_locker">உங்கள் ஆவணங்கள் டிஜிட்டல் மயமாக்கப்பட்டுள்ளன</string>
     <string name="secure_document_archival">பாதுகாப்பான ஆவணக் காப்பகம்</string>
     <string name="scan_now">இப்போது ஸ்கேன் செய்யவும்</string>
@@ -27,7 +29,7 @@
     <string name="report_errors_title">பிழைகளை எவ்வாறு புகாரளிப்பது</string>
     <string name="report_errors_body">ஆதரவு மின்னஞ்சலுக்கு ஸ்கிரீன்ஷாட்டுடன் சுருக்கமான விளக்கத்தை அனுப்பவும்.</string>
     <string name="save_logs">பதிவுகளை சேமிக்கவும்</string>
-    <string name="loading_bharatscan">பாரத்ஸ்கானை ஏற்றுகிறது...</string>
+    <string name="loading_bharatscan">%1$s ஏற்றுகிறது...</string>
     <string name="securing_documents">உங்கள் ஆவணங்களைப் பாதுகாத்தல்</string>
     <string name="about_version_display">v1.0.0</string>
     <string name="pending">நிலுவையில் உள்ளது</string>
@@ -245,4 +247,33 @@
         <item>இன்றே அடையாளச் சான்றினைப் பாதுகாக்கவும்</item>
         <item>உங்கள் ஐடி ஆதாரத்தை இப்போது காப்பகப்படுத்தவும்</item>
         </string-array>
-    </resources>
+        <string name="update_title">புதுப்பிப்புகள்</string>
+    <string name="update_check_startup">தொடக்கத்தில் சரிபார்க்கவும்</string>
+    <string name="update_check_startup_desc">ஆப் திறக்கும் போது புதுப்பிப்புகளை தானாகச் சரிபார்க்கவும்.</string>
+    <string name="check_for_updates">புதுப்பிப்புகளைச் சரிபார்க்கவும்</string>
+    <string name="checking_updates">புதுப்பிப்புகளைச் சரிபார்க்கிறது…</string>
+    <string name="update_check_hint">புதிய திருத்தங்கள் மற்றும் அம்சங்களுடன் புதுப்பித்து இருக்கவும்.</string>
+    <string name="downloading_update">புதுப்பிப்பு பதிவிறக்கம் ஆகிறது…</string>
+    <string name="update_download_failed">புதுப்பிப்பு பதிவிறக்கம் தோல்வியடைந்தது. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.</string>
+    <string name="update_available_title">புதுப்பிப்பு கிடைக்கிறது</string>
+    <string name="update_available_message">பதிப்பு %1$s கிடைக்கிறது.</string>
+    <string name="update_install">புதுப்பிக்கவும்</string>
+    <string name="update_later">பின்னர்</string>
+    <string name="update_release_notes_title">வெளியீட்டு குறிப்புகள்</string>
+</resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

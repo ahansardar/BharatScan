@@ -1,9 +1,11 @@
-<resources>
+﻿<resources>
     <string name="about">ବିଷୟରେ</string>
     <string name="add_page">ପୃଷ୍ଠା ଯୋଡନ୍ତୁ |</string>
-    <string name="app_name">BharatScan</string>
-    <string name="app_tagline">ତୁମର ଡକସ୍, ଡିଜିଟାଲ୍ ତିଆରି |</string>
-    <string name="about_tagline">ଆପଣଙ୍କର ନିଜର ବୁଦ୍ଧିମାନ ଡକ୍ୟୁମେଣ୍ଟ୍ ସ୍କାନର୍ |</string>
+    <string name="app_name">ଭାରତ ସ୍କାନ</string>
+    <string name="app_name_brand">ଭାରତ</string>
+    <string name="app_name_scan">ସ୍କାନ</string>
+    <string name="app_tagline">ଭାରତର ନିଜସ୍ୱ ବୁଦ୍ଧିମାନ ଡକ୍ୟୁମେଣ୍ଟ ସ୍କାନର୍</string>
+    <string name="about_tagline">ଭାରତର ନିଜସ୍ୱ ବୁଦ୍ଧିମାନ ଡକ୍ୟୁମେଣ୍ଟ ସ୍କାନର୍</string>
     <string name="your_digital_locker">ତୁମର ଡକ୍ୟୁମେଣ୍ଟ୍ ଡିଜିଟାଇଜ୍ ହୋଇଛି |</string>
     <string name="secure_document_archival">ସୁରକ୍ଷିତ ଡକ୍ୟୁମେଣ୍ଟ୍ ଅଭିଲେଖାଗାର |</string>
     <string name="scan_now">ବର୍ତ୍ତମାନ ସ୍କାନ୍ କରନ୍ତୁ |</string>
@@ -27,7 +29,7 @@
     <string name="report_errors_title">ତ୍ରୁଟିଗୁଡିକ କିପରି ରିପୋର୍ଟ କରିବେ |</string>
     <string name="report_errors_body">ସମର୍ଥନ ଇମେଲକୁ ସ୍କ୍ରିନସଟ ସହିତ ଏକ ସଂକ୍ଷିପ୍ତ ବର୍ଣ୍ଣନା ପଠାନ୍ତୁ |</string>
     <string name="save_logs">ଲଗ୍ ସେଭ୍ କରନ୍ତୁ |</string>
-    <string name="loading_bharatscan">ଭାରତସ୍କାନ୍ ଲୋଡ୍ କରୁଛି ...</string>
+    <string name="loading_bharatscan">%1$s ଲୋଡ୍ କରୁଛି ...</string>
     <string name="securing_documents">ଆପଣଙ୍କର ଡକ୍ୟୁମେଣ୍ଟ୍ ସୁରକ୍ଷିତ କରିବା |</string>
     <string name="about_version_display">v1.0.0</string>
     <string name="pending">ବିଚାରାଧୀନ ଅଛି</string>
@@ -245,4 +247,33 @@
         <item quantity="one">%d ଡକ୍ୟୁମେଣ୍ଟ୍ |</item>
         <item quantity="other">%d ଡକ୍ୟୁମେଣ୍ଟ୍ |</item>
     </plurals>
+    <string name="update_title">ଅପଡେଟ୍</string>
+    <string name="update_check_startup">ଆରମ୍ଭରେ ଯାଞ୍ଚ କରନ୍ତୁ</string>
+    <string name="update_check_startup_desc">ଆପ୍ ଖୋଲିଲେ ଅପଡେଟ୍ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ଯାଞ୍ଚ କରନ୍ତୁ।</string>
+    <string name="check_for_updates">ଅପଡେଟ୍ ପାଇଁ ଯାଞ୍ଚ କରନ୍ତୁ</string>
+    <string name="checking_updates">ଅପଡେଟ୍ ଯାଞ୍ଚ ହେଉଛି…</string>
+    <string name="update_check_hint">ନୂତନ ସୁଧାର ଏବଂ ବୈଶିଷ୍ଟ୍ୟ ସହିତ ସଦା ଅପଡେଟ୍ ରୁହନ୍ତୁ।</string>
+    <string name="downloading_update">ଅପଡେଟ୍ ଡାଉନ୍‌ଲୋଡ୍ ହେଉଛି…</string>
+    <string name="update_download_failed">ଅପଡେଟ୍ ଡାଉନ୍‌ଲୋଡ୍ ବିଫଳ ହେଲା। ଦୟାକରି ପୁନଃ ଚେଷ୍ଟା କରନ୍ତୁ।</string>
+    <string name="update_available_title">ଅପଡେଟ୍ ଉପଲବ୍ଧ</string>
+    <string name="update_available_message">ସଂସ୍କରଣ %1$s ଉପଲବ୍ଧ।</string>
+    <string name="update_install">ଅପଡେଟ୍ କରନ୍ତୁ</string>
+    <string name="update_later">ପରେ</string>
+    <string name="update_release_notes_title">ରିଲିଜ୍ ନୋଟ୍</string>
 </resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

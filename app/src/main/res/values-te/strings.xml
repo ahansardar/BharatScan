@@ -1,9 +1,11 @@
-<resources>
+﻿<resources>
     <string name="about">గురించి</string>
     <string name="add_page">పేజీని జోడించండి</string>
     <string name="app_name">భారత్ స్కాన్</string>
-    <string name="app_tagline">మీ డాక్స్, డిజిటల్ మేడ్</string>
-    <string name="about_tagline">మీ స్వంత ఇంటెలిజెంట్ డాక్యుమెంట్ స్కానర్</string>
+    <string name="app_name_brand">భారత్</string>
+    <string name="app_name_scan">స్కాన్</string>
+    <string name="app_tagline">భారతదేశపు స్వంత తెలివైన డాక్యుమెంట్ స్కానర్</string>
+    <string name="about_tagline">భారతదేశపు స్వంత తెలివైన డాక్యుమెంట్ స్కానర్</string>
     <string name="your_digital_locker">మీ పత్రాలు డిజిటలైజ్ చేయబడ్డాయి</string>
     <string name="secure_document_archival">సురక్షిత డాక్యుమెంట్ ఆర్కైవల్</string>
     <string name="scan_now">ఇప్పుడు స్కాన్ చేయండి</string>
@@ -27,7 +29,7 @@
     <string name="report_errors_title">లోపాలను ఎలా నివేదించాలి</string>
     <string name="report_errors_body">మద్దతు ఇమెయిల్‌కు స్క్రీన్‌షాట్‌తో సంక్షిప్త వివరణను పంపండి.</string>
     <string name="save_logs">లాగ్‌లను సేవ్ చేయండి</string>
-    <string name="loading_bharatscan">BharatScan లోడ్ అవుతోంది...</string>
+    <string name="loading_bharatscan">%1$s లోడ్ అవుతోంది...</string>
     <string name="securing_documents">మీ పత్రాలను భద్రపరచడం</string>
     <string name="about_version_display">v1.0.0</string>
     <string name="pending">పెండింగ్‌లో ఉంది</string>
@@ -245,4 +247,33 @@
         <item>ఈరోజే ID రుజువును భద్రపరచండి</item>
         <item>ఇప్పుడు మీ ID రుజువును ఆర్కైవ్ చేయండి</item>
     </string-array>
+    <string name="update_title">అప్‌డేట్లు</string>
+    <string name="update_check_startup">ప్రారంభంలో తనిఖీ చేయి</string>
+    <string name="update_check_startup_desc">యాప్ తెరిచినప్పుడు అప్‌డేట్‌లను స్వయంచాలకంగా తనిఖీ చేయి.</string>
+    <string name="check_for_updates">అప్‌డేట్‌ల కోసం తనిఖీ చేయి</string>
+    <string name="checking_updates">అప్‌డేట్‌లను తనిఖీ చేస్తున్నాం…</string>
+    <string name="update_check_hint">తాజా పరిష్కారాలు మరియు ఫీచర్లతో తాజా ఉండండి.</string>
+    <string name="downloading_update">అప్‌డేట్ డౌన్‌లోడ్ అవుతోంది…</string>
+    <string name="update_download_failed">అప్‌డేట్ డౌన్‌లోడ్ విఫలమైంది. దయచేసి మళ్లీ ప్రయత్నించండి.</string>
+    <string name="update_available_title">అప్‌డేట్ అందుబాటులో ఉంది</string>
+    <string name="update_available_message">వర్షన్ %1$s అందుబాటులో ఉంది.</string>
+    <string name="update_install">అప్‌డేట్ చేయండి</string>
+    <string name="update_later">తరువాత</string>
+    <string name="update_release_notes_title">రిలీజ్ నోట్స్</string>
 </resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

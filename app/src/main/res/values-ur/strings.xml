@@ -1,9 +1,11 @@
-<resources>
+﻿<resources>
     <string name="about">کے بارے میں</string>
     <string name="add_page">صفحہ شامل کریں۔</string>
-    <string name="app_name">\????? ?????</string>
-    <string name="app_tagline">آپ کے دستاویزات، ڈیجیٹل بنایا گیا۔</string>
-    <string name="about_tagline">آپ کا اپنا ذہین دستاویز اسکینر</string>
+    <string name="app_name">بھارت اسکین</string>
+    <string name="app_name_brand">بھارت</string>
+    <string name="app_name_scan">اسکین</string>
+    <string name="app_tagline">بھارت کا اپنا ذہین دستاویزی اسکینر</string>
+    <string name="about_tagline">بھارت کا اپنا ذہین دستاویزی اسکینر</string>
     <string name="your_digital_locker">آپ کی دستاویزات کو ڈیجیٹل کیا گیا ہے۔</string>
     <string name="secure_document_archival">محفوظ دستاویز آرکائیو</string>
     <string name="scan_now">ابھی اسکین کریں۔</string>
@@ -27,7 +29,7 @@
     <string name="report_errors_title">غلطیوں کی اطلاع کیسے دیں۔</string>
     <string name="report_errors_body">سپورٹ ای میل پر اسکرین شاٹ کے ساتھ ایک مختصر تفصیل بھیجیں۔</string>
     <string name="save_logs">لاگ محفوظ کریں۔</string>
-    <string name="loading_bharatscan">بھارت اسکین لوڈ ہو رہا ہے...</string>
+    <string name="loading_bharatscan">%1$s لوڈ ہو رہا ہے...</string>
     <string name="securing_documents">اپنے دستاویزات کو محفوظ بنانا</string>
     <string name="about_version_display">v1.0.0</string>
     <string name="pending">زیر التواء</string>
@@ -245,4 +247,33 @@
         <item>آج ہی شناختی ثبوت محفوظ کر لیں۔</item>
         <item>اپنا شناختی ثبوت ابھی محفوظ کریں۔</item>
         </string-array>
-    </resources>
+        <string name="update_title">اپ ڈیٹس</string>
+    <string name="update_check_startup">شروع میں چیک کریں</string>
+    <string name="update_check_startup_desc">ایپ کھلتے ہی اپ ڈیٹس خودکار طور پر چیک کریں۔</string>
+    <string name="check_for_updates">اپ ڈیٹس چیک کریں</string>
+    <string name="checking_updates">اپ ڈیٹس چیک ہو رہے ہیں…</string>
+    <string name="update_check_hint">تازہ ترین اصلاحات اور فیچرز کے ساتھ اپ ڈیٹ رہیں۔</string>
+    <string name="downloading_update">اپ ڈیٹ ڈاؤن لوڈ ہو رہا ہے…</string>
+    <string name="update_download_failed">اپ ڈیٹ ڈاؤن لوڈ ناکام ہوگیا۔ براہ کرم دوبارہ کوشش کریں۔</string>
+    <string name="update_available_title">اپ ڈیٹ دستیاب ہے</string>
+    <string name="update_available_message">ورژن %1$s دستیاب ہے۔</string>
+    <string name="update_install">اپ ڈیٹ کریں</string>
+    <string name="update_later">بعد میں</string>
+    <string name="update_release_notes_title">ریلیز نوٹس</string>
+</resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

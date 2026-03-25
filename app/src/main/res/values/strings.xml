@@ -2,8 +2,10 @@
     <string name="about">About</string>
     <string name="add_page">Add page</string>
     <string name="app_name">BharatScan</string>
-    <string name="app_tagline">Your Docs, Made Digital</string>
-    <string name="about_tagline">Your own intelligent document scanner</string>
+    <string name="app_name_brand">Bharat</string>
+    <string name="app_name_scan">Scan</string>
+    <string name="app_tagline">India\'s own intelligent document scanner</string>
+    <string name="about_tagline">India\'s own intelligent document scanner</string>
     <string name="your_digital_locker">Your documents digitized</string>
     <string name="secure_document_archival">Secure Document Archival</string>
     <string name="scan_now">Scan Now</string>
@@ -27,7 +29,7 @@
     <string name="report_errors_title">How To Report Errors</string>
     <string name="report_errors_body">Send a brief description with a screenshot to the support email.</string>
     <string name="save_logs">Save logs</string>
-    <string name="loading_bharatscan">Loading BharatScan...</string>
+    <string name="loading_bharatscan">Loading %1$s...</string>
     <string name="securing_documents">Securing your documents</string>
     <string name="about_version_display">v1.0.0</string>
     <string name="pending">Pending</string>
@@ -691,9 +693,9 @@
     <string name="update_check_startup">Check at startup</string>
     <string name="update_check_startup_desc">Automatically look for updates when the app opens.</string>
     <string name="check_for_updates">Check for updates</string>
-    <string name="checking_updates">Checking for updates…</string>
+    <string name="checking_updates">Checking for updates?</string>
     <string name="update_check_hint">Stay current with the latest fixes and features.</string>
-    <string name="downloading_update">Downloading update…</string>
+    <string name="downloading_update">Downloading update?</string>
     <string name="update_download_failed">Update download failed. Please try again.</string>
     <string name="update_available_title">Update available</string>
     <string name="update_available_message">Version %1$s is available.</string>

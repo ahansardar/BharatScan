@@ -1,9 +1,11 @@
-<resources>
+﻿<resources>
     <string name="about">વિશે</string>
     <string name="add_page">પૃષ્ઠ ઉમેરો</string>
-    <string name="app_name">ભારતસ્કેન</string>
-    <string name="app_tagline">તમારા દસ્તાવેજ, ડિજિટલ બનાવ્યા</string>
-    <string name="about_tagline">તમારું પોતાનું બુદ્ધિશાળી દસ્તાવેજ સ્કેનર</string>
+    <string name="app_name">ભારત સ્કેન</string>
+    <string name="app_name_brand">ભારત</string>
+    <string name="app_name_scan">સ્કેન</string>
+    <string name="app_tagline">ભારતનો પોતાનો બુદ્ધિશાળી દસ્તાવેજ સ્કેનર</string>
+    <string name="about_tagline">ભારતનો પોતાનો બુદ્ધિશાળી દસ્તાવેજ સ્કેનર</string>
     <string name="your_digital_locker">તમારા દસ્તાવેજો ડિજિટાઇઝ્ડ છે</string>
     <string name="secure_document_archival">સુરક્ષિત દસ્તાવેજ આર્કાઇવલ</string>
     <string name="scan_now">હવે સ્કેન કરો</string>
@@ -27,7 +29,7 @@
     <string name="report_errors_title">ભૂલોની જાણ કેવી રીતે કરવી</string>
     <string name="report_errors_body">સપોર્ટ ઇમેઇલ પર સ્ક્રીનશૉટ સાથે સંક્ષિપ્ત વર્ણન મોકલો.</string>
     <string name="save_logs">લોગ સાચવો</string>
-    <string name="loading_bharatscan">ભારતસ્કેન લોડ કરી રહ્યું છે...</string>
+    <string name="loading_bharatscan">%1$s લોડ કરી રહ્યું છે...</string>
     <string name="securing_documents">તમારા દસ્તાવેજો સુરક્ષિત</string>
     <string name="about_version_display">v1.0.0</string>
     <string name="pending">બાકી છે</string>
@@ -245,4 +247,33 @@
         <item quantity="one">%d દસ્તાવેજ</item>
         <item quantity="other">%d દસ્તાવેજો</item>
         </plurals>
+    <string name="update_title">અપડેટ્સ</string>
+    <string name="update_check_startup">શરૂઆતમાં તપાસો</string>
+    <string name="update_check_startup_desc">એપ ખુલતાંજ અપડેટ્સ આપમેળે તપાસો.</string>
+    <string name="check_for_updates">અપડેટ્સ તપાસો</string>
+    <string name="checking_updates">અપડેટ્સ તપાસી રહ્યાં છે…</string>
+    <string name="update_check_hint">નવીનતમ સુધારા અને સુવિધાઓ સાથે અપડેટ રહો.</string>
+    <string name="downloading_update">અપડેટ ડાઉનલોડ થઈ રહ્યું છે…</string>
+    <string name="update_download_failed">અપડેટ ડાઉનલોડ નિષ્ફળ રહ્યું. કૃપા કરીને ફરી પ્રયાસ કરો.</string>
+    <string name="update_available_title">અપડેટ ઉપલબ્ધ છે</string>
+    <string name="update_available_message">આવૃત્તિ %1$s ઉપલબ્ધ છે.</string>
+    <string name="update_install">અપડેટ કરો</string>
+    <string name="update_later">પછી</string>
+    <string name="update_release_notes_title">રિલીઝ નોટ્સ</string>
 </resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

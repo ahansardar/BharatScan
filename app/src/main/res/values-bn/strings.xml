@@ -1,9 +1,11 @@
-<resources>
+﻿<resources>
     <string name="about">পরিচিতি</string>
     <string name="add_page">পৃষ্ঠা যোগ করুন</string>
     <string name="app_name">ভারত স্ক্যান</string>
-    <string name="app_tagline">আপনার নথি, ডিজিটালভাবে</string>
-    <string name="about_tagline">আপনার নিজস্ব বুদ্ধিমান ডকুমেন্ট স্ক্যানার</string>
+    <string name="app_name_brand">ভারত</string>
+    <string name="app_name_scan">স্ক্যান</string>
+    <string name="app_tagline">ভারতের নিজস্ব বুদ্ধিমান ডকুমেন্ট স্ক্যানার</string>
+    <string name="about_tagline">ভারতের নিজস্ব বুদ্ধিমান ডকুমেন্ট স্ক্যানার</string>
     <string name="your_digital_locker">আপনার নথিপত্র ডিজিটাইজড</string>
     <string name="secure_document_archival">নিরাপদ নথি সংরক্ষণ</string>
     <string name="scan_now">স্ক্যান করুন</string>
@@ -27,7 +29,7 @@
     <string name="report_errors_title">ত্রুটি রিপোর্ট করবেন কীভাবে</string>
     <string name="report_errors_body">সংক্ষিপ্ত বিবরণ ও স্ক্রিনশট সহ সাপোর্ট ইমেলে পাঠান।</string>
     <string name="save_logs">লগ সংরক্ষণ</string>
-    <string name="loading_bharatscan">ভারত স্ক্যান লোড হচ্ছে...</string>
+    <string name="loading_bharatscan">%1$s লোড হচ্ছে...</string>
     <string name="securing_documents">আপনার নথি সুরক্ষিত করা হচ্ছে</string>
     <string name="about_version_display">v1.0.0</string>
     <string name="pending">মুলতুবি</string>
@@ -245,4 +247,33 @@
         <item quantity="one">%d ডকুমেন্ট</item>
         <item quantity="other">%d ডকুমেন্ট</item>
     </plurals>
+    <string name="update_title">আপডেট</string>
+    <string name="update_check_startup">শুরুর সময় পরীক্ষা করুন</string>
+    <string name="update_check_startup_desc">অ্যাপ খোলার সাথে সাথে আপডেট স্বয়ংক্রিয়ভাবে পরীক্ষা করুন।</string>
+    <string name="check_for_updates">আপডেট পরীক্ষা করুন</string>
+    <string name="checking_updates">আপডেট পরীক্ষা করা হচ্ছে…</string>
+    <string name="update_check_hint">সর্বশেষ ফিক্স ও ফিচারের সঙ্গে আপডেট থাকুন।</string>
+    <string name="downloading_update">আপডেট ডাউনলোড হচ্ছে…</string>
+    <string name="update_download_failed">আপডেট ডাউনলোড ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
+    <string name="update_available_title">আপডেট উপলব্ধ</string>
+    <string name="update_available_message">সংস্করণ %1$s উপলব্ধ।</string>
+    <string name="update_install">আপডেট করুন</string>
+    <string name="update_later">পরে</string>
+    <string name="update_release_notes_title">রিলিজ নোট</string>
 </resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

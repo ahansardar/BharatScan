@@ -31,9 +31,10 @@ fun BrandTitle(
 ) {
     val appLocales = AppCompatDelegate.getApplicationLocales()
     val currentLocale = LocalContext.current.resources.configuration.locales[0]
-    val useImageLogo = (appLocales.isEmpty && currentLocale.language == "en") ||
+    val isEnglish = (appLocales.isEmpty && currentLocale.language == "en") ||
         (!appLocales.isEmpty && appLocales[0]?.language == "en")
-    if (useImageLogo) {
+
+    if (isEnglish) {
         Image(
             bitmap = ImageBitmap.imageResource(R.drawable.text),
             contentDescription = stringResource(R.string.app_name),
@@ -42,10 +43,11 @@ fun BrandTitle(
         )
     } else {
         val style = MaterialTheme.typography.titleLarge
-        val localizedName = stringResource(R.string.app_name)
-        val parts = localizedName.split(Regex("\\s+")).filter { it.isNotBlank() }
-        val first = parts.getOrNull(0) ?: localizedName
-        val rest = if (parts.size > 1) parts.drop(1).joinToString(" ") else null
+        val brand = stringResource(R.string.app_name_brand).trim()
+        val scan = stringResource(R.string.app_name_scan).trim()
+        val fallbackName = stringResource(R.string.app_name).trim()
+        val first = if (brand.isNotBlank()) brand else fallbackName
+        val rest = if (scan.isNotBlank() && first != fallbackName) scan else null
         Row(
             modifier = modifier.height(height),
             verticalAlignment = Alignment.CenterVertically

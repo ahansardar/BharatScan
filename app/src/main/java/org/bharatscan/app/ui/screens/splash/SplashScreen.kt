@@ -69,7 +69,10 @@ fun SplashScreen(modifier: Modifier = Modifier) {
             ) {
                 ChakraLoader(modifier = Modifier.size(120.dp))
                 Text(
-                    text = stringResource(R.string.loading_bharatscan),
+                    text = stringResource(
+                        R.string.loading_bharatscan,
+                        stringResource(R.string.app_name)
+                    ),
                     color = BharatNavy,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.SemiBold

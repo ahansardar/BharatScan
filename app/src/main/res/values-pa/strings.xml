@@ -1,9 +1,11 @@
-<resources>
+﻿<resources>
     <string name="about">ਬਾਰੇ</string>
     <string name="add_page">ਪੰਨਾ ਸ਼ਾਮਲ ਕਰੋ</string>
     <string name="app_name">ਭਾਰਤ ਸਕੈਨ</string>
-    <string name="app_tagline">ਤੁਹਾਡਾ ਡੌਕਸ, ਡਿਜੀਟਲ ਬਣਾਇਆ ਗਿਆ</string>
-    <string name="about_tagline">ਤੁਹਾਡਾ ਆਪਣਾ ਬੁੱਧੀਮਾਨ ਦਸਤਾਵੇਜ਼ ਸਕੈਨਰ</string>
+    <string name="app_name_brand">ਭਾਰਤ</string>
+    <string name="app_name_scan">ਸਕੈਨ</string>
+    <string name="app_tagline">ਭਾਰਤ ਦਾ ਆਪਣਾ ਬੁੱਧਿਮਾਨ ਦਸਤਾਵੇਜ਼ ਸਕੈਨਰ</string>
+    <string name="about_tagline">ਭਾਰਤ ਦਾ ਆਪਣਾ ਬੁੱਧਿਮਾਨ ਦਸਤਾਵੇਜ਼ ਸਕੈਨਰ</string>
     <string name="your_digital_locker">ਤੁਹਾਡੇ ਦਸਤਾਵੇਜ਼ ਡਿਜੀਟਾਈਜ਼ ਕੀਤੇ ਗਏ ਹਨ</string>
     <string name="secure_document_archival">ਸੁਰੱਖਿਅਤ ਦਸਤਾਵੇਜ਼ ਆਰਕਾਈਵਲ</string>
     <string name="scan_now">ਹੁਣੇ ਸਕੈਨ ਕਰੋ</string>
@@ -27,7 +29,7 @@
     <string name="report_errors_title">ਗਲਤੀਆਂ ਦੀ ਰਿਪੋਰਟ ਕਿਵੇਂ ਕਰੀਏ</string>
     <string name="report_errors_body">ਸਹਾਇਤਾ ਈਮੇਲ ?ਤੇ ਇੱਕ ਸਕ੍ਰੀਨਸ਼ੌਟ ਦੇ ਨਾਲ ਇੱਕ ਸੰਖੇਪ ਵੇਰਵਾ ਭੇਜੋ।</string>
     <string name="save_logs">ਲੌਗਸ ਨੂੰ ਸੁਰੱਖਿਅਤ ਕਰੋ</string>
-    <string name="loading_bharatscan">ਭਾਰਤ ਸਕੈਨ ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...</string>
+    <string name="loading_bharatscan">%1$s ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...</string>
     <string name="securing_documents">ਤੁਹਾਡੇ ਦਸਤਾਵੇਜ਼ਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਕਰਨਾ</string>
     <string name="about_version_display">v1.0.0</string>
     <string name="pending">ਬਕਾਇਆ</string>
@@ -245,4 +247,33 @@
         <item quantity="one">%d ਦਸਤਾਵੇਜ਼</item>
         <item quantity="other">%d ਦਸਤਾਵੇਜ਼</item>
     </plurals>
+    <string name="update_title">ਅਪਡੇਟਸ</string>
+    <string name="update_check_startup">ਸ਼ੁਰੂਆਤ ਵਿੱਚ ਜਾਂਚੋ</string>
+    <string name="update_check_startup_desc">ਐਪ ਖੁਲਣ ਤੇ ਅਪਡੇਟਸ ਆਪਣੇ ਆਪ ਚੈੱਕ ਕਰੋ।</string>
+    <string name="check_for_updates">ਅਪਡੇਟਸ ਚੈੱਕ ਕਰੋ</string>
+    <string name="checking_updates">ਅਪਡੇਟਸ ਚੈੱਕ ਹੋ ਰਹੇ ਹਨ…</string>
+    <string name="update_check_hint">ਤਾਜ਼ਾ ਸੁਧਾਰਾਂ ਅਤੇ ਫੀਚਰਾਂ ਨਾਲ ਅਪਡੇਟ ਰਹੋ।</string>
+    <string name="downloading_update">ਅਪਡੇਟ ਡਾਊਨਲੋਡ ਹੋ ਰਿਹਾ ਹੈ…</string>
+    <string name="update_download_failed">ਅਪਡੇਟ ਡਾਊਨਲੋਡ ਫੇਲ੍ਹ ਹੋ ਗਿਆ। ਕਿਰਪਾ ਕਰਕੇ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+    <string name="update_available_title">ਅਪਡੇਟ ਉਪਲਬਧ ਹੈ</string>
+    <string name="update_available_message">ਵਰਜਨ %1$s ਉਪਲਬਧ ਹੈ।</string>
+    <string name="update_install">ਅਪਡੇਟ ਕਰੋ</string>
+    <string name="update_later">ਬਾਅਦ ਵਿੱਚ</string>
+    <string name="update_release_notes_title">ਰੀਲਿਜ਼ ਨੋਟਸ</string>
 </resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
