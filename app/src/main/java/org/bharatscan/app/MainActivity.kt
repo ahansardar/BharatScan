@@ -488,9 +488,34 @@ class MainActivity : AppCompatActivity() {
                                     settingsViewModel.setCheckUpdatesAtStartup(enabled)
                                 }
                             )
-                            }
                         }
                     }
+
+                    AnimatedVisibility(
+                        visible = showTutorial,
+                        enter = fadeIn(animationSpec = tween(220)),
+                        exit = fadeOut(animationSpec = tween(180))
+                    ) {
+                        val stepIndex = tutorialSteps.indexOf(tutorialStep).coerceAtLeast(0)
+                        TutorialOverlay(
+                            step = tutorialStep,
+                            totalSteps = tutorialSteps.size,
+                            stepIndex = stepIndex,
+                            onBack = {
+                                tutorialStep = tutorialStep.previous() ?: tutorialStep
+                            },
+                            onNext = {
+                                val next = tutorialStep.next()
+                                if (next == null) {
+                                    finishTutorial()
+                                } else {
+                                    tutorialStep = next
+                                }
+                            },
+                            onSkip = { finishTutorial() }
+                        )
+                    }
+                }
 
                     AnimatedVisibility(
                         visible = showSplash,
@@ -748,6 +773,7 @@ class MainActivity : AppCompatActivity() {
                             startActivity(createEmailWithImageIntent(context, file))
                         }
                     }
+
                 }
             }
         }
