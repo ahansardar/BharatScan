@@ -20,6 +20,8 @@ import android.graphics.Bitmap.createBitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.ColorSpace
+import android.graphics.Paint
+import android.graphics.Rect
 import android.os.Build
 import android.os.SystemClock
 import android.util.Log
@@ -66,18 +68,10 @@ class ImageSegmentationService(private val context: Context, private val logger:
         val h = inputShape[1]
         val w = inputShape[2]
 
-        val safeBitmap = ensureModelCompatibleBitmap(bitmap)
-        val scaledBitmap = if (safeBitmap.width != w || safeBitmap.height != h) {
-            Bitmap.createScaledBitmap(safeBitmap, w, h, true)
-        } else {
-            safeBitmap
-        }
-        val inputBuffer = bitmapToNormalizedBuffer(scaledBitmap)
-        if (scaledBitmap !== safeBitmap) {
-            scaledBitmap.recycle()
-        }
-        if (safeBitmap !== bitmap) {
-            safeBitmap.recycle()
+        val modelBitmap = prepareModelBitmap(bitmap, w, h)
+        val inputBuffer = bitmapToNormalizedBuffer(modelBitmap)
+        if (modelBitmap !== bitmap) {
+            modelBitmap.recycle()
         }
         val segmentResult = segment(interpreter, inputBuffer)
 
@@ -85,29 +79,35 @@ class ImageSegmentationService(private val context: Context, private val logger:
         return SegmentationResult(segmentResult, inferenceTime)
     }
 
-    private fun ensureModelCompatibleBitmap(source: Bitmap): Bitmap {
+    private fun prepareModelBitmap(source: Bitmap, targetWidth: Int, targetHeight: Int): Bitmap {
         val needsConfig = source.config != Bitmap.Config.ARGB_8888
         val needsColorSpace =
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
                 source.colorSpace != ColorSpace.get(ColorSpace.Named.SRGB)
+        val needsScale = source.width != targetWidth || source.height != targetHeight
 
-        if (!needsConfig && !needsColorSpace) {
+        if (!needsConfig && !needsColorSpace && !needsScale) {
             return source
         }
 
         val target = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Bitmap.createBitmap(
-                source.width,
-                source.height,
+                targetWidth,
+                targetHeight,
                 Bitmap.Config.ARGB_8888,
                 source.hasAlpha(),
                 ColorSpace.get(ColorSpace.Named.SRGB)
             )
         } else {
-            Bitmap.createBitmap(source.width, source.height, Bitmap.Config.ARGB_8888)
+            Bitmap.createBitmap(targetWidth, targetHeight, Bitmap.Config.ARGB_8888)
         }
         val canvas = Canvas(target)
-        canvas.drawBitmap(source, 0f, 0f, null)
+        val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            isFilterBitmap = true
+        }
+        val src = Rect(0, 0, source.width, source.height)
+        val dst = Rect(0, 0, targetWidth, targetHeight)
+        canvas.drawBitmap(source, src, dst, paint)
         return target
     }
 

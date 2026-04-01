@@ -87,36 +87,36 @@
     <string name="custom_category_hint">ਸ਼੍ਰੇਣੀ ਦਾ ਨਾਮ ਦਰਜ ਕਰੋ</string>
     <string name="search_title">ਖੋਜ ਦਸਤਾਵੇਜ਼</string>
     <string name="filters_title">ਫਿਲਟਰ</string>
-    <string name="good_morning">ਸ਼ੁਭ ਸਵੇਰ</string>
-    <string name="good_afternoon">ਨਮਸਕਾਰ</string>
-    <string name="good_evening">ਸਤ ਸ੍ਰੀ ਅਕਾਲ</string>
-    <string name="good_night">ਸ਼ੁਭ ਰਾਤ</string>
-    <string-array name="greeting_variants">
-        <item>ਸਕੈਨ ਕਰਨ ਲਈ ਤਿਆਰ ਹੋ?</item>
-        <item>ਸਾਨੂੰ ਤੁਹਾਡੇ ਦਸਤਾਵੇਜ਼ਾਂ ਨੂੰ ਡਿਜੀਟਲਾਈਜ਼ ਕਰਨ ਦਿਓ</item>
-        <item>ਕਿਸੇ ਮਹੱਤਵਪੂਰਨ ਚੀਜ਼ ਨੂੰ ਡਿਜੀਟਾਈਜ਼ ਕਰੋ</item>
-        <item>ਤੁਹਾਡਾ ਸਕੈਨਰ ਤਿਆਰ ਹੈ</item>
-        <item>ਸਕੈਨ ਕਰੋ ਅਤੇ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਸਟੋਰ ਕਰੋ</item>
-        <item>ਹੁਣੇ ਆਪਣਾ ਆਈਡੀ ਪਰੂਫ ਸਕੈਨ ਕਰੋ</item>
-        <item>ਅੱਜ ਹੀ ID ਪਰੂਫ ਨੂੰ ਸਕੈਨ ਕਰੋ</item>
-        <item>ਆਪਣੇ ਆਈਡੀ ਪਰੂਫ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖੋ</item>
-        <item>ਆਈਡੀ ਪਰੂਫ਼ ਨੂੰ ਖੋਜਣਯੋਗ ਬਣਾਓ</item>
-        <item>ਆਈਡੀ ਪਰੂਫ਼ ਨੂੰ ਸਾਫ਼ ਪੀਡੀਐਫ ਵਿੱਚ ਬਦਲੋ</item>
-        <item>ਆਈਡੀ ਪਰੂਫ ਨੂੰ ਉੱਚ ਗੁਣਵੱਤਾ ਵਿੱਚ ਨਿਰਯਾਤ ਕਰੋ</item>
-        <item>ਇੱਕ ਟੈਪ ਵਿੱਚ ਆਈਡੀ ਪਰੂਫ ਨੂੰ ਸਾਂਝਾ ਕਰੋ</item>
-        <item>ਆਈਡੀ ਪਰੂਫ ਨੂੰ ਔਫਲਾਈਨ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਸਟੋਰ ਕਰੋ</item>
-        <item>ਤੇਜ਼ ਖੋਜ ਲਈ ਆਈਡੀ ਪਰੂਫ਼ ਤਿਆਰ ਰੱਖੋ</item>
-        <item>ਆਪਣੇ ਫੋਲਡਰਾਂ ਵਿੱਚ ਆਈਡੀ ਪਰੂਫ਼ ਨੂੰ ਸੰਗਠਿਤ ਕਰੋ</item>
-        <item>ਤੁਰੰਤ ਪਹੁੰਚ ਲਈ ਆਈਡੀ ਪਰੂਫ਼ ਨੂੰ ਸਕੈਨ ਕਰੋ</item>
-        <item>ਆਈਡੀ ਪਰੂਫ ਨੂੰ ਤਿੱਖੀ ਸਪੱਸ਼ਟਤਾ ਨਾਲ ਹਾਸਲ ਕਰੋ</item>
-        <item>ਆਪਣੇ ਰਿਕਾਰਡਾਂ ਲਈ ਆਈਡੀ ਪਰੂਫ਼ ਨੂੰ ਡਿਜੀਟਾਈਜ਼ ਕਰੋ</item>
-        <item>ਆਈਡੀ ਪਰੂਫ਼ ਨੂੰ ਆਪਣੀ ਵਾਲਟ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕਰੋ</item>
-        <item>ਇਸ ਡਿਵਾਈਸ ?ਤੇ ਆਈਡੀ ਪਰੂਫ ਦੀ ਰੱਖਿਆ ਕਰੋ</item>
-        <item>ਹੁਣੇ ਆਪਣੇ ਆਈਡੀ ਪਰੂਫ਼ ਨੂੰ ਡਿਜੀਟਾਈਜ਼ ਕਰੋ</item>
-        <item>ਅੱਜ ਹੀ ਆਈਡੀ ਪਰੂਫ ਨੂੰ ਡਿਜੀਟਾਈਜ਼ ਕਰੋ</item>
-        <item>ਹੁਣੇ ਆਪਣਾ ਆਈਡੀ ਪਰੂਫ਼ ਸੁਰੱਖਿਅਤ ਕਰੋ</item>
-        <item>ਅੱਜ ਹੀ ਆਈਡੀ ਪਰੂਫ਼ ਸੁਰੱਖਿਅਤ ਕਰੋ</item>
-        <item>ਹੁਣੇ ਆਪਣਾ ਆਈਡੀ ਪਰੂਫ਼ ਆਰਕਾਈਵ ਕਰੋ</item>
+    <string name="good_morning">ਸ਼ੁਭ ਸਵੇਰ &#x2600;&#xFE0F;</string>
+    <string name="good_afternoon">ਨਮਸਕਾਰ &#x1F324;&#xFE0F;</string>
+    <string name="good_evening">ਸਤ ਸ੍ਰੀ ਅਕਾਲ &#x1F306;</string>
+    <string name="good_night">ਸ਼ੁਭ ਰਾਤ &#x1F319;</string>
+                <string-array name="greeting_variants">
+        <item>ਸਕੈਨ ਕਰਨ ਲਈ ਤਿਆਰ ਹੋ? &#x1F4C4;</item>
+        <item>ਸਾਨੂੰ ਤੁਹਾਡੇ ਦਸਤਾਵੇਜ਼ਾਂ ਨੂੰ ਡਿਜੀਟਲਾਈਜ਼ ਕਰਨ ਦਿਓ &#x2728;</item>
+        <item>ਕਿਸੇ ਮਹੱਤਵਪੂਰਨ ਚੀਜ਼ ਨੂੰ ਡਿਜੀਟਾਈਜ਼ ਕਰੋ &#x1F4F7;</item>
+        <item>ਤੁਹਾਡਾ ਸਕੈਨਰ ਤਿਆਰ ਹੈ &#x1F50E;</item>
+        <item>ਸਕੈਨ ਕਰੋ ਅਤੇ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਸਟੋਰ ਕਰੋ &#x2705;</item>
+        <item>ਹੁਣੇ ਆਪਣਾ ਆਈਡੀ ਪਰੂਫ ਸਕੈਨ ਕਰੋ &#x1F510;</item>
+        <item>ਅੱਜ ਹੀ ID ਪਰੂਫ ਨੂੰ ਸਕੈਨ ਕਰੋ &#x1F5C2;&#xFE0F;</item>
+        <item>ਆਪਣੇ ਆਈਡੀ ਪਰੂਫ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖੋ &#x1F6E1;&#xFE0F;</item>
+        <item>ਆਈਡੀ ਪਰੂਫ਼ ਨੂੰ ਖੋਜਣਯੋਗ ਬਣਾਓ &#x1F9FE;</item>
+        <item>ਆਈਡੀ ਪਰੂਫ਼ ਨੂੰ ਸਾਫ਼ ਪੀਡੀਐਫ ਵਿੱਚ ਬਦਲੋ &#x1F680;</item>
+        <item>ਆਈਡੀ ਪਰੂਫ ਨੂੰ ਉੱਚ ਗੁਣਵੱਤਾ ਵਿੱਚ ਨਿਰਯਾਤ ਕਰੋ &#x1F4C4;</item>
+        <item>ਇੱਕ ਟੈਪ ਵਿੱਚ ਆਈਡੀ ਪਰੂਫ ਨੂੰ ਸਾਂਝਾ ਕਰੋ &#x2728;</item>
+        <item>ਆਈਡੀ ਪਰੂਫ ਨੂੰ ਔਫਲਾਈਨ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਸਟੋਰ ਕਰੋ &#x1F4F7;</item>
+        <item>ਤੇਜ਼ ਖੋਜ ਲਈ ਆਈਡੀ ਪਰੂਫ਼ ਤਿਆਰ ਰੱਖੋ &#x1F50E;</item>
+        <item>ਆਪਣੇ ਫੋਲਡਰਾਂ ਵਿੱਚ ਆਈਡੀ ਪਰੂਫ਼ ਨੂੰ ਸੰਗਠਿਤ ਕਰੋ &#x2705;</item>
+        <item>ਤੁਰੰਤ ਪਹੁੰਚ ਲਈ ਆਈਡੀ ਪਰੂਫ਼ ਨੂੰ ਸਕੈਨ ਕਰੋ &#x1F510;</item>
+        <item>ਆਈਡੀ ਪਰੂਫ ਨੂੰ ਤਿੱਖੀ ਸਪੱਸ਼ਟਤਾ ਨਾਲ ਹਾਸਲ ਕਰੋ &#x1F5C2;&#xFE0F;</item>
+        <item>ਆਪਣੇ ਰਿਕਾਰਡਾਂ ਲਈ ਆਈਡੀ ਪਰੂਫ਼ ਨੂੰ ਡਿਜੀਟਾਈਜ਼ ਕਰੋ &#x1F6E1;&#xFE0F;</item>
+        <item>ਆਈਡੀ ਪਰੂਫ਼ ਨੂੰ ਆਪਣੀ ਵਾਲਟ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕਰੋ &#x1F9FE;</item>
+        <item>ਇਸ ਡਿਵਾਈਸ ?ਤੇ ਆਈਡੀ ਪਰੂਫ ਦੀ ਰੱਖਿਆ ਕਰੋ &#x1F680;</item>
+        <item>ਹੁਣੇ ਆਪਣੇ ਆਈਡੀ ਪਰੂਫ਼ ਨੂੰ ਡਿਜੀਟਾਈਜ਼ ਕਰੋ &#x1F4C4;</item>
+        <item>ਅੱਜ ਹੀ ਆਈਡੀ ਪਰੂਫ ਨੂੰ ਡਿਜੀਟਾਈਜ਼ ਕਰੋ &#x2728;</item>
+        <item>ਹੁਣੇ ਆਪਣਾ ਆਈਡੀ ਪਰੂਫ਼ ਸੁਰੱਖਿਅਤ ਕਰੋ &#x1F4F7;</item>
+        <item>ਅੱਜ ਹੀ ਆਈਡੀ ਪਰੂਫ਼ ਸੁਰੱਖਿਅਤ ਕਰੋ &#x1F50E;</item>
+        <item>ਹੁਣੇ ਆਪਣਾ ਆਈਡੀ ਪਰੂਫ਼ ਆਰਕਾਈਵ ਕਰੋ &#x2705;</item>
     </string-array>
     <string name="digitizing_bharat">ਦਸਤਾਵੇਜ਼ਾਂ ਨੂੰ ਡਿਜੀਟਾਈਜ਼ ਕਰਨਾ</string>
     <string name="scan_mode_document">ਦਸਤਾਵੇਜ਼</string>
@@ -180,6 +180,7 @@
     <string name="resume">ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ</string>
     <string name="rotate_left">ਖੱਬੇ ਪਾਸੇ ਘੁੰਮਾਓ</string>
     <string name="rotate_right">ਸੱਜੇ ਘੁੰਮਾਓ</string>
+    <string name="retake_page">ਪੰਨਾ ਦੁਬਾਰਾ ਲਓ (Retake)</string>
     <string name="save">ਸੇਵ ਕਰੋ</string>
     <string name="scan_button">ਨਵਾਂ ਸਕੈਨ</string>
     <string name="scanner">ਸਕੈਨਰ</string>
@@ -260,6 +261,24 @@
     <string name="update_install">ਅਪਡੇਟ ਕਰੋ</string>
     <string name="update_later">ਬਾਅਦ ਵਿੱਚ</string>
     <string name="update_release_notes_title">ਰੀਲਿਜ਼ ਨੋਟਸ</string>
+    <string name="tutorial_title">Quick walkthrough</string>
+    <string name="tutorial_step_scan_title">Scan documents</string>
+    <string name="tutorial_step_scan_body">Align the edges and tap Scan Now to capture.</string>
+    <string name="tutorial_step_adjust_title">Adjust and crop</string>
+    <string name="tutorial_step_adjust_body">Retake or crop pages anytime for a clean edge.</string>
+    <string name="tutorial_step_export_title">Export smart</string>
+    <string name="tutorial_step_export_body">Create PDFs with OCR, watermark, and password options.</string>
+    <string name="tutorial_step_search_title">Search instantly</string>
+    <string name="tutorial_step_search_body">Find text inside your scans with OCR search.</string>
+    <string name="tutorial_skip">Skip</string>
+    <string name="tutorial_next">Next</string>
+    <string name="tutorial_done">Done</string>
+    <string name="tutorial_step_home_title">Welcome to BharatScan</string>
+    <string name="tutorial_step_home_body">This is your home hub for scans, filters, and quick actions.</string>
+    <string name="tutorial_back">Back</string>
+    <string name="tutorial_start_title">App walkthrough</string>
+    <string name="tutorial_start_desc">See a guided tour across the app screens.</string>
+    <string name="tutorial_start_button">Start walkthrough</string>
 </resources>
 
 

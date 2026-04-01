@@ -12,17 +12,28 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <https://www.gnu.org/licenses/>.
  */
-package org.bharatscan.app.ui.screens.home
+package org.bharatscan.app.ui
 
-import android.net.Uri
+enum class TutorialStep {
+    HOME,
+    SCAN,
+    EDIT,
+    EXPORT,
+    SEARCH,
+}
 
-data class RecentDocumentUiState(
-    val fileUri: Uri,
-    val fileName: String,
-    val saveTimestamp: Long,
-    val pageCount: Int,
-    val categoryId: String? = null,
-    val ocrText: String? = null,
-)
+fun TutorialStep.next(): TutorialStep? = when (this) {
+    TutorialStep.HOME -> TutorialStep.SCAN
+    TutorialStep.SCAN -> TutorialStep.EDIT
+    TutorialStep.EDIT -> TutorialStep.EXPORT
+    TutorialStep.EXPORT -> TutorialStep.SEARCH
+    TutorialStep.SEARCH -> null
+}
 
-
+fun TutorialStep.previous(): TutorialStep? = when (this) {
+    TutorialStep.HOME -> null
+    TutorialStep.SCAN -> TutorialStep.HOME
+    TutorialStep.EDIT -> TutorialStep.SCAN
+    TutorialStep.EXPORT -> TutorialStep.EDIT
+    TutorialStep.SEARCH -> TutorialStep.EXPORT
+}

@@ -87,10 +87,10 @@
     <string name="custom_category_hint">زمرہ کا نام درج کریں۔</string>
     <string name="search_title">دستاویزات تلاش کریں۔</string>
     <string name="filters_title">فلٹرز</string>
-    <string name="good_morning">صبح بخیر</string>
-    <string name="good_afternoon">صبح بخیر</string>
-    <string name="good_evening">شب بخیر</string>
-    <string name="good_night">شب بخیر</string>
+    <string name="good_morning">صبح بخیر &#x2600;&#xFE0F;</string>
+    <string name="good_afternoon">صبح بخیر &#x1F324;&#xFE0F;</string>
+    <string name="good_evening">شب بخیر &#x1F306;</string>
+    <string name="good_night">شب بخیر &#x1F319;</string>
     <string name="digitizing_bharat">دستاویزات کو ڈیجیٹائز کرنا</string>
     <string name="scan_mode_document">دستاویز</string>
     <string name="scan_mode_id_card">شناختی کارڈ</string>
@@ -153,6 +153,7 @@
     <string name="resume">دوبارہ شروع کریں۔</string>
     <string name="rotate_left">بائیں گھمائیں۔</string>
     <string name="rotate_right">دائیں گھمائیں۔</string>
+    <string name="retake_page">صفحہ دوبارہ لیں (Retake)</string>
     <string name="save">محفوظ کریں۔</string>
     <string name="scan_button">نیا اسکین</string>
     <string name="scanner">سکینر</string>
@@ -220,33 +221,33 @@
         <item quantity="one">%d دستاویز</item>
         <item quantity="other">%d دستاویزات</item>
         </plurals>
-    <string-array name="greeting_variants">
-        <item>اسکین کرنے کے لیے تیار ہیں؟</item>
-        <item>آئیے آپ کی دستاویزات کو ڈیجیٹائز کریں۔</item>
-        <item>کسی اہم چیز کو ڈیجیٹائز کریں۔</item>
-        <item>آپ کا سکینر تیار ہے۔</item>
-        <item>اسکین کریں اور محفوظ طریقے سے اسٹور کریں۔</item>
-        <item>ابھی اپنا شناختی ثبوت اسکین کریں۔</item>
-        <item>آج ہی شناختی ثبوت اسکین کریں۔</item>
-        <item>اپنا شناختی ثبوت محفوظ رکھیں</item>
-        <item>شناختی ثبوت کو قابل تلاش بنائیں</item>
-        <item>شناختی ثبوت کو صاف پی ڈی ایف میں تبدیل کریں۔</item>
-        <item>اعلی معیار میں شناختی ثبوت برآمد کریں۔</item>
-        <item>ایک نل پر شناختی ثبوت شیئر کریں۔</item>
-        <item>شناختی ثبوت آف لائن اور پرائیویٹ اسٹور کریں۔</item>
-        <item>تیز تلاش کے لیے شناختی ثبوت تیار رکھیں</item>
-        <item>اپنے فولڈرز میں شناختی ثبوت کو منظم کریں۔</item>
-        <item>فوری رسائی کے لیے شناختی ثبوت کو اسکین کریں۔</item>
-        <item>واضح وضاحت کے ساتھ شناختی ثبوت حاصل کریں۔</item>
-        <item>اپنے ریکارڈ کے لیے شناختی ثبوت کو ڈیجیٹائز کریں۔</item>
-        <item>شناختی ثبوت کو اپنے والٹ میں محفوظ کریں۔</item>
-        <item>اس ڈیوائس پر شناختی ثبوت کی حفاظت کریں۔</item>
-        <item>اپنا شناختی ثبوت ابھی ڈیجیٹائز کریں۔</item>
-        <item>آج ہی آئی ڈی پروف کو ڈیجیٹائز کریں۔</item>
-        <item>ابھی اپنا شناختی ثبوت محفوظ کریں۔</item>
-        <item>آج ہی شناختی ثبوت محفوظ کر لیں۔</item>
-        <item>اپنا شناختی ثبوت ابھی محفوظ کریں۔</item>
-        </string-array>
+                <string-array name="greeting_variants">
+        <item>اسکین کرنے کے لیے تیار ہیں؟ &#x1F4C4;</item>
+        <item>آئیے آپ کی دستاویزات کو ڈیجیٹائز کریں۔ &#x2728;</item>
+        <item>کسی اہم چیز کو ڈیجیٹائز کریں۔ &#x1F4F7;</item>
+        <item>آپ کا سکینر تیار ہے۔ &#x1F50E;</item>
+        <item>اسکین کریں اور محفوظ طریقے سے اسٹور کریں۔ &#x2705;</item>
+        <item>ابھی اپنا شناختی ثبوت اسکین کریں۔ &#x1F510;</item>
+        <item>آج ہی شناختی ثبوت اسکین کریں۔ &#x1F5C2;&#xFE0F;</item>
+        <item>اپنا شناختی ثبوت محفوظ رکھیں &#x1F6E1;&#xFE0F;</item>
+        <item>شناختی ثبوت کو قابل تلاش بنائیں &#x1F9FE;</item>
+        <item>شناختی ثبوت کو صاف پی ڈی ایف میں تبدیل کریں۔ &#x1F680;</item>
+        <item>اعلی معیار میں شناختی ثبوت برآمد کریں۔ &#x1F4C4;</item>
+        <item>ایک نل پر شناختی ثبوت شیئر کریں۔ &#x2728;</item>
+        <item>شناختی ثبوت آف لائن اور پرائیویٹ اسٹور کریں۔ &#x1F4F7;</item>
+        <item>تیز تلاش کے لیے شناختی ثبوت تیار رکھیں &#x1F50E;</item>
+        <item>اپنے فولڈرز میں شناختی ثبوت کو منظم کریں۔ &#x2705;</item>
+        <item>فوری رسائی کے لیے شناختی ثبوت کو اسکین کریں۔ &#x1F510;</item>
+        <item>واضح وضاحت کے ساتھ شناختی ثبوت حاصل کریں۔ &#x1F5C2;&#xFE0F;</item>
+        <item>اپنے ریکارڈ کے لیے شناختی ثبوت کو ڈیجیٹائز کریں۔ &#x1F6E1;&#xFE0F;</item>
+        <item>شناختی ثبوت کو اپنے والٹ میں محفوظ کریں۔ &#x1F9FE;</item>
+        <item>اس ڈیوائس پر شناختی ثبوت کی حفاظت کریں۔ &#x1F680;</item>
+        <item>اپنا شناختی ثبوت ابھی ڈیجیٹائز کریں۔ &#x1F4C4;</item>
+        <item>آج ہی آئی ڈی پروف کو ڈیجیٹائز کریں۔ &#x2728;</item>
+        <item>ابھی اپنا شناختی ثبوت محفوظ کریں۔ &#x1F4F7;</item>
+        <item>آج ہی شناختی ثبوت محفوظ کر لیں۔ &#x1F50E;</item>
+        <item>اپنا شناختی ثبوت ابھی محفوظ کریں۔ &#x2705;</item>
+    </string-array>
         <string name="update_title">اپ ڈیٹس</string>
     <string name="update_check_startup">شروع میں چیک کریں</string>
     <string name="update_check_startup_desc">ایپ کھلتے ہی اپ ڈیٹس خودکار طور پر چیک کریں۔</string>
@@ -260,6 +261,24 @@
     <string name="update_install">اپ ڈیٹ کریں</string>
     <string name="update_later">بعد میں</string>
     <string name="update_release_notes_title">ریلیز نوٹس</string>
+    <string name="tutorial_title">Quick walkthrough</string>
+    <string name="tutorial_step_scan_title">Scan documents</string>
+    <string name="tutorial_step_scan_body">Align the edges and tap Scan Now to capture.</string>
+    <string name="tutorial_step_adjust_title">Adjust and crop</string>
+    <string name="tutorial_step_adjust_body">Retake or crop pages anytime for a clean edge.</string>
+    <string name="tutorial_step_export_title">Export smart</string>
+    <string name="tutorial_step_export_body">Create PDFs with OCR, watermark, and password options.</string>
+    <string name="tutorial_step_search_title">Search instantly</string>
+    <string name="tutorial_step_search_body">Find text inside your scans with OCR search.</string>
+    <string name="tutorial_skip">Skip</string>
+    <string name="tutorial_next">Next</string>
+    <string name="tutorial_done">Done</string>
+    <string name="tutorial_step_home_title">Welcome to BharatScan</string>
+    <string name="tutorial_step_home_body">This is your home hub for scans, filters, and quick actions.</string>
+    <string name="tutorial_back">Back</string>
+    <string name="tutorial_start_title">App walkthrough</string>
+    <string name="tutorial_start_desc">See a guided tour across the app screens.</string>
+    <string name="tutorial_start_button">Start walkthrough</string>
 </resources>
 
 

@@ -11,7 +11,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -23,6 +22,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.bharatscan.app.R
 import org.bharatscan.app.ui.theme.BharatSaffron
+import org.bharatscan.app.ui.theme.BharatNavy
 
 @Composable
 fun BrandTitle(
@@ -57,7 +57,7 @@ fun BrandTitle(
                 style = style,
                 fontWeight = FontWeight.Black,
                 fontStyle = FontStyle.Italic,
-                color = Color.Black
+                color = BharatNavy
             )
             if (!rest.isNullOrBlank()) {
                 Spacer(Modifier.width(4.dp))

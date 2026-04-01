@@ -35,6 +35,7 @@ import org.bharatscan.app.domain.PageMetadata
 import org.bharatscan.app.domain.Rotation
 import org.bharatscan.imageprocessing.ImageSize
 import org.bharatscan.imageprocessing.Mask
+import org.bharatscan.imageprocessing.Point
 import org.bharatscan.imageprocessing.Quad
 import org.bharatscan.imageprocessing.detectDocumentQuad
 import org.bharatscan.imageprocessing.extractDocument
@@ -172,7 +173,7 @@ class CameraViewModel(appContainer: AppContainer): ViewModel() {
                 result = extractDocumentFromBitmap(source, resizedQuad, rotationDegrees, mask)
             }
         }
-        return@withContext result
+        return@withContext result ?: fallbackCapturedPage(source, rotationDegrees)
     }
 
     fun addProcessedImage() {
@@ -231,6 +232,26 @@ fun extractDocumentFromBitmap(
     val baseRotation = Rotation.fromDegrees(rotationDegrees)
     val metadata = PageMetadata(normalizedQuad, baseRotation, isColored)
     return CapturedPage(outBitmap, source, metadata)
+}
+
+fun fallbackCapturedPage(source: Bitmap, rotationDegrees: Int): CapturedPage {
+    val rotatedPage = if (rotationDegrees % 360 == 0) {
+        source
+    } else {
+        rotateBitmap(source, rotationDegrees.toFloat())
+    }
+    val normalizedQuad = Quad(
+        Point(0.0, 0.0),
+        Point(1.0, 0.0),
+        Point(1.0, 1.0),
+        Point(0.0, 1.0)
+    )
+    val metadata = PageMetadata(
+        normalizedQuad = normalizedQuad,
+        baseRotation = Rotation.fromDegrees(rotationDegrees),
+        isColored = true
+    )
+    return CapturedPage(rotatedPage, source, metadata)
 }
 
 fun toBitmap(bgr: Mat): Bitmap {

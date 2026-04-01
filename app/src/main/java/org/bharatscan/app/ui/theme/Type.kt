@@ -23,7 +23,7 @@ import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.unit.sp
 import org.bharatscan.app.R
 
-private val MontserratFont = GoogleFont("Montserrat")
+private val HindFont = GoogleFont("Hind")
 private val NotoSansDevanagari = GoogleFont("Noto Sans Devanagari")
 private val NotoSansBengali = GoogleFont("Noto Sans Bengali")
 private val NotoSansTelugu = GoogleFont("Noto Sans Telugu")
@@ -45,11 +45,11 @@ private fun appFont(googleFont: GoogleFont, weight: FontWeight) =
     Font(googleFont = googleFont, fontProvider = GoogleFontProvider, weight = weight)
 
 private val AppFontFamily = FontFamily(
-    appFont(MontserratFont, FontWeight.Light),
-    appFont(MontserratFont, FontWeight.Normal),
-    appFont(MontserratFont, FontWeight.Medium),
-    appFont(MontserratFont, FontWeight.SemiBold),
-    appFont(MontserratFont, FontWeight.Bold),
+    appFont(HindFont, FontWeight.Light),
+    appFont(HindFont, FontWeight.Normal),
+    appFont(HindFont, FontWeight.Medium),
+    appFont(HindFont, FontWeight.SemiBold),
+    appFont(HindFont, FontWeight.Bold),
     appFont(NotoSansDevanagari, FontWeight.Normal),
     appFont(NotoSansDevanagari, FontWeight.Bold),
     appFont(NotoSansBengali, FontWeight.Normal),

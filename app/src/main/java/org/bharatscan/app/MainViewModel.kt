@@ -16,6 +16,9 @@ package org.bharatscan.app
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Typeface
 import android.graphics.pdf.PdfRenderer
 import android.os.ParcelFileDescriptor
 import android.content.Context
@@ -34,6 +37,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.bharatscan.app.data.ImageRepository
 import org.bharatscan.app.domain.CapturedPage
+import org.bharatscan.app.domain.CropRect
 import org.bharatscan.app.domain.ImageSegmentationService
 import org.bharatscan.app.domain.PageMetadata
 import org.bharatscan.app.domain.PageViewKey
@@ -71,6 +75,8 @@ class MainViewModel(
         .stateIn(viewModelScope, SharingStarted.Eagerly, _navigationState.value.current)
 
     private val _pages = MutableStateFlow(imageRepository.pages())
+    private var pendingRetakePageId: String? = null
+    private var tutorialDemoPageId: String? = null
     val documentUiModel: StateFlow<DocumentUiModel> =
         _pages.map { pages ->
             DocumentUiModel(
@@ -92,6 +98,64 @@ class MainViewModel(
 
     fun navigateBack() {
         _navigationState.update { stack -> stack.navigateBack() }
+    }
+
+    suspend fun ensureTutorialDemoPage() {
+        if (tutorialDemoPageId != null) return
+        if (imageRepository.pages().isNotEmpty()) return
+        withContext(Dispatchers.Default) {
+            val width = 900
+            val height = 1200
+            val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(bitmap)
+            canvas.drawColor(android.graphics.Color.WHITE)
+            val borderPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+                color = android.graphics.Color.parseColor("#DADADA")
+                style = Paint.Style.STROKE
+                strokeWidth = 6f
+            }
+            canvas.drawRect(40f, 60f, width - 40f, height - 60f, borderPaint)
+            val titlePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+                color = android.graphics.Color.parseColor("#0B1F3A")
+                textSize = 52f
+                typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
+            }
+            canvas.drawText("BharatScan", 80f, 160f, titlePaint)
+            val bodyPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+                color = android.graphics.Color.parseColor("#555555")
+                textSize = 28f
+                typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL)
+            }
+            canvas.drawText("Tutorial sample page", 80f, 220f, bodyPaint)
+
+            val meta = PageMetadata(
+                normalizedQuad = Quad(
+                    Point(0.0, 0.0),
+                    Point(1.0, 0.0),
+                    Point(1.0, 1.0),
+                    Point(0.0, 1.0)
+                ),
+                baseRotation = Rotation.R0,
+                isColored = true
+            )
+            val bytes = compressJpeg(bitmap, 88)
+            imageRepository.add(bytes, bytes, meta)
+            bitmap.recycle()
+        }
+        _pages.value = imageRepository.pages()
+        tutorialDemoPageId = imageRepository.pages().firstOrNull()?.id
+    }
+
+    fun clearTutorialDemoIfNeeded() {
+        val demoId = tutorialDemoPageId ?: return
+        viewModelScope.launch(Dispatchers.IO) {
+            val pages = imageRepository.pages()
+            if (pages.size == 1 && pages.first().id == demoId) {
+                imageRepository.delete(demoId)
+                _pages.value = imageRepository.pages()
+            }
+            tutorialDemoPageId = null
+        }
     }
 
     fun rotateImage(id: String, clockwise: Boolean) {
@@ -140,7 +204,11 @@ class MainViewModel(
                     toWidth = sourceBitmap.width,
                     toHeight = sourceBitmap.height
                 )
-                val finalQuad = scaledQuad ?: detectQuadFallback(sourceBitmap)
+                val metadataQuad = imageRepository.pageMetadata(id)?.normalizedQuad
+                val metadataScaled = metadataQuad?.scaledTo(1, 1, sourceBitmap.width, sourceBitmap.height)
+                val finalQuad = scaledQuad
+                    ?: detectQuadFallback(sourceBitmap)
+                    ?: metadataScaled
                     ?: run {
                         sourceBitmap.recycle()
                         return@runCatching false
@@ -159,6 +227,69 @@ class MainViewModel(
                     compressJpeg(captured.source, 90),
                     captured.metadata
                 )
+                _pages.value = imageRepository.pages()
+                true
+            }.getOrElse { false }
+
+            withContext(Dispatchers.Main) {
+                onComplete(success)
+            }
+        }
+    }
+
+    fun cropPage(id: String, crop: CropRect, onComplete: (Boolean) -> Unit = {}) {
+        viewModelScope.launch(Dispatchers.Default) {
+            val success = runCatching {
+                val sourceBytes = imageRepository.jpegBytes(id)
+                    ?: return@runCatching false
+                val options = BitmapFactory.Options().apply {
+                    inPreferredConfig = Bitmap.Config.ARGB_8888
+                    inMutable = false
+                }
+                val decoded = BitmapFactory.decodeByteArray(sourceBytes, 0, sourceBytes.size, options)
+                    ?: return@runCatching false
+                val bitmap = if (decoded.config == Bitmap.Config.HARDWARE || decoded.config == null) {
+                    val copy = decoded.copy(Bitmap.Config.ARGB_8888, false)
+                    decoded.recycle()
+                    copy ?: return@runCatching false
+                } else {
+                    decoded
+                }
+                if (bitmap.width <= 0 || bitmap.height <= 0) {
+                    bitmap.recycle()
+                    return@runCatching false
+                }
+
+                val leftPx = (crop.left * bitmap.width).toInt().coerceIn(0, bitmap.width - 1)
+                val topPx = (crop.top * bitmap.height).toInt().coerceIn(0, bitmap.height - 1)
+                val rightPx = (crop.right * bitmap.width).toInt().coerceIn(leftPx + 1, bitmap.width)
+                val bottomPx = (crop.bottom * bitmap.height).toInt().coerceIn(topPx + 1, bitmap.height)
+                val cropW = (rightPx - leftPx).coerceAtLeast(1)
+                val cropH = (bottomPx - topPx).coerceAtLeast(1)
+
+                val cropped = Bitmap.createBitmap(bitmap, leftPx, topPx, cropW, cropH)
+                bitmap.recycle()
+
+                val isColored = imageRepository.pageMetadata(id)?.isColored ?: true
+                val normalizedQuad = Quad(
+                    Point(0.0, 0.0),
+                    Point(1.0, 0.0),
+                    Point(1.0, 1.0),
+                    Point(0.0, 1.0)
+                )
+                val metadata = PageMetadata(
+                    normalizedQuad = normalizedQuad,
+                    baseRotation = Rotation.R0,
+                    isColored = isColored
+                )
+
+                imageRepository.replace(
+                    id,
+                    compressJpeg(cropped, 85),
+                    compressJpeg(cropped, 90),
+                    metadata
+                )
+                cropped.recycle()
                 _pages.value = imageRepository.pages()
                 true
             }.getOrElse { false }
@@ -233,13 +364,28 @@ class MainViewModel(
 
     fun handleImageCaptured(capturedPage: CapturedPage) {
         viewModelScope.launch {
-            imageRepository.add(
-                compressJpeg(capturedPage.page, 75),
-                compressJpeg(capturedPage.source, 90),
-                capturedPage.metadata,
-            )
+            val retakeId = pendingRetakePageId
+            if (retakeId != null) {
+                pendingRetakePageId = null
+                imageRepository.replace(
+                    retakeId,
+                    compressJpeg(capturedPage.page, 75),
+                    compressJpeg(capturedPage.source, 90),
+                    capturedPage.metadata,
+                )
+            } else {
+                imageRepository.add(
+                    compressJpeg(capturedPage.page, 75),
+                    compressJpeg(capturedPage.source, 90),
+                    capturedPage.metadata,
+                )
+            }
             _pages.value = imageRepository.pages()
         }
+    }
+
+    fun startRetake(pageId: String) {
+        pendingRetakePageId = pageId
     }
 
     fun importPdfForEditing(

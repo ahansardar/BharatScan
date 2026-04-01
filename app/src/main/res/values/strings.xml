@@ -1,4 +1,4 @@
-<resources>
+﻿<resources>
     <string name="about">About</string>
     <string name="add_page">Add page</string>
     <string name="app_name">BharatScan</string>
@@ -31,7 +31,7 @@
     <string name="save_logs">Save logs</string>
     <string name="loading_bharatscan">Loading %1$s...</string>
     <string name="securing_documents">Securing your documents</string>
-    <string name="about_version_display">v1.0.0</string>
+    <string name="about_version_display">v1.1.0</string>
     <string name="pending">Pending</string>
     <string name="aadhaar">Aadhaar</string>
     <string name="pan_card">PAN Card</string>
@@ -87,515 +87,515 @@
     <string name="custom_category_hint">Enter category name</string>
     <string name="search_title">Search Documents</string>
     <string name="filters_title">Filters</string>
-    <string name="good_morning">Good morning</string>
-    <string name="good_afternoon">Good afternoon</string>
-    <string name="good_evening">Good evening</string>
-    <string name="good_night">Good night</string>    <string-array name="greeting_variants">
-        <item>ready to scan?</item>
-        <item>let us digitize your documents</item>
-        <item>digitize something important</item>
-        <item>your scanner is ready</item>
-        <item>scan and store safely</item>
-        <item>scan your ID proof now</item>
-        <item>scan the ID proof today</item>
-        <item>keep your ID proof safe</item>
-        <item>make the ID proof searchable</item>
-        <item>turn the ID proof into a clean PDF</item>
-        <item>export the ID proof in high quality</item>
-        <item>share the ID proof in one tap</item>
-        <item>store the ID proof offline and private</item>
-        <item>keep the ID proof ready for fast search</item>
-        <item>organize the ID proof in your folders</item>
-        <item>scan the ID proof for quick access</item>
-        <item>capture the ID proof with sharp clarity</item>
-        <item>digitize the ID proof for your records</item>
-        <item>save the ID proof to your vault</item>
-        <item>protect the ID proof on this device</item>
-        <item>digitize your ID proof now</item>
-        <item>digitize the ID proof today</item>
-        <item>secure your ID proof now</item>
-        <item>secure the ID proof today</item>
-        <item>archive your ID proof now</item>
-        <item>archive the ID proof today</item>
-        <item>organize your ID proof now</item>
-        <item>organize the ID proof today</item>
-        <item>protect your ID proof now</item>
-        <item>protect the ID proof today</item>
-        <item>store your ID proof now</item>
-        <item>store the ID proof today</item>
-        <item>capture your ID proof now</item>
-        <item>capture the ID proof today</item>
-        <item>save your ID proof now</item>
-        <item>save the ID proof today</item>
-        <item>clean your ID proof now</item>
-        <item>clean the ID proof today</item>
-        <item>scan your ID card now</item>
-        <item>scan the ID card today</item>
-        <item>keep your ID card safe</item>
-        <item>make the ID card searchable</item>
-        <item>turn the ID card into a clean PDF</item>
-        <item>export the ID card in high quality</item>
-        <item>share the ID card in one tap</item>
-        <item>store the ID card offline and private</item>
-        <item>keep the ID card ready for fast search</item>
-        <item>organize the ID card in your folders</item>
-        <item>scan the ID card for quick access</item>
-        <item>capture the ID card with sharp clarity</item>
-        <item>digitize the ID card for your records</item>
-        <item>save the ID card to your vault</item>
-        <item>protect the ID card on this device</item>
-        <item>digitize your ID card now</item>
-        <item>digitize the ID card today</item>
-        <item>secure your ID card now</item>
-        <item>secure the ID card today</item>
-        <item>archive your ID card now</item>
-        <item>archive the ID card today</item>
-        <item>organize your ID card now</item>
-        <item>organize the ID card today</item>
-        <item>protect your ID card now</item>
-        <item>protect the ID card today</item>
-        <item>store your ID card now</item>
-        <item>store the ID card today</item>
-        <item>capture your ID card now</item>
-        <item>capture the ID card today</item>
-        <item>save your ID card now</item>
-        <item>save the ID card today</item>
-        <item>clean your ID card now</item>
-        <item>clean the ID card today</item>
-        <item>scan your passport now</item>
-        <item>scan the passport today</item>
-        <item>keep your passport safe</item>
-        <item>make the passport searchable</item>
-        <item>turn the passport into a clean PDF</item>
-        <item>export the passport in high quality</item>
-        <item>share the passport in one tap</item>
-        <item>store the passport offline and private</item>
-        <item>keep the passport ready for fast search</item>
-        <item>organize the passport in your folders</item>
-        <item>scan the passport for quick access</item>
-        <item>capture the passport with sharp clarity</item>
-        <item>digitize the passport for your records</item>
-        <item>save the passport to your vault</item>
-        <item>protect the passport on this device</item>
-        <item>digitize your passport now</item>
-        <item>digitize the passport today</item>
-        <item>secure your passport now</item>
-        <item>secure the passport today</item>
-        <item>archive your passport now</item>
-        <item>archive the passport today</item>
-        <item>organize your passport now</item>
-        <item>organize the passport today</item>
-        <item>protect your passport now</item>
-        <item>protect the passport today</item>
-        <item>store your passport now</item>
-        <item>store the passport today</item>
-        <item>capture your passport now</item>
-        <item>capture the passport today</item>
-        <item>save your passport now</item>
-        <item>save the passport today</item>
-        <item>clean your passport now</item>
-        <item>clean the passport today</item>
-        <item>scan your invoice now</item>
-        <item>scan the invoice today</item>
-        <item>keep your invoice safe</item>
-        <item>make the invoice searchable</item>
-        <item>turn the invoice into a clean PDF</item>
-        <item>export the invoice in high quality</item>
-        <item>share the invoice in one tap</item>
-        <item>store the invoice offline and private</item>
-        <item>keep the invoice ready for fast search</item>
-        <item>organize the invoice in your folders</item>
-        <item>scan the invoice for quick access</item>
-        <item>capture the invoice with sharp clarity</item>
-        <item>digitize the invoice for your records</item>
-        <item>save the invoice to your vault</item>
-        <item>protect the invoice on this device</item>
-        <item>digitize your invoice now</item>
-        <item>digitize the invoice today</item>
-        <item>secure your invoice now</item>
-        <item>secure the invoice today</item>
-        <item>archive your invoice now</item>
-        <item>archive the invoice today</item>
-        <item>organize your invoice now</item>
-        <item>organize the invoice today</item>
-        <item>protect your invoice now</item>
-        <item>protect the invoice today</item>
-        <item>store your invoice now</item>
-        <item>store the invoice today</item>
-        <item>capture your invoice now</item>
-        <item>capture the invoice today</item>
-        <item>save your invoice now</item>
-        <item>save the invoice today</item>
-        <item>clean your invoice now</item>
-        <item>clean the invoice today</item>
-        <item>scan your receipt now</item>
-        <item>scan the receipt today</item>
-        <item>keep your receipt safe</item>
-        <item>make the receipt searchable</item>
-        <item>turn the receipt into a clean PDF</item>
-        <item>export the receipt in high quality</item>
-        <item>share the receipt in one tap</item>
-        <item>store the receipt offline and private</item>
-        <item>keep the receipt ready for fast search</item>
-        <item>organize the receipt in your folders</item>
-        <item>scan the receipt for quick access</item>
-        <item>capture the receipt with sharp clarity</item>
-        <item>digitize the receipt for your records</item>
-        <item>save the receipt to your vault</item>
-        <item>protect the receipt on this device</item>
-        <item>digitize your receipt now</item>
-        <item>digitize the receipt today</item>
-        <item>secure your receipt now</item>
-        <item>secure the receipt today</item>
-        <item>archive your receipt now</item>
-        <item>archive the receipt today</item>
-        <item>organize your receipt now</item>
-        <item>organize the receipt today</item>
-        <item>protect your receipt now</item>
-        <item>protect the receipt today</item>
-        <item>store your receipt now</item>
-        <item>store the receipt today</item>
-        <item>capture your receipt now</item>
-        <item>capture the receipt today</item>
-        <item>save your receipt now</item>
-        <item>save the receipt today</item>
-        <item>clean your receipt now</item>
-        <item>clean the receipt today</item>
-        <item>scan your medical report now</item>
-        <item>scan the medical report today</item>
-        <item>keep your medical report safe</item>
-        <item>make the medical report searchable</item>
-        <item>turn the medical report into a clean PDF</item>
-        <item>export the medical report in high quality</item>
-        <item>share the medical report in one tap</item>
-        <item>store the medical report offline and private</item>
-        <item>keep the medical report ready for fast search</item>
-        <item>organize the medical report in your folders</item>
-        <item>scan the medical report for quick access</item>
-        <item>capture the medical report with sharp clarity</item>
-        <item>digitize the medical report for your records</item>
-        <item>save the medical report to your vault</item>
-        <item>protect the medical report on this device</item>
-        <item>digitize your medical report now</item>
-        <item>digitize the medical report today</item>
-        <item>secure your medical report now</item>
-        <item>secure the medical report today</item>
-        <item>archive your medical report now</item>
-        <item>archive the medical report today</item>
-        <item>organize your medical report now</item>
-        <item>organize the medical report today</item>
-        <item>protect your medical report now</item>
-        <item>protect the medical report today</item>
-        <item>store your medical report now</item>
-        <item>store the medical report today</item>
-        <item>capture your medical report now</item>
-        <item>capture the medical report today</item>
-        <item>save your medical report now</item>
-        <item>save the medical report today</item>
-        <item>clean your medical report now</item>
-        <item>clean the medical report today</item>
-        <item>scan your school certificate now</item>
-        <item>scan the school certificate today</item>
-        <item>keep your school certificate safe</item>
-        <item>make the school certificate searchable</item>
-        <item>turn the school certificate into a clean PDF</item>
-        <item>export the school certificate in high quality</item>
-        <item>share the school certificate in one tap</item>
-        <item>store the school certificate offline and private</item>
-        <item>keep the school certificate ready for fast search</item>
-        <item>organize the school certificate in your folders</item>
-        <item>scan the school certificate for quick access</item>
-        <item>capture the school certificate with sharp clarity</item>
-        <item>digitize the school certificate for your records</item>
-        <item>save the school certificate to your vault</item>
-        <item>protect the school certificate on this device</item>
-        <item>digitize your school certificate now</item>
-        <item>digitize the school certificate today</item>
-        <item>secure your school certificate now</item>
-        <item>secure the school certificate today</item>
-        <item>archive your school certificate now</item>
-        <item>archive the school certificate today</item>
-        <item>organize your school certificate now</item>
-        <item>organize the school certificate today</item>
-        <item>protect your school certificate now</item>
-        <item>protect the school certificate today</item>
-        <item>store your school certificate now</item>
-        <item>store the school certificate today</item>
-        <item>capture your school certificate now</item>
-        <item>capture the school certificate today</item>
-        <item>save your school certificate now</item>
-        <item>save the school certificate today</item>
-        <item>clean your school certificate now</item>
-        <item>clean the school certificate today</item>
-        <item>scan your mark sheet now</item>
-        <item>scan the mark sheet today</item>
-        <item>keep your mark sheet safe</item>
-        <item>make the mark sheet searchable</item>
-        <item>turn the mark sheet into a clean PDF</item>
-        <item>export the mark sheet in high quality</item>
-        <item>share the mark sheet in one tap</item>
-        <item>store the mark sheet offline and private</item>
-        <item>keep the mark sheet ready for fast search</item>
-        <item>organize the mark sheet in your folders</item>
-        <item>scan the mark sheet for quick access</item>
-        <item>capture the mark sheet with sharp clarity</item>
-        <item>digitize the mark sheet for your records</item>
-        <item>save the mark sheet to your vault</item>
-        <item>protect the mark sheet on this device</item>
-        <item>digitize your mark sheet now</item>
-        <item>digitize the mark sheet today</item>
-        <item>secure your mark sheet now</item>
-        <item>secure the mark sheet today</item>
-        <item>archive your mark sheet now</item>
-        <item>archive the mark sheet today</item>
-        <item>organize your mark sheet now</item>
-        <item>organize the mark sheet today</item>
-        <item>protect your mark sheet now</item>
-        <item>protect the mark sheet today</item>
-        <item>store your mark sheet now</item>
-        <item>store the mark sheet today</item>
-        <item>capture your mark sheet now</item>
-        <item>capture the mark sheet today</item>
-        <item>save your mark sheet now</item>
-        <item>save the mark sheet today</item>
-        <item>clean your mark sheet now</item>
-        <item>clean the mark sheet today</item>
-        <item>scan your contract now</item>
-        <item>scan the contract today</item>
-        <item>keep your contract safe</item>
-        <item>make the contract searchable</item>
-        <item>turn the contract into a clean PDF</item>
-        <item>export the contract in high quality</item>
-        <item>share the contract in one tap</item>
-        <item>store the contract offline and private</item>
-        <item>keep the contract ready for fast search</item>
-        <item>organize the contract in your folders</item>
-        <item>scan the contract for quick access</item>
-        <item>capture the contract with sharp clarity</item>
-        <item>digitize the contract for your records</item>
-        <item>save the contract to your vault</item>
-        <item>protect the contract on this device</item>
-        <item>digitize your contract now</item>
-        <item>digitize the contract today</item>
-        <item>secure your contract now</item>
-        <item>secure the contract today</item>
-        <item>archive your contract now</item>
-        <item>archive the contract today</item>
-        <item>organize your contract now</item>
-        <item>organize the contract today</item>
-        <item>protect your contract now</item>
-        <item>protect the contract today</item>
-        <item>store your contract now</item>
-        <item>store the contract today</item>
-        <item>capture your contract now</item>
-        <item>capture the contract today</item>
-        <item>save your contract now</item>
-        <item>save the contract today</item>
-        <item>clean your contract now</item>
-        <item>clean the contract today</item>
-        <item>scan your agreement now</item>
-        <item>scan the agreement today</item>
-        <item>keep your agreement safe</item>
-        <item>make the agreement searchable</item>
-        <item>turn the agreement into a clean PDF</item>
-        <item>export the agreement in high quality</item>
-        <item>share the agreement in one tap</item>
-        <item>store the agreement offline and private</item>
-        <item>keep the agreement ready for fast search</item>
-        <item>organize the agreement in your folders</item>
-        <item>scan the agreement for quick access</item>
-        <item>capture the agreement with sharp clarity</item>
-        <item>digitize the agreement for your records</item>
-        <item>save the agreement to your vault</item>
-        <item>protect the agreement on this device</item>
-        <item>digitize your agreement now</item>
-        <item>digitize the agreement today</item>
-        <item>secure your agreement now</item>
-        <item>secure the agreement today</item>
-        <item>archive your agreement now</item>
-        <item>archive the agreement today</item>
-        <item>organize your agreement now</item>
-        <item>organize the agreement today</item>
-        <item>protect your agreement now</item>
-        <item>protect the agreement today</item>
-        <item>store your agreement now</item>
-        <item>store the agreement today</item>
-        <item>capture your agreement now</item>
-        <item>capture the agreement today</item>
-        <item>save your agreement now</item>
-        <item>save the agreement today</item>
-        <item>clean your agreement now</item>
-        <item>clean the agreement today</item>
-        <item>scan your property paper now</item>
-        <item>scan the property paper today</item>
-        <item>keep your property paper safe</item>
-        <item>make the property paper searchable</item>
-        <item>turn the property paper into a clean PDF</item>
-        <item>export the property paper in high quality</item>
-        <item>share the property paper in one tap</item>
-        <item>store the property paper offline and private</item>
-        <item>keep the property paper ready for fast search</item>
-        <item>organize the property paper in your folders</item>
-        <item>scan the property paper for quick access</item>
-        <item>capture the property paper with sharp clarity</item>
-        <item>digitize the property paper for your records</item>
-        <item>save the property paper to your vault</item>
-        <item>protect the property paper on this device</item>
-        <item>digitize your property paper now</item>
-        <item>digitize the property paper today</item>
-        <item>secure your property paper now</item>
-        <item>secure the property paper today</item>
-        <item>archive your property paper now</item>
-        <item>archive the property paper today</item>
-        <item>organize your property paper now</item>
-        <item>organize the property paper today</item>
-        <item>protect your property paper now</item>
-        <item>protect the property paper today</item>
-        <item>store your property paper now</item>
-        <item>store the property paper today</item>
-        <item>capture your property paper now</item>
-        <item>capture the property paper today</item>
-        <item>save your property paper now</item>
-        <item>save the property paper today</item>
-        <item>clean your property paper now</item>
-        <item>clean the property paper today</item>
-        <item>scan your insurance paper now</item>
-        <item>scan the insurance paper today</item>
-        <item>keep your insurance paper safe</item>
-        <item>make the insurance paper searchable</item>
-        <item>turn the insurance paper into a clean PDF</item>
-        <item>export the insurance paper in high quality</item>
-        <item>share the insurance paper in one tap</item>
-        <item>store the insurance paper offline and private</item>
-        <item>keep the insurance paper ready for fast search</item>
-        <item>organize the insurance paper in your folders</item>
-        <item>scan the insurance paper for quick access</item>
-        <item>capture the insurance paper with sharp clarity</item>
-        <item>digitize the insurance paper for your records</item>
-        <item>save the insurance paper to your vault</item>
-        <item>protect the insurance paper on this device</item>
-        <item>digitize your insurance paper now</item>
-        <item>digitize the insurance paper today</item>
-        <item>secure your insurance paper now</item>
-        <item>secure the insurance paper today</item>
-        <item>archive your insurance paper now</item>
-        <item>archive the insurance paper today</item>
-        <item>organize your insurance paper now</item>
-        <item>organize the insurance paper today</item>
-        <item>protect your insurance paper now</item>
-        <item>protect the insurance paper today</item>
-        <item>store your insurance paper now</item>
-        <item>store the insurance paper today</item>
-        <item>capture your insurance paper now</item>
-        <item>capture the insurance paper today</item>
-        <item>save your insurance paper now</item>
-        <item>save the insurance paper today</item>
-        <item>clean your insurance paper now</item>
-        <item>clean the insurance paper today</item>
-        <item>scan your tax file now</item>
-        <item>scan the tax file today</item>
-        <item>keep your tax file safe</item>
-        <item>make the tax file searchable</item>
-        <item>turn the tax file into a clean PDF</item>
-        <item>export the tax file in high quality</item>
-        <item>share the tax file in one tap</item>
-        <item>store the tax file offline and private</item>
-        <item>keep the tax file ready for fast search</item>
-        <item>organize the tax file in your folders</item>
-        <item>scan the tax file for quick access</item>
-        <item>capture the tax file with sharp clarity</item>
-        <item>digitize the tax file for your records</item>
-        <item>save the tax file to your vault</item>
-        <item>protect the tax file on this device</item>
-        <item>digitize your tax file now</item>
-        <item>digitize the tax file today</item>
-        <item>secure your tax file now</item>
-        <item>secure the tax file today</item>
-        <item>archive your tax file now</item>
-        <item>archive the tax file today</item>
-        <item>organize your tax file now</item>
-        <item>organize the tax file today</item>
-        <item>protect your tax file now</item>
-        <item>protect the tax file today</item>
-        <item>store your tax file now</item>
-        <item>store the tax file today</item>
-        <item>capture your tax file now</item>
-        <item>capture the tax file today</item>
-        <item>save your tax file now</item>
-        <item>save the tax file today</item>
-        <item>clean your tax file now</item>
-        <item>clean the tax file today</item>
-        <item>scan your bank statement now</item>
-        <item>scan the bank statement today</item>
-        <item>keep your bank statement safe</item>
-        <item>make the bank statement searchable</item>
-        <item>turn the bank statement into a clean PDF</item>
-        <item>export the bank statement in high quality</item>
-        <item>share the bank statement in one tap</item>
-        <item>store the bank statement offline and private</item>
-        <item>keep the bank statement ready for fast search</item>
-        <item>organize the bank statement in your folders</item>
-        <item>scan the bank statement for quick access</item>
-        <item>capture the bank statement with sharp clarity</item>
-        <item>digitize the bank statement for your records</item>
-        <item>save the bank statement to your vault</item>
-        <item>protect the bank statement on this device</item>
-        <item>digitize your bank statement now</item>
-        <item>digitize the bank statement today</item>
-        <item>secure your bank statement now</item>
-        <item>secure the bank statement today</item>
-        <item>archive your bank statement now</item>
-        <item>archive the bank statement today</item>
-        <item>organize your bank statement now</item>
-        <item>organize the bank statement today</item>
-        <item>protect your bank statement now</item>
-        <item>protect the bank statement today</item>
-        <item>store your bank statement now</item>
-        <item>store the bank statement today</item>
-        <item>capture your bank statement now</item>
-        <item>capture the bank statement today</item>
-        <item>save your bank statement now</item>
-        <item>save the bank statement today</item>
-        <item>clean your bank statement now</item>
-        <item>clean the bank statement today</item>
-        <item>scan your utility bill now</item>
-        <item>scan the utility bill today</item>
-        <item>keep your utility bill safe</item>
-        <item>make the utility bill searchable</item>
-        <item>turn the utility bill into a clean PDF</item>
-        <item>export the utility bill in high quality</item>
-        <item>share the utility bill in one tap</item>
-        <item>store the utility bill offline and private</item>
-        <item>keep the utility bill ready for fast search</item>
-        <item>organize the utility bill in your folders</item>
-        <item>scan the utility bill for quick access</item>
-        <item>capture the utility bill with sharp clarity</item>
-        <item>digitize the utility bill for your records</item>
-        <item>save the utility bill to your vault</item>
-        <item>protect the utility bill on this device</item>
-        <item>digitize your utility bill now</item>
-        <item>digitize the utility bill today</item>
-        <item>secure your utility bill now</item>
-        <item>secure the utility bill today</item>
-        <item>archive your utility bill now</item>
-        <item>archive the utility bill today</item>
-        <item>organize your utility bill now</item>
-        <item>organize the utility bill today</item>
-        <item>protect your utility bill now</item>
-        <item>protect the utility bill today</item>
-        <item>store your utility bill now</item>
-        <item>store the utility bill today</item>
-        <item>capture your utility bill now</item>
-        <item>capture the utility bill today</item>
-        <item>save your utility bill now</item>
-        <item>save the utility bill today</item>
-        <item>clean your utility bill now</item>
-        <item>clean the utility bill today</item>
-        <item>scan your rent receipt now</item>
-        <item>scan the rent receipt today</item>    
-        <item>keep your rent receipt safe</item>
-        <item>make the rent receipt searchable</item>
-        <item>turn the rent receipt into a clean PDF</item>
+    <string name="good_morning">Good morning &#x2600;&#xFE0F;</string>
+    <string name="good_afternoon">Good afternoon &#x1F324;&#xFE0F;</string>
+    <string name="good_evening">Good evening &#x1F306;</string>
+    <string name="good_night">Good night &#x1F319;</string>                <string-array name="greeting_variants">
+        <item>ready to scan? &#x1F4C4;</item>
+        <item>let us digitize your documents &#x2728;</item>
+        <item>digitize something important &#x1F4F7;</item>
+        <item>your scanner is ready &#x1F50E;</item>
+        <item>scan and store safely &#x2705;</item>
+        <item>scan your ID proof now &#x1F510;</item>
+        <item>scan the ID proof today &#x1F5C2;&#xFE0F;</item>
+        <item>keep your ID proof safe &#x1F6E1;&#xFE0F;</item>
+        <item>make the ID proof searchable &#x1F9FE;</item>
+        <item>turn the ID proof into a clean PDF &#x1F680;</item>
+        <item>export the ID proof in high quality &#x1F4C4;</item>
+        <item>share the ID proof in one tap &#x2728;</item>
+        <item>store the ID proof offline and private &#x1F4F7;</item>
+        <item>keep the ID proof ready for fast search &#x1F50E;</item>
+        <item>organize the ID proof in your folders &#x2705;</item>
+        <item>scan the ID proof for quick access &#x1F510;</item>
+        <item>capture the ID proof with sharp clarity &#x1F5C2;&#xFE0F;</item>
+        <item>digitize the ID proof for your records &#x1F6E1;&#xFE0F;</item>
+        <item>save the ID proof to your vault &#x1F9FE;</item>
+        <item>protect the ID proof on this device &#x1F680;</item>
+        <item>digitize your ID proof now &#x1F4C4;</item>
+        <item>digitize the ID proof today &#x2728;</item>
+        <item>secure your ID proof now &#x1F4F7;</item>
+        <item>secure the ID proof today &#x1F50E;</item>
+        <item>archive your ID proof now &#x2705;</item>
+        <item>archive the ID proof today &#x1F510;</item>
+        <item>organize your ID proof now &#x1F5C2;&#xFE0F;</item>
+        <item>organize the ID proof today &#x1F6E1;&#xFE0F;</item>
+        <item>protect your ID proof now &#x1F9FE;</item>
+        <item>protect the ID proof today &#x1F680;</item>
+        <item>store your ID proof now &#x1F4C4;</item>
+        <item>store the ID proof today &#x2728;</item>
+        <item>capture your ID proof now &#x1F4F7;</item>
+        <item>capture the ID proof today &#x1F50E;</item>
+        <item>save your ID proof now &#x2705;</item>
+        <item>save the ID proof today &#x1F510;</item>
+        <item>clean your ID proof now &#x1F5C2;&#xFE0F;</item>
+        <item>clean the ID proof today &#x1F6E1;&#xFE0F;</item>
+        <item>scan your ID card now &#x1F9FE;</item>
+        <item>scan the ID card today &#x1F680;</item>
+        <item>keep your ID card safe &#x1F4C4;</item>
+        <item>make the ID card searchable &#x2728;</item>
+        <item>turn the ID card into a clean PDF &#x1F4F7;</item>
+        <item>export the ID card in high quality &#x1F50E;</item>
+        <item>share the ID card in one tap &#x2705;</item>
+        <item>store the ID card offline and private &#x1F510;</item>
+        <item>keep the ID card ready for fast search &#x1F5C2;&#xFE0F;</item>
+        <item>organize the ID card in your folders &#x1F6E1;&#xFE0F;</item>
+        <item>scan the ID card for quick access &#x1F9FE;</item>
+        <item>capture the ID card with sharp clarity &#x1F680;</item>
+        <item>digitize the ID card for your records &#x1F4C4;</item>
+        <item>save the ID card to your vault &#x2728;</item>
+        <item>protect the ID card on this device &#x1F4F7;</item>
+        <item>digitize your ID card now &#x1F50E;</item>
+        <item>digitize the ID card today &#x2705;</item>
+        <item>secure your ID card now &#x1F510;</item>
+        <item>secure the ID card today &#x1F5C2;&#xFE0F;</item>
+        <item>archive your ID card now &#x1F6E1;&#xFE0F;</item>
+        <item>archive the ID card today &#x1F9FE;</item>
+        <item>organize your ID card now &#x1F680;</item>
+        <item>organize the ID card today &#x1F4C4;</item>
+        <item>protect your ID card now &#x2728;</item>
+        <item>protect the ID card today &#x1F4F7;</item>
+        <item>store your ID card now &#x1F50E;</item>
+        <item>store the ID card today &#x2705;</item>
+        <item>capture your ID card now &#x1F510;</item>
+        <item>capture the ID card today &#x1F5C2;&#xFE0F;</item>
+        <item>save your ID card now &#x1F6E1;&#xFE0F;</item>
+        <item>save the ID card today &#x1F9FE;</item>
+        <item>clean your ID card now &#x1F680;</item>
+        <item>clean the ID card today &#x1F4C4;</item>
+        <item>scan your passport now &#x2728;</item>
+        <item>scan the passport today &#x1F4F7;</item>
+        <item>keep your passport safe &#x1F50E;</item>
+        <item>make the passport searchable &#x2705;</item>
+        <item>turn the passport into a clean PDF &#x1F510;</item>
+        <item>export the passport in high quality &#x1F5C2;&#xFE0F;</item>
+        <item>share the passport in one tap &#x1F6E1;&#xFE0F;</item>
+        <item>store the passport offline and private &#x1F9FE;</item>
+        <item>keep the passport ready for fast search &#x1F680;</item>
+        <item>organize the passport in your folders &#x1F4C4;</item>
+        <item>scan the passport for quick access &#x2728;</item>
+        <item>capture the passport with sharp clarity &#x1F4F7;</item>
+        <item>digitize the passport for your records &#x1F50E;</item>
+        <item>save the passport to your vault &#x2705;</item>
+        <item>protect the passport on this device &#x1F510;</item>
+        <item>digitize your passport now &#x1F5C2;&#xFE0F;</item>
+        <item>digitize the passport today &#x1F6E1;&#xFE0F;</item>
+        <item>secure your passport now &#x1F9FE;</item>
+        <item>secure the passport today &#x1F680;</item>
+        <item>archive your passport now &#x1F4C4;</item>
+        <item>archive the passport today &#x2728;</item>
+        <item>organize your passport now &#x1F4F7;</item>
+        <item>organize the passport today &#x1F50E;</item>
+        <item>protect your passport now &#x2705;</item>
+        <item>protect the passport today &#x1F510;</item>
+        <item>store your passport now &#x1F5C2;&#xFE0F;</item>
+        <item>store the passport today &#x1F6E1;&#xFE0F;</item>
+        <item>capture your passport now &#x1F9FE;</item>
+        <item>capture the passport today &#x1F680;</item>
+        <item>save your passport now &#x1F4C4;</item>
+        <item>save the passport today &#x2728;</item>
+        <item>clean your passport now &#x1F4F7;</item>
+        <item>clean the passport today &#x1F50E;</item>
+        <item>scan your invoice now &#x2705;</item>
+        <item>scan the invoice today &#x1F510;</item>
+        <item>keep your invoice safe &#x1F5C2;&#xFE0F;</item>
+        <item>make the invoice searchable &#x1F6E1;&#xFE0F;</item>
+        <item>turn the invoice into a clean PDF &#x1F9FE;</item>
+        <item>export the invoice in high quality &#x1F680;</item>
+        <item>share the invoice in one tap &#x1F4C4;</item>
+        <item>store the invoice offline and private &#x2728;</item>
+        <item>keep the invoice ready for fast search &#x1F4F7;</item>
+        <item>organize the invoice in your folders &#x1F50E;</item>
+        <item>scan the invoice for quick access &#x2705;</item>
+        <item>capture the invoice with sharp clarity &#x1F510;</item>
+        <item>digitize the invoice for your records &#x1F5C2;&#xFE0F;</item>
+        <item>save the invoice to your vault &#x1F6E1;&#xFE0F;</item>
+        <item>protect the invoice on this device &#x1F9FE;</item>
+        <item>digitize your invoice now &#x1F680;</item>
+        <item>digitize the invoice today &#x1F4C4;</item>
+        <item>secure your invoice now &#x2728;</item>
+        <item>secure the invoice today &#x1F4F7;</item>
+        <item>archive your invoice now &#x1F50E;</item>
+        <item>archive the invoice today &#x2705;</item>
+        <item>organize your invoice now &#x1F510;</item>
+        <item>organize the invoice today &#x1F5C2;&#xFE0F;</item>
+        <item>protect your invoice now &#x1F6E1;&#xFE0F;</item>
+        <item>protect the invoice today &#x1F9FE;</item>
+        <item>store your invoice now &#x1F680;</item>
+        <item>store the invoice today &#x1F4C4;</item>
+        <item>capture your invoice now &#x2728;</item>
+        <item>capture the invoice today &#x1F4F7;</item>
+        <item>save your invoice now &#x1F50E;</item>
+        <item>save the invoice today &#x2705;</item>
+        <item>clean your invoice now &#x1F510;</item>
+        <item>clean the invoice today &#x1F5C2;&#xFE0F;</item>
+        <item>scan your receipt now &#x1F6E1;&#xFE0F;</item>
+        <item>scan the receipt today &#x1F9FE;</item>
+        <item>keep your receipt safe &#x1F680;</item>
+        <item>make the receipt searchable &#x1F4C4;</item>
+        <item>turn the receipt into a clean PDF &#x2728;</item>
+        <item>export the receipt in high quality &#x1F4F7;</item>
+        <item>share the receipt in one tap &#x1F50E;</item>
+        <item>store the receipt offline and private &#x2705;</item>
+        <item>keep the receipt ready for fast search &#x1F510;</item>
+        <item>organize the receipt in your folders &#x1F5C2;&#xFE0F;</item>
+        <item>scan the receipt for quick access &#x1F6E1;&#xFE0F;</item>
+        <item>capture the receipt with sharp clarity &#x1F9FE;</item>
+        <item>digitize the receipt for your records &#x1F680;</item>
+        <item>save the receipt to your vault &#x1F4C4;</item>
+        <item>protect the receipt on this device &#x2728;</item>
+        <item>digitize your receipt now &#x1F4F7;</item>
+        <item>digitize the receipt today &#x1F50E;</item>
+        <item>secure your receipt now &#x2705;</item>
+        <item>secure the receipt today &#x1F510;</item>
+        <item>archive your receipt now &#x1F5C2;&#xFE0F;</item>
+        <item>archive the receipt today &#x1F6E1;&#xFE0F;</item>
+        <item>organize your receipt now &#x1F9FE;</item>
+        <item>organize the receipt today &#x1F680;</item>
+        <item>protect your receipt now &#x1F4C4;</item>
+        <item>protect the receipt today &#x2728;</item>
+        <item>store your receipt now &#x1F4F7;</item>
+        <item>store the receipt today &#x1F50E;</item>
+        <item>capture your receipt now &#x2705;</item>
+        <item>capture the receipt today &#x1F510;</item>
+        <item>save your receipt now &#x1F5C2;&#xFE0F;</item>
+        <item>save the receipt today &#x1F6E1;&#xFE0F;</item>
+        <item>clean your receipt now &#x1F9FE;</item>
+        <item>clean the receipt today &#x1F680;</item>
+        <item>scan your medical report now &#x1F4C4;</item>
+        <item>scan the medical report today &#x2728;</item>
+        <item>keep your medical report safe &#x1F4F7;</item>
+        <item>make the medical report searchable &#x1F50E;</item>
+        <item>turn the medical report into a clean PDF &#x2705;</item>
+        <item>export the medical report in high quality &#x1F510;</item>
+        <item>share the medical report in one tap &#x1F5C2;&#xFE0F;</item>
+        <item>store the medical report offline and private &#x1F6E1;&#xFE0F;</item>
+        <item>keep the medical report ready for fast search &#x1F9FE;</item>
+        <item>organize the medical report in your folders &#x1F680;</item>
+        <item>scan the medical report for quick access &#x1F4C4;</item>
+        <item>capture the medical report with sharp clarity &#x2728;</item>
+        <item>digitize the medical report for your records &#x1F4F7;</item>
+        <item>save the medical report to your vault &#x1F50E;</item>
+        <item>protect the medical report on this device &#x2705;</item>
+        <item>digitize your medical report now &#x1F510;</item>
+        <item>digitize the medical report today &#x1F5C2;&#xFE0F;</item>
+        <item>secure your medical report now &#x1F6E1;&#xFE0F;</item>
+        <item>secure the medical report today &#x1F9FE;</item>
+        <item>archive your medical report now &#x1F680;</item>
+        <item>archive the medical report today &#x1F4C4;</item>
+        <item>organize your medical report now &#x2728;</item>
+        <item>organize the medical report today &#x1F4F7;</item>
+        <item>protect your medical report now &#x1F50E;</item>
+        <item>protect the medical report today &#x2705;</item>
+        <item>store your medical report now &#x1F510;</item>
+        <item>store the medical report today &#x1F5C2;&#xFE0F;</item>
+        <item>capture your medical report now &#x1F6E1;&#xFE0F;</item>
+        <item>capture the medical report today &#x1F9FE;</item>
+        <item>save your medical report now &#x1F680;</item>
+        <item>save the medical report today &#x1F4C4;</item>
+        <item>clean your medical report now &#x2728;</item>
+        <item>clean the medical report today &#x1F4F7;</item>
+        <item>scan your school certificate now &#x1F50E;</item>
+        <item>scan the school certificate today &#x2705;</item>
+        <item>keep your school certificate safe &#x1F510;</item>
+        <item>make the school certificate searchable &#x1F5C2;&#xFE0F;</item>
+        <item>turn the school certificate into a clean PDF &#x1F6E1;&#xFE0F;</item>
+        <item>export the school certificate in high quality &#x1F9FE;</item>
+        <item>share the school certificate in one tap &#x1F680;</item>
+        <item>store the school certificate offline and private &#x1F4C4;</item>
+        <item>keep the school certificate ready for fast search &#x2728;</item>
+        <item>organize the school certificate in your folders &#x1F4F7;</item>
+        <item>scan the school certificate for quick access &#x1F50E;</item>
+        <item>capture the school certificate with sharp clarity &#x2705;</item>
+        <item>digitize the school certificate for your records &#x1F510;</item>
+        <item>save the school certificate to your vault &#x1F5C2;&#xFE0F;</item>
+        <item>protect the school certificate on this device &#x1F6E1;&#xFE0F;</item>
+        <item>digitize your school certificate now &#x1F9FE;</item>
+        <item>digitize the school certificate today &#x1F680;</item>
+        <item>secure your school certificate now &#x1F4C4;</item>
+        <item>secure the school certificate today &#x2728;</item>
+        <item>archive your school certificate now &#x1F4F7;</item>
+        <item>archive the school certificate today &#x1F50E;</item>
+        <item>organize your school certificate now &#x2705;</item>
+        <item>organize the school certificate today &#x1F510;</item>
+        <item>protect your school certificate now &#x1F5C2;&#xFE0F;</item>
+        <item>protect the school certificate today &#x1F6E1;&#xFE0F;</item>
+        <item>store your school certificate now &#x1F9FE;</item>
+        <item>store the school certificate today &#x1F680;</item>
+        <item>capture your school certificate now &#x1F4C4;</item>
+        <item>capture the school certificate today &#x2728;</item>
+        <item>save your school certificate now &#x1F4F7;</item>
+        <item>save the school certificate today &#x1F50E;</item>
+        <item>clean your school certificate now &#x2705;</item>
+        <item>clean the school certificate today &#x1F510;</item>
+        <item>scan your mark sheet now &#x1F5C2;&#xFE0F;</item>
+        <item>scan the mark sheet today &#x1F6E1;&#xFE0F;</item>
+        <item>keep your mark sheet safe &#x1F9FE;</item>
+        <item>make the mark sheet searchable &#x1F680;</item>
+        <item>turn the mark sheet into a clean PDF &#x1F4C4;</item>
+        <item>export the mark sheet in high quality &#x2728;</item>
+        <item>share the mark sheet in one tap &#x1F4F7;</item>
+        <item>store the mark sheet offline and private &#x1F50E;</item>
+        <item>keep the mark sheet ready for fast search &#x2705;</item>
+        <item>organize the mark sheet in your folders &#x1F510;</item>
+        <item>scan the mark sheet for quick access &#x1F5C2;&#xFE0F;</item>
+        <item>capture the mark sheet with sharp clarity &#x1F6E1;&#xFE0F;</item>
+        <item>digitize the mark sheet for your records &#x1F9FE;</item>
+        <item>save the mark sheet to your vault &#x1F680;</item>
+        <item>protect the mark sheet on this device &#x1F4C4;</item>
+        <item>digitize your mark sheet now &#x2728;</item>
+        <item>digitize the mark sheet today &#x1F4F7;</item>
+        <item>secure your mark sheet now &#x1F50E;</item>
+        <item>secure the mark sheet today &#x2705;</item>
+        <item>archive your mark sheet now &#x1F510;</item>
+        <item>archive the mark sheet today &#x1F5C2;&#xFE0F;</item>
+        <item>organize your mark sheet now &#x1F6E1;&#xFE0F;</item>
+        <item>organize the mark sheet today &#x1F9FE;</item>
+        <item>protect your mark sheet now &#x1F680;</item>
+        <item>protect the mark sheet today &#x1F4C4;</item>
+        <item>store your mark sheet now &#x2728;</item>
+        <item>store the mark sheet today &#x1F4F7;</item>
+        <item>capture your mark sheet now &#x1F50E;</item>
+        <item>capture the mark sheet today &#x2705;</item>
+        <item>save your mark sheet now &#x1F510;</item>
+        <item>save the mark sheet today &#x1F5C2;&#xFE0F;</item>
+        <item>clean your mark sheet now &#x1F6E1;&#xFE0F;</item>
+        <item>clean the mark sheet today &#x1F9FE;</item>
+        <item>scan your contract now &#x1F680;</item>
+        <item>scan the contract today &#x1F4C4;</item>
+        <item>keep your contract safe &#x2728;</item>
+        <item>make the contract searchable &#x1F4F7;</item>
+        <item>turn the contract into a clean PDF &#x1F50E;</item>
+        <item>export the contract in high quality &#x2705;</item>
+        <item>share the contract in one tap &#x1F510;</item>
+        <item>store the contract offline and private &#x1F5C2;&#xFE0F;</item>
+        <item>keep the contract ready for fast search &#x1F6E1;&#xFE0F;</item>
+        <item>organize the contract in your folders &#x1F9FE;</item>
+        <item>scan the contract for quick access &#x1F680;</item>
+        <item>capture the contract with sharp clarity &#x1F4C4;</item>
+        <item>digitize the contract for your records &#x2728;</item>
+        <item>save the contract to your vault &#x1F4F7;</item>
+        <item>protect the contract on this device &#x1F50E;</item>
+        <item>digitize your contract now &#x2705;</item>
+        <item>digitize the contract today &#x1F510;</item>
+        <item>secure your contract now &#x1F5C2;&#xFE0F;</item>
+        <item>secure the contract today &#x1F6E1;&#xFE0F;</item>
+        <item>archive your contract now &#x1F9FE;</item>
+        <item>archive the contract today &#x1F680;</item>
+        <item>organize your contract now &#x1F4C4;</item>
+        <item>organize the contract today &#x2728;</item>
+        <item>protect your contract now &#x1F4F7;</item>
+        <item>protect the contract today &#x1F50E;</item>
+        <item>store your contract now &#x2705;</item>
+        <item>store the contract today &#x1F510;</item>
+        <item>capture your contract now &#x1F5C2;&#xFE0F;</item>
+        <item>capture the contract today &#x1F6E1;&#xFE0F;</item>
+        <item>save your contract now &#x1F9FE;</item>
+        <item>save the contract today &#x1F680;</item>
+        <item>clean your contract now &#x1F4C4;</item>
+        <item>clean the contract today &#x2728;</item>
+        <item>scan your agreement now &#x1F4F7;</item>
+        <item>scan the agreement today &#x1F50E;</item>
+        <item>keep your agreement safe &#x2705;</item>
+        <item>make the agreement searchable &#x1F510;</item>
+        <item>turn the agreement into a clean PDF &#x1F5C2;&#xFE0F;</item>
+        <item>export the agreement in high quality &#x1F6E1;&#xFE0F;</item>
+        <item>share the agreement in one tap &#x1F9FE;</item>
+        <item>store the agreement offline and private &#x1F680;</item>
+        <item>keep the agreement ready for fast search &#x1F4C4;</item>
+        <item>organize the agreement in your folders &#x2728;</item>
+        <item>scan the agreement for quick access &#x1F4F7;</item>
+        <item>capture the agreement with sharp clarity &#x1F50E;</item>
+        <item>digitize the agreement for your records &#x2705;</item>
+        <item>save the agreement to your vault &#x1F510;</item>
+        <item>protect the agreement on this device &#x1F5C2;&#xFE0F;</item>
+        <item>digitize your agreement now &#x1F6E1;&#xFE0F;</item>
+        <item>digitize the agreement today &#x1F9FE;</item>
+        <item>secure your agreement now &#x1F680;</item>
+        <item>secure the agreement today &#x1F4C4;</item>
+        <item>archive your agreement now &#x2728;</item>
+        <item>archive the agreement today &#x1F4F7;</item>
+        <item>organize your agreement now &#x1F50E;</item>
+        <item>organize the agreement today &#x2705;</item>
+        <item>protect your agreement now &#x1F510;</item>
+        <item>protect the agreement today &#x1F5C2;&#xFE0F;</item>
+        <item>store your agreement now &#x1F6E1;&#xFE0F;</item>
+        <item>store the agreement today &#x1F9FE;</item>
+        <item>capture your agreement now &#x1F680;</item>
+        <item>capture the agreement today &#x1F4C4;</item>
+        <item>save your agreement now &#x2728;</item>
+        <item>save the agreement today &#x1F4F7;</item>
+        <item>clean your agreement now &#x1F50E;</item>
+        <item>clean the agreement today &#x2705;</item>
+        <item>scan your property paper now &#x1F510;</item>
+        <item>scan the property paper today &#x1F5C2;&#xFE0F;</item>
+        <item>keep your property paper safe &#x1F6E1;&#xFE0F;</item>
+        <item>make the property paper searchable &#x1F9FE;</item>
+        <item>turn the property paper into a clean PDF &#x1F680;</item>
+        <item>export the property paper in high quality &#x1F4C4;</item>
+        <item>share the property paper in one tap &#x2728;</item>
+        <item>store the property paper offline and private &#x1F4F7;</item>
+        <item>keep the property paper ready for fast search &#x1F50E;</item>
+        <item>organize the property paper in your folders &#x2705;</item>
+        <item>scan the property paper for quick access &#x1F510;</item>
+        <item>capture the property paper with sharp clarity &#x1F5C2;&#xFE0F;</item>
+        <item>digitize the property paper for your records &#x1F6E1;&#xFE0F;</item>
+        <item>save the property paper to your vault &#x1F9FE;</item>
+        <item>protect the property paper on this device &#x1F680;</item>
+        <item>digitize your property paper now &#x1F4C4;</item>
+        <item>digitize the property paper today &#x2728;</item>
+        <item>secure your property paper now &#x1F4F7;</item>
+        <item>secure the property paper today &#x1F50E;</item>
+        <item>archive your property paper now &#x2705;</item>
+        <item>archive the property paper today &#x1F510;</item>
+        <item>organize your property paper now &#x1F5C2;&#xFE0F;</item>
+        <item>organize the property paper today &#x1F6E1;&#xFE0F;</item>
+        <item>protect your property paper now &#x1F9FE;</item>
+        <item>protect the property paper today &#x1F680;</item>
+        <item>store your property paper now &#x1F4C4;</item>
+        <item>store the property paper today &#x2728;</item>
+        <item>capture your property paper now &#x1F4F7;</item>
+        <item>capture the property paper today &#x1F50E;</item>
+        <item>save your property paper now &#x2705;</item>
+        <item>save the property paper today &#x1F510;</item>
+        <item>clean your property paper now &#x1F5C2;&#xFE0F;</item>
+        <item>clean the property paper today &#x1F6E1;&#xFE0F;</item>
+        <item>scan your insurance paper now &#x1F9FE;</item>
+        <item>scan the insurance paper today &#x1F680;</item>
+        <item>keep your insurance paper safe &#x1F4C4;</item>
+        <item>make the insurance paper searchable &#x2728;</item>
+        <item>turn the insurance paper into a clean PDF &#x1F4F7;</item>
+        <item>export the insurance paper in high quality &#x1F50E;</item>
+        <item>share the insurance paper in one tap &#x2705;</item>
+        <item>store the insurance paper offline and private &#x1F510;</item>
+        <item>keep the insurance paper ready for fast search &#x1F5C2;&#xFE0F;</item>
+        <item>organize the insurance paper in your folders &#x1F6E1;&#xFE0F;</item>
+        <item>scan the insurance paper for quick access &#x1F9FE;</item>
+        <item>capture the insurance paper with sharp clarity &#x1F680;</item>
+        <item>digitize the insurance paper for your records &#x1F4C4;</item>
+        <item>save the insurance paper to your vault &#x2728;</item>
+        <item>protect the insurance paper on this device &#x1F4F7;</item>
+        <item>digitize your insurance paper now &#x1F50E;</item>
+        <item>digitize the insurance paper today &#x2705;</item>
+        <item>secure your insurance paper now &#x1F510;</item>
+        <item>secure the insurance paper today &#x1F5C2;&#xFE0F;</item>
+        <item>archive your insurance paper now &#x1F6E1;&#xFE0F;</item>
+        <item>archive the insurance paper today &#x1F9FE;</item>
+        <item>organize your insurance paper now &#x1F680;</item>
+        <item>organize the insurance paper today &#x1F4C4;</item>
+        <item>protect your insurance paper now &#x2728;</item>
+        <item>protect the insurance paper today &#x1F4F7;</item>
+        <item>store your insurance paper now &#x1F50E;</item>
+        <item>store the insurance paper today &#x2705;</item>
+        <item>capture your insurance paper now &#x1F510;</item>
+        <item>capture the insurance paper today &#x1F5C2;&#xFE0F;</item>
+        <item>save your insurance paper now &#x1F6E1;&#xFE0F;</item>
+        <item>save the insurance paper today &#x1F9FE;</item>
+        <item>clean your insurance paper now &#x1F680;</item>
+        <item>clean the insurance paper today &#x1F4C4;</item>
+        <item>scan your tax file now &#x2728;</item>
+        <item>scan the tax file today &#x1F4F7;</item>
+        <item>keep your tax file safe &#x1F50E;</item>
+        <item>make the tax file searchable &#x2705;</item>
+        <item>turn the tax file into a clean PDF &#x1F510;</item>
+        <item>export the tax file in high quality &#x1F5C2;&#xFE0F;</item>
+        <item>share the tax file in one tap &#x1F6E1;&#xFE0F;</item>
+        <item>store the tax file offline and private &#x1F9FE;</item>
+        <item>keep the tax file ready for fast search &#x1F680;</item>
+        <item>organize the tax file in your folders &#x1F4C4;</item>
+        <item>scan the tax file for quick access &#x2728;</item>
+        <item>capture the tax file with sharp clarity &#x1F4F7;</item>
+        <item>digitize the tax file for your records &#x1F50E;</item>
+        <item>save the tax file to your vault &#x2705;</item>
+        <item>protect the tax file on this device &#x1F510;</item>
+        <item>digitize your tax file now &#x1F5C2;&#xFE0F;</item>
+        <item>digitize the tax file today &#x1F6E1;&#xFE0F;</item>
+        <item>secure your tax file now &#x1F9FE;</item>
+        <item>secure the tax file today &#x1F680;</item>
+        <item>archive your tax file now &#x1F4C4;</item>
+        <item>archive the tax file today &#x2728;</item>
+        <item>organize your tax file now &#x1F4F7;</item>
+        <item>organize the tax file today &#x1F50E;</item>
+        <item>protect your tax file now &#x2705;</item>
+        <item>protect the tax file today &#x1F510;</item>
+        <item>store your tax file now &#x1F5C2;&#xFE0F;</item>
+        <item>store the tax file today &#x1F6E1;&#xFE0F;</item>
+        <item>capture your tax file now &#x1F9FE;</item>
+        <item>capture the tax file today &#x1F680;</item>
+        <item>save your tax file now &#x1F4C4;</item>
+        <item>save the tax file today &#x2728;</item>
+        <item>clean your tax file now &#x1F4F7;</item>
+        <item>clean the tax file today &#x1F50E;</item>
+        <item>scan your bank statement now &#x2705;</item>
+        <item>scan the bank statement today &#x1F510;</item>
+        <item>keep your bank statement safe &#x1F5C2;&#xFE0F;</item>
+        <item>make the bank statement searchable &#x1F6E1;&#xFE0F;</item>
+        <item>turn the bank statement into a clean PDF &#x1F9FE;</item>
+        <item>export the bank statement in high quality &#x1F680;</item>
+        <item>share the bank statement in one tap &#x1F4C4;</item>
+        <item>store the bank statement offline and private &#x2728;</item>
+        <item>keep the bank statement ready for fast search &#x1F4F7;</item>
+        <item>organize the bank statement in your folders &#x1F50E;</item>
+        <item>scan the bank statement for quick access &#x2705;</item>
+        <item>capture the bank statement with sharp clarity &#x1F510;</item>
+        <item>digitize the bank statement for your records &#x1F5C2;&#xFE0F;</item>
+        <item>save the bank statement to your vault &#x1F6E1;&#xFE0F;</item>
+        <item>protect the bank statement on this device &#x1F9FE;</item>
+        <item>digitize your bank statement now &#x1F680;</item>
+        <item>digitize the bank statement today &#x1F4C4;</item>
+        <item>secure your bank statement now &#x2728;</item>
+        <item>secure the bank statement today &#x1F4F7;</item>
+        <item>archive your bank statement now &#x1F50E;</item>
+        <item>archive the bank statement today &#x2705;</item>
+        <item>organize your bank statement now &#x1F510;</item>
+        <item>organize the bank statement today &#x1F5C2;&#xFE0F;</item>
+        <item>protect your bank statement now &#x1F6E1;&#xFE0F;</item>
+        <item>protect the bank statement today &#x1F9FE;</item>
+        <item>store your bank statement now &#x1F680;</item>
+        <item>store the bank statement today &#x1F4C4;</item>
+        <item>capture your bank statement now &#x2728;</item>
+        <item>capture the bank statement today &#x1F4F7;</item>
+        <item>save your bank statement now &#x1F50E;</item>
+        <item>save the bank statement today &#x2705;</item>
+        <item>clean your bank statement now &#x1F510;</item>
+        <item>clean the bank statement today &#x1F5C2;&#xFE0F;</item>
+        <item>scan your utility bill now &#x1F6E1;&#xFE0F;</item>
+        <item>scan the utility bill today &#x1F9FE;</item>
+        <item>keep your utility bill safe &#x1F680;</item>
+        <item>make the utility bill searchable &#x1F4C4;</item>
+        <item>turn the utility bill into a clean PDF &#x2728;</item>
+        <item>export the utility bill in high quality &#x1F4F7;</item>
+        <item>share the utility bill in one tap &#x1F50E;</item>
+        <item>store the utility bill offline and private &#x2705;</item>
+        <item>keep the utility bill ready for fast search &#x1F510;</item>
+        <item>organize the utility bill in your folders &#x1F5C2;&#xFE0F;</item>
+        <item>scan the utility bill for quick access &#x1F6E1;&#xFE0F;</item>
+        <item>capture the utility bill with sharp clarity &#x1F9FE;</item>
+        <item>digitize the utility bill for your records &#x1F680;</item>
+        <item>save the utility bill to your vault &#x1F4C4;</item>
+        <item>protect the utility bill on this device &#x2728;</item>
+        <item>digitize your utility bill now &#x1F4F7;</item>
+        <item>digitize the utility bill today &#x1F50E;</item>
+        <item>secure your utility bill now &#x2705;</item>
+        <item>secure the utility bill today &#x1F510;</item>
+        <item>archive your utility bill now &#x1F5C2;&#xFE0F;</item>
+        <item>archive the utility bill today &#x1F6E1;&#xFE0F;</item>
+        <item>organize your utility bill now &#x1F9FE;</item>
+        <item>organize the utility bill today &#x1F680;</item>
+        <item>protect your utility bill now &#x1F4C4;</item>
+        <item>protect the utility bill today &#x2728;</item>
+        <item>store your utility bill now &#x1F4F7;</item>
+        <item>store the utility bill today &#x1F50E;</item>
+        <item>capture your utility bill now &#x2705;</item>
+        <item>capture the utility bill today &#x1F510;</item>
+        <item>save your utility bill now &#x1F5C2;&#xFE0F;</item>
+        <item>save the utility bill today &#x1F6E1;&#xFE0F;</item>
+        <item>clean your utility bill now &#x1F9FE;</item>
+        <item>clean the utility bill today &#x1F680;</item>
+        <item>scan your rent receipt now &#x1F4C4;</item>
+        <item>scan the rent receipt today &#x2728;</item>
+        <item>keep your rent receipt safe &#x1F4F7;</item>
+        <item>make the rent receipt searchable &#x1F50E;</item>
+        <item>turn the rent receipt into a clean PDF &#x2705;</item>
     </string-array>
     <string-array name="crypto_fingerprint_fallback_prefixes" translatable="false">
         <item>__none__</item>
@@ -663,6 +663,7 @@
     <string name="resume">Resume</string>
     <string name="rotate_left">Rotate left</string>
     <string name="rotate_right">Rotate right</string>
+    <string name="retake_page">Retake page</string>
     <string name="save">Save</string>
     <string name="scan_button">New Scan</string>
     <string name="scanner">Scanner</string>
@@ -744,4 +745,23 @@
         <item quantity="one">%d Document</item>
         <item quantity="other">%d Documents</item>
     </plurals>
+    <string name="tutorial_title">Quick walkthrough</string>
+    <string name="tutorial_step_scan_title">Scan documents</string>
+    <string name="tutorial_step_scan_body">Align the edges and tap Scan Now to capture.</string>
+    <string name="tutorial_step_adjust_title">Adjust and crop</string>
+    <string name="tutorial_step_adjust_body">Retake or crop pages anytime for a clean edge.</string>
+    <string name="tutorial_step_export_title">Export smart</string>
+    <string name="tutorial_step_export_body">Create PDFs with OCR, watermark, and password options.</string>
+    <string name="tutorial_step_search_title">Search instantly</string>
+    <string name="tutorial_step_search_body">Find text inside your scans with OCR search.</string>
+    <string name="tutorial_skip">Skip</string>
+    <string name="tutorial_next">Next</string>
+    <string name="tutorial_done">Done</string>
+    <string name="tutorial_step_home_title">Welcome to BharatScan</string>
+    <string name="tutorial_step_home_body">This is your home hub for scans, filters, and quick actions.</string>
+    <string name="tutorial_back">Back</string>
+    <string name="tutorial_start_title">App walkthrough</string>
+    <string name="tutorial_start_desc">See a guided tour across the app screens.</string>
+    <string name="tutorial_start_button">Start walkthrough</string>
 </resources>
+

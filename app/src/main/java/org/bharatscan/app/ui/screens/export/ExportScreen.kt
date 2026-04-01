@@ -409,52 +409,61 @@ private fun ExportSuccessScreen(
             .padding(vertical = 12.dp)
     ) {
         SuccessBackground()
-        Column(
+        Surface(
+            shape = RoundedCornerShape(28.dp),
+            color = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f),
+            tonalElevation = 2.dp,
+            shadowElevation = 6.dp,
             modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 12.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .align(Alignment.Center)
+                .fillMaxWidth()
+                .padding(horizontal = 10.dp)
         ) {
-            Spacer(Modifier.height(12.dp))
-            SuccessBadge()
-            Spacer(Modifier.height(24.dp))
-            Text(
-                text = title,
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary,
-                textAlign = TextAlign.Center
-            )
-            Spacer(Modifier.height(10.dp))
-            Text(
-                text = description,
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center
-            )
-            Spacer(Modifier.height(24.dp))
-            SuccessPrimaryButton(
-                enabled = savedItem != null,
-                onClick = { savedItem?.let(onOpen) },
-                text = stringResource(R.string.export_success_view_document)
-            )
-            Spacer(Modifier.height(16.dp))
-            SuccessSecondaryButton(
-                onClick = onGoHome,
-                text = stringResource(R.string.export_success_go_home)
-            )
-            Spacer(Modifier.height(24.dp))
-            SuccessStatsRow(
-                sizeLabel = sizeLabel,
-                formatLabel = formatLabel
-            )
-            Spacer(Modifier.weight(1f))
-            Text(
-                text = stringResource(R.string.made_with_love_india),
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            Spacer(Modifier.height(8.dp))
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 20.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                SuccessBadge()
+                Spacer(Modifier.height(20.dp))
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary,
+                    textAlign = TextAlign.Center
+                )
+                Spacer(Modifier.height(10.dp))
+                Text(
+                    text = description,
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Center
+                )
+                Spacer(Modifier.height(22.dp))
+                SuccessPrimaryButton(
+                    enabled = savedItem != null,
+                    onClick = { savedItem?.let(onOpen) },
+                    text = stringResource(R.string.export_success_view_document)
+                )
+                Spacer(Modifier.height(14.dp))
+                SuccessSecondaryButton(
+                    onClick = onGoHome,
+                    text = stringResource(R.string.export_success_go_home)
+                )
+                Spacer(Modifier.height(20.dp))
+                SuccessStatsRow(
+                    sizeLabel = sizeLabel,
+                    formatLabel = formatLabel
+                )
+                Spacer(Modifier.height(16.dp))
+                Text(
+                    text = stringResource(R.string.made_with_love_india),
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
         }
     }
 }
@@ -462,6 +471,15 @@ private fun ExportSuccessScreen(
 @Composable
 private fun SuccessBackground() {
     Box(modifier = Modifier.fillMaxSize()) {
+        val drift by rememberInfiniteTransition(label = "successDrift").animateFloat(
+            initialValue = -24f,
+            targetValue = 24f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(12000, easing = FastOutSlowInEasing),
+                repeatMode = RepeatMode.Reverse
+            ),
+            label = "successBandDrift"
+        )
         val tricolorSoft = Brush.linearGradient(
             listOf(
                 BharatSaffron.copy(alpha = 0.12f),
@@ -481,7 +499,7 @@ private fun SuccessBackground() {
                 .fillMaxWidth()
                 .height(180.dp)
                 .align(Alignment.Center)
-                .graphicsLayer(rotationZ = -6f)
+                .graphicsLayer(rotationZ = -6f, translationX = drift)
                 .background(tricolorSoft, RoundedCornerShape(140.dp))
         )
         Box(
@@ -490,7 +508,7 @@ private fun SuccessBackground() {
                 .height(140.dp)
                 .align(Alignment.Center)
                 .offset(y = 120.dp)
-                .graphicsLayer(rotationZ = 6f)
+                .graphicsLayer(rotationZ = 6f, translationX = -drift)
                 .background(tricolorReverse, RoundedCornerShape(140.dp))
         )
     }
@@ -507,6 +525,15 @@ private fun SuccessBadge() {
         ),
         label = "successFloat"
     )
+    val pulse by rememberInfiniteTransition(label = "successPulse").animateFloat(
+        initialValue = 0.96f,
+        targetValue = 1.04f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(1800, easing = FastOutSlowInEasing),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "successPulse"
+    )
     var showCheck by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { showCheck = true }
     val checkScale by animateFloatAsState(
@@ -517,9 +544,28 @@ private fun SuccessBadge() {
     Box(
         modifier = Modifier
             .size(140.dp)
-            .offset(y = floatOffset.dp),
+            .offset(y = floatOffset.dp)
+            .graphicsLayer {
+                scaleX = pulse
+                scaleY = pulse
+            },
         contentAlignment = Alignment.Center
     ) {
+        Box(
+            modifier = Modifier
+                .size(132.dp)
+                .background(
+                    brush = Brush.radialGradient(
+                        colors = listOf(
+                            BharatSaffron.copy(alpha = 0.25f),
+                            BharatWhite.copy(alpha = 0.1f),
+                            BharatGreen.copy(alpha = 0.25f),
+                            Color.Transparent
+                        )
+                    ),
+                    shape = RoundedCornerShape(100.dp)
+                )
+        )
         Box(
             modifier = Modifier
                 .size(118.dp)
@@ -716,17 +762,27 @@ private fun PdfInfosAndResultBar(
 
 @Composable
 private fun ExportHeader() {
-    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-        Text(
-            text = stringResource(R.string.export_portal).uppercase(),
-            style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.secondary
-        )
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
         Text(
             text = stringResource(R.string.finalize_document),
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.primary
+        )
+        Box(
+            modifier = Modifier
+                .height(4.dp)
+                .fillMaxWidth(0.4f)
+                .clip(RoundedCornerShape(50))
+                .background(
+                    Brush.horizontalGradient(
+                        listOf(
+                            BharatSaffron.copy(alpha = 0.8f),
+                            BharatWhite.copy(alpha = 0.4f),
+                            BharatGreen.copy(alpha = 0.8f)
+                        )
+                    )
+                )
         )
     }
 }
@@ -737,15 +793,32 @@ private fun PdfInfoCard(
 ) {
     Surface(
         shape = RoundedCornerShape(24.dp),
-        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.97f),
-        shadowElevation = 10.dp,
+        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.98f),
+        shadowElevation = 8.dp,
+        border = BorderStroke(1.dp, OutlineSoft),
         modifier = Modifier.fillMaxWidth()
     ) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            modifier = Modifier.padding(20.dp)
-        ) {
-            content()
+        Box {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(6.dp)
+                    .background(
+                        Brush.horizontalGradient(
+                            listOf(
+                                BharatSaffron.copy(alpha = 0.4f),
+                                BharatWhite.copy(alpha = 0.3f),
+                                BharatGreen.copy(alpha = 0.4f)
+                            )
+                        )
+                    )
+            )
+            Column(
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                modifier = Modifier.padding(20.dp)
+            ) {
+                content()
+            }
         }
     }
 }
@@ -766,20 +839,34 @@ private fun PdfInfos(
         thumbnail?.let {
             Card(
                 elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-                shape = RoundedCornerShape(12.dp),
+                shape = RoundedCornerShape(16.dp),
+                border = BorderStroke(1.dp, BharatSaffron.copy(alpha = 0.3f)),
                 modifier = Modifier
-                    .size(100.dp)
+                    .size(110.dp)
                     .clickable { onThumbnailClick() }
             ) {
-                Image(
-                    bitmap = thumbnail.asImageBitmap(),
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop
-                )
+                Box(modifier = Modifier.fillMaxSize()) {
+                    Image(
+                        bitmap = thumbnail.asImageBitmap(),
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                    Box(
+                        modifier = Modifier
+                            .align(Alignment.BottomCenter)
+                            .fillMaxWidth()
+                            .height(20.dp)
+                            .background(
+                                Brush.verticalGradient(
+                                    listOf(Color.Transparent, Color.Black.copy(alpha = 0.35f))
+                                )
+                            )
+                    )
+                }
             }
         }
-        
+
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             if (uiState.isGenerating) {
                 Row(
@@ -807,13 +894,43 @@ private fun PdfInfos(
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary
                 )
-                Text(
-                    text = formattedFileSize,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.secondary,
-                    fontWeight = FontWeight.Medium
+                InfoPills(
+                    title = formattedFileSize,
+                    value = if (uiState.format == ExportFormat.PDF) "PDF" else "JPEG"
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun InfoPills(title: String, value: String) {
+    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Surface(
+            shape = RoundedCornerShape(999.dp),
+            color = BharatNavy.copy(alpha = 0.08f),
+            border = BorderStroke(1.dp, BharatNavy.copy(alpha = 0.15f))
+        ) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                fontWeight = FontWeight.SemiBold
+            )
+        }
+        Surface(
+            shape = RoundedCornerShape(999.dp),
+            color = BharatSaffron.copy(alpha = 0.12f),
+            border = BorderStroke(1.dp, BharatSaffron.copy(alpha = 0.3f))
+        ) {
+            Text(
+                text = value,
+                style = MaterialTheme.typography.labelLarge,
+                color = BharatSaffronDeep,
+                modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                fontWeight = FontWeight.SemiBold
+            )
         }
     }
 }

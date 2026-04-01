@@ -16,6 +16,8 @@ package org.bharatscan.app.ui.screens.settings
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -37,9 +39,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.bharatscan.app.R
 import org.bharatscan.app.domain.ExportQuality
@@ -65,9 +71,19 @@ fun SettingsScreen(
     updateState: UpdateUiState,
     onCheckForUpdates: () -> Unit,
     onCheckAtStartupChanged: (Boolean) -> Unit,
+    onStartTutorial: () -> Unit,
 ) {
     BackHandler { onBack() }
-    DigitalBharatBackground {
+    DigitalBharatBackground(
+        backgroundImageRes = R.drawable.settings_bg,
+        backgroundImageContentScale = ContentScale.Crop,
+        backgroundImageAlignment = Alignment.Center,
+        backgroundImageTint = Color(0xFFF8F2EA),
+        backgroundImageTintAlpha = 0.35f,
+        backgroundImageScale = 3.08f,
+        useDecorations = false,
+        showChakra = false
+    ) {
         Scaffold(
             containerColor = Color.Transparent,
             topBar = {
@@ -81,7 +97,7 @@ fun SettingsScreen(
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = Color.Transparent,
+                        containerColor = Color(0xFFF8F5EF).copy(alpha = 0.55f),
                         titleContentColor = MaterialTheme.colorScheme.primary,
                         navigationIconContentColor = MaterialTheme.colorScheme.primary
                     )
@@ -107,6 +123,7 @@ fun SettingsScreen(
                 updateState,
                 onCheckForUpdates,
                 onCheckAtStartupChanged,
+                onStartTutorial,
                 modifier = Modifier.padding(paddingValues))
         }
     }
@@ -124,15 +141,16 @@ private fun SettingsContent(
     updateState: UpdateUiState,
     onCheckForUpdates: () -> Unit,
     onCheckAtStartupChanged: (Boolean) -> Unit,
+    onStartTutorial: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var showLanguageSheet by remember { mutableStateOf(false) }
     Column(
         modifier
             .fillMaxSize()
-            .padding(20.dp)
+            .padding(18.dp)
             .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(24.dp)
+        verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         SectionHeader(title = stringResource(R.string.settings))
 
@@ -142,8 +160,10 @@ private fun SettingsContent(
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.secondary,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 8.dp)
+                modifier = Modifier.padding(bottom = 6.dp)
             )
+            SectionDivider()
+            Spacer(Modifier.height(8.dp))
 
             ExportQuality.entries.reversed().forEach { quality ->
                 Surface(
@@ -178,8 +198,10 @@ private fun SettingsContent(
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.secondary,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 8.dp)
+                modifier = Modifier.padding(bottom = 6.dp)
             )
+            SectionDivider()
+            Spacer(Modifier.height(8.dp))
 
             ExportFormat.entries.forEach { format ->
                 Surface(
@@ -214,10 +236,13 @@ private fun SettingsContent(
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.secondary,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 8.dp)
+                modifier = Modifier.padding(bottom = 6.dp)
             )
+            SectionDivider()
+            Spacer(Modifier.height(10.dp))
 
             LanguageSelectorRow(
+                selected = uiState.languageOption,
                 selectedLabel = stringResource(uiState.languageOption.labelRes),
                 onClick = { showLanguageSheet = true }
             )
@@ -260,8 +285,10 @@ private fun SettingsContent(
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.secondary,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 8.dp)
+                modifier = Modifier.padding(bottom = 6.dp)
             )
+            SectionDivider()
+            Spacer(Modifier.height(10.dp))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -292,6 +319,8 @@ private fun SettingsContent(
                 )
             }
 
+            Spacer(Modifier.height(12.dp))
+            SectionDivider()
             Spacer(Modifier.height(12.dp))
 
             Button(
@@ -358,6 +387,34 @@ private fun SettingsContent(
                 }
             }
         }
+
+        SettingsSectionCard {
+            Text(
+                text = stringResource(R.string.tutorial_start_title),
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.secondary,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 6.dp)
+            )
+            SectionDivider()
+            Spacer(Modifier.height(10.dp))
+            Text(
+                text = stringResource(R.string.tutorial_start_desc),
+                style = MaterialTheme.typography.bodySmall,
+                color = TextSecondary
+            )
+            Spacer(Modifier.height(12.dp))
+            Button(
+                onClick = onStartTutorial,
+                colors = ButtonDefaults.buttonColors(containerColor = BharatSaffron)
+            ) {
+                Text(
+                    text = stringResource(R.string.tutorial_start_button),
+                    color = BharatWhite,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
     }
 
     if (showLanguageSheet) {
@@ -374,33 +431,69 @@ private fun SettingsContent(
 
 @Composable
 private fun LanguageSelectorRow(
+    selected: LanguageOption,
     selectedLabel: String,
     onClick: () -> Unit,
 ) {
-    Surface(
-        color = MaterialTheme.colorScheme.surfaceContainerHigh,
-        shape = RoundedCornerShape(14.dp),
-        tonalElevation = 2.dp,
+    Box(
         modifier = Modifier
             .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .background(
+                Brush.horizontalGradient(
+                    listOf(
+                        BharatSaffron.copy(alpha = 0.7f),
+                        BharatWhite.copy(alpha = 0.9f),
+                        BharatGreen.copy(alpha = 0.7f)
+                    )
+                )
+            )
             .clickable { onClick() }
+            .padding(1.dp)
     ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically
+        Surface(
+            color = MaterialTheme.colorScheme.surfaceContainer,
+            shape = RoundedCornerShape(15.dp),
+            tonalElevation = 0.dp,
+            modifier = Modifier.fillMaxWidth()
         ) {
-            Text(
-                text = selectedLabel,
-                style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.SemiBold,
-                color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.weight(1f)
-            )
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowDown,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.primary
-            )
+            Row(
+                modifier = Modifier
+                    .padding(horizontal = 14.dp, vertical = 12.dp)
+                    .heightIn(min = 52.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                LanguageBadge(option = selected, size = 38.dp)
+                Spacer(Modifier.width(12.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = stringResource(R.string.language_title),
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.secondary
+                    )
+                    Text(
+                        text = selectedLabel,
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                }
+                Surface(
+                    color = MaterialTheme.colorScheme.surface,
+                    shape = RoundedCornerShape(12.dp),
+                    shadowElevation = 4.dp,
+                    modifier = Modifier.size(36.dp)
+                ) {
+                    Box(contentAlignment = Alignment.Center) {
+                        Icon(
+                            imageVector = Icons.Default.KeyboardArrowDown,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                }
+            }
         }
     }
 }
@@ -450,6 +543,8 @@ private fun LanguagePickerSheet(
                                 .padding(horizontal = 12.dp, vertical = 10.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
+                            LanguageBadge(option = option, size = 30.dp)
+                            Spacer(Modifier.width(10.dp))
                             Text(
                                 text = stringResource(option.labelRes),
                                 style = MaterialTheme.typography.bodyLarge,
@@ -472,22 +567,79 @@ private fun LanguagePickerSheet(
     }
 }
 
+@Composable
+private fun LanguageBadge(option: LanguageOption, size: Dp) {
+    val (bg, fg) = when (option) {
+        LanguageOption.MATCH_DEVICE -> MaterialTheme.colorScheme.surfaceContainerHigh to MaterialTheme.colorScheme.primary
+        LanguageOption.ENGLISH -> NavyGlow to MaterialTheme.colorScheme.primary
+        LanguageOption.HINDI -> BharatSaffron.copy(alpha = 0.2f) to BharatSaffronDeep
+        LanguageOption.BENGALI -> BharatGreen.copy(alpha = 0.2f) to BharatGreen
+        LanguageOption.TELUGU -> BharatChakra.copy(alpha = 0.2f) to BharatChakra
+        LanguageOption.MARATHI -> BharatSaffron.copy(alpha = 0.18f) to BharatSaffronDeep
+        LanguageOption.TAMIL -> BharatGreen.copy(alpha = 0.18f) to BharatGreen
+        LanguageOption.URDU -> BharatChakra.copy(alpha = 0.18f) to BharatChakra
+        LanguageOption.GUJARATI -> BharatSaffron.copy(alpha = 0.18f) to BharatSaffronDeep
+        LanguageOption.KANNADA -> BharatGreen.copy(alpha = 0.18f) to BharatGreen
+        LanguageOption.MALAYALAM -> BharatChakra.copy(alpha = 0.18f) to BharatChakra
+        LanguageOption.ODIA -> BharatSaffron.copy(alpha = 0.18f) to BharatSaffronDeep
+        LanguageOption.PUNJABI -> BharatGreen.copy(alpha = 0.18f) to BharatGreen
+    }
+    Surface(
+        shape = RoundedCornerShape(10.dp),
+        color = bg,
+        modifier = Modifier.size(size)
+    ) {
+        Box(contentAlignment = Alignment.Center) {
+            val letter = when (option) {
+                LanguageOption.MATCH_DEVICE -> "D"
+                LanguageOption.ENGLISH -> "E"
+                LanguageOption.HINDI -> "ह"
+                LanguageOption.BENGALI -> "ব"
+                LanguageOption.TELUGU -> "త"
+                LanguageOption.MARATHI -> "म"
+                LanguageOption.TAMIL -> "த"
+                LanguageOption.URDU -> "ا"
+                LanguageOption.GUJARATI -> "ગ"
+                LanguageOption.KANNADA -> "ಕ"
+                LanguageOption.MALAYALAM -> "മ"
+                LanguageOption.ODIA -> "ଓ"
+                LanguageOption.PUNJABI -> "ਪ"
+            }
+            Text(
+                text = letter,
+                style = MaterialTheme.typography.labelMedium,
+                fontWeight = FontWeight.Bold,
+                color = fg
+            )
+        }
+    }
+}
+
 
 @Composable
 private fun SettingsSectionCard(content: @Composable ColumnScope.() -> Unit) {
     Surface(
-        shape = RoundedCornerShape(24.dp),
-        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.97f),
-        shadowElevation = 10.dp,
+        shape = RoundedCornerShape(20.dp),
+        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.98f),
+        shadowElevation = 4.dp,
+        border = BorderStroke(1.dp, OutlineSoft),
         modifier = Modifier.fillMaxWidth()
     ) {
         Column(
-            modifier = Modifier.padding(20.dp),
+            modifier = Modifier.padding(18.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             content()
         }
     }
+}
+
+@Composable
+private fun SectionDivider() {
+    HorizontalDivider(
+        color = DividerColor.copy(alpha = 0.6f),
+        thickness = 1.dp
+    )
 }
 
 @Composable

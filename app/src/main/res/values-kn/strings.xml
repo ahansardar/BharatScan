@@ -87,37 +87,37 @@
     <string name="custom_category_hint">ವರ್ಗದ ಹೆಸರನ್ನು ನಮೂದಿಸಿ</string>
     <string name="search_title">ದಾಖಲೆಗಳನ್ನು ಹುಡುಕಿ</string>
     <string name="filters_title">ಶೋಧಕಗಳು</string>
-    <string name="good_morning">ಶುಭೋದಯ</string>
-    <string name="good_afternoon">ಶುಭ ಮಧ್ಯಾಹ್ನ</string>
-    <string name="good_evening">ಶುಭ ಸಂಜೆ</string>
-    <string name="good_night">ಶುಭ ರಾತ್ರಿ</string>
-    <string-array name="greeting_variants">
-        <item>ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಸಿದ್ಧವಾಗಿದೆಯೇ?</item>
-        <item>ನಿಮ್ಮ ದಾಖಲೆಗಳನ್ನು ಡಿಜಿಟೈಸ್ ಮಾಡೋಣ</item>
-        <item>ಮುಖ್ಯವಾದುದನ್ನು ಡಿಜಿಟಲೀಕರಣಗೊಳಿಸಿ</item>
-        <item>ನಿಮ್ಮ ಸ್ಕ್ಯಾನರ್ ಸಿದ್ಧವಾಗಿದೆ</item>
-        <item>ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಮತ್ತು ಸುರಕ್ಷಿತವಾಗಿ ಸಂಗ್ರಹಿಸಿ</item>
-        <item>ನಿಮ್ಮ ID ಪುರಾವೆಯನ್ನು ಈಗ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</item>
-        <item>ಇಂದು ID ಪುರಾವೆಯನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</item>
-        <item>ನಿಮ್ಮ ಗುರುತಿನ ಚೀಟಿಯನ್ನು ಸುರಕ್ಷಿತವಾಗಿರಿಸಿಕೊಳ್ಳಿ</item>
-        <item>ID ಪುರಾವೆಯನ್ನು ಹುಡುಕುವಂತೆ ಮಾಡಿ</item>
-        <item>ID ಪುರಾವೆಯನ್ನು ಕ್ಲೀನ್ PDF ಆಗಿ ಪರಿವರ್ತಿಸಿ</item>
-        <item>ID ಪುರಾವೆಯನ್ನು ಉತ್ತಮ ಗುಣಮಟ್ಟದಲ್ಲಿ ರಫ್ತು ಮಾಡಿ</item>
-        <item>ಒಂದು ಟ್ಯಾಪ್‌ನಲ್ಲಿ ID ಪುರಾವೆಯನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</item>
-        <item>ID ಪುರಾವೆಯನ್ನು ಆಫ್‌ಲೈನ್ ಮತ್ತು ಖಾಸಗಿಯಾಗಿ ಸಂಗ್ರಹಿಸಿ</item>
-        <item>ತ್ವರಿತ ಹುಡುಕಾಟಕ್ಕಾಗಿ ಐಡಿ ಪುರಾವೆಯನ್ನು ಸಿದ್ಧವಾಗಿಡಿ</item>
-        <item>ನಿಮ್ಮ ಫೋಲ್ಡರ್‌ಗಳಲ್ಲಿ ID ಪುರಾವೆಯನ್ನು ಆಯೋಜಿಸಿ</item>
-        <item>ತ್ವರಿತ ಪ್ರವೇಶಕ್ಕಾಗಿ ID ಪುರಾವೆಯನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</item>
-        <item>ತೀಕ್ಷ್ಣವಾದ ಸ್ಪಷ್ಟತೆಯೊಂದಿಗೆ ID ಪುರಾವೆಯನ್ನು ಸೆರೆಹಿಡಿಯಿರಿ</item>
-        <item>ನಿಮ್ಮ ದಾಖಲೆಗಳಿಗಾಗಿ ID ಪುರಾವೆಗಳನ್ನು ಡಿಜಿಟೈಜ್ ಮಾಡಿ</item>
-        <item>ID ಪುರಾವೆಯನ್ನು ನಿಮ್ಮ ವಾಲ್ಟ್‌ಗೆ ಉಳಿಸಿ</item>
-        <item>ಈ ಸಾಧನದಲ್ಲಿ ID ಪುರಾವೆಯನ್ನು ರಕ್ಷಿಸಿ</item>
-        <item>ನಿಮ್ಮ ಐಡಿ ಪುರಾವೆಯನ್ನು ಈಗಲೇ ಡಿಜಿಟೈಜ್ ಮಾಡಿ</item>
-        <item>ಐಡಿ ಪುರಾವೆಯನ್ನು ಇಂದೇ ಡಿಜಿಟೈಜ್ ಮಾಡಿ</item>
-        <item>ನಿಮ್ಮ ID ಪುರಾವೆಯನ್ನು ಈಗ ಸುರಕ್ಷಿತಗೊಳಿಸಿ</item>
-        <item>ಇಂದು ID ಪುರಾವೆಯನ್ನು ಸುರಕ್ಷಿತಗೊಳಿಸಿ</item>
-        <item>ನಿಮ್ಮ ಐಡಿ ಪುರಾವೆಯನ್ನು ಈಗ ಆರ್ಕೈವ್ ಮಾಡಿ</item>
-        </string-array>
+    <string name="good_morning">ಶುಭೋದಯ &#x2600;&#xFE0F;</string>
+    <string name="good_afternoon">ಶುಭ ಮಧ್ಯಾಹ್ನ &#x1F324;&#xFE0F;</string>
+    <string name="good_evening">ಶುಭ ಸಂಜೆ &#x1F306;</string>
+    <string name="good_night">ಶುಭ ರಾತ್ರಿ &#x1F319;</string>
+                <string-array name="greeting_variants">
+        <item>ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಸಿದ್ಧವಾಗಿದೆಯೇ? &#x1F4C4;</item>
+        <item>ನಿಮ್ಮ ದಾಖಲೆಗಳನ್ನು ಡಿಜಿಟೈಸ್ ಮಾಡೋಣ &#x2728;</item>
+        <item>ಮುಖ್ಯವಾದುದನ್ನು ಡಿಜಿಟಲೀಕರಣಗೊಳಿಸಿ &#x1F4F7;</item>
+        <item>ನಿಮ್ಮ ಸ್ಕ್ಯಾನರ್ ಸಿದ್ಧವಾಗಿದೆ &#x1F50E;</item>
+        <item>ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಮತ್ತು ಸುರಕ್ಷಿತವಾಗಿ ಸಂಗ್ರಹಿಸಿ &#x2705;</item>
+        <item>ನಿಮ್ಮ ID ಪುರಾವೆಯನ್ನು ಈಗ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ &#x1F510;</item>
+        <item>ಇಂದು ID ಪುರಾವೆಯನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ &#x1F5C2;&#xFE0F;</item>
+        <item>ನಿಮ್ಮ ಗುರುತಿನ ಚೀಟಿಯನ್ನು ಸುರಕ್ಷಿತವಾಗಿರಿಸಿಕೊಳ್ಳಿ &#x1F6E1;&#xFE0F;</item>
+        <item>ID ಪುರಾವೆಯನ್ನು ಹುಡುಕುವಂತೆ ಮಾಡಿ &#x1F9FE;</item>
+        <item>ID ಪುರಾವೆಯನ್ನು ಕ್ಲೀನ್ PDF ಆಗಿ ಪರಿವರ್ತಿಸಿ &#x1F680;</item>
+        <item>ID ಪುರಾವೆಯನ್ನು ಉತ್ತಮ ಗುಣಮಟ್ಟದಲ್ಲಿ ರಫ್ತು ಮಾಡಿ &#x1F4C4;</item>
+        <item>ಒಂದು ಟ್ಯಾಪ್‌ನಲ್ಲಿ ID ಪುರಾವೆಯನ್ನು ಹಂಚಿಕೊಳ್ಳಿ &#x2728;</item>
+        <item>ID ಪುರಾವೆಯನ್ನು ಆಫ್‌ಲೈನ್ ಮತ್ತು ಖಾಸಗಿಯಾಗಿ ಸಂಗ್ರಹಿಸಿ &#x1F4F7;</item>
+        <item>ತ್ವರಿತ ಹುಡುಕಾಟಕ್ಕಾಗಿ ಐಡಿ ಪುರಾವೆಯನ್ನು ಸಿದ್ಧವಾಗಿಡಿ &#x1F50E;</item>
+        <item>ನಿಮ್ಮ ಫೋಲ್ಡರ್‌ಗಳಲ್ಲಿ ID ಪುರಾವೆಯನ್ನು ಆಯೋಜಿಸಿ &#x2705;</item>
+        <item>ತ್ವರಿತ ಪ್ರವೇಶಕ್ಕಾಗಿ ID ಪುರಾವೆಯನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ &#x1F510;</item>
+        <item>ತೀಕ್ಷ್ಣವಾದ ಸ್ಪಷ್ಟತೆಯೊಂದಿಗೆ ID ಪುರಾವೆಯನ್ನು ಸೆರೆಹಿಡಿಯಿರಿ &#x1F5C2;&#xFE0F;</item>
+        <item>ನಿಮ್ಮ ದಾಖಲೆಗಳಿಗಾಗಿ ID ಪುರಾವೆಗಳನ್ನು ಡಿಜಿಟೈಜ್ ಮಾಡಿ &#x1F6E1;&#xFE0F;</item>
+        <item>ID ಪುರಾವೆಯನ್ನು ನಿಮ್ಮ ವಾಲ್ಟ್‌ಗೆ ಉಳಿಸಿ &#x1F9FE;</item>
+        <item>ಈ ಸಾಧನದಲ್ಲಿ ID ಪುರಾವೆಯನ್ನು ರಕ್ಷಿಸಿ &#x1F680;</item>
+        <item>ನಿಮ್ಮ ಐಡಿ ಪುರಾವೆಯನ್ನು ಈಗಲೇ ಡಿಜಿಟೈಜ್ ಮಾಡಿ &#x1F4C4;</item>
+        <item>ಐಡಿ ಪುರಾವೆಯನ್ನು ಇಂದೇ ಡಿಜಿಟೈಜ್ ಮಾಡಿ &#x2728;</item>
+        <item>ನಿಮ್ಮ ID ಪುರಾವೆಯನ್ನು ಈಗ ಸುರಕ್ಷಿತಗೊಳಿಸಿ &#x1F4F7;</item>
+        <item>ಇಂದು ID ಪುರಾವೆಯನ್ನು ಸುರಕ್ಷಿತಗೊಳಿಸಿ &#x1F50E;</item>
+        <item>ನಿಮ್ಮ ಐಡಿ ಪುರಾವೆಯನ್ನು ಈಗ ಆರ್ಕೈವ್ ಮಾಡಿ &#x2705;</item>
+    </string-array>
     <string name="digitizing_bharat">ಡಿಜಿಟೈಸಿಂಗ್ ಡಾಕ್ಯುಮೆಂಟ್‌ಗಳು</string>
     <string name="scan_mode_document">ಡಾಕ್ಯುಮೆಂಟ್</string>
     <string name="scan_mode_id_card">ಗುರುತಿನ ಚೀಟಿ</string>
@@ -180,6 +180,7 @@
     <string name="resume">ಪುನರಾರಂಭಿಸಿ</string>
     <string name="rotate_left">ಎಡಕ್ಕೆ ತಿರುಗಿಸಿ</string>
     <string name="rotate_right">ಬಲಕ್ಕೆ ತಿರುಗಿಸಿ</string>
+    <string name="retake_page">ಪುಟವನ್ನು ಮರು ತೆಗೆದುಕೊಳ್ಳಿ (Retake)</string>
     <string name="save">ಉಳಿಸಿ</string>
     <string name="scan_button">ಹೊಸ ಸ್ಕ್ಯಾನ್</string>
     <string name="scanner">ಸ್ಕ್ಯಾನರ್</string>
@@ -260,6 +261,24 @@
     <string name="update_install">ಅಪ್‌ಡೇಟ್ ಮಾಡಿ</string>
     <string name="update_later">ನಂತರ</string>
     <string name="update_release_notes_title">ರಿಲೀಸ್ ನೋಟ್ಸ್</string>
+    <string name="tutorial_title">Quick walkthrough</string>
+    <string name="tutorial_step_scan_title">Scan documents</string>
+    <string name="tutorial_step_scan_body">Align the edges and tap Scan Now to capture.</string>
+    <string name="tutorial_step_adjust_title">Adjust and crop</string>
+    <string name="tutorial_step_adjust_body">Retake or crop pages anytime for a clean edge.</string>
+    <string name="tutorial_step_export_title">Export smart</string>
+    <string name="tutorial_step_export_body">Create PDFs with OCR, watermark, and password options.</string>
+    <string name="tutorial_step_search_title">Search instantly</string>
+    <string name="tutorial_step_search_body">Find text inside your scans with OCR search.</string>
+    <string name="tutorial_skip">Skip</string>
+    <string name="tutorial_next">Next</string>
+    <string name="tutorial_done">Done</string>
+    <string name="tutorial_step_home_title">Welcome to BharatScan</string>
+    <string name="tutorial_step_home_body">This is your home hub for scans, filters, and quick actions.</string>
+    <string name="tutorial_back">Back</string>
+    <string name="tutorial_start_title">App walkthrough</string>
+    <string name="tutorial_start_desc">See a guided tour across the app screens.</string>
+    <string name="tutorial_start_button">Start walkthrough</string>
 </resources>
 
 

@@ -16,39 +16,39 @@ package org.bharatscan.app.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Modern Digital Bharat Palette
-val BharatNavy = Color(0xFF0E1B3D)
-val BharatSaffron = Color(0xFFFF8A34)
-val BharatGreen = Color(0xFF14803A)
-val BharatWhite = Color(0xFFFDFBF7)
-val BharatChakra = Color(0xFF1E3A8A)
+// Tricolor Modern Palette (India)
+val BharatNavy = Color(0xFF0B1F3A)
+val BharatSaffron = Color(0xFFFF7A1A)
+val BharatGreen = Color(0xFF1E8F4E)
+val BharatWhite = Color(0xFFF8F5EF)
+val BharatChakra = Color(0xFF244C9A)
 
-val BharatNavySoft = Color(0xFF2B3C78)
-val BharatSaffronDeep = Color(0xFFE0721D)
-val BharatGreenDeep = Color(0xFF0B6B33)
+val BharatNavySoft = Color(0xFF2B3E66)
+val BharatSaffronDeep = Color(0xFFE86A12)
+val BharatGreenDeep = Color(0xFF167543)
 
 // UI Accent Colors
-val SurfaceLight = Color(0xFFF6F4EF)
+val SurfaceLight = BharatWhite
 val SurfaceDark = Color(0xFF0F141F)
-val SurfaceElevated = Color(0xFFFBFAF7)
-val TextPrimary = Color(0xFF0B1B2B)
+val SurfaceElevated = Color(0xFFFCF9F2)
+val TextPrimary = BharatNavy
 val TextSecondary = Color(0xFF4F5B6A)
-val DividerColor = Color(0xFFE1E6EF)
-val OutlineSoft = Color(0xFFE7ECF4)
-val OutlineStrong = Color(0xFFCBD3E1)
-val SurfaceVariant = Color(0xFFEFF1F7)
+val DividerColor = Color(0xFFE7E0D5)
+val OutlineSoft = Color(0xFFEDE6DC)
+val OutlineStrong = Color(0xFFD9D1C6)
+val SurfaceVariant = Color(0xFFF1EAE0)
 val OnSurfaceVariant = Color(0xFF4B5563)
 
 // Background Tints
-val AppBackgroundTop = Color(0xFFF8F5EE)
-val AppBackgroundMid = Color(0xFFF1F2FA)
-val AppBackgroundBottom = Color(0xFFFDF7EF)
+val AppBackgroundTop = Color(0xFFF9F4EB)
+val AppBackgroundMid = Color(0xFFF6F0E6)
+val AppBackgroundBottom = Color(0xFFFDF8F1)
 
 // Particle & Glow Effects
-val SaffronGlow = Color(0xFFFFD9B0)
-val GreenGlow = Color(0xFFCBEFD9)
-val NavyGlow = Color(0xFFD8E0F6)
-val ChakraGlow = Color(0xFFB8C6FF)
+val SaffronGlow = Color(0xFFFFD2AD)
+val GreenGlow = Color(0xFFCDEAD8)
+val NavyGlow = Color(0xFFD7E0F2)
+val ChakraGlow = Color(0xFFB7C6F5)
 
 // Legacy compatibility (to avoid breaking existing code immediately)
 val DeepNavyBlue = BharatNavy

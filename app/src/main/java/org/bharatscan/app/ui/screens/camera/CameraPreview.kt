@@ -42,13 +42,12 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -56,6 +55,7 @@ import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
@@ -64,10 +64,17 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.graphics.scale
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
 import org.bharatscan.app.ui.components.CameraPermissionState
+import org.bharatscan.app.ui.theme.BharatChakra
+import org.bharatscan.app.ui.theme.BharatSaffronDeep
 import org.bharatscan.imageprocessing.Point
 import org.bharatscan.imageprocessing.Quad
 import org.bharatscan.imageprocessing.scaledTo
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -213,21 +220,50 @@ fun bindCameraUseCases(
 fun AnalysisOverlay(liveAnalysisState: LiveAnalysisState, debugMode: Boolean) {
     val maskSize = liveAnalysisState.maskSize ?: return
     val targetQuad = liveAnalysisState.stableQuad
-    var displayedQuad by remember { mutableStateOf<Quad?>(null) }
-    val quadColor = MaterialTheme.colorScheme.primary
+    var hasQuad by remember { mutableStateOf(false) }
+    val cornerColor = BharatSaffronDeep
+    val tlX = remember { Animatable(0f) }
+    val tlY = remember { Animatable(0f) }
+    val trX = remember { Animatable(0f) }
+    val trY = remember { Animatable(0f) }
+    val brX = remember { Animatable(0f) }
+    val brY = remember { Animatable(0f) }
+    val blX = remember { Animatable(0f) }
+    val blY = remember { Animatable(0f) }
 
     LaunchedEffect(targetQuad) {
         if (targetQuad == null) {
-            displayedQuad = null
+            hasQuad = false
             return@LaunchedEffect
         }
 
-        while (true) {
-            displayedQuad = displayedQuad?.let { current ->
-                lerpQuad(current, targetQuad, 0.15f)
-            } ?: targetQuad
+        val tl = targetQuad.topLeft.toOffset()
+        val tr = targetQuad.topRight.toOffset()
+        val br = targetQuad.bottomRight.toOffset()
+        val bl = targetQuad.bottomLeft.toOffset()
 
-            withFrameNanos { }
+        if (!hasQuad) {
+            tlX.snapTo(tl.x)
+            tlY.snapTo(tl.y)
+            trX.snapTo(tr.x)
+            trY.snapTo(tr.y)
+            brX.snapTo(br.x)
+            brY.snapTo(br.y)
+            blX.snapTo(bl.x)
+            blY.snapTo(bl.y)
+            hasQuad = true
+            return@LaunchedEffect
+        }
+
+        coroutineScope {
+            launch { tlX.animateTo(tl.x, tween(180, easing = FastOutSlowInEasing)) }
+            launch { tlY.animateTo(tl.y, tween(180, easing = FastOutSlowInEasing)) }
+            launch { trX.animateTo(tr.x, tween(180, easing = FastOutSlowInEasing)) }
+            launch { trY.animateTo(tr.y, tween(180, easing = FastOutSlowInEasing)) }
+            launch { brX.animateTo(br.x, tween(180, easing = FastOutSlowInEasing)) }
+            launch { brY.animateTo(br.y, tween(180, easing = FastOutSlowInEasing)) }
+            launch { blX.animateTo(bl.x, tween(180, easing = FastOutSlowInEasing)) }
+            launch { blY.animateTo(bl.y, tween(180, easing = FastOutSlowInEasing)) }
         }
     }
 
@@ -236,18 +272,142 @@ fun AnalysisOverlay(liveAnalysisState: LiveAnalysisState, debugMode: Boolean) {
             val binaryMask = liveAnalysisState.binaryMaskProvider.invoke()
             binaryMask?.let { drawMask(this, it) }
         }
-        displayedQuad?.let { quad ->
+        val stroke = (size.minDimension * 0.0075f).coerceIn(4f, 8f)
+        val cornerStroke = (stroke + 3f).coerceAtMost(11f)
+        val cornerLength = (size.minDimension * 0.07f).coerceIn(22f, 40f)
+
+        if (!hasQuad) {
+            val padding = size.minDimension * 0.08f
+            val left = padding
+            val top = padding
+            val right = size.width - padding
+            val bottom = size.height - padding
+            val guideColor = BharatChakra.copy(alpha = 0.45f)
+            val guideStroke = (stroke + 2f).coerceAtMost(9f)
+            drawCorner(
+                point = Point(left.toDouble(), top.toDouble()),
+                dx = cornerLength,
+                dy = cornerLength,
+                color = guideColor,
+                stroke = guideStroke
+            )
+            drawCorner(
+                point = Point(right.toDouble(), top.toDouble()),
+                dx = -cornerLength,
+                dy = cornerLength,
+                color = guideColor,
+                stroke = guideStroke
+            )
+            drawCorner(
+                point = Point(right.toDouble(), bottom.toDouble()),
+                dx = -cornerLength,
+                dy = -cornerLength,
+                color = guideColor,
+                stroke = guideStroke
+            )
+            drawCorner(
+                point = Point(left.toDouble(), bottom.toDouble()),
+                dx = cornerLength,
+                dy = -cornerLength,
+                color = guideColor,
+                stroke = guideStroke
+            )
+        }
+
+        if (hasQuad) {
+            val glowColor = cornerColor.copy(alpha = 0.35f)
+            val quad = Quad(
+                Point(tlX.value.toDouble(), tlY.value.toDouble()),
+                Point(trX.value.toDouble(), trY.value.toDouble()),
+                Point(brX.value.toDouble(), brY.value.toDouble()),
+                Point(blX.value.toDouble(), blY.value.toDouble())
+            )
             val scaledQuad = quad.scaledTo(
                 fromWidth = maskSize.width,
                 fromHeight = maskSize.height,
                 toWidth = size.width.toDouble(),
                 toHeight = size.height.toDouble()
             )
-            scaledQuad.edges().forEach {
-                drawLine(quadColor, it.from.toOffset(), it.to.toOffset(), 10.0f)
-            }
+            drawCorner(
+                point = scaledQuad.topLeft,
+                dx = cornerLength,
+                dy = cornerLength,
+                color = glowColor,
+                stroke = cornerStroke * 1.6f
+            )
+            drawCorner(
+                point = scaledQuad.topRight,
+                dx = -cornerLength,
+                dy = cornerLength,
+                color = glowColor,
+                stroke = cornerStroke * 1.6f
+            )
+            drawCorner(
+                point = scaledQuad.bottomRight,
+                dx = -cornerLength,
+                dy = -cornerLength,
+                color = glowColor,
+                stroke = cornerStroke * 1.6f
+            )
+            drawCorner(
+                point = scaledQuad.bottomLeft,
+                dx = cornerLength,
+                dy = -cornerLength,
+                color = glowColor,
+                stroke = cornerStroke * 1.6f
+            )
+            drawCorner(
+                point = scaledQuad.topLeft,
+                dx = cornerLength,
+                dy = cornerLength,
+                color = cornerColor,
+                stroke = cornerStroke
+            )
+            drawCorner(
+                point = scaledQuad.topRight,
+                dx = -cornerLength,
+                dy = cornerLength,
+                color = cornerColor,
+                stroke = cornerStroke
+            )
+            drawCorner(
+                point = scaledQuad.bottomRight,
+                dx = -cornerLength,
+                dy = -cornerLength,
+                color = cornerColor,
+                stroke = cornerStroke
+            )
+            drawCorner(
+                point = scaledQuad.bottomLeft,
+                dx = cornerLength,
+                dy = -cornerLength,
+                color = cornerColor,
+                stroke = cornerStroke
+            )
         }
     }
+}
+
+private fun DrawScope.drawCorner(
+    point: Point,
+    dx: Float,
+    dy: Float,
+    color: Color,
+    stroke: Float
+) {
+    val start = point.toOffset()
+    drawLine(
+        color = color,
+        start = start,
+        end = Offset(start.x + dx, start.y),
+        strokeWidth = stroke
+    )
+    drawLine(
+        color = color,
+        start = start,
+        end = Offset(start.x, start.y + dy),
+        strokeWidth = stroke
+    )
 }
 
 private fun drawMask(drawScope: DrawScope, binaryMask: Bitmap) {

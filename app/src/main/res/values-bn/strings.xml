@@ -87,36 +87,36 @@
     <string name="custom_category_hint">ক্যাটাগরির নাম লিখুন</string>
     <string name="search_title">ডকুমেন্ট খোঁজ</string>
     <string name="filters_title">ফিল্টার</string>
-    <string name="good_morning">সুপ্রভাত</string>
-    <string name="good_afternoon">শুভ অপরাহ্ন</string>
-    <string name="good_evening">শুভ সন্ধ্যা</string>
-    <string name="good_night">শুভ রাত্রি</string>
-    <string-array name="greeting_variants">
-        <item>ডকুমেন্ট স্ক্যান করুন</item>
-        <item>স্ক্যানিং শুরু করুন</item>
-        <item>নতুন স্ক্যান তৈরি করুন</item>
-        <item>পেজ যোগ করুন</item>
-        <item>ডকুমেন্ট সংরক্ষণ করুন</item>
-        <item>ডিজিটাল কপি তৈরি করুন</item>
-        <item>স্ক্যান করে PDF বানান</item>
-        <item>ডকুমেন্ট গুছান</item>
-        <item>ফাইল নিরাপদ রাখুন</item>
-        <item>স্ক্যান করে শেয়ার করুন</item>
-        <item>স্ক্যান প্রস্তুত</item>
-        <item>ক্যামেরা প্রস্তুত</item>
-        <item>ডকুমেন্ট প্রস্তুত রাখুন</item>
-        <item>স্ক্যানের জন্য প্রস্তুত</item>
-        <item>পরের পেজ যোগ করুন</item>
-        <item>কাগজপত্র ডিজিটাল করুন</item>
-        <item>আজ স্ক্যান শেষ করুন</item>
-        <item>নিরাপদ ব্যাকআপ তৈরি করুন</item>
-        <item>স্ক্যান শেষ করে সংরক্ষণ করুন</item>
-        <item>দ্রুত স্ক্যান দিয়ে শুরু করুন</item>
-        <item>আজ ডকুমেন্ট স্ক্যান করুন</item>
-        <item>আজ স্ক্যানিং শুরু করুন</item>
-        <item>আজ নতুন স্ক্যান তৈরি করুন</item>
-        <item>আজ পেজ যোগ করুন</item>
-        <item>আজ ডকুমেন্ট সংরক্ষণ করুন</item>
+    <string name="good_morning">সুপ্রভাত &#x2600;&#xFE0F;</string>
+    <string name="good_afternoon">শুভ অপরাহ্ন &#x1F324;&#xFE0F;</string>
+    <string name="good_evening">শুভ সন্ধ্যা &#x1F306;</string>
+    <string name="good_night">শুভ রাত্রি &#x1F319;</string>
+                <string-array name="greeting_variants">
+        <item>ডকুমেন্ট স্ক্যান করুন &#x1F4C4;</item>
+        <item>স্ক্যানিং শুরু করুন &#x2728;</item>
+        <item>নতুন স্ক্যান তৈরি করুন &#x1F4F7;</item>
+        <item>পেজ যোগ করুন &#x1F50E;</item>
+        <item>ডকুমেন্ট সংরক্ষণ করুন &#x2705;</item>
+        <item>ডিজিটাল কপি তৈরি করুন &#x1F510;</item>
+        <item>স্ক্যান করে PDF বানান &#x1F5C2;&#xFE0F;</item>
+        <item>ডকুমেন্ট গুছান &#x1F6E1;&#xFE0F;</item>
+        <item>ফাইল নিরাপদ রাখুন &#x1F9FE;</item>
+        <item>স্ক্যান করে শেয়ার করুন &#x1F680;</item>
+        <item>স্ক্যান প্রস্তুত &#x1F4C4;</item>
+        <item>ক্যামেরা প্রস্তুত &#x2728;</item>
+        <item>ডকুমেন্ট প্রস্তুত রাখুন &#x1F4F7;</item>
+        <item>স্ক্যানের জন্য প্রস্তুত &#x1F50E;</item>
+        <item>পরের পেজ যোগ করুন &#x2705;</item>
+        <item>কাগজপত্র ডিজিটাল করুন &#x1F510;</item>
+        <item>আজ স্ক্যান শেষ করুন &#x1F5C2;&#xFE0F;</item>
+        <item>নিরাপদ ব্যাকআপ তৈরি করুন &#x1F6E1;&#xFE0F;</item>
+        <item>স্ক্যান শেষ করে সংরক্ষণ করুন &#x1F9FE;</item>
+        <item>দ্রুত স্ক্যান দিয়ে শুরু করুন &#x1F680;</item>
+        <item>আজ ডকুমেন্ট স্ক্যান করুন &#x1F4C4;</item>
+        <item>আজ স্ক্যানিং শুরু করুন &#x2728;</item>
+        <item>আজ নতুন স্ক্যান তৈরি করুন &#x1F4F7;</item>
+        <item>আজ পেজ যোগ করুন &#x1F50E;</item>
+        <item>আজ ডকুমেন্ট সংরক্ষণ করুন &#x2705;</item>
     </string-array>
     <string name="digitizing_bharat">ডিজিটাইজিং ডকুমেন্টস</string>
     <string name="scan_mode_document">ডকুমেন্ট</string>
@@ -180,6 +180,7 @@
     <string name="resume">চালিয়ে যান</string>
     <string name="rotate_left">বামে ঘোরান</string>
     <string name="rotate_right">ডানে ঘোরান</string>
+    <string name="retake_page">পেজ আবার তুলুন (Retake)</string>
     <string name="save">সংরক্ষণ</string>
     <string name="scan_button">নতুন স্ক্যান</string>
     <string name="scanner">স্ক্যানার</string>
@@ -260,6 +261,24 @@
     <string name="update_install">আপডেট করুন</string>
     <string name="update_later">পরে</string>
     <string name="update_release_notes_title">রিলিজ নোট</string>
+    <string name="tutorial_title">Quick walkthrough</string>
+    <string name="tutorial_step_scan_title">Scan documents</string>
+    <string name="tutorial_step_scan_body">Align the edges and tap Scan Now to capture.</string>
+    <string name="tutorial_step_adjust_title">Adjust and crop</string>
+    <string name="tutorial_step_adjust_body">Retake or crop pages anytime for a clean edge.</string>
+    <string name="tutorial_step_export_title">Export smart</string>
+    <string name="tutorial_step_export_body">Create PDFs with OCR, watermark, and password options.</string>
+    <string name="tutorial_step_search_title">Search instantly</string>
+    <string name="tutorial_step_search_body">Find text inside your scans with OCR search.</string>
+    <string name="tutorial_skip">Skip</string>
+    <string name="tutorial_next">Next</string>
+    <string name="tutorial_done">Done</string>
+    <string name="tutorial_step_home_title">Welcome to BharatScan</string>
+    <string name="tutorial_step_home_body">This is your home hub for scans, filters, and quick actions.</string>
+    <string name="tutorial_back">Back</string>
+    <string name="tutorial_start_title">App walkthrough</string>
+    <string name="tutorial_start_desc">See a guided tour across the app screens.</string>
+    <string name="tutorial_start_button">Start walkthrough</string>
 </resources>
 
 

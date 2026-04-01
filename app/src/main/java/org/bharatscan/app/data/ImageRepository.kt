@@ -150,6 +150,8 @@ class ImageRepository(
         saveMetadata()
     }
 
+    fun pageMetadata(id: String): PageMetadata? = page(id)?.toMetadata()
+
     private fun workFileName(key: PageViewKey): String =
         workFileName(key.pageId, key.rotation)
 

@@ -27,6 +27,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -36,11 +37,13 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Close
@@ -115,12 +118,15 @@ import org.bharatscan.app.ui.components.CameraPermissionState
 import org.bharatscan.app.ui.components.CategoryStyle
 import org.bharatscan.app.ui.components.ConfirmationDialog
 import org.bharatscan.app.ui.components.DigitalBharatBackground
+import org.bharatscan.app.ui.components.BackgroundPattern
+import org.bharatscan.app.ui.components.BackgroundTheme
 import org.bharatscan.app.ui.components.MainActionButton
 import org.bharatscan.app.ui.components.categoryStyleFor
 import org.bharatscan.app.ui.components.formatDate
 import org.bharatscan.app.ui.components.pageCountText
 import org.bharatscan.app.ui.screens.export.formatFileSize
 import org.bharatscan.app.ui.theme.BharatChakra
+import org.bharatscan.app.ui.theme.BharatGreen
 import org.bharatscan.app.ui.theme.BharatNavy
 import org.bharatscan.app.ui.theme.BharatSaffron
 import org.bharatscan.app.ui.theme.BharatSaffronDeep
@@ -136,7 +142,6 @@ import org.bharatscan.app.ui.state.DocumentUiModel
 import org.bharatscan.app.update.UpdateInfo
 import org.bharatscan.app.update.UpdateUiState
 import java.io.File
-import java.time.LocalDate
 import java.time.LocalTime
 import kotlin.math.abs
 
@@ -229,7 +234,15 @@ fun HomeScreen(
         }
     }
 
-    DigitalBharatBackground {
+    DigitalBharatBackground(
+        backgroundImageRes = R.drawable.home_bg,
+        backgroundImageContentScale = ContentScale.Crop,
+        backgroundImageAlignment = Alignment.TopCenter,
+        backgroundImageTint = Color(0xFFF8F2EA),
+        backgroundImageTintAlpha = 0.45f,
+        useDecorations = false,
+        showChakra = false
+    ) {
         androidx.compose.material3.Scaffold(
             containerColor = Color.Transparent,
             topBar = {
@@ -363,7 +376,7 @@ private fun HomeTopBar(
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color.Transparent,
+            containerColor = Color(0xFFF8F5EF).copy(alpha = 0.55f),
             titleContentColor = MaterialTheme.colorScheme.primary,
             actionIconContentColor = MaterialTheme.colorScheme.primary
         )
@@ -387,7 +400,8 @@ fun SearchScreen(
             val nameMatch = doc.fileName.contains(trimmed, ignoreCase = true)
             val categoryLabel = categoryLabelFor(doc.categoryId, context).orEmpty()
             val categoryMatch = categoryLabel.contains(trimmed, ignoreCase = true)
-            nameMatch || categoryMatch
+            val textMatch = doc.ocrText?.contains(trimmed, ignoreCase = true) == true
+            nameMatch || categoryMatch || textMatch
         }
     }
 
@@ -405,7 +419,7 @@ fun SearchScreen(
                     },
                     navigationIcon = { BackButton(navigation.back) },
                     colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = Color.Transparent,
+                        containerColor = Color(0xFFF8F5EF).copy(alpha = 0.55f),
                         titleContentColor = MaterialTheme.colorScheme.primary,
                         actionIconContentColor = MaterialTheme.colorScheme.primary
                     )
@@ -459,7 +473,8 @@ fun DocumentsScreen(
     val filteredDocuments = remember(recentDocuments, query, selectedFilter) {
         val trimmed = query.trim()
         val base = if (trimmed.isBlank()) recentDocuments else recentDocuments.filter { doc ->
-            doc.fileName.contains(trimmed, ignoreCase = true)
+            doc.fileName.contains(trimmed, ignoreCase = true) ||
+                (doc.ocrText?.contains(trimmed, ignoreCase = true) == true)
         }
         when (selectedFilter) {
             DocumentsFilter.ALL -> base
@@ -470,7 +485,15 @@ fun DocumentsScreen(
         }
     }
 
-    DigitalBharatBackground {
+    DigitalBharatBackground(
+        backgroundImageRes = R.drawable.documents_bg,
+        backgroundImageContentScale = ContentScale.Crop,
+        backgroundImageAlignment = Alignment.TopCenter,
+        backgroundImageTint = Color(0xFFF8F2EA),
+        backgroundImageTintAlpha = 0.5f,
+        useDecorations = false,
+        showChakra = false
+    ) {
         androidx.compose.material3.Scaffold(
             containerColor = Color.Transparent,
             topBar = {
@@ -485,7 +508,7 @@ fun DocumentsScreen(
                     navigationIcon = { BackButton(navigation.back) },
                     actions = { AppOverflowMenu(navigation) },
                     colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = Color.Transparent,
+                        containerColor = Color(0xFFF8F5EF).copy(alpha = 0.55f),
                         titleContentColor = MaterialTheme.colorScheme.primary,
                         actionIconContentColor = MaterialTheme.colorScheme.primary
                     )
@@ -624,7 +647,7 @@ fun FiltersScreen(
                     },
                     navigationIcon = { BackButton(navigation.back) },
                     colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = Color.Transparent,
+                        containerColor = Color(0xFFF8F5EF).copy(alpha = 0.55f),
                         titleContentColor = MaterialTheme.colorScheme.primary,
                         actionIconContentColor = MaterialTheme.colorScheme.primary
                     )
@@ -699,29 +722,36 @@ private fun SearchField(
     onQueryChange: (String) -> Unit,
     onClear: () -> Unit,
 ) {
-    OutlinedTextField(
-        value = query,
-        onValueChange = onQueryChange,
-        modifier = Modifier.fillMaxWidth(),
-        placeholder = { Text(stringResource(R.string.search_documents)) },
-        leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
-        trailingIcon = {
-            if (query.isNotEmpty()) {
-                IconButton(onClick = onClear) {
-                    Icon(
-                        Icons.Default.Close,
-                        contentDescription = stringResource(R.string.clear_text)
-                    )
+    Surface(
+        shape = RoundedCornerShape(18.dp),
+        color = Color(0xFFF8F5EF).copy(alpha = 0.5f)
+    ) {
+        OutlinedTextField(
+            value = query,
+            onValueChange = onQueryChange,
+            modifier = Modifier.fillMaxWidth(),
+            placeholder = { Text(stringResource(R.string.search_documents)) },
+            leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+            trailingIcon = {
+                if (query.isNotEmpty()) {
+                    IconButton(onClick = onClear) {
+                        Icon(
+                            Icons.Default.Close,
+                            contentDescription = stringResource(R.string.clear_text)
+                        )
+                    }
                 }
-            }
-        },
-        shape = RoundedCornerShape(16.dp),
-        singleLine = true,
-        colors = androidx.compose.material3.OutlinedTextFieldDefaults.colors(
-            focusedBorderColor = MaterialTheme.colorScheme.primary,
-            unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant
+            },
+            shape = RoundedCornerShape(18.dp),
+            singleLine = true,
+            colors = androidx.compose.material3.OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = MaterialTheme.colorScheme.primary,
+                unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
+                focusedContainerColor = Color.Transparent,
+                unfocusedContainerColor = Color.Transparent
+            )
         )
-    )
+    }
 }
 
 private enum class DocumentsFilter {
@@ -736,29 +766,36 @@ private fun DocumentsSearchField(
     onQueryChange: (String) -> Unit,
     onClear: () -> Unit,
 ) {
-    OutlinedTextField(
-        value = query,
-        onValueChange = onQueryChange,
-        modifier = Modifier.fillMaxWidth(),
-        placeholder = { Text(stringResource(R.string.search_within_documents)) },
-        leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
-        trailingIcon = {
-            if (query.isNotEmpty()) {
-                IconButton(onClick = onClear) {
-                    Icon(
-                        Icons.Default.Close,
-                        contentDescription = stringResource(R.string.clear_text)
-                    )
-                }
-            }
-        },
+    Surface(
         shape = RoundedCornerShape(20.dp),
-        singleLine = true,
-        colors = androidx.compose.material3.OutlinedTextFieldDefaults.colors(
-            focusedBorderColor = MaterialTheme.colorScheme.primary,
-            unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant
+        color = Color(0xFFF8F5EF).copy(alpha = 0.5f)
+    ) {
+        OutlinedTextField(
+            value = query,
+            onValueChange = onQueryChange,
+            modifier = Modifier.fillMaxWidth(),
+            placeholder = { Text(stringResource(R.string.search_within_documents)) },
+            leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+            trailingIcon = {
+                if (query.isNotEmpty()) {
+                    IconButton(onClick = onClear) {
+                        Icon(
+                            Icons.Default.Close,
+                            contentDescription = stringResource(R.string.clear_text)
+                        )
+                    }
+                }
+            },
+            shape = RoundedCornerShape(20.dp),
+            singleLine = true,
+            colors = androidx.compose.material3.OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = MaterialTheme.colorScheme.primary,
+                unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
+                focusedContainerColor = Color.Transparent,
+                unfocusedContainerColor = Color.Transparent
+            )
         )
-    )
+    }
 }
 
 @Composable
@@ -913,8 +950,12 @@ private fun tagForCategoryLabel(label: String?): DocTag {
 
 @Composable
 private fun HeroScanCard(onScanNow: () -> Unit) {
-    val gradient = Brush.linearGradient(
-        colors = listOf(BharatSaffron, BharatSaffronDeep)
+    val gradient = Brush.verticalGradient(
+        colors = listOf(
+            BharatSaffron.copy(alpha = 0.95f),
+            BharatWhite.copy(alpha = 0.98f),
+            BharatGreen.copy(alpha = 0.9f)
+        )
     )
     val rotation by rememberInfiniteTransition(label = "heroChakra").animateFloat(
         initialValue = 0f,
@@ -940,15 +981,15 @@ private fun HeroScanCard(onScanNow: () -> Unit) {
                 contentDescription = null,
                 modifier = Modifier
                     .align(Alignment.TopEnd)
-                    .size(120.dp)
+                    .size(128.dp)
                     .graphicsLayer { rotationZ = rotation }
-                    .alpha(0.12f),
-                tint = Color.White
+                    .alpha(0.14f),
+                tint = BharatChakra
             )
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(
                     text = greetingMessage(),
-                    color = BharatWhite,
+                    color = BharatNavy,
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.ExtraBold
                 )
@@ -968,8 +1009,10 @@ private fun greetingMessage(): String {
         else -> R.string.good_night
     }
     val variants = stringArrayResource(R.array.greeting_variants).toList()
-    val seed = LocalDate.now().dayOfYear + hour
-    val tail = variants[seed % variants.size]
+    val shuffled = remember(variants) {
+        variants.shuffled(kotlin.random.Random(System.currentTimeMillis()))
+    }
+    val tail = shuffled.firstOrNull().orEmpty()
     return "${stringResource(resId)}, $tail"
 }
 
@@ -977,24 +1020,24 @@ private fun greetingMessage(): String {
 private fun ScanNowButton(onClick: () -> Unit) {
     Surface(
         onClick = onClick,
-        shape = RoundedCornerShape(16.dp),
-        color = BharatWhite,
-        shadowElevation = 2.dp
+        shape = RoundedCornerShape(50),
+        color = BharatSaffron,
+        shadowElevation = 6.dp
     ) {
         Row(
-            modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp),
+            modifier = Modifier.padding(horizontal = 22.dp, vertical = 12.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             Icon(
                 imageVector = Icons.Default.CropFree,
                 contentDescription = null,
-                tint = BharatNavy,
+                tint = BharatWhite,
                 modifier = Modifier.size(22.dp)
             )
             Text(
                 text = stringResource(R.string.scan_now),
-                color = BharatNavy,
+                color = BharatWhite,
                 fontWeight = FontWeight.Bold
             )
         }
@@ -1181,27 +1224,13 @@ private fun QuickFoldersSection(
     onViewAll: () -> Unit,
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                stringResource(R.string.quick_folders),
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary
-            )
-            TextButton(onClick = onViewAll) {
-                Text(
-                    text = stringResource(R.string.view_all),
-                    color = MaterialTheme.colorScheme.secondary,
-                    fontWeight = FontWeight.SemiBold
-                )
-            }
-        }
+        SectionTitle(
+            title = stringResource(R.string.quick_folders),
+            actionLabel = stringResource(R.string.view_all),
+            onAction = onViewAll
+        )
 
-        Spacer(Modifier.height(12.dp))
+        Spacer(Modifier.height(14.dp))
 
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
             categories.forEach { category ->
@@ -1227,42 +1256,120 @@ private fun QuickFolderCard(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ) {
+    val borderColor by animateColorAsState(
+        targetValue = if (selected) BharatSaffron else MaterialTheme.colorScheme.secondary.copy(alpha = 0.14f),
+        label = "folderBorder"
+    )
     Surface(
         onClick = onClick,
         shape = RoundedCornerShape(22.dp),
-        color = MaterialTheme.colorScheme.surface.copy(alpha = if (selected) 0.98f else 0.95f),
+        color = MaterialTheme.colorScheme.surface.copy(alpha = if (selected) 0.99f else 0.96f),
+        border = BorderStroke(1.dp, borderColor),
         shadowElevation = if (selected) 10.dp else 6.dp,
         modifier = modifier
     ) {
         Column(
-            modifier = Modifier.padding(18.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(0.dp)
         ) {
             Box(
                 modifier = Modifier
-                    .size(46.dp)
-                    .clip(CircleShape)
-                    .background(category.accent.copy(alpha = 0.18f)),
-                contentAlignment = Alignment.Center
+                    .fillMaxWidth()
+                    .height(5.dp)
+                    .background(
+                        Brush.horizontalGradient(
+                            listOf(
+                                BharatSaffron,
+                                BharatWhite,
+                                BharatGreen
+                            )
+                        )
+                    )
+            )
+            Column(
+                modifier = Modifier.padding(18.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Icon(
-                    imageVector = category.icon,
-                    contentDescription = null,
-                    tint = category.accent
+                Box(
+                    modifier = Modifier
+                        .size(46.dp)
+                        .clip(CircleShape)
+                        .background(category.accent.copy(alpha = if (selected) 0.22f else 0.16f)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = category.icon,
+                        contentDescription = null,
+                        tint = category.accent
+                    )
+                }
+                Text(
+                    text = stringResource(category.titleRes),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary
+                )
+                category.subtitleRes?.let { subtitleRes ->
+                    Text(
+                        text = stringResource(subtitleRes),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = TextSecondary
+                    )
+                }
+                Text(
+                    text = documentsCountText(count),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = TextSecondary
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun SectionTitle(
+    title: String,
+    actionLabel: String? = null,
+    onAction: (() -> Unit)? = null,
+) {
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
             Text(
-                text = stringResource(category.titleRes),
-                style = MaterialTheme.typography.titleMedium,
+                text = title,
+                style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary
             )
-            Text(
-                text = documentsCountText(count),
-                style = MaterialTheme.typography.bodySmall,
-                color = TextSecondary
-            )
+            if (!actionLabel.isNullOrBlank() && onAction != null) {
+                TextButton(onClick = onAction) {
+                    Text(
+                        text = actionLabel,
+                        color = MaterialTheme.colorScheme.secondary,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                }
+            }
         }
+        Spacer(Modifier.height(6.dp))
+        Box(
+            modifier = Modifier
+                .width(72.dp)
+                .height(4.dp)
+                .clip(RoundedCornerShape(100.dp))
+                .background(
+                    Brush.horizontalGradient(
+                        listOf(
+                            BharatSaffron,
+                            BharatWhite,
+                            BharatGreen
+                        )
+                    )
+                )
+        )
     }
 }
 
@@ -1334,19 +1441,15 @@ private fun RecentScansSection(
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
         if (showHeader) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary
-            )
+            SectionTitle(title = title)
             Spacer(Modifier.height(12.dp))
         }
 
         if (documents.isEmpty()) {
             Surface(
                 shape = RoundedCornerShape(18.dp),
-                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f)
+                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f),
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.secondary.copy(alpha = 0.12f))
             ) {
                 Text(
                     text = emptyMessage,
@@ -1387,82 +1490,97 @@ private fun RecentScanCard(
     }
     val sizeLabel = rememberFileSizeLabel(document)
 
-    ElevatedCard(
+    Surface(
         onClick = { onOpenPdf(document.fileUri) },
-        shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.elevatedCardColors(
-            containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.97f)
-        ),
-        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 6.dp)
+        shape = RoundedCornerShape(22.dp),
+        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.97f),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.secondary.copy(alpha = 0.12f)),
+        shadowElevation = 6.dp
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
+            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
                 modifier = Modifier
-                    .size(56.dp)
-                    .clip(RoundedCornerShape(14.dp))
-                    .background(avatarColorFor(document.fileName)),
-                contentAlignment = Alignment.Center
+                    .width(6.dp)
+                    .fillMaxHeight()
+                    .background(
+                        Brush.verticalGradient(
+                            listOf(BharatSaffron, BharatWhite, BharatGreen)
+                        )
+                    )
+            )
+            Row(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(
-                    imageVector = Icons.Default.Description,
-                    contentDescription = null,
-                    tint = BharatWhite
-                )
-            }
-            Spacer(Modifier.width(14.dp))
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = document.fileName,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-                Text(
-                    text = "${formatDate(document.saveTimestamp, context)} - $sizeLabel",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = TextSecondary
-                )
-                Spacer(Modifier.height(6.dp))
-                TagChip(tag)
-            }
-            Box {
-                IconButton(onClick = { menuExpanded = true }) {
+                Box(
+                    modifier = Modifier
+                        .size(56.dp)
+                        .clip(RoundedCornerShape(14.dp))
+                        .background(avatarColorFor(document.fileName)),
+                    contentAlignment = Alignment.Center
+                ) {
                     Icon(
-                        imageVector = Icons.Default.MoreVert,
-                        contentDescription = stringResource(R.string.menu)
+                        imageVector = Icons.Default.Description,
+                        contentDescription = null,
+                        tint = BharatWhite
                     )
                 }
-                DropdownMenu(
-                    expanded = menuExpanded,
-                    onDismissRequest = { menuExpanded = false }
-                ) {
-                    DropdownMenuItem(
-                        text = { Text(stringResource(R.string.open)) },
-                        onClick = {
-                            menuExpanded = false
-                            onOpenPdf(document.fileUri)
-                        }
+                Spacer(Modifier.width(14.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = document.fileName,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
                     )
-                DropdownMenuItem(
-                    text = { Text(stringResource(R.string.share_document)) },
-                    onClick = {
-                        menuExpanded = false
-                        onSharePdf(document)
+                    Text(
+                        text = "${formatDate(document.saveTimestamp, context)} - $sizeLabel",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = TextSecondary
+                    )
+                    Spacer(Modifier.height(6.dp))
+                    TagChip(tag)
+                }
+                Box {
+                    IconButton(onClick = { menuExpanded = true }) {
+                        Icon(
+                            imageVector = Icons.Default.MoreVert,
+                            contentDescription = stringResource(R.string.menu)
+                        )
                     }
-                )
-                DropdownMenuItem(
-                    text = { Text(stringResource(R.string.delete_document)) },
-                    onClick = {
-                        menuExpanded = false
-                        showDeleteDialog.value = true
+                    DropdownMenu(
+                        expanded = menuExpanded,
+                        onDismissRequest = { menuExpanded = false }
+                    ) {
+                        DropdownMenuItem(
+                            text = { Text(stringResource(R.string.open)) },
+                            onClick = {
+                                menuExpanded = false
+                                onOpenPdf(document.fileUri)
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text(stringResource(R.string.share_document)) },
+                            onClick = {
+                                menuExpanded = false
+                                onSharePdf(document)
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text(stringResource(R.string.delete_document)) },
+                            onClick = {
+                                menuExpanded = false
+                                showDeleteDialog.value = true
+                            }
+                        )
                     }
-                )
+                }
             }
         }
     }
@@ -1473,7 +1591,6 @@ private fun RecentScanCard(
             showDialog = showDeleteDialog
         ) { onDeletePdf(document) }
     }
-}
 }
 
 @Composable
@@ -1587,5 +1704,3 @@ private fun sharePdf(context: Context, document: RecentDocumentUiState) {
     }
     context.startActivity(Intent.createChooser(intent, context.getString(R.string.share_document)))
 }
-
-

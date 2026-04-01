@@ -56,6 +56,7 @@ class HomeViewModel(appContainer: AppContainer, appContext: Context): ViewModel(
                         saveTimestamp = doc.createdAt,
                         pageCount = doc.pageCount,
                         categoryId = doc.category.takeIf { it.isNotBlank() },
+                        ocrText = doc.ocrText.takeIf { it.isNotBlank() },
                     )
                 } else null
             }.filter { item -> uriExists(appContext, item.fileUri) }
@@ -71,6 +72,15 @@ class HomeViewModel(appContainer: AppContainer, appContext: Context): ViewModel(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5_000),
                 initialValue = emptyList(),
+            )
+
+    val shouldShowTutorial: StateFlow<Boolean> =
+        settingsRepository.tutorialCompleted
+            .map { completed -> !completed }
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = true,
             )
 
     private fun uriExists(context: Context, uri: Uri): Boolean {
@@ -97,6 +107,12 @@ class HomeViewModel(appContainer: AppContainer, appContext: Context): ViewModel(
     fun deleteRecentDocumentByUri(uri: Uri) {
         val target = recentDocuments.value.firstOrNull { it.fileUri == uri } ?: return
         deleteRecentDocument(target)
+    }
+
+    fun markTutorialCompleted() {
+        viewModelScope.launch {
+            settingsRepository.setTutorialCompleted(true)
+        }
     }
 
     private fun deleteDocumentFile(uri: Uri) {

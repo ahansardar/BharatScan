@@ -46,7 +46,7 @@ fun MainActionButton(
     iconDescription: String? = null,
     enabled: Boolean = true,
     ) {
-    val shape = RoundedCornerShape(18.dp)
+    val shape = RoundedCornerShape(50)
     val gradient = Brush.horizontalGradient(
         colors = listOf(BharatSaffron, BharatSaffronDeep)
     )
@@ -63,7 +63,7 @@ fun MainActionButton(
             modifier = Modifier
                 .background(gradient, shape)
                 .alpha(contentAlpha)
-                .padding(horizontal = 20.dp, vertical = 14.dp),
+                .padding(horizontal = 22.dp, vertical = 14.dp),
             verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
         ) {
             icon?.let {
@@ -94,7 +94,7 @@ fun SecondaryActionButton(
 ) {
     Surface(
         onClick = onClick,
-        shape = RoundedCornerShape(14.dp),
+        shape = RoundedCornerShape(16.dp),
         color = MaterialTheme.colorScheme.surfaceContainerHigh.copy(alpha = 0.95f),
         shadowElevation = 6.dp,
         modifier = modifier.size(48.dp)

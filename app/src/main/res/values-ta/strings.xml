@@ -87,10 +87,10 @@
     <string name="custom_category_hint">வகை பெயரை உள்ளிடவும்</string>
     <string name="search_title">ஆவணங்களைத் தேடுங்கள்</string>
     <string name="filters_title">வடிப்பான்கள்</string>
-    <string name="good_morning">காலை வணக்கம்</string>
-    <string name="good_afternoon">நல்ல மதியம்</string>
-    <string name="good_evening">மாலை வணக்கம்</string>
-    <string name="good_night">நல்ல இரவு</string>
+    <string name="good_morning">காலை வணக்கம் &#x2600;&#xFE0F;</string>
+    <string name="good_afternoon">நல்ல மதியம் &#x1F324;&#xFE0F;</string>
+    <string name="good_evening">மாலை வணக்கம் &#x1F306;</string>
+    <string name="good_night">நல்ல இரவு &#x1F319;</string>
     <string name="digitizing_bharat">டிஜிட்டல் மயமாக்கும் ஆவணங்கள்</string>
     <string name="scan_mode_document">ஆவணம்</string>
     <string name="scan_mode_id_card">அடையாள அட்டை</string>
@@ -153,6 +153,7 @@
     <string name="resume">ரெஸ்யூம்</string>
     <string name="rotate_left">இடப்புறம் சுழற்று</string>
     <string name="rotate_right">வலதுபுறம் சுழற்று</string>
+    <string name="retake_page">பக்கத்தை மீண்டும் எடுக்கவும் (Retake)</string>
     <string name="save">சேமிக்கவும்</string>
     <string name="scan_button">புதிய ஸ்கேன்</string>
     <string name="scanner">ஸ்கேனர்</string>
@@ -220,33 +221,33 @@
         <item quantity="one">%d ஆவணம்</item>
         <item quantity="other">%d ஆவணங்கள்</item>
         </plurals>
-    <string-array name="greeting_variants">
-        <item>ஸ்கேன் செய்ய தயாரா?</item>
-        <item>உங்கள் ஆவணங்களை டிஜிட்டல் மயமாக்குவோம்</item>
-        <item>முக்கியமான ஒன்றை டிஜிட்டல் மயமாக்குங்கள்</item>
-        <item>உங்கள் ஸ்கேனர் தயாராக உள்ளது</item>
-        <item>ஸ்கேன் செய்து பாதுகாப்பாக சேமிக்கவும்</item>
-        <item>உங்கள் அடையாளச் சான்றினை இப்போது ஸ்கேன் செய்யுங்கள்</item>
-        <item>இன்று அடையாளச் சான்றினை ஸ்கேன் செய்யுங்கள்</item>
-        <item>உங்கள் அடையாளச் சான்று பத்திரமாக வைத்திருங்கள்</item>
-        <item>ஐடி ஆதாரத்தை தேடக்கூடியதாக ஆக்குங்கள்</item>
-        <item>அடையாளச் சான்றினை சுத்தமான PDF ஆக மாற்றவும்</item>
-        <item>ஐடி ஆதாரத்தை உயர் தரத்தில் ஏற்றுமதி செய்யுங்கள்</item>
-        <item>ஐடி ஆதாரத்தை ஒரே தட்டலில் பகிரவும்</item>
-        <item>ஐடி ஆதாரத்தை ஆஃப்லைனில் மற்றும் தனிப்பட்ட முறையில் சேமிக்கவும்</item>
-        <item>விரைவான தேடலுக்கு அடையாளச் சான்றினைத் தயாராக வைத்திருங்கள்</item>
-        <item>உங்கள் கோப்புறைகளில் அடையாளச் சான்றுகளை ஒழுங்கமைக்கவும்</item>
-        <item>விரைவான அணுகலுக்கு அடையாளச் சான்றினை ஸ்கேன் செய்யவும்</item>
-        <item>ஐடி ஆதாரத்தை கூர்மையான தெளிவுடன் கைப்பற்றவும்</item>
-        <item>உங்கள் பதிவுகளுக்கான அடையாளச் சான்றுகளை டிஜிட்டல் மயமாக்கவும்</item>
-        <item>அடையாளச் சான்றினை உங்கள் பெட்டகத்தில் சேமிக்கவும்</item>
-        <item>இந்தச் சாதனத்தில் அடையாளச் சான்றுகளைப் பாதுகாக்கவும்</item>
-        <item>உங்கள் அடையாளச் சான்றினை இப்போது டிஜிட்டல் மயமாக்குங்கள்</item>
-        <item>அடையாளச் சான்றுகளை இன்றே டிஜிட்டல் மயமாக்குங்கள்</item>
-        <item>உங்கள் அடையாளச் சான்றினை இப்போது பத்திரப்படுத்தவும்</item>
-        <item>இன்றே அடையாளச் சான்றினைப் பாதுகாக்கவும்</item>
-        <item>உங்கள் ஐடி ஆதாரத்தை இப்போது காப்பகப்படுத்தவும்</item>
-        </string-array>
+                <string-array name="greeting_variants">
+        <item>ஸ்கேன் செய்ய தயாரா? &#x1F4C4;</item>
+        <item>உங்கள் ஆவணங்களை டிஜிட்டல் மயமாக்குவோம் &#x2728;</item>
+        <item>முக்கியமான ஒன்றை டிஜிட்டல் மயமாக்குங்கள் &#x1F4F7;</item>
+        <item>உங்கள் ஸ்கேனர் தயாராக உள்ளது &#x1F50E;</item>
+        <item>ஸ்கேன் செய்து பாதுகாப்பாக சேமிக்கவும் &#x2705;</item>
+        <item>உங்கள் அடையாளச் சான்றினை இப்போது ஸ்கேன் செய்யுங்கள் &#x1F510;</item>
+        <item>இன்று அடையாளச் சான்றினை ஸ்கேன் செய்யுங்கள் &#x1F5C2;&#xFE0F;</item>
+        <item>உங்கள் அடையாளச் சான்று பத்திரமாக வைத்திருங்கள் &#x1F6E1;&#xFE0F;</item>
+        <item>ஐடி ஆதாரத்தை தேடக்கூடியதாக ஆக்குங்கள் &#x1F9FE;</item>
+        <item>அடையாளச் சான்றினை சுத்தமான PDF ஆக மாற்றவும் &#x1F680;</item>
+        <item>ஐடி ஆதாரத்தை உயர் தரத்தில் ஏற்றுமதி செய்யுங்கள் &#x1F4C4;</item>
+        <item>ஐடி ஆதாரத்தை ஒரே தட்டலில் பகிரவும் &#x2728;</item>
+        <item>ஐடி ஆதாரத்தை ஆஃப்லைனில் மற்றும் தனிப்பட்ட முறையில் சேமிக்கவும் &#x1F4F7;</item>
+        <item>விரைவான தேடலுக்கு அடையாளச் சான்றினைத் தயாராக வைத்திருங்கள் &#x1F50E;</item>
+        <item>உங்கள் கோப்புறைகளில் அடையாளச் சான்றுகளை ஒழுங்கமைக்கவும் &#x2705;</item>
+        <item>விரைவான அணுகலுக்கு அடையாளச் சான்றினை ஸ்கேன் செய்யவும் &#x1F510;</item>
+        <item>ஐடி ஆதாரத்தை கூர்மையான தெளிவுடன் கைப்பற்றவும் &#x1F5C2;&#xFE0F;</item>
+        <item>உங்கள் பதிவுகளுக்கான அடையாளச் சான்றுகளை டிஜிட்டல் மயமாக்கவும் &#x1F6E1;&#xFE0F;</item>
+        <item>அடையாளச் சான்றினை உங்கள் பெட்டகத்தில் சேமிக்கவும் &#x1F9FE;</item>
+        <item>இந்தச் சாதனத்தில் அடையாளச் சான்றுகளைப் பாதுகாக்கவும் &#x1F680;</item>
+        <item>உங்கள் அடையாளச் சான்றினை இப்போது டிஜிட்டல் மயமாக்குங்கள் &#x1F4C4;</item>
+        <item>அடையாளச் சான்றுகளை இன்றே டிஜிட்டல் மயமாக்குங்கள் &#x2728;</item>
+        <item>உங்கள் அடையாளச் சான்றினை இப்போது பத்திரப்படுத்தவும் &#x1F4F7;</item>
+        <item>இன்றே அடையாளச் சான்றினைப் பாதுகாக்கவும் &#x1F50E;</item>
+        <item>உங்கள் ஐடி ஆதாரத்தை இப்போது காப்பகப்படுத்தவும் &#x2705;</item>
+    </string-array>
         <string name="update_title">புதுப்பிப்புகள்</string>
     <string name="update_check_startup">தொடக்கத்தில் சரிபார்க்கவும்</string>
     <string name="update_check_startup_desc">ஆப் திறக்கும் போது புதுப்பிப்புகளை தானாகச் சரிபார்க்கவும்.</string>
@@ -260,6 +261,24 @@
     <string name="update_install">புதுப்பிக்கவும்</string>
     <string name="update_later">பின்னர்</string>
     <string name="update_release_notes_title">வெளியீட்டு குறிப்புகள்</string>
+    <string name="tutorial_title">Quick walkthrough</string>
+    <string name="tutorial_step_scan_title">Scan documents</string>
+    <string name="tutorial_step_scan_body">Align the edges and tap Scan Now to capture.</string>
+    <string name="tutorial_step_adjust_title">Adjust and crop</string>
+    <string name="tutorial_step_adjust_body">Retake or crop pages anytime for a clean edge.</string>
+    <string name="tutorial_step_export_title">Export smart</string>
+    <string name="tutorial_step_export_body">Create PDFs with OCR, watermark, and password options.</string>
+    <string name="tutorial_step_search_title">Search instantly</string>
+    <string name="tutorial_step_search_body">Find text inside your scans with OCR search.</string>
+    <string name="tutorial_skip">Skip</string>
+    <string name="tutorial_next">Next</string>
+    <string name="tutorial_done">Done</string>
+    <string name="tutorial_step_home_title">Welcome to BharatScan</string>
+    <string name="tutorial_step_home_body">This is your home hub for scans, filters, and quick actions.</string>
+    <string name="tutorial_back">Back</string>
+    <string name="tutorial_start_title">App walkthrough</string>
+    <string name="tutorial_start_desc">See a guided tour across the app screens.</string>
+    <string name="tutorial_start_button">Start walkthrough</string>
 </resources>
 
 

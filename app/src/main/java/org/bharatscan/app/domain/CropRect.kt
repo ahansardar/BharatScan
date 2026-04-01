@@ -12,17 +12,14 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <https://www.gnu.org/licenses/>.
  */
-package org.bharatscan.app.ui.screens.home
+package org.bharatscan.app.domain
 
-import android.net.Uri
-
-data class RecentDocumentUiState(
-    val fileUri: Uri,
-    val fileName: String,
-    val saveTimestamp: Long,
-    val pageCount: Int,
-    val categoryId: String? = null,
-    val ocrText: String? = null,
-)
-
-
+data class CropRect(
+    val left: Float,
+    val top: Float,
+    val right: Float,
+    val bottom: Float
+) {
+    fun width() = right - left
+    fun height() = bottom - top
+}

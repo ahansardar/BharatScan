@@ -16,6 +16,7 @@ package org.bharatscan.app.ui.screens.splash
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
@@ -36,7 +37,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -51,7 +51,7 @@ fun SplashScreen(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFFF7F7F7))
+            .background(BharatWhite)
     ) {
         DottedBackground()
         Column(
@@ -92,7 +92,7 @@ fun SplashScreen(modifier: Modifier = Modifier) {
             }
 
             Text(
-                text = "MADE WITH ❤ IN INDIA.",
+                text = "MADE WITH LOVE IN INDIA.",
                 color = BharatNavy.copy(alpha = 0.45f),
                 style = MaterialTheme.typography.labelMedium,
                 letterSpacing = MaterialTheme.typography.labelMedium.letterSpacing
@@ -121,18 +121,31 @@ private fun DottedBackground() {
 
 @Composable
 private fun ChakraLoader(modifier: Modifier = Modifier) {
-    val rotation by rememberInfiniteTransition(label = "chakra")
-        .animateFloat(
-            initialValue = 0f,
-            targetValue = 360f,
-            animationSpec = infiniteRepeatable(
-                animation = tween(1800, easing = LinearEasing)
-            ),
-            label = "rotation"
-        )
+    val transition = rememberInfiniteTransition(label = "chakra")
+    val rotation by transition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(1800, easing = LinearEasing)
+        ),
+        label = "rotation"
+    )
+    val pulse by transition.animateFloat(
+        initialValue = 0.96f,
+        targetValue = 1.04f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(1400, easing = FastOutSlowInEasing),
+            repeatMode = androidx.compose.animation.core.RepeatMode.Reverse
+        ),
+        label = "pulse"
+    )
     Canvas(
         modifier = modifier
-            .graphicsLayer { rotationZ = rotation }
+            .graphicsLayer {
+                rotationZ = rotation
+                scaleX = pulse
+                scaleY = pulse
+            }
     ) {
         val stroke = 3.dp.toPx()
         val outer = size.minDimension / 2f
@@ -169,3 +182,4 @@ private fun ChakraLoader(modifier: Modifier = Modifier) {
         }
     }
 }
+

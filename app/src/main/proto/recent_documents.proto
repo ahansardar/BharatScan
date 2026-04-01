@@ -10,6 +10,7 @@ message RecentDocument {
   string file_uri = 4;
   string file_name = 5;
   string category = 6;
+  string ocr_text = 7;
 }
 
 message RecentDocuments {

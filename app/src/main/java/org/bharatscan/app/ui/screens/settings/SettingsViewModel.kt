@@ -119,6 +119,12 @@ class SettingsViewModel(container: AppContainer) : ViewModel() {
             _dirName.value = uri?.let { repo.resolveExportDirName(it) }
         }
     }
+
+    fun restartTutorial() {
+        viewModelScope.launch {
+            repo.setTutorialCompleted(false)
+        }
+    }
 }
 
 

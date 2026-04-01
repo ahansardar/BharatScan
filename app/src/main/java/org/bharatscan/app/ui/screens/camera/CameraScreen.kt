@@ -60,7 +60,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.delay
 import org.bharatscan.app.MainViewModel
 import org.bharatscan.app.R
-import org.bharatscan.app.ui.components.BrandTitle
 import org.bharatscan.app.ui.Screen
 import org.bharatscan.app.ui.Navigation
 import org.bharatscan.app.ui.components.*
@@ -455,8 +454,6 @@ private fun CameraTopBar(
                         contentDescription = stringResource(R.string.back)
                     )
                 }
-                Spacer(Modifier.width(8.dp))
-                BrandTitle(height = 22.dp)
             }
             Row(verticalAlignment = Alignment.CenterVertically) {
                 IconButton(onClick = onTorchToggle) {
@@ -620,7 +617,7 @@ private fun CameraPreviewWithOverlay(
     Box(
         modifier = modifier.fillMaxSize()
             .clip(RoundedCornerShape(24.dp))
-            .border(2.dp, MaterialTheme.colorScheme.surfaceContainerHigh.copy(alpha = 0.6f), RoundedCornerShape(24.dp))
+            .border(2.dp, BharatChakra.copy(alpha = 0.45f), RoundedCornerShape(24.dp))
     ) {
         cameraPreview()
         Box(
@@ -647,7 +644,14 @@ private fun CameraPreviewWithOverlay(
             Box(
                 modifier = Modifier
                     .matchParentSize()
-                    .background(Color.Black.copy(alpha = 0.6f))
+                    .background(
+                        Brush.radialGradient(
+                            colors = listOf(
+                                BharatSaffron.copy(alpha = 0.55f),
+                                Color.Transparent
+                            )
+                        )
+                    )
             )
         }
         if (cameraUiState.showDetectionError) {
@@ -671,7 +675,7 @@ private fun CameraPreviewWithOverlay(
 @Composable
 fun FocusOverlay(focusPoint: Offset?) {
     if (focusPoint == null) return
-    val focusColor = MaterialTheme.colorScheme.secondary
+    val focusColor = BharatChakra
     Canvas(modifier = Modifier.fillMaxSize()) {
         val size = 100f
         drawRect(
@@ -681,7 +685,7 @@ fun FocusOverlay(focusPoint: Offset?) {
                 focusPoint.y - size / 2
             ),
             size = Size(size, size),
-            style = Stroke(width = 4f)
+            style = Stroke(width = 5f)
         )
     }
 }

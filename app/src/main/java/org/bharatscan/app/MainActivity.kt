@@ -31,10 +31,15 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -51,6 +56,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.LocalContext
@@ -73,7 +79,11 @@ import org.bharatscan.app.data.FileLogger
 import org.bharatscan.app.data.ImageRepository
 import org.bharatscan.app.ui.Navigation
 import org.bharatscan.app.ui.Screen
+import org.bharatscan.app.ui.TutorialStep
+import org.bharatscan.app.ui.next
+import org.bharatscan.app.ui.previous
 import org.bharatscan.app.ui.components.rememberCameraPermissionState
+import org.bharatscan.app.ui.components.TutorialOverlay
 import org.bharatscan.app.ui.screens.DocumentScreen
 import org.bharatscan.app.ui.screens.LibrariesScreen
 import org.bharatscan.app.ui.screens.PdfViewerScreen
@@ -269,9 +279,57 @@ class MainActivity : AppCompatActivity() {
                     showSplash = false
                 }
 
+                val showTutorial by homeViewModel.shouldShowTutorial.collectAsStateWithLifecycle()
+                val tutorialSteps = remember {
+                    listOf(
+                        TutorialStep.HOME,
+                        TutorialStep.SCAN,
+                        TutorialStep.EDIT,
+                        TutorialStep.EXPORT,
+                        TutorialStep.SEARCH
+                    )
+                }
+                var tutorialStep by rememberSaveable(showTutorial) {
+                    mutableStateOf(TutorialStep.HOME)
+                }
+
+                LaunchedEffect(showTutorial, tutorialStep) {
+                    if (!showTutorial) return@LaunchedEffect
+                    when (tutorialStep) {
+                        TutorialStep.HOME -> viewModel.navigateTo(Screen.Main.Home)
+                        TutorialStep.SCAN -> viewModel.navigateTo(Screen.Main.Camera)
+                        TutorialStep.EDIT -> {
+                            viewModel.ensureTutorialDemoPage()
+                            viewModel.navigateTo(Screen.Main.Document())
+                        }
+                        TutorialStep.EXPORT -> {
+                            viewModel.ensureTutorialDemoPage()
+                            viewModel.navigateTo(Screen.Main.Export)
+                        }
+                        TutorialStep.SEARCH -> viewModel.navigateTo(Screen.Main.Search)
+                    }
+                }
+
+                val finishTutorial = {
+                    homeViewModel.markTutorialCompleted()
+                    viewModel.clearTutorialDemoIfNeeded()
+                    viewModel.navigateTo(Screen.Main.Home)
+                }
+
                 androidx.compose.foundation.layout.Box {
-                    when (val screen = currentScreen) {
-                        is Screen.Main.Home -> {
+                    AnimatedContent(
+                        targetState = currentScreen,
+                        transitionSpec = {
+                            val enter = fadeIn(animationSpec = tween(260)) +
+                                slideInHorizontally(animationSpec = tween(260)) { it / 16 }
+                            val exit = fadeOut(animationSpec = tween(220)) +
+                                slideOutHorizontally(animationSpec = tween(220)) { -it / 16 }
+                            enter togetherWith exit
+                        },
+                        label = "screenTransition"
+                    ) { screen ->
+                        when (screen) {
+                            is Screen.Main.Home -> {
                             val recentDocs by homeViewModel.recentDocuments.collectAsStateWithLifecycle()
                             val customCategories by homeViewModel.customCategories.collectAsStateWithLifecycle()
                             HomeScreen(
@@ -290,8 +348,8 @@ class MainActivity : AppCompatActivity() {
                                     updateMessage = getString(R.string.downloading_update)
                                 }
                             )
-                        }
-                        is Screen.Main.Documents -> {
+                            }
+                            is Screen.Main.Documents -> {
                             val recentDocs by homeViewModel.recentDocuments.collectAsStateWithLifecycle()
                             DocumentsScreen(
                                 navigation = navigation,
@@ -299,8 +357,8 @@ class MainActivity : AppCompatActivity() {
                                 onOpenPdf = { fileUri -> navigation.toPdfViewer(fileUri) },
                                 onDeleteDocument = { doc -> homeViewModel.deleteRecentDocument(doc) }
                             )
-                        }
-                        is Screen.Main.Filters -> {
+                            }
+                            is Screen.Main.Filters -> {
                             val recentDocs by homeViewModel.recentDocuments.collectAsStateWithLifecycle()
                             val customCategories by homeViewModel.customCategories.collectAsStateWithLifecycle()
                             FiltersScreen(
@@ -311,8 +369,8 @@ class MainActivity : AppCompatActivity() {
                                 onOpenPdf = { fileUri -> navigation.toPdfViewer(fileUri) },
                                 onDeleteDocument = { doc -> homeViewModel.deleteRecentDocument(doc) }
                             )
-                        }
-                        is Screen.Main.Search -> {
+                            }
+                            is Screen.Main.Search -> {
                             val recentDocs by homeViewModel.recentDocuments.collectAsStateWithLifecycle()
                             SearchScreen(
                                 navigation = navigation,
@@ -320,8 +378,8 @@ class MainActivity : AppCompatActivity() {
                                 onOpenPdf = { fileUri -> navigation.toPdfViewer(fileUri) },
                                 onDeleteDocument = { doc -> homeViewModel.deleteRecentDocument(doc) }
                             )
-                        }
-                        is Screen.Main.PdfViewer -> {
+                            }
+                            is Screen.Main.PdfViewer -> {
                             PdfViewerScreen(
                                 uri = screen.uri,
                                 onBack = navigation.back,
@@ -337,8 +395,8 @@ class MainActivity : AppCompatActivity() {
                                     navigation.back()
                                 }
                             )
-                        }
-                        is Screen.Main.Camera -> {
+                            }
+                            is Screen.Main.Camera -> {
                             CameraScreen(
                                 viewModel,
                                 cameraViewModel,
@@ -348,8 +406,8 @@ class MainActivity : AppCompatActivity() {
                                 onFinalizePressed = onExportClick,
                                 cameraPermission = cameraPermission
                             )
-                        }
-                        is Screen.Main.Document -> {
+                            }
+                            is Screen.Main.Document -> {
                             DocumentScreen (
                                 document = document,
                                 initialPage = screen.initialPage,
@@ -358,8 +416,8 @@ class MainActivity : AppCompatActivity() {
                                 onDeleteImage =  { id -> viewModel.deletePage(id) },
                                 onRotateImage = { id, clockwise -> viewModel.rotateImage(id, clockwise) },
                                 onPageReorder = { id, newIndex -> viewModel.movePage(id, newIndex) },
-                                onCropImage = { id ->
-                                    viewModel.autoCropPage(id) { success ->
+                                onCropImage = { id, cropRect ->
+                                    viewModel.cropPage(id, cropRect) { success ->
                                         if (!success) {
                                             Toast.makeText(
                                                 context,
@@ -369,9 +427,13 @@ class MainActivity : AppCompatActivity() {
                                         }
                                     }
                                 },
+                                onRetakeImage = { id ->
+                                    viewModel.startRetake(id)
+                                    viewModel.navigateTo(Screen.Main.Camera)
+                                },
                             )
-                        }
-                        is Screen.Main.Export -> {
+                            }
+                            is Screen.Main.Export -> {
                             ExportScreenWrapper(
                                 navigation = navigation,
                                 uiState = exportUiState,
@@ -397,8 +459,8 @@ class MainActivity : AppCompatActivity() {
                                     viewModel.navigateTo(Screen.Main.Home)
                                 }
                             )
-                        }
-                        is Screen.Overlay.About -> {
+                            }
+                            is Screen.Overlay.About -> {
                             LaunchedEffect(Unit) {
                                 aboutViewModel.refreshLastCapturedImageState()
                             }
@@ -411,11 +473,11 @@ class MainActivity : AppCompatActivity() {
                                 onContactWithLastImageClicked =
                                     { aboutViewModel.onContactWithLastImageClicked() },
                                 onViewLibraries = navigation.toLibrariesScreen)
-                        }
-                        is Screen.Overlay.Libraries -> {
+                            }
+                            is Screen.Overlay.Libraries -> {
                             LibrariesScreen(onBack = navigation.back)
-                        }
-                        is Screen.Overlay.Settings -> {
+                            }
+                            is Screen.Overlay.Settings -> {
                             SettingsScreenWrapper(
                                 settingsViewModel,
                                 navigation,
@@ -426,6 +488,7 @@ class MainActivity : AppCompatActivity() {
                                     settingsViewModel.setCheckUpdatesAtStartup(enabled)
                                 }
                             )
+                            }
                         }
                     }
 
@@ -518,6 +581,7 @@ class MainActivity : AppCompatActivity() {
             updateState = updateState,
             onCheckForUpdates = onCheckForUpdates,
             onCheckAtStartupChanged = onCheckAtStartupChanged,
+            onStartTutorial = { settingsViewModel.restartTutorial() },
         )
     }
 
@@ -643,7 +707,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     is ReleaseNoteBlock.Bullet -> {
                         Text(
-                            text = "• ${block.text}",
+                            text = "? ${block.text}",
                             style = MaterialTheme.typography.bodySmall
                         )
                     }
@@ -658,7 +722,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @Composable
+@Composable
     private fun CollectAboutEvents(
         context: Context,
         aboutViewModel: AboutViewModel,

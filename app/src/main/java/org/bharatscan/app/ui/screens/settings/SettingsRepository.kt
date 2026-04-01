@@ -37,6 +37,7 @@ class SettingsRepository(private val context: Context) {
     private val CUSTOM_CATEGORIES = stringSetPreferencesKey("custom_categories")
     private val APP_LANGUAGE = stringPreferencesKey("app_language")
     private val CHECK_UPDATES_STARTUP = booleanPreferencesKey("check_updates_startup")
+    private val TUTORIAL_COMPLETED = booleanPreferencesKey("tutorial_completed")
 
     val exportDirUri: Flow<String?> =
         context.dataStore.data.map { prefs ->
@@ -79,6 +80,11 @@ class SettingsRepository(private val context: Context) {
     val checkUpdatesAtStartup: Flow<Boolean> =
         context.dataStore.data.map { prefs ->
             prefs[CHECK_UPDATES_STARTUP] ?: true
+        }
+
+    val tutorialCompleted: Flow<Boolean> =
+        context.dataStore.data.map { prefs ->
+            prefs[TUTORIAL_COMPLETED] ?: false
         }
 
     val customCategories: Flow<List<String>> =
@@ -127,6 +133,12 @@ class SettingsRepository(private val context: Context) {
     suspend fun setCheckUpdatesAtStartup(enabled: Boolean) {
         context.dataStore.edit { prefs ->
             prefs[CHECK_UPDATES_STARTUP] = enabled
+        }
+    }
+
+    suspend fun setTutorialCompleted(completed: Boolean) {
+        context.dataStore.edit { prefs ->
+            prefs[TUTORIAL_COMPLETED] = completed
         }
     }
 

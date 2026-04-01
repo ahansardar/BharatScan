@@ -78,6 +78,10 @@ class ExportViewModel(container: AppContainer, val imageRepository: ImageReposit
     private val recentDocumentsDataStore = container.recentDocumentsDataStore
     private val logger = container.logger
 
+    private companion object {
+        const val OCR_INDEX_MAX_CHARS = 20000
+    }
+
     private val _events = MutableSharedFlow<ExportEvent>()
     val events = _events.asSharedFlow()
 
@@ -86,6 +90,7 @@ class ExportViewModel(container: AppContainer, val imageRepository: ImageReposit
     ): ExportResult.Pdf = withContext(Dispatchers.IO) {
         val jpegs = jpegsForExport(imageRepository, exportQuality).toList()
         val ocrPages = buildOcrPages(jpegs)
+        val ocrIndex = buildOcrIndexText(ocrPages)
         val password = if (uiState.value.passwordProtectionEnabled) {
             uiState.value.password.trim().ifBlank { null }
         } else {
@@ -97,7 +102,7 @@ class ExportViewModel(container: AppContainer, val imageRepository: ImageReposit
             null
         }
         val pdf = fileManager.generatePdf(jpegs.asSequence(), ocrPages, watermark, password)
-        return@withContext ExportResult.Pdf(pdf.file, pdf.sizeInBytes, pdf.pageCount)
+        return@withContext ExportResult.Pdf(pdf.file, pdf.sizeInBytes, pdf.pageCount, ocrIndex)
     }
 
     suspend fun generatePdfForExternalCall(): ExportResult.Pdf {
@@ -139,6 +144,22 @@ class ExportViewModel(container: AppContainer, val imageRepository: ImageReposit
                 engine.close()
             }
         }
+    }
+
+    private fun buildOcrIndexText(pages: List<OcrPage>): String {
+        if (pages.isEmpty()) return ""
+        val raw = buildString {
+            pages.forEach { page ->
+                page.lines.forEach { line ->
+                    val text = line.text.trim()
+                    if (text.isNotEmpty()) {
+                        append(text)
+                        append('\n')
+                    }
+                }
+            }
+        }.trim()
+        return if (raw.length > OCR_INDEX_MAX_CHARS) raw.substring(0, OCR_INDEX_MAX_CHARS) else raw
     }
 
     private val _uiState = MutableStateFlow(ExportUiState())
@@ -215,7 +236,8 @@ class ExportViewModel(container: AppContainer, val imageRepository: ImageReposit
 
     private fun defaultFilename(): String {
         val timestamp = SimpleDateFormat("yyyy-MM-dd HH.mm.ss", Locale.getDefault()).format(Date())
-        return "Scan $timestamp"
+        val brand = appContext.getString(R.string.app_name)
+        return "$brand $timestamp"
     }
 
     private fun ensureValidFilename() {
@@ -331,7 +353,7 @@ class ExportViewModel(container: AppContainer, val imageRepository: ImageReposit
                 val fileName = FileManager.addPdfExtensionIfMissing(filename)
                 val newFile = File(result.file.parentFile, fileName)
                 renameFile(result.file, newFile)
-                ExportResult.Pdf(newFile, result.sizeInBytes, result.pageCount)
+                ExportResult.Pdf(newFile, result.sizeInBytes, result.pageCount, result.ocrText)
             }
             is ExportResult.Jpeg -> {
                 val base = filename.removeSuffix(".jpg")
@@ -457,8 +479,9 @@ class ExportViewModel(container: AppContainer, val imageRepository: ImageReposit
         _uiState.update { it.copy(savedBundle = bundle) }
 
         if (exportFormat == ExportFormat.PDF) {
+            val ocrText = (result as? ExportResult.Pdf)?.ocrText
             savedItems.forEach { item ->
-                addRecentDocument(item.uri, item.fileName, result.pageCount, categoryId)
+                addRecentDocument(item.uri, item.fileName, result.pageCount, categoryId, ocrText)
             }
         }
 
@@ -546,7 +569,8 @@ class ExportViewModel(container: AppContainer, val imageRepository: ImageReposit
         fileUri: Uri,
         fileName: String,
         pageCount: Int,
-        categoryId: String?
+        categoryId: String?,
+        ocrText: String?
     ) {
         viewModelScope.launch {
             recentDocumentsDataStore.updateData { current ->
@@ -555,6 +579,9 @@ class ExportViewModel(container: AppContainer, val imageRepository: ImageReposit
                     .setFileName(fileName)
                     .setPageCount(pageCount)
                     .setCreatedAt(System.currentTimeMillis())
+                if (!ocrText.isNullOrBlank()) {
+                    builder.ocrText = ocrText
+                }
                 if (!categoryId.isNullOrBlank()) {
                     builder.setCategory(categoryId)
                 }
@@ -593,6 +620,7 @@ sealed class ExportResult {
         val file: File,
         override val sizeInBytes: Long,
         override val pageCount: Int,
+        val ocrText: String,
     ) : ExportResult() {
         override val files get() = listOf(file)
         override val format: ExportFormat = ExportFormat.PDF

@@ -87,10 +87,10 @@
     <string name="custom_category_hint">श्रेणीचे नाव प्रविष्ट करा</string>
     <string name="search_title">दस्तऐवज शोधा</string>
     <string name="filters_title">फिल्टर</string>
-    <string name="good_morning">शुभ सकाळ</string>
-    <string name="good_afternoon">शुभ दुपार</string>
-    <string name="good_evening">शुभ संध्याकाळ</string>
-    <string name="good_night">शुभ रात्री</string>
+    <string name="good_morning">शुभ सकाळ &#x2600;&#xFE0F;</string>
+    <string name="good_afternoon">शुभ दुपार &#x1F324;&#xFE0F;</string>
+    <string name="good_evening">शुभ संध्याकाळ &#x1F306;</string>
+    <string name="good_night">शुभ रात्री &#x1F319;</string>
     <string name="digitizing_bharat">दस्तऐवजांचे डिजिटाइझिंग</string>
     <string name="scan_mode_document">दस्तऐवज</string>
     <string name="scan_mode_id_card">ओळखपत्र</string>
@@ -153,6 +153,7 @@
     <string name="resume">पुन्हा सुरू करा</string>
     <string name="rotate_left">डावीकडे फिरवा</string>
     <string name="rotate_right">उजवीकडे फिरवा</string>
+    <string name="retake_page">पान पुन्हा घ्या (Retake)</string>
     <string name="save">जतन करा</string>
     <string name="scan_button">नवीन स्कॅन</string>
     <string name="scanner">स्कॅनर</string>
@@ -220,33 +221,33 @@
         <item quantity="one">%d दस्तऐवज</item>
         <item quantity="other">%d दस्तऐवज</item>
         </plurals>
-    <string-array name="greeting_variants">
-        <item>स्कॅन करण्यास तयार आहात?</item>
-        <item>तुमची कागदपत्रे डिजीटल करूया</item>
-        <item>काहीतरी महत्वाचे डिजिटल करा</item>
-        <item>तुमचे स्कॅनर तयार आहे</item>
-        <item>स्कॅन करा आणि सुरक्षितपणे साठवा</item>
-        <item>आता तुमचा आयडी प्रूफ स्कॅन करा</item>
-        <item>आजच ओळखपत्र स्कॅन करा</item>
-        <item>तुमचा ओळखपत्र सुरक्षित ठेवा</item>
-        <item>ओळखपत्र शोधण्यायोग्य बनवा</item>
-        <item>आयडी प्रूफ स्वच्छ पीडीएफमध्ये बदला</item>
-        <item>आयडी प्रूफ उच्च गुणवत्तेत निर्यात करा</item>
-        <item>एకా टॅपमध्ये आयडी प्रूफ शेअर करा</item>
-        <item>आयडी पुरावा ऑफलाइन आणि खाजगी संग्रहित करा</item>
-        <item>जलद शोधासाठी ओळखपत्र तयार ठेवा</item>
-        <item>तुमच्या फोल्डरमध्ये आयडी प्रूफ व्यवस्थित करा</item>
-        <item>द्रुत प्रवेशासाठी आयडी प्रूफ स्कॅन करा</item>
-        <item>स्पष्ट स्पष्टतेसह आयडी प्रूफ कॅप्चर करा</item>
-        <item>तुमच्या रेकॉर्डसाठी आयडी प्रूफ डिजीटल करा</item>
-        <item>आयडी प्रूफ तुमच्या तिजोरीत जतन करा</item>
-        <item>या डिव्हाइसवर आयडी प्रूफ संरक्षित करा</item>
-        <item>तुमचा आयडी प्रूफ आत्ताच डिजीटल करा</item>
-        <item>आजच आयडी प्रूफ डिजीटल करा</item>
-        <item>तुमचा आयडी प्रूफ आता सुरक्षित करा</item>
-        <item>आजच ओळखपत्र सुरक्षित करा</item>
-        <item>तुमचा आयडी पुरावा आता संग्रहित करा</item>
-        </string-array>
+                <string-array name="greeting_variants">
+        <item>स्कॅन करण्यास तयार आहात? &#x1F4C4;</item>
+        <item>तुमची कागदपत्रे डिजीटल करूया &#x2728;</item>
+        <item>काहीतरी महत्वाचे डिजिटल करा &#x1F4F7;</item>
+        <item>तुमचे स्कॅनर तयार आहे &#x1F50E;</item>
+        <item>स्कॅन करा आणि सुरक्षितपणे साठवा &#x2705;</item>
+        <item>आता तुमचा आयडी प्रूफ स्कॅन करा &#x1F510;</item>
+        <item>आजच ओळखपत्र स्कॅन करा &#x1F5C2;&#xFE0F;</item>
+        <item>तुमचा ओळखपत्र सुरक्षित ठेवा &#x1F6E1;&#xFE0F;</item>
+        <item>ओळखपत्र शोधण्यायोग्य बनवा &#x1F9FE;</item>
+        <item>आयडी प्रूफ स्वच्छ पीडीएफमध्ये बदला &#x1F680;</item>
+        <item>आयडी प्रूफ उच्च गुणवत्तेत निर्यात करा &#x1F4C4;</item>
+        <item>एకా टॅपमध्ये आयडी प्रूफ शेअर करा &#x2728;</item>
+        <item>आयडी पुरावा ऑफलाइन आणि खाजगी संग्रहित करा &#x1F4F7;</item>
+        <item>जलद शोधासाठी ओळखपत्र तयार ठेवा &#x1F50E;</item>
+        <item>तुमच्या फोल्डरमध्ये आयडी प्रूफ व्यवस्थित करा &#x2705;</item>
+        <item>द्रुत प्रवेशासाठी आयडी प्रूफ स्कॅन करा &#x1F510;</item>
+        <item>स्पष्ट स्पष्टतेसह आयडी प्रूफ कॅप्चर करा &#x1F5C2;&#xFE0F;</item>
+        <item>तुमच्या रेकॉर्डसाठी आयडी प्रूफ डिजीटल करा &#x1F6E1;&#xFE0F;</item>
+        <item>आयडी प्रूफ तुमच्या तिजोरीत जतन करा &#x1F9FE;</item>
+        <item>या डिव्हाइसवर आयडी प्रूफ संरक्षित करा &#x1F680;</item>
+        <item>तुमचा आयडी प्रूफ आत्ताच डिजीटल करा &#x1F4C4;</item>
+        <item>आजच आयडी प्रूफ डिजीटल करा &#x2728;</item>
+        <item>तुमचा आयडी प्रूफ आता सुरक्षित करा &#x1F4F7;</item>
+        <item>आजच ओळखपत्र सुरक्षित करा &#x1F50E;</item>
+        <item>तुमचा आयडी पुरावा आता संग्रहित करा &#x2705;</item>
+    </string-array>
         <string name="update_title">अपडेट्स</string>
     <string name="update_check_startup">सुरुवातीला तपासा</string>
     <string name="update_check_startup_desc">अॅप उघडल्यावर अपडेट्स आपोआप तपासा.</string>
@@ -260,6 +261,24 @@
     <string name="update_install">अपडेट करा</string>
     <string name="update_later">नंतर</string>
     <string name="update_release_notes_title">रिलीझ नोट्स</string>
+    <string name="tutorial_title">Quick walkthrough</string>
+    <string name="tutorial_step_scan_title">Scan documents</string>
+    <string name="tutorial_step_scan_body">Align the edges and tap Scan Now to capture.</string>
+    <string name="tutorial_step_adjust_title">Adjust and crop</string>
+    <string name="tutorial_step_adjust_body">Retake or crop pages anytime for a clean edge.</string>
+    <string name="tutorial_step_export_title">Export smart</string>
+    <string name="tutorial_step_export_body">Create PDFs with OCR, watermark, and password options.</string>
+    <string name="tutorial_step_search_title">Search instantly</string>
+    <string name="tutorial_step_search_body">Find text inside your scans with OCR search.</string>
+    <string name="tutorial_skip">Skip</string>
+    <string name="tutorial_next">Next</string>
+    <string name="tutorial_done">Done</string>
+    <string name="tutorial_step_home_title">Welcome to BharatScan</string>
+    <string name="tutorial_step_home_body">This is your home hub for scans, filters, and quick actions.</string>
+    <string name="tutorial_back">Back</string>
+    <string name="tutorial_start_title">App walkthrough</string>
+    <string name="tutorial_start_desc">See a guided tour across the app screens.</string>
+    <string name="tutorial_start_button">Start walkthrough</string>
 </resources>
 
 
