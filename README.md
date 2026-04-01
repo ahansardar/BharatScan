@@ -27,6 +27,15 @@
 
 BharatScan is a Made in India Android document scanning app built with Jetpack Compose, CameraX, and on-device ML for segmentation and OCR. This repo includes the Android app plus supporting JVM modules for image processing and evaluation.
 
+## Version Updates
+### v1.1.0 (Current)
+- Tricolor Modern UI refresh with improved visual separation and India-inspired styling.
+- Background image support for Home, Documents, and Settings with tint overlays.
+- OCR Search Index: search inside scanned text across documents.
+- Guided walkthrough across Home → Scan → Edit → Export → Search.
+- Update flow polish with GitHub Releases checks, progress UI, and formatted notes.
+- Scanner and crop refinements (retake per page, manual crop fallback).
+
 ## Features
 - Camera-based document capture and scanning workflow.
 - Automatic document boundary detection and auto-cropping via an on-device segmentation model.
