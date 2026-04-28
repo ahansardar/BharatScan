@@ -35,6 +35,9 @@ class SessionViewModel(
         LaunchMode.EXTERNAL_SCAN_TO_PDF ->
             File(appContainer.sessionsRoot(), UUID.randomUUID().toString())
                 .apply { mkdirs() }
+
+        LaunchMode.EXTERNAL_OPEN_PDF ->
+            app.filesDir
     }
 
     private val sessionContainer = ScanSessionContainer(

@@ -25,6 +25,8 @@ import android.widget.Toast
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -65,6 +67,8 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -90,6 +94,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -104,6 +109,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.input.pointer.PointerType
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -145,6 +151,7 @@ import java.io.File
 import java.security.Security
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
+import android.graphics.Paint
 import android.graphics.Canvas as AndroidCanvas
 import kotlin.math.max
 import kotlin.math.min
@@ -175,6 +182,11 @@ fun PdfViewerScreen(
     var ocrIndex by remember { mutableStateOf<Map<Int, List<OcrLineBox>>>(emptyMap()) }
     var ocrReady by remember { mutableStateOf(false) }
     var showDeleteConfirm by remember { mutableStateOf(false) }
+    var showMoreMenu by remember { mutableStateOf(false) }
+    var showAnnotate by remember { mutableStateOf(false) }
+    var annotatePageIndex by remember { mutableIntStateOf(0) }
+    var pendingAnnotationSave by remember { mutableStateOf<PendingAnnotationSave?>(null) }
+    var savingAnnotation by remember { mutableStateOf(false) }
     var currentPage by remember { mutableIntStateOf(0) }
     var renderKey by remember { mutableIntStateOf(0) }
     var pdfSource by remember(uri) { mutableStateOf<PdfSource>(PdfSource.ContentUri(uri)) }
@@ -194,11 +206,16 @@ fun PdfViewerScreen(
     DisposableEffect(pdfSource, renderKey) {
         val sourceForDispose = pdfSource
         var localRenderer: PdfRenderer? = null
-        val pfd = try {
+        val opened = try {
             openPdfSourceDescriptor(context, sourceForDispose)
-        } catch (_: Exception) {
+        } catch (e: Exception) {
+            if (BuildConfig.DEBUG) {
+                Log.e("PdfViewer", "openPdfSourceDescriptor threw for $sourceForDispose", e)
+            }
             null
         }
+        val pfd = opened?.pfd
+        val importedTempFile = opened?.tempFile
         if (pfd != null) {
             try {
                 val r = PdfRenderer(pfd)
@@ -230,18 +247,39 @@ fun PdfViewerScreen(
                 bitmaps.clear()
                 pageZoomScales.clear()
                 pfd.close()
+                val message = if (BuildConfig.DEBUG) {
+                    val detail = "${e.javaClass.simpleName}: ${e.message ?: "unknown"}"
+                    "${context.getString(R.string.pdf_open_failed_permissions)} ($detail)"
+                } else {
+                    context.getString(R.string.pdf_open_failed_permissions)
+                }
                 Toast.makeText(
                     context,
-                    context.getString(R.string.pdf_password_failed),
+                    message,
                     Toast.LENGTH_SHORT
                 ).show()
+                onBack()
             }
-        } else if (BuildConfig.DEBUG) {
-            Log.e("PdfViewer", "Failed to open ParcelFileDescriptor for $sourceForDispose")
+        } else {
+            if (BuildConfig.DEBUG) {
+                Log.e(
+                    "PdfViewer",
+                    "Failed to open ParcelFileDescriptor for $sourceForDispose uri=$uri type=${
+                        kotlin.runCatching { context.contentResolver.getType(uri) }.getOrNull()
+                    }"
+                )
+            }
+            Toast.makeText(
+                context,
+                context.getString(R.string.pdf_open_failed_permissions),
+                Toast.LENGTH_SHORT
+            ).show()
+            onBack()
         }
         onDispose {
             localRenderer?.close()
             pfd?.close()
+            importedTempFile?.delete()
             if (sourceForDispose is PdfSource.FilePath) {
                 sourceForDispose.file.delete()
             }
@@ -251,19 +289,71 @@ fun PdfViewerScreen(
 
     BackHandler { onBack() }
 
-    val document = remember(uri) { DocumentFile.fromSingleUri(context, uri) }
-    val fileName = document?.name ?: uri.lastPathSegment ?: context.getString(R.string.document)
-    val fileSize = document?.length()?.takeIf { it > 0 }?.let { formatFileSize(it, context) }
+    val document = remember(uri) {
+        kotlin.runCatching { DocumentFile.fromSingleUri(context, uri) }.getOrNull()
+    }
+    val fileName = kotlin.runCatching { document?.name }.getOrNull()
+        ?: uri.lastPathSegment
+        ?: context.getString(R.string.document)
+    val fileSize = kotlin.runCatching { document?.length() }.getOrNull()
+        ?.takeIf { it > 0 }
+        ?.let { formatFileSize(it, context) }
         ?: stringResource(R.string.unknown_size)
     val timestamp = resolveFileTimestamp(context, uri)
-        ?: document?.lastModified()?.takeIf { it > 0 }
+        ?: kotlin.runCatching { document?.lastModified() }.getOrNull()?.takeIf { it > 0 }
         ?: System.currentTimeMillis()
     val scannedText = formatTimestamp(timestamp)
+
+    val saveAnnotatedPdfLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.CreateDocument("application/pdf")
+    ) { destUri ->
+        val pending = pendingAnnotationSave
+        pendingAnnotationSave = null
+        if (destUri == null || pending == null) return@rememberLauncherForActivityResult
+        savingAnnotation = true
+        scope.launch {
+            val ok = applyInkStrokesToPdf(
+                context = context,
+                source = pdfSource,
+                destUri = destUri,
+                strokesByPage = pending.strokesByPage,
+                pdfPassword = pdfPassword
+            )
+            savingAnnotation = false
+            Toast.makeText(
+                context,
+                if (ok) context.getString(R.string.annotation_saved) else context.getString(R.string.annotation_save_failed),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
 
     LaunchedEffect(pdfSource, renderKey) {
         ocrReady = false
         ocrIndex = buildOcrIndex(context, pdfSource)
         ocrReady = true
+    }
+
+    LaunchedEffect(showAnnotate, annotatePageIndex, renderer) {
+        if (!showAnnotate) return@LaunchedEffect
+        val r = renderer ?: return@LaunchedEffect
+        if (annotatePageIndex < 0 || annotatePageIndex >= pageCount) return@LaunchedEffect
+        if (bitmaps.getOrNull(annotatePageIndex) != null) return@LaunchedEffect
+
+        val rendered = withContext(Dispatchers.Default) {
+            val page = r.openPage(annotatePageIndex)
+            try {
+                val w = page.width * 2
+                val h = page.height * 2
+                val b = Bitmap.createBitmap(w.coerceAtLeast(1), h.coerceAtLeast(1), Bitmap.Config.ARGB_8888)
+                b.eraseColor(android.graphics.Color.WHITE)
+                page.render(b, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
+                b
+            } finally {
+                page.close()
+            }
+        }
+        bitmaps[annotatePageIndex] = rendered
     }
 
     Box(
@@ -308,12 +398,27 @@ fun PdfViewerScreen(
                                 tint = MaterialTheme.colorScheme.primary
                             )
                         }
-                        IconButton(onClick = {}) {
-                            Icon(
-                                imageVector = Icons.Default.MoreVert,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary
-                            )
+                        Box {
+                            IconButton(onClick = { showMoreMenu = true }) {
+                                Icon(
+                                    imageVector = Icons.Default.MoreVert,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.primary
+                                )
+                            }
+                            DropdownMenu(
+                                expanded = showMoreMenu,
+                                onDismissRequest = { showMoreMenu = false }
+                            ) {
+                                DropdownMenuItem(
+                                    text = { Text(stringResource(R.string.annotate)) },
+                                    onClick = {
+                                        showMoreMenu = false
+                                        annotatePageIndex = currentPage
+                                        showAnnotate = true
+                                    }
+                                )
+                            }
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(
@@ -613,6 +718,39 @@ fun PdfViewerScreen(
         )
     }
 
+    if (showAnnotate) {
+        PdfAnnotateDialog(
+            renderer = renderer,
+            bitmaps = bitmaps,
+            pageCount = pageCount,
+            initialPageIndex = annotatePageIndex,
+            onCancel = { showAnnotate = false },
+            onSaveAs = { strokesByPage ->
+                val baseName = fileName.removeSuffix(".pdf").ifBlank { fileName } + "-annotated.pdf"
+                val safeName = if (baseName.startsWith("BharatScan", ignoreCase = true)) {
+                    baseName
+                } else {
+                    "BharatScan $baseName"
+                }
+                pendingAnnotationSave = PendingAnnotationSave(
+                    strokesByPage = strokesByPage,
+                    suggestedFileName = safeName
+                )
+                showAnnotate = false
+                saveAnnotatedPdfLauncher.launch(safeName)
+            }
+        )
+    }
+
+    if (savingAnnotation) {
+        AlertDialog(
+            onDismissRequest = {},
+            title = { Text(stringResource(R.string.annotation_saving)) },
+            text = { LinearProgressIndicator(modifier = Modifier.fillMaxWidth()) },
+            confirmButton = {},
+        )
+    }
+
 }
 
 @Composable
@@ -694,10 +832,83 @@ private fun ensureBouncyCastleProvider() {
     }
 }
 
-private fun openPdfSourceDescriptor(context: Context, source: PdfSource): ParcelFileDescriptor? {
+private data class OpenPdfResult(
+    val pfd: ParcelFileDescriptor,
+    val tempFile: File? = null,
+)
+
+private fun openPdfSourceDescriptor(context: Context, source: PdfSource): OpenPdfResult? {
     return when (source) {
-        is PdfSource.ContentUri -> context.contentResolver.openFileDescriptor(source.uri, "r")
-        is PdfSource.FilePath -> ParcelFileDescriptor.open(source.file, ParcelFileDescriptor.MODE_READ_ONLY)
+        is PdfSource.FilePath -> {
+            if (BuildConfig.DEBUG) {
+                Log.d("PdfViewer", "openPdfSourceDescriptor: file path=${source.file.absolutePath}")
+            }
+            val pfd = ParcelFileDescriptor.open(source.file, ParcelFileDescriptor.MODE_READ_ONLY)
+            OpenPdfResult(pfd)
+        }
+        is PdfSource.ContentUri -> {
+            val resolver = context.contentResolver
+            if (BuildConfig.DEBUG) {
+                Log.d("PdfViewer", "openPdfSourceDescriptor: content uri=${source.uri}")
+            }
+
+            val direct = try {
+                resolver.openFileDescriptor(source.uri, "r")
+            } catch (e: Exception) {
+                if (BuildConfig.DEBUG) {
+                    Log.e("PdfViewer", "openFileDescriptor failed for uri=${source.uri}", e)
+                }
+                null
+            }
+            if (direct != null) {
+                val statSize = runCatching { direct.statSize }.getOrDefault(-1L)
+                if (BuildConfig.DEBUG) {
+                    Log.d("PdfViewer", "openFileDescriptor succeeded for uri=${source.uri} statSize=$statSize")
+                }
+                // Some providers return a pipe (non-seekable FD). PdfRenderer requires a seekable file.
+                if (statSize > 0L) {
+                    return OpenPdfResult(direct)
+                } else {
+                    runCatching { direct.close() }
+                    if (BuildConfig.DEBUG) {
+                        Log.d("PdfViewer", "Non-seekable/unknown-size FD; importing uri=${source.uri} to temp file")
+                    }
+                }
+            }
+
+            // Some providers (e.g. chat apps) don't support openFileDescriptor but do support openInputStream.
+            val input = try {
+                resolver.openInputStream(source.uri)
+            } catch (e: Exception) {
+                if (BuildConfig.DEBUG) {
+                    Log.e("PdfViewer", "openInputStream failed for uri=${source.uri}", e)
+                }
+                null
+            } ?: return null
+
+            input.use { stream ->
+                val temp = File.createTempFile("bharatscan_import_", ".pdf", context.cacheDir)
+                try {
+                    val bytesCopied = temp.outputStream().use { out ->
+                        stream.copyTo(out)
+                    }
+                    if (BuildConfig.DEBUG) {
+                        Log.d(
+                            "PdfViewer",
+                            "Imported content uri to temp file=${temp.absolutePath} bytes=$bytesCopied uri=${source.uri}"
+                        )
+                    }
+                    val pfd = ParcelFileDescriptor.open(temp, ParcelFileDescriptor.MODE_READ_ONLY)
+                    OpenPdfResult(pfd, tempFile = temp)
+                } catch (e: Exception) {
+                    if (BuildConfig.DEBUG) {
+                        Log.e("PdfViewer", "Failed importing uri=${source.uri} to temp file=${temp.absolutePath}", e)
+                    }
+                    temp.delete()
+                    throw e
+                }
+            }
+        }
     }
 }
 
@@ -743,16 +954,19 @@ private suspend fun decryptPdfToCache(
 
 private suspend fun buildOcrIndex(context: Context, source: PdfSource): Map<Int, List<OcrLineBox>> {
     return withContext(Dispatchers.Default) {
-        val pfd = try {
+        val opened = try {
             openPdfSourceDescriptor(context, source)
         } catch (_: Exception) {
             null
         } ?: return@withContext emptyMap()
+        val pfd = opened.pfd
+        val importedTempFile = opened.tempFile
 
         val renderer = try {
             PdfRenderer(pfd)
         } catch (_: SecurityException) {
             pfd.close()
+            importedTempFile?.delete()
             return@withContext emptyMap()
         }
         val engine = TextRecognitionHelper.createEngine(context)
@@ -792,6 +1006,7 @@ private suspend fun buildOcrIndex(context: Context, source: PdfSource): Map<Int,
             engine.close()
             renderer.close()
             pfd.close()
+            importedTempFile?.delete()
         }
         index
     }
@@ -1025,6 +1240,524 @@ private fun PageIndicator(text: String, modifier: Modifier = Modifier) {
                 close()
             }
             drawPath(path, color = BharatNavy)
+        }
+    }
+}
+
+private data class InkStroke(
+    val points: List<Offset>,
+    val color: Color,
+    // Stroke width in PDF points (1/72")
+    val widthPt: Float,
+)
+
+private enum class InkTool {
+    PEN,
+    MARKER,
+    HIGHLIGHTER,
+    ERASER,
+}
+
+private data class PendingAnnotationSave(
+    val strokesByPage: Map<Int, List<InkStroke>>,
+    val suggestedFileName: String,
+)
+
+@Composable
+private fun PdfAnnotateDialog(
+    renderer: PdfRenderer?,
+    bitmaps: MutableList<Bitmap?>,
+    pageCount: Int,
+    initialPageIndex: Int,
+    onCancel: () -> Unit,
+    onSaveAs: (Map<Int, List<InkStroke>>) -> Unit,
+) {
+    val strokesByPage = remember { mutableStateMapOf<Int, SnapshotStateList<InkStroke>>() }
+    var pageIndex by remember(initialPageIndex) { mutableIntStateOf(initialPageIndex.coerceIn(0, (pageCount - 1).coerceAtLeast(0))) }
+
+    var tool by remember { mutableStateOf(InkTool.PEN) }
+    var toolColor by remember { mutableStateOf(Color(0xFF1565C0)) }
+    var strokeWidthPt by remember { mutableStateOf(2.5f) }
+    var eraserSizePt by remember { mutableStateOf(18f) }
+
+    val anyStrokes = strokesByPage.values.any { it.isNotEmpty() }
+    val strokes = strokesByPage.getOrPut(pageIndex) { mutableStateListOf() }
+
+    val effectiveColor = when (tool) {
+        InkTool.HIGHLIGHTER -> toolColor.copy(alpha = 0.35f)
+        InkTool.MARKER -> toolColor.copy(alpha = 0.75f)
+        else -> toolColor
+    }
+
+    LaunchedEffect(pageIndex, renderer) {
+        if (pageIndex < 0 || pageIndex >= pageCount) return@LaunchedEffect
+        if (bitmaps.getOrNull(pageIndex) != null) return@LaunchedEffect
+        val r = renderer ?: return@LaunchedEffect
+
+        val rendered = withContext(Dispatchers.Default) {
+            val page = r.openPage(pageIndex)
+            try {
+                val w = (page.width * 2).coerceAtLeast(1)
+                val h = (page.height * 2).coerceAtLeast(1)
+                val b = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+                b.eraseColor(android.graphics.Color.WHITE)
+                page.render(b, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
+                b
+            } finally {
+                page.close()
+            }
+        }
+        if (pageIndex in bitmaps.indices) {
+            bitmaps[pageIndex] = rendered
+        } else {
+            rendered.recycle()
+        }
+    }
+
+    Dialog(
+        onDismissRequest = onCancel,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+            Column(modifier = Modifier.fillMaxSize()) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    TextButton(onClick = onCancel) { Text(stringResource(R.string.cancel)) }
+                    Text(
+                        text = stringResource(R.string.annotate),
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    TextButton(
+                        enabled = anyStrokes,
+                        onClick = {
+                            val flattened = strokesByPage
+                                .filterValues { it.isNotEmpty() }
+                                .mapValues { it.value.toList() }
+                            onSaveAs(flattened)
+                        }
+                    ) { Text(stringResource(R.string.save_as)) }
+                }
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    TextButton(
+                        enabled = pageIndex > 0,
+                        onClick = { pageIndex = (pageIndex - 1).coerceAtLeast(0) }
+                    ) { Text(stringResource(R.string.annotation_prev)) }
+
+                    Text(
+                        text = stringResource(R.string.page_of, pageIndex + 1, pageCount.coerceAtLeast(1)),
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.secondary
+                    )
+
+                    TextButton(
+                        enabled = pageIndex < pageCount - 1,
+                        onClick = { pageIndex = (pageIndex + 1).coerceAtMost(pageCount - 1) }
+                    ) { Text(stringResource(R.string.annotation_next)) }
+                }
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    Text(
+                        text = stringResource(R.string.annotation_tip),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.secondary
+                    )
+
+                    LazyRow(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        contentPadding = androidx.compose.foundation.layout.PaddingValues(end = 8.dp)
+                    ) {
+                        item {
+                            SignatureToolButton(
+                                label = stringResource(R.string.signature_pen),
+                                selected = tool == InkTool.PEN,
+                                onClick = {
+                                    tool = InkTool.PEN
+                                    strokeWidthPt = strokeWidthPt.coerceIn(1f, 8f)
+                                }
+                            )
+                        }
+                        item {
+                            SignatureToolButton(
+                                label = stringResource(R.string.signature_marker),
+                                selected = tool == InkTool.MARKER,
+                                onClick = {
+                                    tool = InkTool.MARKER
+                                    strokeWidthPt = strokeWidthPt.coerceIn(2f, 14f)
+                                }
+                            )
+                        }
+                        item {
+                            SignatureToolButton(
+                                label = stringResource(R.string.annotation_highlighter),
+                                selected = tool == InkTool.HIGHLIGHTER,
+                                onClick = {
+                                    tool = InkTool.HIGHLIGHTER
+                                    toolColor = Color(0xFFFFD54F)
+                                    strokeWidthPt = strokeWidthPt.coerceIn(6f, 24f)
+                                }
+                            )
+                        }
+                        item {
+                            SignatureToolButton(
+                                label = stringResource(R.string.annotation_eraser),
+                                selected = tool == InkTool.ERASER,
+                                onClick = { tool = InkTool.ERASER }
+                            )
+                        }
+                    }
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                            SignatureColorDot(Color(0xFF1565C0), toolColor == Color(0xFF1565C0)) {
+                                toolColor = Color(0xFF1565C0)
+                            }
+                            SignatureColorDot(Color.Black, toolColor == Color.Black) {
+                                toolColor = Color.Black
+                            }
+                            SignatureColorDot(Color(0xFFB71C1C), toolColor == Color(0xFFB71C1C)) {
+                                toolColor = Color(0xFFB71C1C)
+                            }
+                            SignatureColorDot(Color(0xFF1B5E20), toolColor == Color(0xFF1B5E20)) {
+                                toolColor = Color(0xFF1B5E20)
+                            }
+                        }
+                        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                            TextButton(enabled = strokes.isNotEmpty(), onClick = { strokes.removeAt(strokes.lastIndex) }) {
+                                Text(stringResource(R.string.undo))
+                            }
+                            TextButton(enabled = strokes.isNotEmpty(), onClick = { strokes.clear() }) {
+                                Text(stringResource(R.string.clear))
+                            }
+                        }
+                    }
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.signature_size),
+                            style = MaterialTheme.typography.labelMedium
+                        )
+                        if (tool == InkTool.ERASER) {
+                            Slider(
+                                value = eraserSizePt,
+                                onValueChange = { eraserSizePt = it },
+                                valueRange = 8f..36f,
+                                modifier = Modifier.weight(1f)
+                            )
+                        } else {
+                            Slider(
+                                value = strokeWidthPt,
+                                onValueChange = { strokeWidthPt = it },
+                                valueRange = when (tool) {
+                                    InkTool.PEN -> 1f..10f
+                                    InkTool.MARKER -> 2f..16f
+                                    InkTool.HIGHLIGHTER -> 6f..28f
+                                    InkTool.ERASER -> 8f..36f
+                                },
+                                modifier = Modifier.weight(1f)
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                val pageBitmap = bitmaps.getOrNull(pageIndex)
+                if (pageBitmap == null) {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+                    }
+                    return@Column
+                }
+
+                AnnotatablePdfPage(
+                    bitmap = pageBitmap,
+                    strokes = strokes,
+                    tool = tool,
+                    strokeColor = effectiveColor,
+                    strokeWidthPt = strokeWidthPt,
+                    eraserSizePt = eraserSizePt,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp)
+                        .clip(androidx.compose.foundation.shape.RoundedCornerShape(16.dp))
+                        .background(MaterialTheme.colorScheme.surface)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun AnnotatablePdfPage(
+    bitmap: Bitmap,
+    strokes: MutableList<InkStroke>,
+    tool: InkTool,
+    strokeColor: Color,
+    strokeWidthPt: Float,
+    eraserSizePt: Float,
+    modifier: Modifier = Modifier,
+) {
+    var scale by remember(bitmap) { mutableStateOf(1f) }
+    var offset by remember(bitmap) { mutableStateOf(Offset.Zero) }
+    val liveStrokePoints = remember { mutableStateListOf<Offset>() }
+    var eraserPreview by remember { mutableStateOf<Offset?>(null) }
+
+    BoxWithConstraints(modifier = modifier) {
+        val containerW = constraints.maxWidth.toFloat().coerceAtLeast(1f)
+        val containerH = constraints.maxHeight.toFloat().coerceAtLeast(1f)
+        val imageAspect = bitmap.width.toFloat() / bitmap.height.toFloat()
+        val containerAspect = containerW / containerH
+        val displayW: Float
+        val displayH: Float
+        if (imageAspect > containerAspect) {
+            displayW = containerW
+            displayH = containerW / imageAspect
+        } else {
+            displayH = containerH
+            displayW = containerH * imageAspect
+        }
+        val imageLeft = (containerW - displayW) / 2f
+        val imageTop = (containerH - displayH) / 2f
+
+        fun clampOffset(raw: Offset, newScale: Float): Offset {
+            val maxX = ((displayW * newScale) - containerW) / 2f
+            val maxY = ((displayH * newScale) - containerH) / 2f
+            val clampedX = raw.x.coerceIn(-maxX.coerceAtLeast(0f), maxX.coerceAtLeast(0f))
+            val clampedY = raw.y.coerceIn(-maxY.coerceAtLeast(0f), maxY.coerceAtLeast(0f))
+            return Offset(clampedX, clampedY)
+        }
+
+        fun toPageNormalized(screenPos: Offset): Offset? {
+            val contentPos = Offset(
+                x = (screenPos.x - offset.x) / scale,
+                y = (screenPos.y - offset.y) / scale,
+            )
+            val x = (contentPos.x - imageLeft) / displayW
+            val y = (contentPos.y - imageTop) / displayH
+            if (x < 0f || x > 1f || y < 0f || y > 1f) return null
+            return Offset(x, y)
+        }
+
+        fun eraserRadiusNorm(): Float = (eraserSizePt / 500f).coerceIn(0.005f, 0.08f)
+
+        fun eraseAt(point: Offset) {
+            if (strokes.isEmpty()) return
+            val radius = eraserRadiusNorm()
+            val radius2 = radius * radius
+
+            // Partial eraser: remove points within radius and split strokes into kept segments.
+            val updated = buildList {
+                strokes.forEach { stroke ->
+                    var segment = mutableListOf<Offset>()
+                    for (p in stroke.points) {
+                        val dx = p.x - point.x
+                        val dy = p.y - point.y
+                        val keep = (dx * dx + dy * dy) > radius2
+                        if (keep) {
+                            segment.add(p)
+                        } else {
+                            if (segment.size >= 2) {
+                                add(stroke.copy(points = segment.toList()))
+                            }
+                            segment = mutableListOf()
+                        }
+                    }
+                    if (segment.size >= 2) {
+                        add(stroke.copy(points = segment.toList()))
+                    }
+                }
+            }
+            strokes.clear()
+            strokes.addAll(updated)
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                // Don't include `scale`/`offset` in key set; otherwise this restarts during pan/zoom and feels stuck.
+                .pointerInput(bitmap, tool, strokeColor, strokeWidthPt, eraserSizePt) {
+                    awaitEachGesture {
+                        val down = awaitFirstDown(requireUnconsumed = false)
+                        val activeId = down.id
+
+                        val isEraser = down.type == PointerType.Eraser || tool == InkTool.ERASER
+                        val points = mutableListOf<Offset>()
+                        var hasZoomed = false
+                        if (BuildConfig.DEBUG) {
+                            Log.d(
+                                "PdfAnnotate",
+                                "down type=${down.type} tool=$tool isEraser=$isEraser scale=$scale offset=$offset"
+                            )
+                        }
+
+                        toPageNormalized(down.position)?.let { p ->
+                            if (isEraser) eraseAt(p) else points.add(p)
+                        }
+                        down.consume()
+                        liveStrokePoints.clear()
+                        if (!isEraser) {
+                            liveStrokePoints.addAll(points)
+                        } else {
+                            eraserPreview = toPageNormalized(down.position)
+                        }
+
+                        while (true) {
+                            val event = awaitPointerEvent()
+                            val pressedChanges = event.changes.filter { it.pressed }
+                            if (pressedChanges.isEmpty()) break
+
+                            val pointerCount = pressedChanges.size
+                            if (pointerCount >= 2) {
+                                // Two+ fingers: zoom/pan (even if we started drawing).
+                                hasZoomed = true
+                                points.clear()
+                                liveStrokePoints.clear()
+                                eraserPreview = null
+
+                                val zoom = event.calculateZoom()
+                                val pan = event.calculatePan()
+                                val newScale = (scale * zoom).coerceIn(1f, 4f)
+                                val newOffset = if (newScale <= 1.01f) Offset.Zero else clampOffset(offset + pan, newScale)
+                                scale = newScale
+                                offset = newOffset
+                                pressedChanges.forEach { it.consume() }
+                                continue
+                            }
+
+                            val change = pressedChanges.firstOrNull { it.id == activeId } ?: pressedChanges.first()
+
+                            if (hasZoomed) {
+                                // After a pinch, allow single-pointer panning while zoomed.
+                                val pan = event.calculatePan()
+                                offset = clampOffset(offset + pan, scale)
+                                pressedChanges.forEach { it.consume() }
+                                continue
+                            }
+
+                            // Single pointer: draw/erase (works for stylus OR finger; stylus detection is unreliable on some devices).
+                            toPageNormalized(change.position)?.let { p ->
+                                if (isEraser) {
+                                    eraserPreview = p
+                                    eraseAt(p)
+                                } else {
+                                    points.add(p)
+                                    liveStrokePoints.add(p)
+                                }
+                            }
+                            change.consume()
+                        }
+
+                        if (!isEraser && points.size >= 2) {
+                            strokes.add(InkStroke(points = points, color = strokeColor, widthPt = strokeWidthPt))
+                        }
+                        liveStrokePoints.clear()
+                        eraserPreview = null
+                    }
+                }
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .graphicsLayer {
+                        scaleX = scale
+                        scaleY = scale
+                        translationX = offset.x
+                        translationY = offset.y
+                    }
+            ) {
+                Image(
+                    bitmap = bitmap.asImageBitmap(),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.fillMaxSize()
+                )
+                Canvas(modifier = Modifier.fillMaxSize()) {
+                    strokes.forEach { stroke ->
+                        val pts = stroke.points
+                        if (pts.size < 2) return@forEach
+                        val path = Path().apply {
+                            val first = pts.first()
+                            moveTo(imageLeft + first.x * displayW, imageTop + first.y * displayH)
+                            for (p in pts.drop(1)) {
+                                lineTo(imageLeft + p.x * displayW, imageTop + p.y * displayH)
+                            }
+                        }
+                        drawPath(
+                            path = path,
+                            color = stroke.color,
+                            style = Stroke(
+                                width = stroke.widthPt * 2f, // Approx. 144dpi preview
+                                cap = StrokeCap.Round,
+                                join = StrokeJoin.Round
+                            )
+                        )
+                    }
+
+                    if (liveStrokePoints.size >= 2) {
+                        val pts = liveStrokePoints
+                        val path = Path().apply {
+                            val first = pts.first()
+                            moveTo(imageLeft + first.x * displayW, imageTop + first.y * displayH)
+                            for (p in pts.drop(1)) {
+                                lineTo(imageLeft + p.x * displayW, imageTop + p.y * displayH)
+                            }
+                        }
+                        drawPath(
+                            path = path,
+                            color = strokeColor,
+                            style = Stroke(
+                                width = strokeWidthPt * 2f,
+                                cap = StrokeCap.Round,
+                                join = StrokeJoin.Round
+                            )
+                        )
+                    }
+
+                    eraserPreview?.let { p ->
+                        val cx = imageLeft + p.x * displayW
+                        val cy = imageTop + p.y * displayH
+                        val radiusPx = eraserRadiusNorm() * min(displayW, displayH)
+                        drawCircle(
+                            color = Color(0x66FFFFFF),
+                            radius = radiusPx,
+                            center = Offset(cx, cy)
+                        )
+                        drawCircle(
+                            color = Color(0xAA0D47A1),
+                            radius = radiusPx,
+                            center = Offset(cx, cy),
+                            style = Stroke(width = 2.dp.toPx())
+                        )
+                    }
+                }
+            }
         }
     }
 }
@@ -1555,6 +2288,142 @@ private suspend fun applySignatureToPdf(
                     ?: context.contentResolver.openOutputStream(uri, "w")
                     ?: return@withContext false
                 output.use { doc.save(it) }
+            }
+            true
+        } catch (_: Exception) {
+            false
+        }
+    }
+}
+
+private suspend fun applyInkStrokesToPdf(
+    context: Context,
+    source: PdfSource,
+    destUri: Uri,
+    strokesByPage: Map<Int, List<InkStroke>>,
+    pdfPassword: String? = null,
+): Boolean {
+    if (strokesByPage.isEmpty() || strokesByPage.values.all { it.isEmpty() }) return false
+
+    return withContext(Dispatchers.IO) {
+        try {
+            ensureBouncyCastleProvider()
+            val input = when (source) {
+                is PdfSource.ContentUri -> context.contentResolver.openInputStream(source.uri)
+                is PdfSource.FilePath -> source.file.inputStream()
+            } ?: return@withContext false
+
+            input.use { stream ->
+                val document = try {
+                    if (pdfPassword.isNullOrBlank()) {
+                        PDDocument.load(stream)
+                    } else {
+                        PDDocument.load(stream, pdfPassword)
+                    }
+                } catch (_: InvalidPasswordException) {
+                    return@withContext false
+                }
+
+                document.use { doc ->
+                    for ((pageIndex, strokes) in strokesByPage.toSortedMap()) {
+                        if (strokes.isEmpty()) continue
+                        if (pageIndex < 0 || pageIndex >= doc.numberOfPages) continue
+
+                        val page = doc.getPage(pageIndex)
+                        val pageW = page.mediaBox.width
+                        val pageH = page.mediaBox.height
+
+                        val maxStroke = strokes.maxOfOrNull { it.widthPt } ?: 1f
+                        val margin = (maxStroke * 2f).coerceAtLeast(2f)
+
+                        var minX = Float.POSITIVE_INFINITY
+                        var minY = Float.POSITIVE_INFINITY
+                        var maxX = Float.NEGATIVE_INFINITY
+                        var maxY = Float.NEGATIVE_INFINITY
+                        for (stroke in strokes) {
+                            for (p in stroke.points) {
+                                val x = (p.x * pageW).coerceIn(0f, pageW)
+                                val y = (p.y * pageH).coerceIn(0f, pageH)
+                                minX = min(minX, x)
+                                minY = min(minY, y)
+                                maxX = max(maxX, x)
+                                maxY = max(maxY, y)
+                            }
+                        }
+                        if (!minX.isFinite() || !minY.isFinite()) continue
+
+                        minX = (minX - margin).coerceIn(0f, pageW)
+                        minY = (minY - margin).coerceIn(0f, pageH)
+                        maxX = (maxX + margin).coerceIn(0f, pageW)
+                        maxY = (maxY + margin).coerceIn(0f, pageH)
+
+                        val bounds = RectF(minX, minY, maxX, maxY)
+                        val boundsW = bounds.width().coerceAtLeast(1f)
+                        val boundsH = bounds.height().coerceAtLeast(1f)
+
+                        val renderScale = 2f
+                        val overlayW = (boundsW * renderScale).roundToInt().coerceAtLeast(1)
+                        val overlayH = (boundsH * renderScale).roundToInt().coerceAtLeast(1)
+
+                        val overlay = Bitmap.createBitmap(overlayW, overlayH, Bitmap.Config.ARGB_8888)
+                        try {
+                            overlay.eraseColor(android.graphics.Color.TRANSPARENT)
+                            val canvas = AndroidCanvas(overlay)
+                            val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+                                style = Paint.Style.STROKE
+                                strokeCap = Paint.Cap.ROUND
+                                strokeJoin = Paint.Join.ROUND
+                            }
+
+                            for (stroke in strokes) {
+                                if (stroke.points.size < 2) continue
+                                paint.color = stroke.color.toArgb()
+                                paint.strokeWidth = (stroke.widthPt * renderScale).coerceAtLeast(1f)
+
+                                val path = android.graphics.Path()
+                                val first = stroke.points.first()
+                                path.moveTo(
+                                    (first.x * pageW - bounds.left) * renderScale,
+                                    (first.y * pageH - bounds.top) * renderScale
+                                )
+                                for (p in stroke.points.drop(1)) {
+                                    path.lineTo(
+                                        (p.x * pageW - bounds.left) * renderScale,
+                                        (p.y * pageH - bounds.top) * renderScale
+                                    )
+                                }
+                                canvas.drawPath(path, paint)
+                            }
+
+                            val image = LosslessFactory.createFromImage(doc, overlay)
+                            val pdfX = bounds.left
+                            val pdfY = pageH - bounds.bottom
+                            PDPageContentStream(
+                                doc,
+                                page,
+                                PDPageContentStream.AppendMode.APPEND,
+                                true,
+                                true
+                            ).use { contentStream ->
+                                contentStream.drawImage(image, pdfX, pdfY, boundsW, boundsH)
+                            }
+                        } finally {
+                            overlay.recycle()
+                        }
+                    }
+
+                    if (!pdfPassword.isNullOrBlank()) {
+                        val access = AccessPermission()
+                        val policy = StandardProtectionPolicy(pdfPassword, pdfPassword, access)
+                        policy.encryptionKeyLength = 128
+                        doc.protect(policy)
+                    }
+
+                    val output = context.contentResolver.openOutputStream(destUri, "rwt")
+                        ?: context.contentResolver.openOutputStream(destUri, "w")
+                        ?: return@withContext false
+                    output.use { doc.save(it) }
+                }
             }
             true
         } catch (_: Exception) {

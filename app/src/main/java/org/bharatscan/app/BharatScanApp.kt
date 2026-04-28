@@ -21,11 +21,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.bharatscan.app.data.FileLogger
 import org.bharatscan.app.data.FileManager
 import org.bharatscan.app.data.LogRepository
+import org.bharatscan.app.data.bootstrapRecentDocumentsIfEmpty
 import org.bharatscan.app.data.recentDocumentsDataStore
 import org.bharatscan.app.domain.ImageSegmentationService
 import org.bharatscan.app.platform.AndroidPdfWriter
@@ -49,6 +53,14 @@ class BharatScanApp : Application() {
             applyAppLanguage(tag)
         }
         appContainer.cleanOrphanSessions()
+
+        // Rebuild "Recent Scans" after reinstall by indexing the exported PDFs folder.
+        CoroutineScope(Dispatchers.IO).launch {
+            bootstrapRecentDocumentsIfEmpty(
+                context = this@BharatScanApp,
+                recentDocumentsDataStore = appContainer.recentDocumentsDataStore
+            )
+        }
     }
 }
 
@@ -58,9 +70,13 @@ class AppContainer(context: Context) {
     val appContext: Context = context.applicationContext
     private val cacheDir = context.cacheDir
     val preparationDir = File(context.cacheDir, "pdfs")
+    private val exportsDir = File(
+        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+        "BharatScan"
+    )
     val fileManager = FileManager(
         preparationDir,
-        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+        exportsDir,
         AndroidPdfWriter()
     )
     val logRepository = LogRepository(File(context.filesDir, "logs.txt"))

@@ -59,6 +59,7 @@
     <string name="pdf_password_incorrect">Incorrect password. Please try again.</string>
     <string name="pdf_password_opening">Opening…</string>
     <string name="pdf_password_failed">Unable to open this PDF.</string>
+    <string name="pdf_open_failed_permissions">Unable to open this PDF. Please try sharing it again.</string>
     <string name="select_file_format">Select file format</string>
     <string name="export_quality">Export quality</string>
     <string name="quality_high">High (300 DPI)</string>
@@ -710,6 +711,17 @@
     <string name="support">Support</string>
     <string name="scanned_unknown">Scanned recently</string>
     <string name="sign">Sign</string>
+    <string name="annotate">Annotate</string>
+    <string name="annotation_prev">Prev</string>
+    <string name="annotation_next">Next</string>
+    <string name="annotation_highlighter">Highlighter</string>
+    <string name="annotation_eraser">Eraser</string>
+    <string name="save_as">Save as</string>
+    <string name="undo">Undo</string>
+    <string name="annotation_tip">Use a stylus to draw. Use two fingers to zoom and pan.</string>
+    <string name="annotation_saving">Saving annotation…</string>
+    <string name="annotation_saved">Annotated PDF saved.</string>
+    <string name="annotation_save_failed">Couldn\'t save annotated PDF.</string>
     <string name="signature_title">Signature</string>
     <string name="signature_pencil">Pencil</string>
     <string name="signature_pen">Pen</string>

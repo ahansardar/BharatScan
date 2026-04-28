@@ -54,6 +54,7 @@ fun startScreenFor(mode: LaunchMode): Screen.Main =
     when (mode) {
         LaunchMode.NORMAL -> Screen.Main.Home
         LaunchMode.EXTERNAL_SCAN_TO_PDF -> Screen.Main.Camera
+        LaunchMode.EXTERNAL_OPEN_PDF -> Screen.Main.Home
     }
 
 @ConsistentCopyVisibility

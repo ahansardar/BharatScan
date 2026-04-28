@@ -16,7 +16,8 @@ package org.bharatscan.app
 
 enum class LaunchMode {
     NORMAL,
-    EXTERNAL_SCAN_TO_PDF
+    EXTERNAL_SCAN_TO_PDF,
+    EXTERNAL_OPEN_PDF,
 }
 
 

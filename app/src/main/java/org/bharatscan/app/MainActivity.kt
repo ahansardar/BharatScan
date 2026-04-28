@@ -70,6 +70,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.whenResumed
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -116,9 +117,11 @@ import org.bharatscan.app.update.UpdateDownloadStatus
 import org.bharatscan.app.update.UpdateUiState
 import org.opencv.android.OpenCVLoader
 import java.io.File
+import org.bharatscan.app.BuildConfig
 
 class MainActivity : AppCompatActivity() {
     private var updateReceiver: BroadcastReceiver? = null
+    private var mainViewModel: MainViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -143,6 +146,7 @@ class MainActivity : AppCompatActivity() {
                 MainViewModel(imageRepository, appContainer.imageSegmentationService, launchMode)
             }
         }
+        mainViewModel = viewModel
         val exportViewModel: ExportViewModel by viewModels {
             appContainer.viewModelFactory {
                 ExportViewModel(appContainer, imageRepository)
@@ -163,7 +167,7 @@ class MainActivity : AppCompatActivity() {
         }
         
         // Handle incoming intent (e.g., from other apps)
-        handleIntent(intent, viewModel)
+        handleIntent(intent, viewModel, appContainer.settingsRepository)
 
         enableEdgeToEdge()
         setContent {
@@ -295,6 +299,7 @@ class MainActivity : AppCompatActivity() {
 
                 LaunchedEffect(showTutorial, tutorialStep) {
                     if (!showTutorial) return@LaunchedEffect
+                    if (launchMode == LaunchMode.EXTERNAL_OPEN_PDF) return@LaunchedEffect
                     when (tutorialStep) {
                         TutorialStep.HOME -> viewModel.navigateTo(Screen.Main.Home)
                         TutorialStep.SCAN -> viewModel.navigateTo(Screen.Main.Camera)
@@ -538,19 +543,91 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        setIntent(intent)
+        val appContainer = (application as BharatScanApp).appContainer
+        handleIntent(intent, mainViewModel, appContainer.settingsRepository)
     }
 
-    private fun handleIntent(intent: Intent?, viewModel: MainViewModel) {
-        if (intent?.action == Intent.ACTION_VIEW && intent.type == "application/pdf") {
-            intent.data?.let { uri ->
-                viewModel.navigateTo(Screen.Main.PdfViewer(uri))
+    private fun handleIntent(
+        intent: Intent?,
+        viewModel: MainViewModel?,
+        settingsRepository: SettingsRepository,
+    ) {
+        val vm = viewModel ?: return
+        val action = intent?.action ?: return
+        val supported = action == Intent.ACTION_VIEW ||
+                action == Intent.ACTION_EDIT ||
+                action == Intent.ACTION_SEND ||
+                action == Intent.ACTION_SEND_MULTIPLE
+        if (!supported) return
+
+        val uri = intent.data
+            ?: intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
+            ?: intent.getParcelableArrayListExtra<Uri>(Intent.EXTRA_STREAM)?.firstOrNull()
+            ?: intent.clipData?.takeIf { it.itemCount > 0 }?.getItemAt(0)?.uri
+            ?: return
+
+        if (BuildConfig.DEBUG) {
+            Log.d(
+                "MainActivity",
+                "External intent: action=$action uri=$uri type=${intent.type} flags=${intent.flags} " +
+                        "clipItems=${intent.clipData?.itemCount} scheme=${uri.scheme} authority=${uri.authority}"
+            )
+            Log.d(
+                "MainActivity",
+                "External intent extras: hasStream=${intent.hasExtra(Intent.EXTRA_STREAM)} " +
+                        "categories=${intent.categories?.joinToString()} dataString=${intent.dataString}"
+            )
+        }
+
+        // Some providers require persistable permissions for future access; grab them when available.
+        runCatching {
+            val persistableFlags = intent.flags and Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
+            if (persistableFlags != 0) {
+                val rwFlags = intent.flags and (Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+                if (rwFlags != 0) {
+                    contentResolver.takePersistableUriPermission(uri, rwFlags)
+                }
+            }
+        }.onFailure { e ->
+            if (BuildConfig.DEBUG) {
+                Log.e("MainActivity", "takePersistableUriPermission failed for uri=$uri", e)
             }
         }
+
+        // Ensure we keep temporary read permission when opening content URIs.
+        try {
+            if (intent.flags and Intent.FLAG_GRANT_READ_URI_PERMISSION != 0) {
+                grantUriPermission(packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+        } catch (_: Exception) {
+            // ignore
+        }
+
+        // Best-effort validation: some providers return null/octet-stream and some URIs don't end with ".pdf".
+        // We still try to open in the PDF viewer; PdfRenderer will fail for non-PDF input.
+        val type = intent.type ?: runCatching { contentResolver.getType(uri) }.getOrNull()
+        val looksLikePdf = type.equals("application/pdf", ignoreCase = true) ||
+                (uri.lastPathSegment?.lowercase()?.endsWith(".pdf") == true)
+        if (!looksLikePdf && BuildConfig.DEBUG) {
+            Log.d("MainActivity", "Opening via external intent without confirmed PDF mimeType: uri=$uri type=$type")
+        }
+
+        // This respects the user's "require auth" setting before opening.
+        if (BuildConfig.DEBUG) {
+            Log.d("MainActivity", "Navigating to PDF viewer for uri=$uri")
+        }
+        openPdfWithSecurity(uri, vm, settingsRepository)
     }
 
     private fun resolveLaunchMode(intent: Intent?): LaunchMode {
-        return when (intent?.action) {
-            "org.bharatscan.app.action.SCAN_TO_PDF" -> LaunchMode.EXTERNAL_SCAN_TO_PDF
+        val action = intent?.action
+        return when {
+            action == "org.bharatscan.app.action.SCAN_TO_PDF" -> LaunchMode.EXTERNAL_SCAN_TO_PDF
+            action == Intent.ACTION_VIEW ||
+                    action == Intent.ACTION_EDIT ||
+                    action == Intent.ACTION_SEND ||
+                    action == Intent.ACTION_SEND_MULTIPLE -> LaunchMode.EXTERNAL_OPEN_PDF
             else -> LaunchMode.NORMAL
         }
     }
@@ -998,7 +1075,7 @@ class MainActivity : AppCompatActivity() {
         toPdfViewer = { uri -> openPdfWithSecurity(uri, viewModel, (application as BharatScanApp).appContainer.settingsRepository) },
         toAboutScreen = { viewModel.navigateTo(Screen.Overlay.About) },
         toLibrariesScreen = { viewModel.navigateTo(Screen.Overlay.Libraries) },
-        toSettingsScreen = if (launchMode == LaunchMode.EXTERNAL_SCAN_TO_PDF) null else {
+        toSettingsScreen = if (launchMode == LaunchMode.EXTERNAL_SCAN_TO_PDF || launchMode == LaunchMode.EXTERNAL_OPEN_PDF) null else {
             {
                 viewModel.navigateTo(Screen.Overlay.Settings)
             }
@@ -1007,7 +1084,7 @@ class MainActivity : AppCompatActivity() {
             val origin = viewModel.currentScreen.value
             viewModel.navigateBack()
             val destination = viewModel.currentScreen.value
-            if (destination == origin && launchMode == LaunchMode.EXTERNAL_SCAN_TO_PDF) {
+            if (destination == origin && (launchMode == LaunchMode.EXTERNAL_SCAN_TO_PDF || launchMode == LaunchMode.EXTERNAL_OPEN_PDF)) {
                 setResult(RESULT_CANCELED)
                 finish()
             }
@@ -1020,43 +1097,55 @@ class MainActivity : AppCompatActivity() {
         settingsRepository: SettingsRepository,
     ) {
         lifecycleScope.launch {
-            val requireAuth = settingsRepository.requireAuth.first()
-            if (!requireAuth) {
-                viewModel.navigateTo(Screen.Main.PdfViewer(uri))
-                return@launch
-            }
-
-            val authenticators = BiometricManager.Authenticators.BIOMETRIC_WEAK or
-                    BiometricManager.Authenticators.DEVICE_CREDENTIAL
-            val biometricManager = BiometricManager.from(this@MainActivity)
-            if (biometricManager.canAuthenticate(authenticators) != BiometricManager.BIOMETRIC_SUCCESS) {
-                Toast.makeText(
-                    this@MainActivity,
-                    getString(R.string.security_unavailable),
-                    Toast.LENGTH_SHORT
-                ).show()
-                viewModel.navigateTo(Screen.Main.PdfViewer(uri))
-                return@launch
-            }
-
-            val executor = ContextCompat.getMainExecutor(this@MainActivity)
-            val prompt = BiometricPrompt(
-                this@MainActivity,
-                executor,
-                object : BiometricPrompt.AuthenticationCallback() {
-                    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                        viewModel.navigateTo(Screen.Main.PdfViewer(uri))
-                    }
+            // BiometricPrompt needs the activity to be resumed; external intents can arrive during onCreate.
+            lifecycle.whenResumed {
+                if (BuildConfig.DEBUG) {
+                    Log.d("MainActivity", "openPdfWithSecurity whenResumed: uri=$uri")
                 }
-            )
+                val requireAuth = settingsRepository.requireAuth.first()
+                if (!requireAuth) {
+                    if (BuildConfig.DEBUG) {
+                        Log.d("MainActivity", "openPdfWithSecurity: auth disabled, opening uri=$uri")
+                    }
+                    viewModel.navigateTo(Screen.Main.PdfViewer(uri))
+                    return@whenResumed
+                }
 
-            val promptInfo = BiometricPrompt.PromptInfo.Builder()
-                .setTitle(getString(R.string.security_unlock_title))
-                .setSubtitle(getString(R.string.security_unlock_subtitle))
-                .setAllowedAuthenticators(authenticators)
-                .build()
+                val authenticators = BiometricManager.Authenticators.BIOMETRIC_WEAK or
+                        BiometricManager.Authenticators.DEVICE_CREDENTIAL
+                val biometricManager = BiometricManager.from(this@MainActivity)
+                if (biometricManager.canAuthenticate(authenticators) != BiometricManager.BIOMETRIC_SUCCESS) {
+                    Toast.makeText(
+                        this@MainActivity,
+                        getString(R.string.security_unavailable),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    viewModel.navigateTo(Screen.Main.PdfViewer(uri))
+                    return@whenResumed
+                }
 
-            prompt.authenticate(promptInfo)
+                val executor = ContextCompat.getMainExecutor(this@MainActivity)
+                val prompt = BiometricPrompt(
+                    this@MainActivity,
+                    executor,
+                    object : BiometricPrompt.AuthenticationCallback() {
+                        override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                            viewModel.navigateTo(Screen.Main.PdfViewer(uri))
+                        }
+                        override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                            // If user cancels, just stay where they are.
+                        }
+                    }
+                )
+
+                val promptInfo = BiometricPrompt.PromptInfo.Builder()
+                    .setTitle(getString(R.string.security_unlock_title))
+                    .setSubtitle(getString(R.string.security_unlock_subtitle))
+                    .setAllowedAuthenticators(authenticators)
+                    .build()
+
+                prompt.authenticate(promptInfo)
+            }
         }
     }
 

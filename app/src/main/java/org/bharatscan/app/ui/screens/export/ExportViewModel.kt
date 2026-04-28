@@ -513,7 +513,10 @@ class ExportViewModel(container: AppContainer, val imageRepository: ImageReposit
         val values = ContentValues().apply {
             put(MediaStore.MediaColumns.DISPLAY_NAME, source.name)
             put(MediaStore.MediaColumns.MIME_TYPE, format.mimeType)
-            put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS)
+            put(
+                MediaStore.MediaColumns.RELATIVE_PATH,
+                "${Environment.DIRECTORY_DOWNLOADS}/BharatScan/"
+            )
         }
 
         val collection = MediaStore.Downloads.EXTERNAL_CONTENT_URI
