@@ -722,6 +722,13 @@
     <string name="annotation_saving">Saving annotation…</string>
     <string name="annotation_saved">Annotated PDF saved.</string>
     <string name="annotation_save_failed">Couldn\'t save annotated PDF.</string>
+    <string name="excel_converting">Converting Excel…</string>
+    <string name="excel_preview_ready">Excel preview is ready</string>
+    <string name="excel_open_preview">Open preview</string>
+    <string name="excel_export_pdf">Export to PDF</string>
+    <string name="excel_export_done">PDF exported</string>
+    <string name="excel_export_failed">Couldn\'t export PDF</string>
+    <string name="excel_preview_failed">Couldn\'t open this Excel file</string>
     <string name="signature_title">Signature</string>
     <string name="signature_pencil">Pencil</string>
     <string name="signature_pen">Pen</string>

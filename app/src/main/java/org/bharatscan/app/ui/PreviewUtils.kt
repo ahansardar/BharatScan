@@ -35,6 +35,7 @@ fun dummyNavigation(): Navigation {
         toAboutScreen = {},
         toLibrariesScreen = {},
         toPdfViewer = { _ -> },
+        toExcelViewer = { _ -> },
         toSettingsScreen = {},
         back = {},
     )

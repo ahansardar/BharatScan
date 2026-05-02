@@ -26,8 +26,8 @@ android {
         // https://ai.google.dev/edge/litert/android/index
         minSdk = 26
         targetSdk = 36
-        versionCode = 69 // increment by 3 because of ABI-specific APKs
-        versionName = "1.2.0"
+        versionCode = 72 // increment by 3 because of ABI-specific APKs
+        versionName = "1.2.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -142,6 +142,9 @@ dependencies {
     }
     implementation(libs.bouncycastle)
     implementation(libs.bcpkix)
+    implementation(libs.poi)
+    implementation(libs.poi.ooxml)
+    implementation(libs.commons.collections4)
     implementation(libs.icons.extended)
     implementation(libs.zoomable)
     implementation(libs.reorderable)

@@ -88,6 +88,7 @@ import org.bharatscan.app.ui.components.TutorialOverlay
 import org.bharatscan.app.ui.screens.DocumentScreen
 import org.bharatscan.app.ui.screens.LibrariesScreen
 import org.bharatscan.app.ui.screens.PdfViewerScreen
+import org.bharatscan.app.ui.screens.ExcelViewerScreen
 import org.bharatscan.app.ui.screens.about.AboutEvent
 import org.bharatscan.app.ui.screens.about.AboutScreen
 import org.bharatscan.app.ui.screens.about.AboutViewModel
@@ -118,6 +119,7 @@ import org.bharatscan.app.update.UpdateUiState
 import org.opencv.android.OpenCVLoader
 import java.io.File
 import org.bharatscan.app.BuildConfig
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     private var updateReceiver: BroadcastReceiver? = null
@@ -401,6 +403,13 @@ class MainActivity : AppCompatActivity() {
                                 }
                             )
                             }
+                            is Screen.Main.ExcelViewer -> {
+                            ExcelViewerScreen(
+                                uri = screen.uri,
+                                onBack = navigation.back,
+                                onOpenPdf = { pdfUri -> navigation.toPdfViewer(pdfUri) }
+                            )
+                            }
                             is Screen.Main.Camera -> {
                             CameraScreen(
                                 viewModel,
@@ -604,20 +613,27 @@ class MainActivity : AppCompatActivity() {
             // ignore
         }
 
-        // Best-effort validation: some providers return null/octet-stream and some URIs don't end with ".pdf".
-        // We still try to open in the PDF viewer; PdfRenderer will fail for non-PDF input.
         val type = intent.type ?: runCatching { contentResolver.getType(uri) }.getOrNull()
-        val looksLikePdf = type.equals("application/pdf", ignoreCase = true) ||
-                (uri.lastPathSegment?.lowercase()?.endsWith(".pdf") == true)
-        if (!looksLikePdf && BuildConfig.DEBUG) {
-            Log.d("MainActivity", "Opening via external intent without confirmed PDF mimeType: uri=$uri type=$type")
+        val lowerSeg = uri.lastPathSegment?.lowercase(Locale.ROOT).orEmpty()
+        val looksLikePdf = type.equals("application/pdf", ignoreCase = true) || lowerSeg.endsWith(".pdf")
+        val looksLikeExcel = type.equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", ignoreCase = true) ||
+                type.equals("application/vnd.ms-excel", ignoreCase = true) ||
+                lowerSeg.endsWith(".xlsx") || lowerSeg.endsWith(".xls")
+
+        if (!looksLikePdf && !looksLikeExcel && BuildConfig.DEBUG) {
+            Log.d("MainActivity", "Opening via external intent without confirmed mimeType: uri=$uri type=$type")
+        }
+
+        if (BuildConfig.DEBUG) {
+            Log.d("MainActivity", "External open route: looksLikePdf=$looksLikePdf looksLikeExcel=$looksLikeExcel uri=$uri")
         }
 
         // This respects the user's "require auth" setting before opening.
-        if (BuildConfig.DEBUG) {
-            Log.d("MainActivity", "Navigating to PDF viewer for uri=$uri")
+        if (looksLikeExcel) {
+            openExcelWithSecurity(uri, vm, settingsRepository)
+        } else {
+            openPdfWithSecurity(uri, vm, settingsRepository)
         }
-        openPdfWithSecurity(uri, vm, settingsRepository)
     }
 
     private fun resolveLaunchMode(intent: Intent?): LaunchMode {
@@ -1073,6 +1089,7 @@ class MainActivity : AppCompatActivity() {
         toDocumentScreen = { viewModel.navigateTo(Screen.Main.Document()) },
         toExportScreen = { viewModel.navigateTo(Screen.Main.Export) },
         toPdfViewer = { uri -> openPdfWithSecurity(uri, viewModel, (application as BharatScanApp).appContainer.settingsRepository) },
+        toExcelViewer = { uri -> openExcelWithSecurity(uri, viewModel, (application as BharatScanApp).appContainer.settingsRepository) },
         toAboutScreen = { viewModel.navigateTo(Screen.Overlay.About) },
         toLibrariesScreen = { viewModel.navigateTo(Screen.Overlay.Libraries) },
         toSettingsScreen = if (launchMode == LaunchMode.EXTERNAL_SCAN_TO_PDF || launchMode == LaunchMode.EXTERNAL_OPEN_PDF) null else {
@@ -1131,6 +1148,64 @@ class MainActivity : AppCompatActivity() {
                     object : BiometricPrompt.AuthenticationCallback() {
                         override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                             viewModel.navigateTo(Screen.Main.PdfViewer(uri))
+                        }
+                        override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                            // If user cancels, just stay where they are.
+                        }
+                    }
+                )
+
+                val promptInfo = BiometricPrompt.PromptInfo.Builder()
+                    .setTitle(getString(R.string.security_unlock_title))
+                    .setSubtitle(getString(R.string.security_unlock_subtitle))
+                    .setAllowedAuthenticators(authenticators)
+                    .build()
+
+                prompt.authenticate(promptInfo)
+            }
+        }
+    }
+
+    private fun openExcelWithSecurity(
+        uri: Uri,
+        viewModel: MainViewModel,
+        settingsRepository: SettingsRepository,
+    ) {
+        lifecycleScope.launch {
+            // BiometricPrompt needs the activity to be resumed; external intents can arrive during onCreate.
+            lifecycle.whenResumed {
+                if (BuildConfig.DEBUG) {
+                    Log.d("MainActivity", "openExcelWithSecurity whenResumed: uri=$uri")
+                }
+                val requireAuth = settingsRepository.requireAuth.first()
+                if (!requireAuth) {
+                    if (BuildConfig.DEBUG) {
+                        Log.d("MainActivity", "openExcelWithSecurity: auth disabled, opening uri=$uri")
+                    }
+                    viewModel.navigateTo(Screen.Main.ExcelViewer(uri))
+                    return@whenResumed
+                }
+
+                val authenticators = BiometricManager.Authenticators.BIOMETRIC_WEAK or
+                        BiometricManager.Authenticators.DEVICE_CREDENTIAL
+                val biometricManager = BiometricManager.from(this@MainActivity)
+                if (biometricManager.canAuthenticate(authenticators) != BiometricManager.BIOMETRIC_SUCCESS) {
+                    Toast.makeText(
+                        this@MainActivity,
+                        getString(R.string.security_unavailable),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    viewModel.navigateTo(Screen.Main.ExcelViewer(uri))
+                    return@whenResumed
+                }
+
+                val executor = ContextCompat.getMainExecutor(this@MainActivity)
+                val prompt = BiometricPrompt(
+                    this@MainActivity,
+                    executor,
+                    object : BiometricPrompt.AuthenticationCallback() {
+                        override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                            viewModel.navigateTo(Screen.Main.ExcelViewer(uri))
                         }
                         override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                             // If user cancels, just stay where they are.

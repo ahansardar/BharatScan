@@ -27,6 +27,7 @@ sealed class Screen {
         data class Document(val initialPage: Int = 0) : Main()
         object Export : Main()
         data class PdfViewer(val uri: Uri) : Main()
+        data class ExcelViewer(val uri: Uri) : Main()
     }
     sealed class Overlay : Screen() {
         object About : Overlay()
@@ -46,6 +47,7 @@ data class Navigation(
     val toAboutScreen: () -> Unit,
     val toLibrariesScreen: () -> Unit,
     val toPdfViewer: (Uri) -> Unit,
+    val toExcelViewer: (Uri) -> Unit,
     val toSettingsScreen: (() -> Unit)?,
     val back: () -> Unit,
 )
@@ -74,7 +76,12 @@ data class NavigationState private constructor(val stack: List<Screen>, val root
             copy(stack = stack + destination)
         } else if (
             destination is Screen.Main.Document &&
-            (current is Screen.Main.PdfViewer || stack.any { it is Screen.Main.PdfViewer })
+            (
+                current is Screen.Main.PdfViewer ||
+                    stack.any { it is Screen.Main.PdfViewer } ||
+                    current is Screen.Main.ExcelViewer ||
+                    stack.any { it is Screen.Main.ExcelViewer }
+                )
         ) {
             copy(stack = stack + destination)
         } else {
@@ -96,6 +103,7 @@ data class NavigationState private constructor(val stack: List<Screen>, val root
             is Screen.Main.Document -> copy(stack = listOf(Screen.Main.Camera))
             is Screen.Main.Export -> copy(stack = listOf(Screen.Main.Camera))
             is Screen.Main.PdfViewer -> copy(stack = listOf(Screen.Main.Home))
+            is Screen.Main.ExcelViewer -> copy(stack = listOf(Screen.Main.Home))
             is Screen.Overlay -> copy(stack = stack.dropLast(1))
         }
     }

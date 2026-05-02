@@ -30,6 +30,8 @@ mlkitTextRecognition = "16.0.0"
 bouncycastle = "1.78.1"
 bcpkix = "1.78.1"
 tessTwo = "9.1.0"
+poi = "5.2.5"
+commonsCollections4 = "4.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -76,6 +78,9 @@ mlkit-text-recognition-devanagari = { group = "com.google.mlkit", name = "text-r
 tess-two = { group = "com.rmtheis", name = "tess-two", version.ref = "tessTwo" }
 bouncycastle = { group = "org.bouncycastle", name = "bcprov-jdk15to18", version.ref = "bouncycastle" }
 bcpkix = { group = "org.bouncycastle", name = "bcpkix-jdk15to18", version.ref = "bcpkix" }
+poi = { group = "org.apache.poi", name = "poi", version.ref = "poi" }
+poi-ooxml = { group = "org.apache.poi", name = "poi-ooxml", version.ref = "poi" }
+commons-collections4 = { group = "org.apache.commons", name = "commons-collections4", version.ref = "commonsCollections4" }
 
 assertj =  { group="org.assertj", name="assertj-core", version.ref = "assertj" }
 
