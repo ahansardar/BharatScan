@@ -84,6 +84,9 @@ fun ExcelViewerScreen(
     }
 
     LaunchedEffect(uri) {
+        if (BuildConfig.DEBUG) {
+            Log.d("ExcelViewer", "Opening Excel uri=$uri")
+        }
         convertingPreview = true
         previewPdfUri = null
         lastError = null
@@ -96,7 +99,14 @@ fun ExcelViewerScreen(
                     val ok = ExcelToPdfConverter.convert(context, uri, out)
                     if (!ok) throw IllegalStateException("convert returned false")
                 }
+                if (BuildConfig.DEBUG) {
+                    Log.d("ExcelViewer", "Preview PDF written: file=${outFile.absolutePath} size=${outFile.length()}")
+                }
                 outFile
+            }.onFailure { e ->
+                if (BuildConfig.DEBUG) {
+                    Log.e("ExcelViewer", "Failed generating preview for uri=$uri", e)
+                }
             }.getOrNull()
         }
 

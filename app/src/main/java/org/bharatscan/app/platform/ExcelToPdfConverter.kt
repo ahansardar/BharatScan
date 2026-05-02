@@ -50,7 +50,10 @@ object ExcelToPdfConverter {
 
             temp.inputStream().use { workbookStream ->
                 openWorkbook(workbookStream).use { workbook ->
-                    writeWorkbookToPdf(context, workbook, output, pageSize)
+                    val pages = writeWorkbookToPdf(context, workbook, output, pageSize)
+                    if (pages <= 0) {
+                        throw IllegalStateException("Excel conversion produced 0 PDF pages")
+                    }
                 }
             }
             true
@@ -80,7 +83,7 @@ object ExcelToPdfConverter {
         workbook: Workbook,
         output: OutputStream,
         pageSize: PDRectangle,
-    ) {
+    ): Int {
         PDDocument().use { doc ->
             val font = loadDefaultFont(doc)
             val formatter = DataFormatter(Locale.getDefault(), true)
@@ -88,9 +91,16 @@ object ExcelToPdfConverter {
 
             for (sheetIndex in 0 until workbook.numberOfSheets) {
                 val sheet = workbook.getSheetAt(sheetIndex)
-                if (sheet.physicalNumberOfRows <= 0) continue
-
-                val used = computeUsedArea(sheet) ?: continue
+                val used = computeUsedArea(sheet)
+                if (used == null) {
+                    if (BuildConfig.DEBUG) {
+                        Log.d(
+                            TAG,
+                            "Skipping sheet='${sheet.sheetName}' (index=$sheetIndex): no used cells detected"
+                        )
+                    }
+                    continue
+                }
                 val firstRow = used.firstRow
                 val lastRow = used.lastRow
                 val firstCol = used.firstCol
@@ -169,6 +179,9 @@ object ExcelToPdfConverter {
                         }
                         cs.stroke()
 
+                        // Ensure text is visible (some PDFs/providers may have non-default graphics state).
+                        cs.setNonStrokingColor(0)
+
                         val fontSize = max(6f, 10f * fitScale)
                         val padding = 2f
 
@@ -245,7 +258,11 @@ object ExcelToPdfConverter {
                 }
             }
 
+            if (BuildConfig.DEBUG) {
+                Log.d(TAG, "Excel conversion: workbook sheets=${workbook.numberOfSheets} pdfPages=${doc.numberOfPages}")
+            }
             doc.save(output)
+            return doc.numberOfPages
         }
     }
 
@@ -256,6 +273,13 @@ object ExcelToPdfConverter {
         var lastRow = -1
         var firstCol = Int.MAX_VALUE
         var lastCol = -1
+
+        if (BuildConfig.DEBUG) {
+            Log.d(
+                TAG,
+                "computeUsedArea: sheet='${sheet.sheetName}' physicalRows=${sheet.physicalNumberOfRows} lastRowNum=${sheet.lastRowNum}"
+            )
+        }
 
         val rowIter = sheet.rowIterator()
         while (rowIter.hasNext()) {
